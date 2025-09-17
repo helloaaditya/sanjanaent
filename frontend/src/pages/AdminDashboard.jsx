@@ -65,7 +65,7 @@ const AdminDashboard = () => {
   const fetchProjects = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/projects`)
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/projects`)
       const data = await response.json()
       setProjects(data)
     } catch (err) {
