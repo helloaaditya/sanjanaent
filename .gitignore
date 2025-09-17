@@ -1,0 +1,10 @@
+
+# Env files
+.env
+frontend/.env
+backend/.env
+
+frontend/.env.development
+frontend/.env.production
+backend/.env.production
+
