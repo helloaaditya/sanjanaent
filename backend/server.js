@@ -80,7 +80,7 @@ if (CORS_ORIGIN === '*') {
   })
 }
 app.use(corsMiddleware)
-app.options('*', corsMiddleware)
+app.options(/.*/, corsMiddleware)
 app.use(
   helmet({
     contentSecurityPolicy: false,
