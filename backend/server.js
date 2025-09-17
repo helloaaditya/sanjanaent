@@ -216,6 +216,41 @@ app.get('/api/categories', async (req, res) => {
   }
 })
 
+// ---------- DEBUG (TEMP) ----------
+app.get('/api/debug/db', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const adminCollections = await db.listCollections().toArray()
+    const collections = []
+    for (const c of adminCollections) {
+      const name = c.name
+      let count = 0
+      try {
+        count = await db.collection(name).countDocuments()
+      } catch {}
+      collections.push({ name, count })
+    }
+    const projectsSample = await db
+      .collection('projects')
+      .find({})
+      .project({ title: 1, category: 1 })
+      .limit(3)
+      .toArray()
+    res.json({
+      dbName: db.databaseName,
+      collections,
+      projectsSample,
+      env: {
+        mongodbUriPresent: Boolean(process.env.MONGODB_URI),
+        mongodbDb: process.env.MONGODB_DB || null,
+      },
+    })
+  } catch (error) {
+    console.error('Debug db error:', error)
+    res.status(500).json({ error: 'Debug failed', message: error?.message })
+  }
+})
+
 // ---------- START SERVER ----------
 app.listen(PORT, () => {
   if (BASE_URL) {
