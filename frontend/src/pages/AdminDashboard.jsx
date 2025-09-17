@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Plus, Edit, Trash2, Eye, LogOut, Home, Image, Calendar, MapPin, User, Building, Upload, X, MessageSquare, Phone, Mail, Filter, CheckCircle, Clock, AlertCircle, RefreshCw, Calculator } from 'lucide-react'
+import { Plus, Edit, Trash2, Eye, LogOut, Home, Image, Calendar, MapPin, User, Building, Upload, X, MessageSquare, Phone, Mail, Filter, CheckCircle, Clock, AlertCircle, RefreshCw, Calculator, Settings, BarChart3, Search, Menu, X as CloseIcon, ChevronDown, Star, TrendingUp, Users, Briefcase } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import apiService from '../services/api'
 
@@ -33,6 +33,8 @@ const AdminDashboard = () => {
   const [leadFilter, setLeadFilter] = useState('all')
   const [updatingLead, setUpdatingLead] = useState(null)
   const [successMessage, setSuccessMessage] = useState('')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
   const [formData, setFormData] = useState({
     title: '',
     category: 'Residential',
@@ -426,374 +428,585 @@ const AdminDashboard = () => {
     )
   })
 
-  // Quick stats
+  // Enhanced stats with icons and trends
   const stats = [
-    { label: 'Projects', value: projects.length },
-    { label: 'Services', value: services.length },
-    { label: 'Leads', value: leads.length },
+    { 
+      label: 'Total Projects', 
+      value: projects.length, 
+      icon: Building, 
+      color: 'blue',
+      trend: '+12%',
+      change: 'positive'
+    },
+    { 
+      label: 'Active Services', 
+      value: services.length, 
+      icon: Briefcase, 
+      color: 'green',
+      trend: '+8%',
+      change: 'positive'
+    },
+    { 
+      label: 'New Leads', 
+      value: leads.length, 
+      icon: Users, 
+      color: 'purple',
+      trend: '+23%',
+      change: 'positive'
+    },
+    { 
+      label: 'Conversion Rate', 
+      value: '68%', 
+      icon: TrendingUp, 
+      color: 'orange',
+      trend: '+5%',
+      change: 'positive'
+    }
+  ]
+
+  // Navigation items
+  const navigationItems = [
+    { id: 'projects', label: 'Projects', icon: Image, count: projects.length },
+    { id: 'services', label: 'Services', icon: Briefcase, count: services.length },
+    { id: 'leads', label: 'Leads', icon: MessageSquare, count: leads.length },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <Helmet>
         <title>Admin Dashboard - Sanjana Waterproofing</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-5">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-              <span className="text-sm text-gray-500">
-                Welcome, {localStorage.getItem('adminUsername')}
-              </span>
+      {/* Sidebar */}
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white/95 backdrop-blur-lg border-r border-gray-200/50 transform transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+        <div className="flex flex-col h-full">
+          {/* Logo */}
+          <div className="flex items-center justify-between p-6 border-b border-gray-200/50">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                <Building className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h1 className="text-lg font-bold text-gray-900">Sanjana</h1>
+                <p className="text-xs text-gray-500">Admin Panel</p>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+            >
+              <CloseIcon className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1 px-4 py-6 space-y-2">
+            {navigationItems.map((item) => {
+              const Icon = item.icon
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all duration-200 ${
+                    activeTab === item.id
+                      ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg'
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <Icon className="w-5 h-5" />
+                    <span className="font-medium">{item.label}</span>
+                  </div>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                    activeTab === item.id
+                      ? 'bg-white/20 text-white'
+                      : 'bg-gray-200 text-gray-600'
+                  }`}>
+                    {item.count}
+                  </span>
+                </button>
+              )
+            })}
+          </nav>
+
+          {/* User section */}
+          <div className="p-4 border-t border-gray-200/50">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-900">{localStorage.getItem('adminUsername')}</p>
+                <p className="text-xs text-gray-500">Administrator</p>
+              </div>
+            </div>
+            <div className="space-y-2">
               <button
                 onClick={() => navigate('/')}
-                className="flex items-center space-x-2 text-gray-600 hover:text-gray-900"
+                className="w-full flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <Home size={20} />
-                <span>View Site</span>
+                <Home className="w-4 h-4" />
+                <span className="text-sm">View Site</span>
               </button>
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-2 text-red-600 hover:text-red-900"
+                className="w-full flex items-center space-x-3 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
               >
-                <LogOut size={20} />
-                <span>Logout</span>
+                <LogOut className="w-4 h-4" />
+                <span className="text-sm">Logout</span>
               </button>
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          {stats.map((s) => (
-            <div key={s.label} className="bg-white border rounded-xl p-5 shadow-sm">
-              <div className="text-sm text-gray-500">{s.label}</div>
-              <div className="mt-2 text-3xl font-semibold text-gray-900">{s.value}</div>
-            </div>
-          ))}
-        </div>
-        {/* Tabs Navigation */}
-        <div className="mb-8">
-          <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8">
-              <button
-                onClick={() => setActiveTab('projects')}
-                className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'projects'
-                    ? 'border-primary-500 text-primary-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                <div className="flex items-center space-x-2">
-                  <Image size={16} />
-                  <span>Projects ({projects.length})</span>
+      {/* Overlay for mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Main content */}
+      <div className="lg:ml-64">
+        {/* Top bar */}
+        <header className="bg-white/80 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 z-30">
+          <div className="px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={() => setSidebarOpen(true)}
+                  className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+                >
+                  <Menu className="w-5 h-5" />
+                </button>
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-900 capitalize">{activeTab}</h2>
+                  <p className="text-sm text-gray-500">Manage your {activeTab} efficiently</p>
                 </div>
-              </button>
-              <button
-                onClick={() => setActiveTab('services')}
-                className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'services'
-                    ? 'border-primary-500 text-primary-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                <div className="flex items-center space-x-2">
-                  <Image size={16} />
-                  <span>Services ({services.length})</span>
-                </div>
-              </button>
-              <button
-                onClick={() => setActiveTab('leads')}
-                className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'leads'
-                    ? 'border-primary-500 text-primary-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                <div className="flex items-center space-x-2">
-                  <MessageSquare size={16} />
-                  <span>Leads ({leads.length})</span>
-                </div>
-              </button>
-            </nav>
-          </div>
-        </div>
-
-        {/* Error Message */}
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-            {error}
-          </div>
-        )}
-
-        {/* Success Message */}
-        {successMessage && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-            {successMessage}
-          </div>
-        )}
-
-        {/* Projects Tab Content */}
-        {activeTab === 'projects' && (
-          <>
-            {/* Actions */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-              <h2 className="text-xl font-semibold text-gray-900">Projects ({projects.length})</h2>
-              <div className="flex flex-1 justify-end items-center space-x-3">
-                <input
-                  type="text"
-                  value={projectSearch}
-                  onChange={(e) => setProjectSearch(e.target.value)}
-                  placeholder="Search projects..."
-                  className="hidden md:block w-64 border rounded-lg px-3 py-2"
-                />
-            {projects.length > 0 && (
-              <button
-                onClick={handleClearAll}
-                className="flex items-center space-x-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
-              >
-                <Trash2 size={20} />
-                <span>Clear All</span>
-              </button>
-            )}
-            <button
-              onClick={handleAddNew}
-              className="flex items-center space-x-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700"
-            >
-              <Plus size={20} />
-              <span>Add Project</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div key={project._id} className="bg-white rounded-lg shadow-sm border overflow-hidden">
-              <div className="aspect-w-16 aspect-h-9">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
               </div>
-              <div className="p-4">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-semibold text-gray-900 text-lg">{project.title}</h3>
-                  <span className="bg-primary-100 text-primary-600 px-2 py-1 rounded text-xs">
-                    {project.category}
-                  </span>
+              
+              <div className="flex items-center space-x-4">
+                {/* Search */}
+                <div className="relative hidden md:block">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
                 </div>
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2">{project.description}</p>
                 
-                <div className="space-y-1 text-xs text-gray-500 mb-4">
-                  {project.location && (
-                    <div className="flex items-center space-x-1">
-                      <MapPin size={12} />
-                      <span>{project.location}</span>
-                    </div>
-                  )}
-                  {project.completedDate && (
-                    <div className="flex items-center space-x-1">
-                      <Calendar size={12} />
-                      <span>{new Date(project.completedDate).toLocaleDateString()}</span>
-                    </div>
-                  )}
-                  {project.client && (
-                    <div className="flex items-center space-x-1">
-                      <User size={12} />
-                      <span>{project.client}</span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => handleEdit(project)}
-                    className="flex-1 flex items-center justify-center space-x-1 bg-blue-100 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-200"
-                  >
-                    <Edit size={14} />
-                    <span>Edit</span>
-                  </button>
-                  <button
-                    onClick={() => handleDelete(project._id)}
-                    className="flex-1 flex items-center justify-center space-x-1 bg-red-100 text-red-600 px-3 py-2 rounded text-sm hover:bg-red-200"
-                  >
-                    <Trash2 size={14} />
-                    <span>Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-            {projects.length === 0 && (
-              <div className="text-center py-12">
-                <Building className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
-                <p className="text-gray-500 mb-4">Get started by adding your first project.</p>
+                {/* Notifications */}
                 <button
-                  onClick={handleAddNew}
-                  className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700"
+                  onClick={() => setShowNotifications(!showNotifications)}
+                  className="relative p-2 rounded-lg hover:bg-gray-100"
                 >
-                  Add Project
-                </button>
-              </div>
-            )}
-          </>
-        )}
-
-        {/* Services Tab Content */}
-        {activeTab === 'services' && (
-          <>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-              <h2 className="text-xl font-semibold text-gray-900">Services ({services.length})</h2>
-              <div className="flex items-center space-x-3">
-                <input
-                  type="text"
-                  value={serviceSearch}
-                  onChange={(e) => setServiceSearch(e.target.value)}
-                  placeholder="Search services..."
-                  className="w-64 border rounded-lg px-3 py-2"
-                />
-                <button
-                  onClick={openAddService}
-                  className="flex items-center space-x-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700"
-                >
-                  <Plus size={20} />
-                  <span>Add Service</span>
-                </button>
-                <button
-                  onClick={fetchServices}
-                  className="flex items-center space-x-2 bg-white border px-4 py-2 rounded-lg hover:bg-gray-50"
-                >
-                  <RefreshCw size={16} />
-                  <span>Refresh</span>
+                  <MessageSquare className="w-5 h-5 text-gray-600" />
+                  {leads.length > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                      {leads.length}
+                    </span>
+                  )}
                 </button>
               </div>
             </div>
+          </div>
+        </header>
 
-            {servicesLoading ? (
-              <div className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-                <p className="text-gray-600">Loading services...</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredServices.map((svc) => (
-                  <div key={svc._id} className="bg-white rounded-lg shadow-sm border overflow-hidden">
-                    <div className="p-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-semibold text-gray-900 text-lg">{svc.title}</h3>
-                        <span className="bg-primary-100 text-primary-600 px-2 py-1 rounded text-xs">
-                          {svc.category}
+        <div className="p-6">
+          {/* Enhanced Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon
+              const colorClasses = {
+                blue: 'from-blue-500 to-blue-600',
+                green: 'from-green-500 to-green-600',
+                purple: 'from-purple-500 to-purple-600',
+                orange: 'from-orange-500 to-orange-600'
+              }
+              return (
+                <div key={stat.label} className="group relative overflow-hidden bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600 mb-1">{stat.label}</p>
+                      <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+                      <div className="flex items-center mt-2">
+                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                          stat.change === 'positive' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        }`}>
+                          {stat.trend}
                         </span>
                       </div>
-                      <p className="text-gray-600 text-sm mb-3 line-clamp-2">{svc.description}</p>
-                      {Array.isArray(svc.features) && svc.features.length > 0 && (
-                        <div className="text-xs text-gray-500 mb-3">
-                          Features: {svc.features.slice(0, 3).join(', ')}{svc.features.length > 3 ? '…' : ''}
-                        </div>
-                      )}
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => openEditService(svc)}
-                          className="flex-1 flex items-center justify-center space-x-1 bg-blue-100 text-blue-600 px-3 py-2 rounded text-sm hover:bg-blue-200"
-                        >
-                          <Edit size={14} />
-                          <span>Edit</span>
-                        </button>
-                        <button
-                          onClick={() => deleteService(svc._id)}
-                          className="flex-1 flex items-center justify-center space-x-1 bg-red-100 text-red-600 px-3 py-2 rounded text-sm hover:bg-red-200"
-                        >
-                          <Trash2 size={14} />
-                          <span>Delete</span>
-                        </button>
+                    </div>
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${colorClasses[stat.color]} shadow-lg`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${colorClasses[stat.color]} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                </div>
+              )
+            })}
+          </div>
+          {/* Content Area */}
+          <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden">
+
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 border-l-4 border-red-400 p-4 m-6 rounded-r-lg">
+                <div className="flex">
+                  <AlertCircle className="w-5 h-5 text-red-400 mr-3" />
+                  <p className="text-red-700">{error}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Success Message */}
+            {successMessage && (
+              <div className="bg-green-50 border-l-4 border-green-400 p-4 m-6 rounded-r-lg">
+                <div className="flex">
+                  <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                  <p className="text-green-700">{successMessage}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Projects Tab Content */}
+            {activeTab === 'projects' && (
+              <div className="p-6">
+                {/* Enhanced Toolbar */}
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-blue-100 rounded-lg">
+                        <Image className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-bold text-gray-900">Projects</h2>
+                        <p className="text-sm text-gray-500">{projects.length} total projects</p>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
-          </>
-        )}
-
-        {/* Leads Tab Content */}
-        {activeTab === 'leads' && (
-          <>
-            {/* Leads Actions */}
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-xl font-semibold text-gray-900">Leads ({leads.length})</h2>
-              <div className="flex items-center space-x-4">
-                <select
-                  value={leadFilter}
-                  onChange={(e) => setLeadFilter(e.target.value)}
-                  className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-                >
-                  <option value="all">All Leads</option>
-                  <option value="contact">Contact Inquiries</option>
-                  <option value="quote">Quote Requests</option>
-                </select>
-                <button
-                  onClick={fetchLeads}
-                  className="flex items-center space-x-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700"
-                >
-                  <RefreshCw size={16} />
-                  <span>Refresh</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Leads List */}
-            {leadsLoading ? (
-              <div className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-                <p className="text-gray-600">Loading leads...</p>
-              </div>
-            ) : leads.length === 0 ? (
-              <div className="text-center py-12">
-                <MessageSquare className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No leads yet</h3>
-                <p className="text-gray-500">Leads will appear here when customers contact you.</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {leads.map((lead) => (
-                  <div key={lead._id} className="bg-white rounded-lg shadow-sm border p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="flex items-center space-x-2">
-                          {getTypeIcon(lead.type)}
-                          <span className="text-sm font-medium text-gray-900">
-                            {lead.type === 'quote' ? 'Quote Request' : 'Contact Inquiry'}
-                          </span>
-                        </div>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(lead.status)}`}>
-                          {lead.status}
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-sm text-gray-500">
-                          {new Date(lead.createdAt).toLocaleDateString()}
-                        </span>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <input
+                        type="text"
+                        value={projectSearch}
+                        onChange={(e) => setProjectSearch(e.target.value)}
+                        placeholder="Search projects..."
+                        className="pl-10 pr-4 py-2 w-64 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                    </div>
+                    
+                    <div className="flex space-x-2">
+                      {projects.length > 0 && (
                         <button
-                          onClick={() => handleDeleteLead(lead._id)}
-                          className="text-red-600 hover:text-red-800"
+                          onClick={handleClearAll}
+                          className="flex items-center space-x-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors"
                         >
                           <Trash2 size={16} />
+                          <span>Clear All</span>
                         </button>
+                      )}
+                      <button
+                        onClick={handleAddNew}
+                        className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+                      >
+                        <Plus size={16} />
+                        <span>Add Project</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Enhanced Projects Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredProjects.map((project) => (
+                    <div key={project._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute top-4 right-4">
+                          <span className="bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium">
+                            {project.category}
+                          </span>
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
+                      
+                      <div className="p-6">
+                        <div className="mb-3">
+                          <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-1">{project.title}</h3>
+                          <p className="text-gray-600 text-sm line-clamp-2">{project.description}</p>
+                        </div>
+                        
+                        <div className="space-y-2 text-xs text-gray-500 mb-4">
+                          {project.location && (
+                            <div className="flex items-center space-x-2">
+                              <MapPin size={14} className="text-blue-500" />
+                              <span>{project.location}</span>
+                            </div>
+                          )}
+                          {project.completedDate && (
+                            <div className="flex items-center space-x-2">
+                              <Calendar size={14} className="text-green-500" />
+                              <span>{new Date(project.completedDate).toLocaleDateString()}</span>
+                            </div>
+                          )}
+                          {project.client && (
+                            <div className="flex items-center space-x-2">
+                              <User size={14} className="text-purple-500" />
+                              <span>{project.client}</span>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => handleEdit(project)}
+                            className="flex-1 flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                          >
+                            <Edit size={14} />
+                            <span>Edit</span>
+                          </button>
+                          <button
+                            onClick={() => handleDelete(project._id)}
+                            className="flex-1 flex items-center justify-center space-x-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                          >
+                            <Trash2 size={14} />
+                            <span>Delete</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
+                  ))}
+                </div>
+
+                {projects.length === 0 && (
+                  <div className="text-center py-16">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <Building className="w-12 h-12 text-blue-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">No projects yet</h3>
+                    <p className="text-gray-500 mb-8 max-w-md mx-auto">Get started by adding your first project to showcase your work.</p>
+                    <button
+                      onClick={handleAddNew}
+                      className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                    >
+                      <Plus className="w-5 h-5 inline mr-2" />
+                      Add Your First Project
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Services Tab Content */}
+            {activeTab === 'services' && (
+              <div className="p-6">
+                {/* Enhanced Toolbar */}
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-green-100 rounded-lg">
+                        <Briefcase className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-bold text-gray-900">Services</h2>
+                        <p className="text-sm text-gray-500">{services.length} active services</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <input
+                        type="text"
+                        value={serviceSearch}
+                        onChange={(e) => setServiceSearch(e.target.value)}
+                        placeholder="Search services..."
+                        className="pl-10 pr-4 py-2 w-64 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      />
+                    </div>
+                    
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={fetchServices}
+                        className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors"
+                      >
+                        <RefreshCw size={16} />
+                        <span>Refresh</span>
+                      </button>
+                      <button
+                        onClick={openAddService}
+                        className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+                      >
+                        <Plus size={16} />
+                        <span>Add Service</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {servicesLoading ? (
+                  <div className="text-center py-16">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Loading services...</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredServices.map((svc) => (
+                      <div key={svc._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div className="p-6">
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex-1">
+                              <h3 className="font-bold text-gray-900 text-lg mb-2">{svc.title}</h3>
+                              <span className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+                                {svc.category}
+                              </span>
+                            </div>
+                            {svc.image && (
+                              <div className="w-16 h-16 rounded-lg overflow-hidden ml-4">
+                                <img src={svc.image} alt={svc.title} className="w-full h-full object-cover" />
+                              </div>
+                            )}
+                          </div>
+                          
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-3">{svc.description}</p>
+                          
+                          {Array.isArray(svc.features) && svc.features.length > 0 && (
+                            <div className="mb-4">
+                              <div className="flex flex-wrap gap-1">
+                                {svc.features.slice(0, 3).map((feature, index) => (
+                                  <span key={index} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+                                    {feature}
+                                  </span>
+                                ))}
+                                {svc.features.length > 3 && (
+                                  <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+                                    +{svc.features.length - 3} more
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                          
+                          <div className="flex space-x-2">
+                            <button
+                              onClick={() => openEditService(svc)}
+                              className="flex-1 flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                            >
+                              <Edit size={14} />
+                              <span>Edit</span>
+                            </button>
+                            <button
+                              onClick={() => deleteService(svc._id)}
+                              className="flex-1 flex items-center justify-center space-x-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                            >
+                              <Trash2 size={14} />
+                              <span>Delete</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Leads Tab Content */}
+            {activeTab === 'leads' && (
+              <div className="p-6">
+                {/* Enhanced Toolbar */}
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-purple-100 rounded-lg">
+                        <MessageSquare className="w-5 h-5 text-purple-600" />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-bold text-gray-900">Leads</h2>
+                        <p className="text-sm text-gray-500">{leads.length} total leads</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <select
+                      value={leadFilter}
+                      onChange={(e) => setLeadFilter(e.target.value)}
+                      className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                      <option value="all">All Leads</option>
+                      <option value="contact">Contact Inquiries</option>
+                      <option value="quote">Quote Requests</option>
+                    </select>
+                    <button
+                      onClick={fetchLeads}
+                      className="flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+                    >
+                      <RefreshCw size={16} />
+                      <span>Refresh</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Enhanced Leads List */}
+                {leadsLoading ? (
+                  <div className="text-center py-16">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Loading leads...</p>
+                  </div>
+                ) : leads.length === 0 ? (
+                  <div className="text-center py-16">
+                    <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <MessageSquare className="w-12 h-12 text-purple-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">No leads yet</h3>
+                    <p className="text-gray-500 mb-8 max-w-md mx-auto">Leads will appear here when customers contact you through your website.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {leads.map((lead) => (
+                      <div key={lead._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="flex items-center space-x-4">
+                            <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center">
+                              <User className="w-6 h-6 text-purple-600" />
+                            </div>
+                            <div>
+                              <div className="flex items-center space-x-3 mb-2">
+                                {getTypeIcon(lead.type)}
+                                <span className="text-lg font-bold text-gray-900">
+                                  {lead.type === 'quote' ? 'Quote Request' : 'Contact Inquiry'}
+                                </span>
+                              </div>
+                              <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(lead.status)}`}>
+                                {lead.status}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <span className="text-sm text-gray-500">
+                              {new Date(lead.createdAt).toLocaleDateString()}
+                            </span>
+                            <button
+                              onClick={() => handleDeleteLead(lead._id)}
+                              className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                        </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div>
@@ -884,9 +1097,11 @@ const AdminDashboard = () => {
                   </div>
                 ))}
               </div>
+                )}
+              </div>
             )}
-          </>
-        )}
+          </div>
+        </div>
       </div>
 
       {/* Project Modal */}
@@ -1181,5 +1396,6 @@ const AdminDashboard = () => {
     </div>
   )
 }
+
 
 export default AdminDashboard
