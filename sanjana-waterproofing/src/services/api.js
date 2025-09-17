@@ -1,8 +1,8 @@
 // API service for database operations
-const API_BASE_URL = 'http://localhost:3001/api'
+const API_BASE_URL = 'https://sanjanaent.vercel.app/api'
 
 class ApiService {
-  async request(endpoint, options = {}) {
+  async request(endpoint, options = {}) {``
     const url = `${API_BASE_URL}${endpoint}`
     const config = {
       ...options,
