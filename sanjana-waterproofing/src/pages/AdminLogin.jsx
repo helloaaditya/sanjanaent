@@ -1,0 +1,199 @@
+import React, { useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
+import { Lock, User, Eye, EyeOff, Shield } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+
+const AdminLogin = () => {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  })
+  const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [adminExists, setAdminExists] = useState(true)
+  const navigate = useNavigate()
+
+  // Check if admin exists
+  useEffect(() => {
+    const checkAdminExists = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/admin/check')
+        if (response.ok) {
+          setAdminExists(true)
+        } else {
+          setAdminExists(false)
+        }
+      } catch (err) {
+        setAdminExists(false)
+      }
+    }
+    checkAdminExists()
+  }, [])
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+    setError('')
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch('http://localhost:3001/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        localStorage.setItem('adminToken', data.token)
+        localStorage.setItem('adminUsername', data.username)
+        navigate('/admin/dashboard')
+      } else {
+        setError(data.error || 'Login failed')
+      }
+    } catch (err) {
+      setError('Connection failed. Please check if server is running.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 flex items-center justify-center p-4">
+      <Helmet>
+        <title>Admin Login - Sanjana Waterproofing</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+
+      <div className="max-w-md w-full">
+        {/* Logo and Title */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-4">
+            <Shield className="w-8 h-8 text-white" />
+          </div>
+          <h1 className="text-3xl font-bold text-white mb-2">Admin Panel</h1>
+          <p className="text-primary-100">Sanjana Waterproofing Management</p>
+        </div>
+
+        {/* Login Form */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-white/20">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Username Field */}
+            <div>
+              <label className="block text-sm font-medium text-white mb-2">
+                Username
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-primary-200" />
+                </div>
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                  className="block w-full pl-10 pr-3 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                  placeholder="Enter username"
+                />
+              </div>
+            </div>
+
+            {/* Password Field */}
+            <div>
+              <label className="block text-sm font-medium text-white mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-primary-200" />
+                </div>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  className="block w-full pl-10 pr-12 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                  placeholder="Enter password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5 text-primary-200 hover:text-white" />
+                  ) : (
+                    <Eye className="h-5 w-5 text-primary-200 hover:text-white" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-500/20 border border-red-500/50 text-red-100 px-4 py-3 rounded-lg text-sm">
+                {error}
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-primary-600 bg-white hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            >
+              {loading ? (
+                <>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary-600 mr-2"></div>
+                  Signing in...
+                </>
+              ) : (
+                'Sign In'
+              )}
+            </button>
+          </form>
+
+          {/* Setup Link - Only show if no admin exists */}
+          {!adminExists && (
+            <div className="mt-6 text-center">
+              <p className="text-primary-200 text-sm">
+                First time?{' '}
+                <button
+                  onClick={() => navigate('/admin/setup')}
+                  className="text-white hover:text-primary-100 font-medium underline"
+                >
+                  Setup Admin Account
+                </button>
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Back to Site */}
+        <div className="text-center mt-6">
+          <button
+            onClick={() => navigate('/')}
+            className="text-primary-200 hover:text-white text-sm underline"
+          >
+            ← Back to Website
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default AdminLogin
