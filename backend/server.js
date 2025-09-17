@@ -174,6 +174,9 @@ app.get('/api/health', (req, res) => {
 app.get('/api/projects', (req, res) => {
   res.json([])
 })
+app.get('/api/categories', (req, res) => {
+  res.json([])
+})
 
 // ---------- START SERVER ----------
 app.listen(PORT, () => {
