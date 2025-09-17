@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Lock, User, Eye, EyeOff, Shield } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import apiService from '../services/api'
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const AdminLogin = () => {
   useEffect(() => {
     const checkAdminExists = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/admin/check')
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/check`)
         if (response.ok) {
           setAdminExists(true)
         } else {
@@ -45,7 +46,7 @@ const AdminLogin = () => {
     setError('')
 
     try {
-      const response = await fetch('http://localhost:3001/api/admin/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
