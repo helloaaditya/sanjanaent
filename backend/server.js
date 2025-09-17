@@ -15,7 +15,7 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 3001
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production'
-const BASE_URL = process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`
+const BASE_URL = process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || ''
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
 
 // File upload configuration
@@ -69,17 +69,18 @@ async function connectToDatabase() {
 }
 
 // Middleware
+let corsMiddleware
 if (CORS_ORIGIN === '*') {
-  app.use(cors())
+  corsMiddleware = cors()
 } else {
-  const allowedOrigins = CORS_ORIGIN.split(',').map((o) => o.trim())
-  app.use(
-    cors({
-      origin: allowedOrigins,
-      credentials: true,
-    })
-  )
+  const allowedOrigins = CORS_ORIGIN.split(',').map((o) => o.trim()).filter(Boolean)
+  corsMiddleware = cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
 }
+app.use(corsMiddleware)
+app.options('*', corsMiddleware)
 app.use(
   helmet({
     contentSecurityPolicy: false,
@@ -154,7 +155,9 @@ app.post('/api/admin/setup', async (req, res) => {
 app.post('/api/upload', authenticateToken, upload.single('image'), (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ error: 'No image file provided' })
-    const imageUrl = `${BASE_URL}/uploads/${req.file.filename}`
+    const imageUrl = BASE_URL
+      ? `${BASE_URL}/uploads/${req.file.filename}`
+      : `/uploads/${req.file.filename}`
     res.json({ success: true, imageUrl, filename: req.file.filename })
   } catch (error) {
     console.error('Upload error:', error)
@@ -167,10 +170,20 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() })
 })
 
+// ---------- PLACEHOLDER ROUTES (remove once real handlers exist) ----------
+app.get('/api/projects', (req, res) => {
+  res.json([])
+})
+
 // ---------- START SERVER ----------
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on ${BASE_URL}`)
-  console.log(`📡 API endpoints at ${BASE_URL}/api`)
+  if (BASE_URL) {
+    console.log(`🚀 Server running on ${BASE_URL}`)
+    console.log(`📡 API endpoints at ${BASE_URL}/api`)
+  } else {
+    console.log(`🚀 Server running on port ${PORT}`)
+    console.log(`📡 API endpoints at /api`)
+  }
 })
 
 // Graceful shutdown
