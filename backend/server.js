@@ -9,6 +9,7 @@ import multer from 'multer'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import helmet from 'helmet'
+import fs from 'fs'
 
 dotenv.config()
 
@@ -89,7 +90,14 @@ app.use(
 
 app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
-app.use(express.static(path.join(__dirname, '../frontend/dist')))
+
+// Serve built frontend only if present (for deployments where frontend is bundled with backend)
+const frontendDistDir = path.join(__dirname, '../frontend/dist')
+const frontendIndexHtml = path.join(frontendDistDir, 'index.html')
+const shouldServeFrontend = fs.existsSync(frontendDistDir) && fs.existsSync(frontendIndexHtml)
+if (shouldServeFrontend) {
+  app.use(express.static(frontendDistDir))
+}
 
 // Auth middleware
 const authenticateToken = (req, res, next) => {
@@ -459,10 +467,12 @@ app.delete('/api/leads/:id', authenticateToken, async (req, res) => {
   }
 })
 
-// Catch-all handler: send back React's index.html file for client-side routing
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'))
-})
+// Catch-all handler for client-side routing only if frontend build exists
+if (shouldServeFrontend) {
+  app.get(/.*/, (req, res) => {
+    res.sendFile(frontendIndexHtml)
+  })
+}
 
 // ---------- START SERVER ----------
 app.listen(PORT, () => {
