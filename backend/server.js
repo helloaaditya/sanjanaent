@@ -251,6 +251,113 @@ app.get('/api/debug/db', async (req, res) => {
   }
 })
 
+// ---------- SERVICES ----------
+// Public list with optional filters: category, active, search
+app.get('/api/services', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const { category, active, q } = req.query
+    const query = {}
+    if (category) query.category = category
+    if (typeof active !== 'undefined') query.active = String(active) === 'true'
+    if (q) {
+      query.$or = [
+        { title: { $regex: q, $options: 'i' } },
+        { name: { $regex: q, $options: 'i' } },
+        { description: { $regex: q, $options: 'i' } },
+      ]
+    }
+    const services = await db.collection('services').find(query).sort({ createdAt: -1 }).toArray()
+    res.json(services)
+  } catch (error) {
+    console.error('Get services error:', error)
+    res.status(500).json({ error: 'Failed to fetch services' })
+  }
+})
+
+// Public single service by id
+app.get('/api/services/:id', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try {
+      _id = new ObjectId(req.params.id)
+    } catch {
+      return res.status(400).json({ error: 'Invalid service id' })
+    }
+    const service = await db.collection('services').findOne({ _id })
+    if (!service) return res.status(404).json({ error: 'Service not found' })
+    res.json(service)
+  } catch (error) {
+    console.error('Get service error:', error)
+    res.status(500).json({ error: 'Failed to fetch service' })
+  }
+})
+
+// Admin CRUD for services
+app.post('/api/admin/services', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const payload = req.body || {}
+    const now = new Date()
+    const doc = {
+      title: payload.title || payload.name || 'Untitled Service',
+      description: payload.description || '',
+      category: payload.category || null,
+      image: payload.image || null,
+      price: payload.price || null,
+      features: Array.isArray(payload.features) ? payload.features : [],
+      active: typeof payload.active === 'boolean' ? payload.active : true,
+      createdAt: now,
+      updatedAt: now,
+    }
+    const result = await db.collection('services').insertOne(doc)
+    res.json({ _id: result.insertedId, ...doc })
+  } catch (error) {
+    console.error('Create service error:', error)
+    res.status(500).json({ error: 'Failed to create service' })
+  }
+})
+
+app.put('/api/admin/services/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try {
+      _id = new ObjectId(req.params.id)
+    } catch {
+      return res.status(400).json({ error: 'Invalid service id' })
+    }
+    const update = { ...req.body, updatedAt: new Date() }
+    const { value } = await db
+      .collection('services')
+      .findOneAndUpdate({ _id }, { $set: update }, { returnDocument: 'after' })
+    if (!value) return res.status(404).json({ error: 'Service not found' })
+    res.json(value)
+  } catch (error) {
+    console.error('Update service error:', error)
+    res.status(500).json({ error: 'Failed to update service' })
+  }
+})
+
+app.delete('/api/admin/services/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try {
+      _id = new ObjectId(req.params.id)
+    } catch {
+      return res.status(400).json({ error: 'Invalid service id' })
+    }
+    const result = await db.collection('services').deleteOne({ _id })
+    if (result.deletedCount === 0) return res.status(404).json({ error: 'Service not found' })
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Delete service error:', error)
+    res.status(500).json({ error: 'Failed to delete service' })
+  }
+})
+
 // ---------- START SERVER ----------
 app.listen(PORT, () => {
   if (BASE_URL) {
