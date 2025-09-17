@@ -28,6 +28,8 @@ const AdminDashboard = () => {
     features: '',
     image: ''
   })
+  const [projectSearch, setProjectSearch] = useState('')
+  const [serviceSearch, setServiceSearch] = useState('')
   const [leadFilter, setLeadFilter] = useState('all')
   const [updatingLead, setUpdatingLead] = useState(null)
   const [successMessage, setSuccessMessage] = useState('')
@@ -228,8 +230,8 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem('adminToken')
       const url = editingProject 
-        ? `http://localhost:3001/api/admin/projects/${editingProject._id}`
-        : 'http://localhost:3001/api/admin/projects'
+        ? `${import.meta.env.VITE_API_BASE_URL}/admin/projects/${editingProject._id}`
+        : `${import.meta.env.VITE_API_BASE_URL}/admin/projects`
       
       const method = editingProject ? 'PUT' : 'POST'
       
@@ -288,7 +290,7 @@ const AdminDashboard = () => {
     
     try {
       const token = localStorage.getItem('adminToken')
-      const response = await fetch(`http://localhost:3001/api/admin/projects/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/projects/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -327,7 +329,7 @@ const AdminDashboard = () => {
     
     try {
       const token = localStorage.getItem('adminToken')
-      const response = await fetch('http://localhost:3001/api/admin/projects/clear', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/projects/clear`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -403,17 +405,45 @@ const AdminDashboard = () => {
     )
   }
 
+  // Derived filtered lists
+  const filteredProjects = projects.filter((p) => {
+    const q = projectSearch.trim().toLowerCase()
+    if (!q) return true
+    return (
+      (p.title || '').toLowerCase().includes(q) ||
+      (p.category || '').toLowerCase().includes(q) ||
+      (p.description || '').toLowerCase().includes(q) ||
+      (p.location || '').toLowerCase().includes(q)
+    )
+  })
+  const filteredServices = services.filter((s) => {
+    const q = serviceSearch.trim().toLowerCase()
+    if (!q) return true
+    return (
+      (s.title || '').toLowerCase().includes(q) ||
+      (s.category || '').toLowerCase().includes(q) ||
+      (s.description || '').toLowerCase().includes(q)
+    )
+  })
+
+  // Quick stats
+  const stats = [
+    { label: 'Projects', value: projects.length },
+    { label: 'Services', value: services.length },
+    { label: 'Leads', value: leads.length },
+  ]
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
       <Helmet>
         <title>Admin Dashboard - Sanjana Waterproofing</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white/80 backdrop-blur border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-5">
             <div className="flex items-center space-x-4">
               <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
               <span className="text-sm text-gray-500">
@@ -441,6 +471,15 @@ const AdminDashboard = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          {stats.map((s) => (
+            <div key={s.label} className="bg-white border rounded-xl p-5 shadow-sm">
+              <div className="text-sm text-gray-500">{s.label}</div>
+              <div className="mt-2 text-3xl font-semibold text-gray-900">{s.value}</div>
+            </div>
+          ))}
+        </div>
         {/* Tabs Navigation */}
         <div className="mb-8">
           <div className="border-b border-gray-200">
@@ -506,9 +545,16 @@ const AdminDashboard = () => {
         {activeTab === 'projects' && (
           <>
             {/* Actions */}
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
               <h2 className="text-xl font-semibold text-gray-900">Projects ({projects.length})</h2>
-              <div className="flex space-x-3">
+              <div className="flex flex-1 justify-end items-center space-x-3">
+                <input
+                  type="text"
+                  value={projectSearch}
+                  onChange={(e) => setProjectSearch(e.target.value)}
+                  placeholder="Search projects..."
+                  className="hidden md:block w-64 border rounded-lg px-3 py-2"
+                />
             {projects.length > 0 && (
               <button
                 onClick={handleClearAll}
@@ -530,7 +576,7 @@ const AdminDashboard = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <div key={project._id} className="bg-white rounded-lg shadow-sm border overflow-hidden">
               <div className="aspect-w-16 aspect-h-9">
                 <img
@@ -609,9 +655,16 @@ const AdminDashboard = () => {
         {/* Services Tab Content */}
         {activeTab === 'services' && (
           <>
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
               <h2 className="text-xl font-semibold text-gray-900">Services ({services.length})</h2>
-              <div className="flex space-x-3">
+              <div className="flex items-center space-x-3">
+                <input
+                  type="text"
+                  value={serviceSearch}
+                  onChange={(e) => setServiceSearch(e.target.value)}
+                  placeholder="Search services..."
+                  className="w-64 border rounded-lg px-3 py-2"
+                />
                 <button
                   onClick={openAddService}
                   className="flex items-center space-x-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700"
@@ -636,7 +689,7 @@ const AdminDashboard = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services.map((svc) => (
+                {filteredServices.map((svc) => (
                   <div key={svc._id} className="bg-white rounded-lg shadow-sm border overflow-hidden">
                     <div className="p-4">
                       <div className="flex items-start justify-between mb-2">
