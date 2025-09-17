@@ -170,12 +170,50 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() })
 })
 
-// ---------- PLACEHOLDER ROUTES (remove once real handlers exist) ----------
-app.get('/api/projects', (req, res) => {
-  res.json([])
+// ---------- PROJECTS ----------
+app.get('/api/projects', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const { category } = req.query
+    const query = {}
+    if (category) query.category = category
+    const projects = await db.collection('projects').find(query).sort({ createdAt: -1 }).toArray()
+    res.json(projects)
+  } catch (error) {
+    console.error('Get projects error:', error)
+    res.status(500).json({ error: 'Failed to fetch projects' })
+  }
 })
-app.get('/api/categories', (req, res) => {
-  res.json([])
+
+app.get('/api/projects/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const { db } = await connectToDatabase()
+    let _id
+    try {
+      _id = new ObjectId(id)
+    } catch {
+      return res.status(400).json({ error: 'Invalid project id' })
+    }
+    const project = await db.collection('projects').findOne({ _id })
+    if (!project) return res.status(404).json({ error: 'Project not found' })
+    res.json(project)
+  } catch (error) {
+    console.error('Get project by id error:', error)
+    res.status(500).json({ error: 'Failed to fetch project' })
+  }
+})
+
+// ---------- CATEGORIES ----------
+app.get('/api/categories', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const categories = await db.collection('projects').distinct('category')
+    res.json(categories.filter(Boolean))
+  } catch (error) {
+    console.error('Get categories error:', error)
+    res.status(500).json({ error: 'Failed to fetch categories' })
+  }
 })
 
 // ---------- START SERVER ----------
