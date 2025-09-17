@@ -358,6 +358,106 @@ app.delete('/api/admin/services/:id', authenticateToken, async (req, res) => {
   }
 })
 
+// ---------- LEADS (Contact / Quote Requests) ----------
+// Public submit lead
+app.post('/api/leads', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const lead = req.body || {}
+
+    if (!lead.name || !(lead.email || lead.phone)) {
+      return res.status(400).json({ error: 'Name and (email or phone) are required' })
+    }
+
+    const now = new Date()
+    const doc = {
+      name: lead.name,
+      email: lead.email || null,
+      phone: lead.phone || null,
+      message: lead.message || null,
+      source: lead.source || 'website',
+      meta: lead.meta || {},
+      status: 'new',
+      createdAt: now,
+      updatedAt: now,
+    }
+
+    const result = await db.collection('leads').insertOne(doc)
+    res.json({ _id: result.insertedId, ...doc })
+  } catch (error) {
+    console.error('Create lead error:', error)
+    res.status(500).json({ error: 'Failed to submit lead' })
+  }
+})
+
+// Admin list leads with optional filters
+app.get('/api/leads', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const { status, from, to, q } = req.query
+    const query = {}
+    if (status) query.status = status
+    if (from || to) {
+      query.createdAt = {}
+      if (from) query.createdAt.$gte = new Date(from)
+      if (to) query.createdAt.$lte = new Date(to)
+    }
+    if (q) {
+      query.$or = [
+        { name: { $regex: q, $options: 'i' } },
+        { email: { $regex: q, $options: 'i' } },
+        { phone: { $regex: q, $options: 'i' } },
+      ]
+    }
+    const leads = await db.collection('leads').find(query).sort({ createdAt: -1 }).toArray()
+    res.json(leads)
+  } catch (error) {
+    console.error('Get leads error:', error)
+    res.status(500).json({ error: 'Failed to fetch leads' })
+  }
+})
+
+// Admin update lead
+app.put('/api/leads/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try {
+      _id = new ObjectId(req.params.id)
+    } catch {
+      return res.status(400).json({ error: 'Invalid lead id' })
+    }
+    const update = { ...req.body, updatedAt: new Date() }
+    const { value } = await db
+      .collection('leads')
+      .findOneAndUpdate({ _id }, { $set: update }, { returnDocument: 'after' })
+    if (!value) return res.status(404).json({ error: 'Lead not found' })
+    res.json(value)
+  } catch (error) {
+    console.error('Update lead error:', error)
+    res.status(500).json({ error: 'Failed to update lead' })
+  }
+})
+
+// Admin delete lead
+app.delete('/api/leads/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try {
+      _id = new ObjectId(req.params.id)
+    } catch {
+      return res.status(400).json({ error: 'Invalid lead id' })
+    }
+    const result = await db.collection('leads').deleteOne({ _id })
+    if (result.deletedCount === 0) return res.status(404).json({ error: 'Lead not found' })
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Delete lead error:', error)
+    res.status(500).json({ error: 'Failed to delete lead' })
+  }
+})
+
 // ---------- START SERVER ----------
 app.listen(PORT, () => {
   if (BASE_URL) {
