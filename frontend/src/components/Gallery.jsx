@@ -7,8 +7,9 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null)
   const navigate = useNavigate()
   
-  // Fetch only first 4 projects for homepage preview
-  const { projects, loading, error, refetch } = useProjects(4) // Pass limit of 4
+  // Fetch projects and limit to 4 for homepage preview
+  const { projects: allProjects, loading, error, refetch } = useProjects()
+  const projects = allProjects.slice(0, 4) // Explicitly limit to first 4 projects
 
   const handleViewAll = () => {
     navigate('/gallery')
@@ -69,7 +70,7 @@ const Gallery = () => {
         ) : (
           <>
             {/* Featured Projects Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
               {projects.map((project, index) => (
                 <div 
                   key={project._id || project.id} 
