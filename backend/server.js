@@ -235,11 +235,14 @@ app.put('/api/admin/projects/:id', authenticateToken, async (req, res) => {
     if (update.completedDate) {
       try { update.completedDate = new Date(update.completedDate) } catch { /* ignore */ }
     }
-    const { value } = await db
+    const result = await db
       .collection('projects')
-      .findOneAndUpdate({ _id }, { $set: update }, { returnDocument: 'after' })
-    if (!value) return res.status(404).json({ error: 'Project not found' })
-    res.json(value)
+      .updateOne({ _id }, { $set: update })
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ error: 'Project not found' })
+    }
+    const updated = await db.collection('projects').findOne({ _id })
+    res.json(updated)
   } catch (error) {
     console.error('Update project error:', error)
     res.status(500).json({ error: 'Failed to update project' })
