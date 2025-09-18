@@ -6,6 +6,7 @@ import CircularInfographic from './CircularInfographic'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import VideoGallerySection from './VideoGallerySection'
 import QuoteRequestModal from './QuoteRequestModal'
+import Awards from './awards'
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -33,8 +34,6 @@ const Hero = () => {
 
   const features = [
     { icon: CheckCircle, text: 'Licensed & Insured' },
-    { icon: CheckCircle, text: '10 Year Warranty' },
-    { icon: CheckCircle, text: '24/7 Support' },
     { icon: CheckCircle, text: 'Free Inspection' }
   ]
 
@@ -68,19 +67,19 @@ const Hero = () => {
               {/* Badge */}
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-600 px-6 py-3 rounded-full text-sm font-medium border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 <Sparkles size={16} className="fill-current animate-pulse" />
-                <span className="gradient-text font-semibold">#1 Waterproofing Company in Bangalore</span>
+                <span className="gradient-text font-semibold">#1 Waterproofing & Flooring Company in Bangalore</span>
                 <Zap size={16} className="text-yellow-500 animate-bounce" />
               </div>
 
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-5xl lg:text-5xl font-bold leading-tight">
                 <span className="block text-gray-900 animate-fade-scale">Premium</span>
-                <span className="block gradient-text animate-slide-up">Waterproofing</span>
+                <span className="block gradient-text animate-slide-up py-2">Waterproofing & Flooring</span>
                 <span className="block text-gray-900 animate-fade-scale" style={{animationDelay: '0.2s'}}>Solutions</span>
               </h1>
               
               <p className="text-xl text-gray-600 leading-relaxed max-w-2xl animate-slide-up" style={{animationDelay: '0.4s'}}>
-                Transform your property with our cutting-edge waterproofing technology. 
-                <span className="text-blue-600 font-semibold gradient-text">30+ years of excellence</span> delivering 
+                Transform your property with our cutting-edge waterproofing & flooring technology. 
+                <span className="text-blue-600 font-semibold gradient-text"> 30+ years of excellence</span> delivering 
                 bulletproof protection for homes and businesses across Bangalore.
               </p>
             </div>
@@ -159,6 +158,10 @@ const Hero = () => {
         {/* Stats Section */}
         <div className="pt-0">
           <AnimatedCounter />
+        </div>
+
+        <div className="pt-0">  
+          <Awards />
         </div>
 
         {/* Video Section with Images */}

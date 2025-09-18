@@ -7,14 +7,6 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const services = [
-    'Terrace Waterproofing',
-    'Bathroom Waterproofing',
-    'Basement Waterproofing',
-    'Roof Waterproofing',
-    'Wall Waterproofing',
-    'Commercial Waterproofing'
-  ]
 
   const quickLinks = [
     { name: 'About Us', href: '/about' },
@@ -34,7 +26,7 @@ const Footer = () => {
       </button>
 
       <div className="container-max pt-16 pb-8">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-12">
           {/* Company Info */}
           <div className="space-y-6">
             <div>
@@ -73,22 +65,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Our Services</h4>
-            <ul className="space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
-                  <a 
-                    href="/services" 
-                    className="text-gray-300 hover:text-blue-400 transition-colors text-sm"
-                  >
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
 
           {/* Quick Links */}
           <div>
@@ -162,9 +138,6 @@ const Footer = () => {
               </a>
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
                 Terms of Service
-              </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                Sitemap
               </a>
             </div>
           </div>

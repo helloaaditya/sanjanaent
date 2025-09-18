@@ -1,38 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Sparkles, ArrowRight, Camera, Video, Star, CheckCircle, Award } from 'lucide-react'
 
 const VideoGallerySection = () => {
   const [activeImage, setActiveImage] = useState(0)
+  const [paused, setPaused] = useState(false)
 
   const projectImages = [
     {
-      url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+      url: "https://www.sanjanawaterproofing.com/images/topwaterproofingcontractorinbangalore.jpg",
       title: "Roof Waterproofing Project",
       location: "Bangalore Commercial Complex"
     },
     {
-      url: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+      url: "https://www.sanjanawaterproofing.com/img/cheapwaterproofingservices.jpeg",
       title: "Industrial Flooring",
       location: "Manufacturing Unit, Whitefield"
     },
     {
-      url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+      url: "https://www.sanjanawaterproofing.com/images/waterproofinginBangalore.jpg",
       title: "Basement Waterproofing",
       location: "Residential Complex, Koramangala"
     },
     {
-      url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+      url: "https://www.sanjanawaterproofing.com/images/waterproofingsolutionsinBangalore.jpg",
       title: "Swimming Pool Protection",
       location: "Premium Resort, Electronic City"
     }
   ]
 
-  const achievements = [
-    { icon: CheckCircle, text: "100% Success Rate", color: "text-green-500" },
-    { icon: Award, text: "ISO Certified", color: "text-blue-500" },
-    { icon: Star, text: "30 Year Warranty", color: "text-yellow-500" }
-  ]
+  // Auto-rotate gallery every 4 seconds; pause on hover
+  useEffect(() => {
+    if (paused) return
+    const id = setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % projectImages.length)
+    }, 2000)
+    return () => clearInterval(id)
+  }, [paused, projectImages.length])
+
 
   return (
     <section className="py-8">
@@ -52,7 +57,7 @@ const VideoGallerySection = () => {
         </div>
 
         {/* Main Content Card */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 h-50">
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Left Side - Content & Video Player */}
             <div className="p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-white to-blue-50/30">
@@ -64,15 +69,7 @@ const VideoGallerySection = () => {
                   See our expert team in action as we deliver premium waterproofing solutions using cutting-edge technology and proven techniques.
                 </p>
                 
-                {/* Achievement Badges */}
-                <div className="flex flex-wrap gap-3 mb-8">
-                  {achievements.map((achievement, index) => (
-                    <div key={index} className="flex items-center space-x-2 bg-white rounded-full px-4 py-2 shadow-md border border-gray-200">
-                      <achievement.icon size={16} className={achievement.color} />
-                      <span className="text-sm font-medium text-gray-700">{achievement.text}</span>
-                    </div>
-                  ))}
-                </div>
+               
               </div>
 
               {/* Video Player */}
@@ -113,7 +110,11 @@ const VideoGallerySection = () => {
             </div>
 
             {/* Right Side - Image Gallery */}
-            <div className="relative h-96 lg:h-auto overflow-hidden bg-gray-900">
+            <div
+              className="relative h-50 lg:h-50 overflow-hidden bg-gray-900"
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+            >
               {/* Main Image */}
               <div className="relative h-full">
                 <img
@@ -143,24 +144,20 @@ const VideoGallerySection = () => {
                 </div>
                 
                 {/* Camera Icon */}
-                <div className="absolute bottom-6 right-6">
-                  <div className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
-                    <Camera size={18} className="text-white" />
-                  </div>
-                </div>
+                
               </div>
 
               {/* Image Thumbnails */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <div className="flex space-x-3 justify-center">
+              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+                <div className="flex space-x-2 justify-center">
                   {projectImages.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setActiveImage(index)}
-                      className={`w-16 h-12 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      className={`w-14 h-10 rounded-md overflow-hidden border transition-all duration-300 ${
                         activeImage === index 
-                          ? 'border-white shadow-lg scale-110' 
-                          : 'border-white/30 hover:border-white/60'
+                          ? 'border-white shadow-lg scale-110 ring-2 ring-white/70' 
+                          : 'border-white/30 hover:border-white/60 opacity-80 hover:opacity-100'
                       }`}
                     >
                       <img

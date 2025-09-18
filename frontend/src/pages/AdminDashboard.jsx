@@ -35,6 +35,11 @@ const AdminDashboard = () => {
   const [successMessage, setSuccessMessage] = useState('')
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
+  const [autoRefreshInterval, setAutoRefreshInterval] = useState(null)
+  const [lastRefreshTime, setLastRefreshTime] = useState(null)
+  const [newLeadsCount, setNewLeadsCount] = useState(0)
+  const [showNewLeadsNotification, setShowNewLeadsNotification] = useState(false)
+  const [autoRefreshEnabled, setAutoRefreshEnabled] = useState(true)
   const [formData, setFormData] = useState({
     title: '',
     category: 'Residential',
@@ -66,6 +71,44 @@ const AdminDashboard = () => {
     }
   }, [activeTab, leadFilter])
 
+  // Auto-refresh leads every 30 seconds when on leads tab
+  useEffect(() => {
+    if (activeTab === 'leads' && autoRefreshEnabled) {
+      // Clear any existing interval
+      if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval)
+      }
+      
+      // Set up new interval
+      const interval = setInterval(() => {
+        fetchLeads(true) // Pass true for auto-refresh
+      }, 30000) // 30 seconds
+      
+      setAutoRefreshInterval(interval)
+      
+      // Cleanup on unmount or tab change
+      return () => {
+        clearInterval(interval)
+        setAutoRefreshInterval(null)
+      }
+    } else {
+      // Clear interval when not on leads tab or auto-refresh disabled
+      if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval)
+        setAutoRefreshInterval(null)
+      }
+    }
+  }, [activeTab, autoRefreshEnabled])
+
+  // Cleanup interval on component unmount
+  useEffect(() => {
+    return () => {
+      if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval)
+      }
+    }
+  }, [])
+
   const fetchProjects = async () => {
     try {
       setLoading(true)
@@ -91,20 +134,44 @@ const AdminDashboard = () => {
     }
   }
 
-  const fetchLeads = async () => {
+  const fetchLeads = async (isAutoRefresh = false) => {
     try {
-      setLeadsLoading(true)
+      if (!isAutoRefresh) {
+        setLeadsLoading(true)
+      }
       const token = localStorage.getItem('adminToken')
       const filters = leadFilter !== 'all' ? { type: leadFilter } : {}
       console.log('Fetching leads with filters:', filters)
       const data = await apiService.getLeads(token, filters)
       console.log('Fetched leads:', data)
+      
+      // Check for new leads during auto-refresh
+      if (isAutoRefresh && leads.length > 0) {
+        const newLeads = data.filter(newLead => 
+          !leads.some(existingLead => existingLead._id === newLead._id)
+        )
+        if (newLeads.length > 0) {
+          setNewLeadsCount(newLeads.length)
+          setShowNewLeadsNotification(true)
+          // Auto-hide notification after 5 seconds
+          setTimeout(() => {
+            setShowNewLeadsNotification(false)
+            setNewLeadsCount(0)
+          }, 5000)
+        }
+      }
+      
       setLeads(data)
+      setLastRefreshTime(new Date())
     } catch (err) {
       console.error('Fetch leads error:', err)
-      setError('Failed to fetch leads: ' + err.message)
+      if (!isAutoRefresh) {
+        setError('Failed to fetch leads: ' + err.message)
+      }
     } finally {
-      setLeadsLoading(false)
+      if (!isAutoRefresh) {
+        setLeadsLoading(false)
+      }
     }
   }
 
@@ -476,6 +543,21 @@ const AdminDashboard = () => {
       <Helmet>
         <title>Admin Dashboard - Sanjana Waterproofing</title>
         <meta name="robots" content="noindex, nofollow" />
+        <style>{`
+          @keyframes slide-in-right {
+            from {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+            to {
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+          .animate-slide-in-right {
+            animation: slide-in-right 0.3s ease-out;
+          }
+        `}</style>
       </Helmet>
 
       {/* Sidebar */}
@@ -615,6 +697,29 @@ const AdminDashboard = () => {
             </div>
           </div>
         </header>
+
+        {/* New Leads Notification */}
+        {showNewLeadsNotification && (
+          <div className="fixed top-20 right-4 z-50 animate-slide-in-right">
+            <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-4 rounded-xl shadow-lg border border-green-200">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                  <MessageSquare className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="font-semibold">New Lead{newLeadsCount > 1 ? 's' : ''} Detected!</p>
+                  <p className="text-sm opacity-90">{newLeadsCount} new lead{newLeadsCount > 1 ? 's' : ''} added</p>
+                </div>
+                <button
+                  onClick={() => setShowNewLeadsNotification(false)}
+                  className="ml-4 text-white/80 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="p-6">
           {/* Enhanced Stats */}
@@ -950,8 +1055,23 @@ const AdminDashboard = () => {
                       <option value="contact">Contact Inquiries</option>
                       <option value="quote">Quote Requests</option>
                     </select>
+                    
                     <button
-                      onClick={fetchLeads}
+                      onClick={() => setAutoRefreshEnabled(!autoRefreshEnabled)}
+                      className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
+                        autoRefreshEnabled
+                          ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <div className={`w-2 h-2 rounded-full ${autoRefreshEnabled ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
+                      <span className="text-sm font-medium">
+                        {autoRefreshEnabled ? 'Auto-refresh ON' : 'Auto-refresh OFF'}
+                      </span>
+                    </button>
+                    
+                    <button
+                      onClick={() => fetchLeads(false)}
                       className="flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
                     >
                       <RefreshCw size={16} />
@@ -959,6 +1079,32 @@ const AdminDashboard = () => {
                     </button>
                   </div>
                 </div>
+
+                {/* Auto-refresh indicator */}
+                {autoRefreshEnabled && (
+                  <div className="flex items-center justify-between mb-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2">
+                        <div className="relative">
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                          <div className="absolute inset-0 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+                        </div>
+                        <span className="text-sm font-medium text-gray-700">Auto-refresh active</span>
+                      </div>
+                      <span className="text-xs text-gray-500">• Updates every 30 seconds</span>
+                      {newLeadsCount > 0 && (
+                        <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">
+                          +{newLeadsCount} new
+                        </span>
+                      )}
+                    </div>
+                    {lastRefreshTime && (
+                      <div className="text-xs text-gray-500">
+                        Last updated: {lastRefreshTime.toLocaleTimeString()}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Enhanced Leads List */}
                 {leadsLoading ? (
