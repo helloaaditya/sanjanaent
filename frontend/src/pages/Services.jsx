@@ -65,28 +65,40 @@ const Services = () => {
     >
       <div className="relative h-full">
         <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/30 rounded-2xl blur-sm group-hover:blur-none transition-all duration-300"></div>
-        <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
-          <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.color || 'from-blue-600 to-purple-600'} rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-            <Shield size={32} className="text-white" />
+        <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-300 h-full flex flex-col overflow-hidden">
+          {/* Image header (optional) */}
+          {service.image && (
+            <div className="w-full h-40 overflow-hidden">
+              <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+          )}
+
+          <div className="p-8 flex flex-col flex-1">
+            <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.color || 'from-blue-600 to-purple-600'} rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+              <Shield size={32} className="text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+              {service.title}
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-5 flex-grow line-clamp-3 group-hover:text-gray-800 transition-colors duration-300">
+              {service.description}
+            </p>
+            <div className="space-y-2 mb-6">
+              {(service.features || []).slice(0, 3).map((feature, featureIndex) => (
+                <div key={featureIndex} className="flex items-center text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                  <CheckCircle size={16} className="text-green-500 mr-2 flex-shrink-0" />
+                  {feature}
+                </div>
+              ))}
+              {Array.isArray(service.features) && service.features.length > 3 && (
+                <div className="text-xs text-gray-500">+{service.features.length - 3} more</div>
+              )}
+            </div>
+            <button onClick={() => setSelectedService(service)} className="mt-auto w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center group-hover:shadow-lg transform group-hover:scale-[1.02]">
+              View Details
+              <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
           </div>
-          <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-            {service.title}
-          </h3>
-          <p className="text-gray-600 leading-relaxed mb-6 flex-grow group-hover:text-gray-800 transition-colors duration-300">
-            {service.description}
-          </p>
-          <div className="space-y-2 mb-6">
-            {(service.features || []).map((feature, featureIndex) => (
-              <div key={featureIndex} className="flex items-center text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-                <CheckCircle size={16} className="text-green-500 mr-2 flex-shrink-0" />
-                {feature}
-              </div>
-            ))}
-          </div>
-          <button onClick={() => setSelectedService(service)} className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center group-hover:shadow-lg transform group-hover:scale-[1.02]">
-            View Details
-            <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-          </button>
         </div>
       </div>
     </div>
