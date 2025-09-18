@@ -194,6 +194,89 @@ app.get('/api/projects', async (req, res) => {
   }
 })
 
+// Admin create project
+app.post('/api/admin/projects', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const payload = req.body || {}
+    const now = new Date()
+    const doc = {
+      title: payload.title || 'Untitled Project',
+      category: payload.category || null,
+      image: payload.image || null,
+      description: payload.description || '',
+      location: payload.location || null,
+      completedDate: payload.completedDate ? new Date(payload.completedDate) : null,
+      client: payload.client || null,
+      area: payload.area || null,
+      duration: payload.duration || null,
+      createdAt: now,
+      updatedAt: now,
+    }
+    const result = await db.collection('projects').insertOne(doc)
+    res.json({ _id: result.insertedId, ...doc })
+  } catch (error) {
+    console.error('Create project error:', error)
+    res.status(500).json({ error: 'Failed to create project' })
+  }
+})
+
+// Admin update project
+app.put('/api/admin/projects/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try {
+      _id = new ObjectId(req.params.id)
+    } catch {
+      return res.status(400).json({ error: 'Invalid project id' })
+    }
+    const update = { ...req.body, updatedAt: new Date() }
+    if (update.completedDate) {
+      try { update.completedDate = new Date(update.completedDate) } catch { /* ignore */ }
+    }
+    const { value } = await db
+      .collection('projects')
+      .findOneAndUpdate({ _id }, { $set: update }, { returnDocument: 'after' })
+    if (!value) return res.status(404).json({ error: 'Project not found' })
+    res.json(value)
+  } catch (error) {
+    console.error('Update project error:', error)
+    res.status(500).json({ error: 'Failed to update project' })
+  }
+})
+
+// Admin delete single project
+app.delete('/api/admin/projects/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try {
+      _id = new ObjectId(req.params.id)
+    } catch {
+      return res.status(400).json({ error: 'Invalid project id' })
+    }
+    const result = await db.collection('projects').deleteOne({ _id })
+    if (result.deletedCount === 0) return res.status(404).json({ error: 'Project not found' })
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Delete project error:', error)
+    res.status(500).json({ error: 'Failed to delete project' })
+  }
+})
+
+// Admin delete all projects (dangerous)
+app.delete('/api/admin/projects/clear', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    await db.collection('projects').deleteMany({})
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Clear projects error:', error)
+    res.status(500).json({ error: 'Failed to clear projects' })
+  }
+})
+
 app.get('/api/projects/:id', async (req, res) => {
   try {
     const { id } = req.params
