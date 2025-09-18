@@ -4,6 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 class ApiService {
   async request(endpoint, options = {}) {
     const url = `${API_BASE_URL}${endpoint}`
+    const method = (options.method || 'GET').toUpperCase()
     const config = {
       ...options,
       headers: {
@@ -14,11 +15,23 @@ class ApiService {
 
     try {
       const response = await fetch(url, config)
-      
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        let bodyText = ''
+        try { bodyText = await response.text() } catch {}
+        const error = new Error(`${method} ${url} -> ${response.status} ${response.statusText}${bodyText ? ` | ${bodyText}` : ''}`)
+        error.status = response.status
+        error.url = url
+        error.method = method
+        error.body = bodyText
+        throw error
       }
-      
+
+      // Handle empty responses (204 etc.)
+      const contentType = response.headers.get('content-type') || ''
+      if (!contentType.includes('application/json')) {
+        return null
+      }
       return await response.json()
     } catch (error) {
       console.error('API request failed:', error)
