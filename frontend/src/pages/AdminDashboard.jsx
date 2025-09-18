@@ -589,8 +589,7 @@ const AdminDashboard = () => {
                 <Building className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-gray-900">Sanjana</h1>
-                <p className="text-xs text-gray-500">Admin Panel</p>
+                <h1 className="text-lg font-bold text-gray-900">Admin</h1>
               </div>
             </div>
             <button
