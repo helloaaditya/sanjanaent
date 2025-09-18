@@ -417,18 +417,15 @@ app.post('/api/admin/services', authenticateToken, async (req, res) => {
 app.put('/api/admin/services/:id', authenticateToken, async (req, res) => {
   try {
     const { db } = await connectToDatabase()
+    const idParam = req.params.id
     let _id
-    try {
-      _id = new ObjectId(req.params.id)
-    } catch {
-      return res.status(400).json({ error: 'Invalid service id' })
-    }
+    try { _id = new ObjectId(idParam) } catch { _id = null }
     const update = { ...req.body, updatedAt: new Date() }
-    const { value } = await db
-      .collection('services')
-      .findOneAndUpdate({ _id }, { $set: update }, { returnDocument: 'after' })
-    if (!value) return res.status(404).json({ error: 'Service not found' })
-    res.json(value)
+    const query = _id ? { $or: [{ _id }, { _id: idParam }] } : { _id: idParam }
+    const result = await db.collection('services').updateOne(query, { $set: update })
+    if (result.matchedCount === 0) return res.status(404).json({ error: 'Service not found' })
+    const updated = await db.collection('services').findOne(query)
+    res.json(updated)
   } catch (error) {
     console.error('Update service error:', error)
     res.status(500).json({ error: 'Failed to update service' })
@@ -438,13 +435,11 @@ app.put('/api/admin/services/:id', authenticateToken, async (req, res) => {
 app.delete('/api/admin/services/:id', authenticateToken, async (req, res) => {
   try {
     const { db } = await connectToDatabase()
+    const idParam = req.params.id
     let _id
-    try {
-      _id = new ObjectId(req.params.id)
-    } catch {
-      return res.status(400).json({ error: 'Invalid service id' })
-    }
-    const result = await db.collection('services').deleteOne({ _id })
+    try { _id = new ObjectId(idParam) } catch { _id = null }
+    const query = _id ? { $or: [{ _id }, { _id: idParam }] } : { _id: idParam }
+    const result = await db.collection('services').deleteOne(query)
     if (result.deletedCount === 0) return res.status(404).json({ error: 'Service not found' })
     res.json({ success: true })
   } catch (error) {

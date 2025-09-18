@@ -74,9 +74,6 @@ const Services = () => {
           )}
 
           <div className="p-8 flex flex-col flex-1">
-            <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.color || 'from-blue-600 to-purple-600'} rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-              <Shield size={32} className="text-white" />
-            </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
               {service.title}
             </h3>
