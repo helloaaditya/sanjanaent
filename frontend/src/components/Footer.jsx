@@ -40,11 +40,11 @@ const Footer = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Sanjana Enterprises</h3>
-                  <p className="text-gray-400 text-sm">Waterproofing Solutions</p>
+                  <p className="text-gray-400 text-sm">Waterproofing & Flooring Solutions</p>
                 </div>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                With 30+ years of experience, we are Bangalore's trusted waterproofing specialists, 
+                With 30+ years of experience, we are Bangalore's trusted waterproofing & flooring specialists, 
                 providing reliable solutions for residential and commercial properties.
               </p>
             </div>

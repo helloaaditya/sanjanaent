@@ -59,7 +59,7 @@ const About = () => {
         {/* CTA Row */}
         <ScrollAnimation animation="fade-in-up" delay={400}>
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact" className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25 flex items-center justify-center group">
+            <a href="/contact" className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25 flex items-center justify-center group">
               Get Free Consultation
               <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
             </a>

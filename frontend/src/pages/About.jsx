@@ -1,394 +1,284 @@
-import React, { useState, useEffect } from 'react'
-import { Shield, Award, Users, CheckCircle, Star, MapPin, Phone, Mail, Clock, ChevronRight, Eye, Target, Heart } from 'lucide-react'
+import React from 'react'
+import { Shield, Award, Users, CheckCircle, Star, Target, Phone, ArrowRight } from 'lucide-react'
+import ScrollAnimation from '../components/ScrollAnimation'
+import founderImage from '../assets/founder.jpg'
 
 const About = () => {
-  const [scrollY, setScrollY] = useState(0)
-  const [activeSection, setActiveSection] = useState(0)
+  const achievements = [
+    { number: '30+', label: 'Years Experience', icon: Shield },
+    { number: '100000+', label: 'Happy Customers', icon: Award },
+    { number: '22+', label: 'Services Offered', icon: Users },
+    { number: '99%', label: 'Client Satisfaction', icon: Star }
+  ]
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const services = [
+    {
+      title: 'Waterproofing Solutions',
+      description: 'Advanced membrane systems, liquid coatings, and injection treatments for complete water ingress protection.',
+      features: ['APP/SBS Membranes', 'Liquid Coatings', 'Injection Systems']
+    },
+    {
+      title: 'Industrial Flooring',
+      description: 'High-performance flooring systems designed for heavy-duty industrial and commercial applications.',
+      features: ['Epoxy Flooring', 'PU Coatings', 'Anti-Static Solutions']
+    },
+    {
+      title: 'Structural Repairs',
+      description: 'Comprehensive rehabilitation services to restore and strengthen concrete structures.',
+      features: ['Crack Repairs', 'Carbon Fiber', 'Strengthening Systems']
+    }
+  ]
 
   const values = [
     {
       icon: Shield,
       title: 'Quality Assurance',
-      description: 'We use only the highest quality materials and follow industry best practices to ensure long-lasting results.',
-      color: 'from-blue-500 to-blue-600',
-      bgColor: 'bg-blue-50',
-      delay: '0s'
-    },
-    {
-      icon: Award,
-      title: 'Expert Team',
-      description: 'Our certified professionals have years of experience in waterproofing and construction.',
-      color: 'from-purple-500 to-purple-600',
-      bgColor: 'bg-purple-50',
-      delay: '0.1s'
+      description: 'Premium materials and proven methodologies ensure long-lasting results.',
     },
     {
       icon: CheckCircle,
-      title: 'Cx Satisfaction',
-      description: 'We prioritize customer satisfaction and provide comprehensive support throughout the project.',
-      color: 'from-green-500 to-green-600',
-      bgColor: 'bg-green-50',
-      delay: '0.2s'
+      title: 'Professional Excellence',
+      description: 'Certified experts delivering projects on time and within budget.',
     },
     {
-      icon: Star,
-      title: 'Innovation',
-      description: 'We stay updated with the latest waterproofing technologies and techniques.',
-      color: 'from-amber-500 to-amber-600',
-      bgColor: 'bg-amber-50',
-      delay: '0.3s'
+      icon: Target,
+      title: 'Innovation Focus',
+      description: 'Latest technologies and techniques for superior performance.',
     }
   ]
 
-  const achievements = [
-    { number: '30+', label: 'Years Experience', color: 'text-blue-600' },
-    { number: '1000+', label: 'Projects Completed', color: 'text-green-600' },
-    { number: '50+', label: 'Expert Team', color: 'text-purple-600' },
-    { number: '99%', label: 'Client Satisfaction', color: 'text-amber-600' }
-  ]
-
-  const founderDetails = [
-    { icon: CheckCircle, text: 'Over 25 years of expertise in waterproofing, industrial flooring, soil stabilization, and structural rehabilitation' },
-    { icon: Award, text: 'Founder & President – Association of Waterproofing Contractors' },
-    { icon: Star, text: 'Recognized for innovative solutions in civil engineering and waterproofing' },
-    { icon: Users, text: 'Successfully led projects for major industrial, commercial, and residential clients' },
-    { icon: Shield, text: 'Known for promoting quality standards and professional training in the waterproofing industry' }
-  ]
-
-  const memberships = [
-    { name: 'Indian Concrete Institute', color: 'bg-gradient-to-r from-blue-500 to-blue-600' },
-    { name: 'INSTRUCT (Institute for Research, Development and Training)', color: 'bg-gradient-to-r from-purple-500 to-purple-600' },
-    { name: 'KASSIA (Karnataka Small Scale Industries Association)', color: 'bg-gradient-to-r from-green-500 to-green-600' }
-  ]
-
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-      </div>
-
-      {/* Hero Section with Parallax */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
-          style={{
-            transform: `translateY(${scrollY * 0.5}px)`
-          }}
-        ></div>
-        
-        {/* Animated Grid Background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            animation: 'grid-move 20s linear infinite'
-          }}></div>
-        </div>
-
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <div className="animate-fade-in-up">
-            <h1 className="text-7xl md:text-8xl font-black text-white mb-8 leading-tight">
-              About
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent animate-gradient-x">
-                Sanjana Enterprises
-              </span>
-            </h1>
-            <p className="text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-12 animate-fade-in-up" style={{animationDelay: '0.5s'}}>
-              With over 30 years of proven expertise, we are recognized as Karnataka's trusted leader 
-              in delivering comprehensive waterproofing and flooring solutions.
-            </p>
-            <div className="flex justify-center gap-8 animate-fade-in-up" style={{animationDelay: '1s'}}>
-              {achievements.map((achievement, index) => (
-                <div key={index} className="text-center group">
-                  <div className={`text-4xl font-black ${achievement.color} group-hover:scale-110 transition-transform duration-300`}>
-                    {achievement.number}
-                  </div>
-                  <div className="text-gray-400 font-medium">{achievement.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* Company Story with Glassmorphism */}
-      <section className="py-32 relative">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="animate-fade-in-left">
-              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Eye size={16} />
-                Our Story
-              </div>
-              <h2 className="text-5xl font-black text-gray-900 mb-8 leading-tight">
-                Building Trust Through
-                <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Excellence
-                </span>
-              </h2>
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
-                <p className="hover:text-gray-800 transition-colors duration-300">
-                  Founded with a vision to deliver superior waterproofing and flooring solutions, 
-                  Sanjana Enterprises has grown into Karnataka's most trusted name in the industry.
-                </p>
-                <p className="hover:text-gray-800 transition-colors duration-300">
-                  We understand that every project presents unique challenges — from preventing water 
-                  ingress to designing flooring systems built to withstand heavy usage. Our solutions 
-                  are reliable, durable, and tailored to meet specific requirements.
-                </p>
-                <p className="hover:text-gray-800 transition-colors duration-300">
-                  Our services safeguard and enhance structures across diverse applications, ensuring 
-                  long-lasting protection and performance with the highest standards of quality.
-                </p>
-              </div>
-            </div>
-            
-            <div className="animate-fade-in-right">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl"></div>
-                <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-10 border border-white/20 shadow-2xl">
-                  <div className="text-center">
-                    <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-8 shadow-lg">
-                      <Shield size={48} className="text-white" />
-                    </div>
-                    <h3 className="text-3xl font-black text-gray-900 mb-6">Our Mission</h3>
-                    <p className="text-gray-600 leading-relaxed text-lg">
-                      To provide comprehensive waterproofing and flooring solutions that protect, 
-                      enhance, and add value to structures through innovation, quality, and professional excellence.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section with Interactive Cards */}
-      <section className="py-32 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Heart size={16} />
-              Our Values
-            </div>
-            <h2 className="text-5xl font-black text-gray-900 mb-6 leading-tight">
-              What Drives Us to
-              <span className="block bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Deliver Excellence
-              </span>
-            </h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div 
-                key={index} 
-                className="group cursor-pointer animate-fade-in-up hover:transform hover:-translate-y-2 transition-all duration-500"
-                style={{animationDelay: value.delay}}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/30 rounded-2xl blur-sm group-hover:blur-none transition-all duration-300"></div>
-                  <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-300">
-                    <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${value.color} rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                      <value.icon size={32} className="text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                      {value.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
-                      {value.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Founder Section with Advanced Layout */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-blue-900"></div>
+    <section id="about" className="bg-white">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-28">
         <div className="absolute inset-0 bg-black/20"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
-              <Target size={16} />
-              Leadership
-            </div>
-            <h2 className="text-5xl font-black text-white mb-6 leading-tight">
-              Meet Our
-              <span className="block bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-                Visionary Leader
-              </span>
-            </h2>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="animate-fade-in-left">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-green-500/30 rounded-3xl blur-xl"></div>
-                <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-10 border border-white/20">
-                  <div className="text-center">
-                    <div className="w-48 h-48 bg-gradient-to-br from-blue-500 to-green-500 rounded-full mx-auto mb-8 flex items-center justify-center shadow-2xl">
-                      <div className="w-44 h-44 bg-white/20 rounded-full flex items-center justify-center">
-                        <span className="text-white text-lg font-bold">CB</span>
-                      </div>
-                    </div>
-                    <h3 className="text-3xl font-black text-white mb-2">Mr. Chandrappa B R</h3>
-                    <p className="text-blue-400 font-semibold mb-4 text-xl">Founder & Managing Director</p>
-                    <p className="text-gray-300 leading-relaxed">
-                      Qualified Civil Engineering Applications, trained in Germany at TPH Bausysteme GmbH
-                    </p>
-                  </div>
-                </div>
+        <div className="relative max-w-7xl mx-auto px-6">
+          <ScrollAnimation animation="fade-in-up" delay={0}>
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
+                <Target size={16} />
+                About Sanjana Enterprises
               </div>
-            </div>
-            
-            <div className="animate-fade-in-right">
-              <h3 className="text-3xl font-black text-white mb-8">Expertise & Achievements</h3>
-              <div className="space-y-6">
-                {founderDetails.map((detail, index) => (
-                  <div 
-                    key={index} 
-                    className="flex items-start gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer"
-                  >
-                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-400 to-green-400 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <detail.icon size={16} className="text-white" />
+              <h1 className="text-5xl lg:text-5xl font-black text-white mb-8 leading-tight">
+                Karnataka's Premier
+                <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text py-2 text-transparent">
+                  Waterproofing & Flooring Specialists
+                </span>
+              </h1>
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
+                With over three decades of proven expertise, we deliver comprehensive waterproofing 
+                and flooring solutions that protect and enhance structures across Karnataka.
+              </p>
+              
+              {/* Achievement Stats */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                {achievements.map((achievement, index) => (
+                  <div key={index} className="text-center group">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl mb-4 border border-white/20 group-hover:bg-white/20 transition-all duration-300">
+                      <achievement.icon size={24} className="text-cyan-400" />
                     </div>
-                    <p className="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
-                      {detail.text}
-                    </p>
+                    <div className="text-3xl lg:text-4xl font-black text-white mb-2">{achievement.number}</div>
+                    <div className="text-gray-400 font-medium">{achievement.label}</div>
                   </div>
                 ))}
               </div>
-              
-              <div className="mt-12">
-                <h4 className="text-2xl font-bold text-white mb-6">Professional Memberships</h4>
-                <div className="space-y-4">
-                  {memberships.map((membership, index) => (
-                    <div 
-                      key={index} 
-                      className="group cursor-pointer"
-                    >
-                      <div className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                        <div className={`w-3 h-3 ${membership.color} rounded-full group-hover:scale-125 transition-transform duration-300`}></div>
-                        <span className="text-gray-300 group-hover:text-white transition-colors duration-300 font-medium">
-                          {membership.name}
-                        </span>
-                        <ChevronRight size={16} className="text-gray-500 group-hover:text-white ml-auto transition-colors duration-300" />
-                      </div>
-                    </div>
-                  ))}
+            </div>
+          </ScrollAnimation>
+        </div>
+      </div>
+
+      {/* Company Overview */}
+      <div className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <ScrollAnimation animation="fade-in-up" delay={100}>
+              <div>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <CheckCircle size={16} />
+                  Our Expertise
+                </div>
+                <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-8 leading-tight">
+                  Protecting Structures with
+                  <span className="block text-blue-600">Proven Solutions</span>
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Sanjana Enterprises combines decades of industry experience with cutting-edge technology 
+                  to deliver waterproofing and flooring solutions that stand the test of time. Our commitment 
+                  to quality and innovation has made us the trusted choice for projects across residential, 
+                  commercial, and industrial sectors.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center group">
+                    Get Free Consultation
+                    <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <a href="tel:+919916290799" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center">
+                    <Phone size={20} className="mr-2" />
+                    Call Now
+                  </a>
                 </div>
               </div>
-            </div>
+            </ScrollAnimation>
+            
+            <ScrollAnimation animation="fade-in-up" delay={200}>
+              <div className="grid gap-6">
+                {services.map((service, index) => (
+                  <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {service.features.map((feature, idx) => (
+                        <span key={idx} className="text-xs font-medium bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </ScrollAnimation>
           </div>
         </div>
-      </section>
+      </div>
 
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fade-in-left {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes fade-in-right {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes gradient-x {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-        
-        @keyframes grid-move {
-          0% {
-            transform: translate(0, 0);
-          }
-          100% {
-            transform: translate(50px, 50px);
-          }
-        }
-        
-        .animate-fade-in-up {
-          animation: fade-in-up 1s ease-out forwards;
-          opacity: 0;
-        }
-        
-        .animate-fade-in-left {
-          animation: fade-in-left 1s ease-out forwards;
-          opacity: 0;
-        }
-        
-        .animate-fade-in-right {
-          animation: fade-in-right 1s ease-out forwards;
-          opacity: 0;
-        }
-        
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 3s ease infinite;
-        }
-        
-        .backdrop-blur-xl {
-          backdrop-filter: blur(24px);
-        }
-        
-        .backdrop-blur-sm {
-          backdrop-filter: blur(4px);
-        }
-      `}</style>
-    </div>
+      {/* Core Values */}
+      <div className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollAnimation animation="fade-in-up" delay={0}>
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Star size={16} />
+                Our Values
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">
+                What Sets Us Apart
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Our commitment to excellence drives everything we do, from material selection to project completion.
+              </p>
+            </div>
+          </ScrollAnimation>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {values.map((value, index) => (
+              <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
+                <div className="bg-white rounded-2xl p-8 text-center shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl mb-6 group-hover:bg-blue-100 transition-colors duration-300">
+                    <value.icon size={28} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                </div>
+              </ScrollAnimation>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Leadership Section */}
+      <div className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollAnimation animation="fade-in-up" delay={0}>
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Award size={16} />
+                Leadership
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">
+                Visionary Leadership
+              </h2>
+            </div>
+          </ScrollAnimation>
+          
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <ScrollAnimation animation="fade-in-up" delay={100}>
+              <div className="text-center lg:text-left">
+                <div className="inline-block relative mb-8">
+                  <div className="w-52 rounded-2xl overflow-hidden shadow-xl mx-auto lg:mx-0">
+                    <img src={founderImage} alt="Mr. Chandrappa B R - Founder" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <Award size={24} className="text-white" />
+                  </div>
+                </div>
+                <h3 className="text-3xl font-black text-gray-900 mb-2">Mr. Chandrappa B R</h3>
+                <p className="text-blue-600 font-semibold mb-4 text-lg">Founder & Managing Director</p>
+                <p className="text-gray-600 leading-relaxed">
+                  Civil Engineering Applications Specialist, trained in Germany at TPH Bausysteme GmbH. 
+                  President of the Association of Waterproofing Contractors.
+                </p>
+              </div>
+            </ScrollAnimation>
+            
+            <ScrollAnimation animation="fade-in-up" delay={200}>
+              <div className="space-y-6">
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">Professional Expertise</h4>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>25+ years in waterproofing and structural rehabilitation</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>Founder & President – Association of Waterproofing Contractors</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>International training in advanced waterproofing systems</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>Led 1000+ successful projects across Karnataka</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="bg-blue-50 rounded-2xl p-6">
+                  <h4 className="text-xl font-bold text-blue-900 mb-4">Professional Memberships</h4>
+                  <div className="space-y-2">
+                    {[
+                      'Indian Concrete Institute',
+                      'INSTRUCT (Institute for Research, Development and Training)',
+                      'KASSIA (Karnataka Small Scale Industries Association)'
+                    ].map((membership, index) => (
+                      <div key={index} className="flex items-center gap-3 text-blue-700">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                        <span className="font-medium">{membership}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </ScrollAnimation>
+          </div>
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="py-20 bg-gradient-to-r from-blue-600 to-blue-700">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <ScrollAnimation animation="fade-in-up" delay={0}>
+            <h2 className="text-4xl lg:text-5xl font-black text-white mb-8 leading-tight">
+              Ready to Protect Your Investment?
+            </h2>
+            <p className="text-xl text-blue-100 mb-10 leading-relaxed">
+              Get expert consultation and premium waterproofing solutions tailored to your specific needs.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center group">
+                Start Your Project
+                <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a href="tel:+919916290799" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center">
+                <Phone size={20} className="mr-2" />
+                Call Expert Now
+              </a>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </div>
+    </section>
   )
 }
 

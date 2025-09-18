@@ -147,46 +147,6 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Map Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="container-max">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Service Area</h2>
-              <p className="text-gray-600">
-                We proudly serve all areas of Bangalore and surrounding regions
-              </p>
-            </div>
-            <div className="bg-white rounded-lg p-8 shadow-lg border border-gray-200">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 mb-2">Central Bangalore</h3>
-                  <p className="text-gray-600 text-sm">Koramangala, Indiranagar, MG Road, Brigade Road</p>
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 mb-2">North Bangalore</h3>
-                  <p className="text-gray-600 text-sm">Hebbal, Yelahanka, Vidyaranyapura, Malleswaram</p>
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 mb-2">South Bangalore</h3>
-                  <p className="text-gray-600 text-sm">JP Nagar, Banashankari, Jayanagar, BTM Layout</p>
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 mb-2">East Bangalore</h3>
-                  <p className="text-gray-600 text-sm">Whitefield, Marathahalli, KR Puram, HSR Layout</p>
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 mb-2">West Bangalore</h3>
-                  <p className="text-gray-600 text-sm">Rajajinagar, Vijayanagar, Basaveshwaranagar</p>
-                </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-gray-900 mb-2">Outer Areas</h3>
-                  <p className="text-gray-600 text-sm">Electronic City, Sarjapur, Devanahalli</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* CTA Section */}
         <section className="bg-blue-600 py-20">
           <div className="container-max text-center">

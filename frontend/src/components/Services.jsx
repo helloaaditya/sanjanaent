@@ -15,94 +15,95 @@ const Services = () => {
   // Main 4 featured services
   const mainServices = [
     {
-      icon: Home,
-      title: 'Roof Waterproofing',
-      shortDescription: 'Complete roof protection against weather and water damage',
-      fullDescription: 'Roofs are the most exposed part of any structure, making them highly susceptible to cracks, seepage, and weather-related damage. Our advanced waterproofing creates a protective barrier using APP, EPDM, and SBS membranes.',
-      features: [
-        'Heat reflective coating',
-        'Advanced membrane installation (APP, EPDM, SBS)',
-        'Crack filling and surface preparation',
-        '10-year comprehensive warranty',
-        'Weather and UV resistance',
-        'Professional installation with quality assurance'
-      ],
-      popular: true,
-      category: 'Waterproofing',
-      benefits: [
-        'Reliable protection against leakage and dampness',
-        'Extended service life of roof structure', 
-        'Resistance to weathering and surface deterioration',
-        'Lower long-term repair and maintenance costs'
-      ]
-    },
-    {
-      icon: Building2,
-      title: 'Basement Waterproofing',
-      shortDescription: 'Comprehensive basement protection from groundwater and moisture',
-      fullDescription: 'Basements are highly prone to water seepage due to direct contact with soil and groundwater pressure. Our advanced systems prevent moisture ingress and structural weakening.',
-      features: [
-        'Foundation sealing systems',
-        'Advanced drainage solutions',
-        'Moisture control technology',
-        'Structural protection methods',
-        'Vapor barrier installation',
-        'Long-term performance guarantee'
-      ],
-      popular: false,
-      category: 'Waterproofing',
-      benefits: [
-        'Effective resistance against groundwater seepage',
-        'Protection from dampness, cracks, and corrosion',
-        'Enhanced structural stability and durability',
-        'Dry, safe, and usable basement space'
-      ]
-    },
-    {
-      icon: Factory,
+      icon: Factory, // replace with suitable flooring icon
       title: 'Industrial Epoxy Flooring',
-      shortDescription: 'Heavy-duty flooring solutions for industrial applications',
-      fullDescription: 'Industrial spaces demand flooring that withstands heavy loads, chemical exposure, and continuous movement. Our epoxy flooring offers seamless, strong, and highly resistant surfaces.',
+      shortDescription: 'Heavy-duty seamless flooring for industrial spaces',
+      fullDescription:
+        'Industrial spaces demand flooring that can withstand heavy loads, chemical exposure, and continuous movement without compromising safety or durability. Epoxy flooring is one of the most trusted solutions, offering a seamless, strong, and highly resistant surface ideal for warehouses, factories, and production areas.',
       features: [
-        'Chemical and oil resistance',
-        'Heavy load-bearing capacity',
-        'Seamless dust-free finish',
-        'Anti-slip safety options',
-        'Easy maintenance systems',
-        'Quick professional installation'
+        'High resistance to chemicals, oils, and abrasions',
+        'Seamless, dust-free, and hygienic surface',
+        'Excellent load-bearing capacity and durability',
+        'Easy maintenance with long-lasting performance',
+        'Enhanced safety with anti-slip and anti-static options'
       ],
       popular: true,
       category: 'Flooring',
       benefits: [
-        'High resistance to chemicals, oils, and abrasions',
-        'Seamless, dust-free, and hygienic surface',
-        'Excellent load-bearing capacity and durability',
-        'Enhanced safety with anti-slip properties'
+        'Reliable performance in demanding industrial conditions',
+        'Hygienic and low-maintenance surface',
+        'Improved workplace safety with anti-slip properties',
+        'Durable, long-lasting flooring solution'
       ]
     },
     {
-      icon: Palette,
-      title: 'Anti-Corrosion Coating',
-      shortDescription: 'Advanced protective coatings for metal structures',
-      fullDescription: 'Our anti-corrosion coatings provide protective barriers that safeguard metal surfaces from rust, oxidation, and environmental damage in harsh conditions.',
+      icon: Palette, // replace with suitable PU flooring icon
+      title: 'PU Flooring',
+      shortDescription: 'Durable and flexible polyurethane flooring system',
+      fullDescription:
+        'Polyurethane (PU) flooring is a versatile and high-performance solution widely used in industrial, commercial, and specialized environments. Known for its flexibility and durability, PU flooring provides excellent resistance to chemicals, impact, and abrasion while maintaining a smooth and seamless finish.',
       features: [
-        'Rust prevention technology',
-        'Chemical resistance properties',
-        'Weather protection systems',
-        'Industrial-grade materials',
-        'Long service life guarantee',
-        'Professional application methods'
+        'Superior resistance to chemicals, oils, and cleaning agents',
+        'High durability with flexibility to absorb impact and vibrations',
+        'Seamless, hygienic, and easy-to-clean surface',
+        'Comfortable underfoot, reducing fatigue in work environments',
+        'Excellent performance in areas with temperature variations'
       ],
       popular: false,
-      category: 'Coating',
+      category: 'Flooring',
       benefits: [
-        'Effective protection against rust and deterioration',
-        'High resistance to chemicals and extreme weather',
-        'Extends lifespan of metal structures',
-        'Reduces long-term maintenance costs'
+        'Ideal for pharmaceutical, food, and manufacturing industries',
+        'Improved worker comfort and safety',
+        'Enhanced durability in high-traffic areas',
+        'Reliable performance under varying temperature conditions'
+      ]
+    },
+    {
+      icon: Building2, // replace with ESD flooring icon
+      title: 'ESD Flooring',
+      shortDescription: 'Electrostatic discharge control flooring system',
+      fullDescription:
+        'Electrostatic Discharge (ESD) flooring is designed to control static electricity, ensuring the safety of sensitive equipment and creating a secure working environment. It is widely used in industries where even minor static discharges can cause serious damage, such as electronics, pharmaceuticals, data centers, and laboratories.',
+      features: [
+        'Effective dissipation of static electricity',
+        'Protection of sensitive electronic equipment and components',
+        'Seamless, durable, and easy-to-clean surface',
+        'High resistance to chemicals, abrasions, and heavy traffic',
+        'Compliance with industry safety and quality standards'
+      ],
+      popular: true,
+      category: 'Flooring',
+      benefits: [
+        'Safe and secure environment for sensitive industries',
+        'Protection against costly equipment damage',
+        'Durable and low-maintenance flooring',
+        'Reliable compliance with industry standards'
+      ]
+    },
+    {
+      icon: Home, // replace with anti-skid flooring icon
+      title: 'Anti-Skid Flooring',
+      shortDescription: 'Slip-resistant flooring for safe environments',
+      fullDescription:
+        'In areas where safety is a priority, anti-skid flooring provides a reliable solution to prevent slips and falls. Designed with a textured or coated surface, it offers improved grip and stability, even in wet, oily, or high-traffic environments.',
+      features: [
+        'Enhanced safety by reducing slip and fall risks',
+        'Durable surface with strong resistance to wear and abrasion',
+        'Suitable for wet areas, ramps, car parks, and industrial floors',
+        'Easy to clean and maintain without losing grip quality',
+        'Available in various finishes to suit functional and aesthetic needs'
+      ],
+      popular: false,
+      category: 'Flooring',
+      benefits: [
+        'Improved workplace and public safety',
+        'Durable and reliable performance in wet conditions',
+        'Low maintenance with long-term grip quality',
+        'Versatile design options for industrial and commercial use'
       ]
     }
   ]
+  
 
   const ServiceModal = ({ service, onClose }) => {
     if (!service) return null
