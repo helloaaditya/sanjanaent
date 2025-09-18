@@ -523,11 +523,12 @@ app.put('/api/leads/:id', authenticateToken, async (req, res) => {
       return res.status(400).json({ error: 'Invalid lead id' })
     }
     const update = { ...req.body, updatedAt: new Date() }
-    const { value } = await db
-      .collection('leads')
-      .findOneAndUpdate({ _id }, { $set: update }, { returnDocument: 'after' })
-    if (!value) return res.status(404).json({ error: 'Lead not found' })
-    res.json(value)
+    const result = await db.collection('leads').updateOne({ _id }, { $set: update })
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ error: 'Lead not found' })
+    }
+    const updated = await db.collection('leads').findOne({ _id })
+    res.json(updated)
   } catch (error) {
     console.error('Update lead error:', error)
     res.status(500).json({ error: 'Failed to update lead' })
