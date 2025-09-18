@@ -253,9 +253,15 @@ const AdminDashboard = () => {
           .filter(Boolean)
       }
       if (editingService) {
-        await apiService.updateService(editingService._id, payload, token)
+        const res = await apiService.updateService(editingService._id, payload, token)
+        if (res && res.status === 401) {
+          handleLogout(); return
+        }
       } else {
-        await apiService.createService(payload, token)
+        const res = await apiService.createService(payload, token)
+        if (res && res.status === 401) {
+          handleLogout(); return
+        }
       }
       setShowServiceModal(false)
       setEditingService(null)
@@ -263,7 +269,7 @@ const AdminDashboard = () => {
       setSuccessMessage('Service saved successfully')
       setTimeout(() => setSuccessMessage(''), 2500)
     } catch (err) {
-      setError('Failed to save service')
+      setError('Failed to save service: ' + (err?.message || 'Unknown error'))
     }
   }
 
@@ -271,10 +277,11 @@ const AdminDashboard = () => {
     if (!window.confirm('Delete this service?')) return
     try {
       const token = localStorage.getItem('adminToken')
-      await apiService.deleteService(id, token)
+      const res = await apiService.deleteService(id, token)
+      if (res && res.status === 401) { handleLogout(); return }
       await fetchServices()
     } catch (err) {
-      setError('Failed to delete service')
+      setError('Failed to delete service: ' + (err?.message || 'Unknown error'))
     }
   }
 
@@ -313,6 +320,11 @@ const AdminDashboard = () => {
         body: JSON.stringify(formData)
       })
 
+      if (response.status === 401) {
+        handleLogout();
+        return
+      }
+
       if (response.ok) {
         setShowModal(false)
         setEditingProject(null)
@@ -330,10 +342,11 @@ const AdminDashboard = () => {
         setImagePreview('')
         fetchProjects()
       } else {
-        setError('Failed to save project')
+        const msg = await response.text().catch(() => '')
+        setError(`Failed to save project (${response.status}): ${msg || 'Unexpected error'}`)
       }
     } catch (err) {
-      setError('Failed to save project')
+      setError('Failed to save project: ' + (err?.message || 'Unknown error'))
     }
   }
 
@@ -366,13 +379,16 @@ const AdminDashboard = () => {
         }
       })
 
+      if (response.status === 401) { handleLogout(); return }
+      
       if (response.ok) {
         fetchProjects()
       } else {
-        setError('Failed to delete project')
+        const msg = await response.text().catch(() => '')
+        setError(`Failed to delete project (${response.status}): ${msg || 'Unexpected error'}`)
       }
     } catch (err) {
-      setError('Failed to delete project')
+      setError('Failed to delete project: ' + (err?.message || 'Unknown error'))
     }
   }
 
@@ -405,14 +421,17 @@ const AdminDashboard = () => {
         }
       })
 
+      if (response.status === 401) { handleLogout(); return }
+
       if (response.ok) {
         fetchProjects()
         setError('')
       } else {
-        setError('Failed to clear projects')
+        const msg = await response.text().catch(() => '')
+        setError(`Failed to clear projects (${response.status}): ${msg || 'Unexpected error'}`)
       }
     } catch (err) {
-      setError('Failed to clear projects')
+      setError('Failed to clear projects: ' + (err?.message || 'Unknown error'))
     }
   }
 
