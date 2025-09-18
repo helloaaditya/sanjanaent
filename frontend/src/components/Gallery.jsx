@@ -69,7 +69,7 @@ const Gallery = () => {
         ) : (
           <>
             {/* Featured Projects Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
               {projects.map((project, index) => (
                 <div 
                   key={project._id || project.id} 
