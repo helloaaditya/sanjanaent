@@ -36,9 +36,10 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
       // Best-effort email notification (backend optional)
       try {
         await apiService.notifyLeadEmail({
-          to: 'aadityakum123@gmail.com',
-          subject: 'New Quote Request – Sanjana Enterprises (Test)',
-          lead
+          leadDetails: {
+            ...formData,
+            type: 'quote'
+          }
         })
       } catch {}
       setSuccess(true)

@@ -34,9 +34,10 @@ const ContactForm = () => {
       // Best-effort email notification (backend optional)
       try {
         await apiService.notifyLeadEmail({
-          to: 'aadityakum123@gmail.com',
-          subject: 'New Contact Message – Sanjana Enterprises (Test)',
-          lead
+          leadDetails: {
+            ...formData,
+            type: 'contact'
+          }
         })
       } catch {}
       setSuccess(true)

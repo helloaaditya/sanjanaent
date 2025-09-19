@@ -484,10 +484,11 @@ app.post('/api/leads', async (req, res) => {
 // Email notification route for leads (Gmail via app password)
 app.post('/api/leads/notify', async (req, res) => {
   try {
-    const { to, subject, lead } = req.body || {}
+    const { to, subject, leadDetails } = req.body || {}
     const senderUser = process.env.GMAIL_USER
     const senderPass = process.env.GMAIL_APP_PASSWORD
     const fallbackTo = process.env.NOTIFY_TO || senderUser
+    const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin'
 
     if (!senderUser || !senderPass) {
       return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
@@ -498,20 +499,85 @@ app.post('/api/leads/notify', async (req, res) => {
       auth: { user: senderUser, pass: senderPass },
     })
 
-    const pretty = (obj) => {
-      try { return JSON.stringify(obj, null, 2) } catch { return String(obj) }
+    // Format lead details for display
+    const formatLeadDetails = (lead) => {
+      if (!lead) return 'No details provided'
+      
+      const details = []
+      if (lead.name) details.push(`<strong>Name:</strong> ${lead.name}`)
+      if (lead.email) details.push(`<strong>Email:</strong> ${lead.email}`)
+      if (lead.phone) details.push(`<strong>Phone:</strong> ${lead.phone}`)
+      if (lead.projectType) details.push(`<strong>Project Type:</strong> ${lead.projectType}`)
+      if (lead.subject) details.push(`<strong>Subject:</strong> ${lead.subject}`)
+      if (lead.message) details.push(`<strong>Message:</strong> ${lead.message}`)
+      if (lead.type) details.push(`<strong>Lead Type:</strong> ${lead.type}`)
+      
+      return details.length > 0 ? details.join('<br>') : 'No details provided'
     }
+
+    const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
+    const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
 
     const mailOptions = {
       from: senderUser,
       to: to || fallbackTo,
-      subject: subject || 'New Lead Notification',
-      text: `New lead received:\n\n${pretty(lead)}`,
+      subject: emailSubject,
+      text: `New ${leadType} received from Sanjana Enterprises website.\n\n${formatLeadDetails(leadDetails).replace(/<[^>]*>/g, '')}\n\nView in Admin Dashboard: ${adminUrl}`,
       html: `
-        <div style="font-family:Arial,sans-serif; line-height:1.6">
-          <h2 style="margin:0 0 12px">New Lead Received</h2>
-          <pre style="background:#f6f8fa; padding:12px; border-radius:8px; white-space:pre-wrap;">${pretty(lead)}</pre>
-        </div>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>New Lead - Sanjana Enterprises</title>
+        </head>
+        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
+          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 30px 20px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">
+                New ${leadType}
+              </h1>
+              <p style="color: #e0e7ff; margin: 8px 0 0; font-size: 16px;">
+                Sanjana Enterprises Website
+              </p>
+            </div>
+
+            <!-- Content -->
+            <div style="padding: 30px 20px;">
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #1e293b; margin: 0 0 15px; font-size: 18px; font-weight: 600;">
+                  Lead Details
+                </h3>
+                <div style="color: #475569; line-height: 1.6;">
+                  ${formatLeadDetails(leadDetails)}
+                </div>
+              </div>
+
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="${adminUrl}" 
+                   style="display: inline-block; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  View in Admin Dashboard
+                </a>
+              </div>
+
+              <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-top: 20px;">
+                <p style="color: #64748b; font-size: 14px; margin: 0; text-align: center;">
+                  This is an automated notification from your Sanjana Enterprises website.
+                </p>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div style="background-color: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="color: #64748b; font-size: 12px; margin: 0;">
+                © ${new Date().getFullYear()} Sanjana Enterprises. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </body>
+        </html>
       `,
     }
 
