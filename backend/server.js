@@ -10,6 +10,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import helmet from 'helmet'
 import fs from 'fs'
+import nodemailer from 'nodemailer'
 
 dotenv.config()
 
@@ -477,6 +478,48 @@ app.post('/api/leads', async (req, res) => {
   } catch (error) {
     console.error('Create lead error:', error)
     res.status(500).json({ error: 'Failed to submit lead' })
+  }
+})
+
+// Email notification route for leads (Gmail via app password)
+app.post('/api/leads/notify', async (req, res) => {
+  try {
+    const { to, subject, lead } = req.body || {}
+    const senderUser = process.env.GMAIL_USER
+    const senderPass = process.env.GMAIL_APP_PASSWORD
+    const fallbackTo = process.env.NOTIFY_TO || senderUser
+
+    if (!senderUser || !senderPass) {
+      return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: senderUser, pass: senderPass },
+    })
+
+    const pretty = (obj) => {
+      try { return JSON.stringify(obj, null, 2) } catch { return String(obj) }
+    }
+
+    const mailOptions = {
+      from: senderUser,
+      to: to || fallbackTo,
+      subject: subject || 'New Lead Notification',
+      text: `New lead received:\n\n${pretty(lead)}`,
+      html: `
+        <div style="font-family:Arial,sans-serif; line-height:1.6">
+          <h2 style="margin:0 0 12px">New Lead Received</h2>
+          <pre style="background:#f6f8fa; padding:12px; border-radius:8px; white-space:pre-wrap;">${pretty(lead)}</pre>
+        </div>
+      `,
+    }
+
+    await transporter.sendMail(mailOptions)
+    return res.status(200).json({ ok: true })
+  } catch (err) {
+    console.error('Email send failed:', err)
+    return res.status(500).json({ error: 'Failed to send email' })
   }
 })
 
