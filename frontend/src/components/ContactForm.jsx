@@ -27,10 +27,18 @@ const ContactForm = () => {
     setError('')
 
     try {
-      await apiService.submitLead({
+      const lead = await apiService.submitLead({
         ...formData,
         type: 'contact'
       })
+      // Best-effort email notification (backend optional)
+      try {
+        await apiService.notifyLeadEmail({
+          to: 'aadityakum123@gmail.com',
+          subject: 'New Contact Message – Sanjana Enterprises (Test)',
+          lead
+        })
+      } catch {}
       setSuccess(true)
       setFormData({
         name: '',

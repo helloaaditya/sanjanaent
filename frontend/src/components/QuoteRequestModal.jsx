@@ -29,10 +29,18 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
     setError('')
 
     try {
-      await apiService.submitLead({
+      const lead = await apiService.submitLead({
         ...formData,
         type: 'quote'
       })
+      // Best-effort email notification (backend optional)
+      try {
+        await apiService.notifyLeadEmail({
+          to: 'aadityakum123@gmail.com',
+          subject: 'New Quote Request – Sanjana Enterprises (Test)',
+          lead
+        })
+      } catch {}
       setSuccess(true)
       try {
         if (typeof onSubmitted === 'function') {

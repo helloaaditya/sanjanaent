@@ -85,6 +85,14 @@ class ApiService {
     })
   }
 
+  // Optional: notify via email (backend may implement this route)
+  async notifyLeadEmail(payload) {
+    return this.request('/leads/notify', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    })
+  }
+
   async getLeads(token, filters = {}) {
     const queryParams = new URLSearchParams(filters).toString()
     const endpoint = queryParams ? `/leads?${queryParams}` : '/leads'
