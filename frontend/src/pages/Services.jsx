@@ -76,31 +76,17 @@ const Services = () => {
       <div className="relative h-full">
         <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/30 rounded-2xl blur-sm group-hover:blur-none transition-all duration-300"></div>
         <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-300 h-full flex flex-col overflow-hidden">
-          {/* Image header (optional) */}
+          {/* Image header */}
           {service.image && (
-            <div className="w-full h-40 overflow-hidden">
+            <div className="w-full h-48 overflow-hidden">
               <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
           )}
 
-          <div className="p-8 flex flex-col flex-1">
-            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+          <div className="p-6 flex flex-col flex-1">
+            <h3 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
               {service.title}
             </h3>
-            <p className="text-gray-600 leading-relaxed mb-5 flex-grow line-clamp-3 group-hover:text-gray-800 transition-colors duration-300">
-              {service.description}
-            </p>
-            <div className="space-y-2 mb-6">
-              {(service.features || []).slice(0, 3).map((feature, featureIndex) => (
-                <div key={featureIndex} className="flex items-center text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-                  <CheckCircle size={16} className="text-green-500 mr-2 flex-shrink-0" />
-                  {feature}
-                </div>
-              ))}
-              {Array.isArray(service.features) && service.features.length > 3 && (
-                <div className="text-xs text-gray-500">+{service.features.length - 3} more</div>
-              )}
-            </div>
             <button onClick={() => setSelectedService(service)} className="mt-auto w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center group-hover:shadow-lg transform group-hover:scale-[1.02]">
               View Details
               <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -112,68 +98,13 @@ const Services = () => {
   )
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-blue-50">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '4s'}}></div>
       </div>
-
-      {/* Hero Section with Parallax */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900"
-        ></div>
-        
-        {/* Animated Grid Background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            animation: 'grid-move 20s linear infinite'
-          }}></div>
-        </div>
-
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <div className="animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
-              <Sparkles size={16} />
-              Professional Services
-            </div>
-            <h1 className="text-6xl md:text-7xl font-black text-white mb-8 leading-tight">
-              Expert
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent animate-gradient-x">
-                Waterproofing & Flooring
-              </span>
-              Solutions
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-12 animate-fade-in-up" style={{animationDelay: '0.5s'}}>
-              Comprehensive waterproofing and flooring solutions for all your property needs. From residential 
-              homes to industrial facilities, we provide expert services across Karnataka with guaranteed results.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up" style={{animationDelay: '1s'}}>
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105">
-                Get Free Quote
-                <ArrowRight size={20} className="ml-2" />
-              </button>
-              <a 
-                href="tel:+919916290799"
-                className="border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 backdrop-blur-sm hover:shadow-2xl transform hover:scale-105"
-              >
-                Call +91 9916290799
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
-      </section>
 
       {/* Services Tabs */}
       <section className="py-32 relative">
@@ -227,7 +158,7 @@ const Services = () => {
               <p className="text-gray-600">Loading services...</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {(dbServices.length > 0
                 ? dbServices.filter(s => (activeTab === 'waterproofing' ? (s.category || '').toLowerCase().includes('water') : (s.category || '').toLowerCase().includes('floor')))
                 : []
@@ -239,8 +170,67 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Leakage Detection Using Special Equipment */}
+      <section className="py-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Sparkles size={16} />
+              Leakage Detection Using Special Equipment
+            </div>
+            <h3 className="text-4xl font-black text-gray-900 mb-4">Smart Structural Diagnostics</h3>
+            <p className="text-lg text-gray-600">Advanced tools to identify hidden moisture, leaks, and structural issues with precision.</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Thermal Imaging',
+                desc: 'Detect temperature variations and identify hidden moisture or leaks.',
+                img: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1200&auto=format&fit=crop'
+              },
+              {
+                title: 'Wall & Pipeline Detection',
+                desc: 'Locate concealed pipelines and structural elements.',
+                img: 'https://images.unsplash.com/photo-1554475901-4538ddfbccc0?q=80&w=1200&auto=format&fit=crop'
+              },
+              {
+                title: 'Waterline Integrity',
+                desc: 'Assess the integrity and performance of waterlines.',
+                img: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop'
+              },
+              {
+                title: 'Drone Inspection',
+                desc: 'Aerial monitoring for hard-to-reach areas.',
+                img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop'
+              },
+              {
+                title: 'Rebound Hammer Testing',
+                desc: 'Evaluate concrete strength and surface hardness.',
+                img: 'https://images.unsplash.com/photo-1566217793576-7a55d8f01a7e?q=80&w=1200&auto=format&fit=crop'
+              },
+              {
+                title: 'Moisture Meter Analysis',
+                desc: 'Measure moisture content to prevent dampness and seepage issues.',
+                img: 'https://images.unsplash.com/photo-1520975922172-c2b4277f9c0e?q=80&w=1200&auto=format&fit=crop'
+              }
+            ].map((tool, i) => (
+              <div key={i} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <div className="h-48 w-full overflow-hidden">
+                  <img src={tool.img} alt={tool.title} className="w-full h-full object-cover" />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">{tool.title}</h4>
+                  <p className="text-gray-600 text-sm">{tool.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Process Section */}
-      <section className="py-32 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-20">
@@ -286,7 +276,7 @@ const Services = () => {
       
 
       {/* CTA Section */}
-      <section className="py-32 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-4xl mx-auto text-center px-4">
           <h2 className="text-5xl font-black text-white mb-8 leading-tight">
@@ -296,10 +286,13 @@ const Services = () => {
             Don't let water damage or flooring issues affect your property. Contact us now for a free inspection 
             and personalized solution for all your waterproofing and flooring needs.
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="bg-white text-gray-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-2xl transform hover:scale-105">
+          <a href="/contact">
+            <button className="bg-white text-gray-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-2xl transform hover:scale-105" onClick={() => setShowQuoteModal(true)}>
               Get Free Consultation
             </button>
+            </a>
             <a 
               href="tel:+919916290799"
               className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"

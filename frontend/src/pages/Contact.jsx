@@ -9,7 +9,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Phone',
-      details: '+91 9916290799',
+      details: '9916290799, 9986498999, 9663778931, 9972615309',
       description: 'Call us for immediate assistance'
     },
     {
@@ -21,8 +21,8 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      details: 'Bangalore, Karnataka',
-      description: 'Serving all areas of Bangalore'
+      details: '# 786/1/30&31, 3rd main, 2nd cross, telecom layout, beside muneshwara temple, srirampura, jakkurpost, Bangalore, India, Karnataka',
+      description: 'Serving all areas of Bangalore & Karnataka'
     },
     {
       icon: Clock,
@@ -58,13 +58,14 @@ const Contact = () => {
             "mainEntity": {
               "@type": "LocalBusiness",
               "name": "Sanjana Enterprises",
-              "telephone": "+91-9916290799",
+            "telephone": ["+91-9916290799", "+91-9986498999", "+91-9663778931", "+91-9972615309"],
               "email": "sanjana.waterproofing@gmail.com",
               "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Bangalore",
-                "addressRegion": "Karnataka",
-                "addressCountry": "IN"
+              "streetAddress": "# 786/1/30&31, 3rd main, 2nd cross, telecom layout, beside muneshwara temple, srirampura, jakkurpost",
+              "addressLocality": "Bangalore",
+              "addressRegion": "Karnataka",
+              "addressCountry": "IN"
               },
               "openingHours": "Mo-Sa 09:00-18:00",
               "url": "https://sanjanawaterproofing.com"
@@ -121,31 +122,22 @@ const Contact = () => {
                     </div>
                   ))}
                 </div>
-
-                {/* Emergency Contact */}
-                <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
-                      <Phone size={20} className="text-red-600" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900">Emergency Service</h3>
-                  </div>
-                  <p className="text-gray-600 mb-3">
-                    Need immediate waterproofing assistance? We provide emergency services 
-                    for urgent water damage situations.
-                  </p>
-                  <a 
-                    href="tel:+919916290799" 
-                    className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md transition-colors duration-200 inline-flex items-center"
-                  >
-                    <Phone size={16} className="mr-2" />
-                    Call Emergency Line
-                  </a>
-                </div>
               </div>
             </div>
           </div>
         </section>
+
+       {/* Google Map */}
+      <section className="pb-16 bg-gray-50">
+        <div className="container-max">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Location</h2>
+            <div className="w-full h-96">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31091.96119488624!2d77.619329!3d13.067775!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1938a69d6de9%3A0x8916add82f543855!2sSANJANA%20ENTERPRISES%20-%20Waterproofing%20%7C%20Epoxy%20%7C%20PU%20Flooring%20Solution%20%26%20Services!5e0!3m2!1sen!2sin!4v1758270940557!5m2!1sen!2sin" width="100%" height="100%" style={{border: 0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
 
         {/* CTA Section */}
         <section className="bg-blue-600 py-20">

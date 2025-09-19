@@ -11,23 +11,6 @@ const About = () => {
     { number: '98%', label: 'Client Satisfaction', icon: Star }
   ]
 
-  const services = [
-    {
-      title: 'Waterproofing Solutions',
-      description: 'Advanced membrane systems, liquid coatings, and injection treatments for complete water ingress protection.',
-      features: ['APP/SBS Membranes', 'Liquid Coatings', 'Injection Systems']
-    },
-    {
-      title: 'Industrial Flooring',
-      description: 'High-performance flooring systems designed for heavy-duty industrial and commercial applications.',
-      features: ['Epoxy Flooring', 'PU Coatings', 'Anti-Static Solutions']
-    },
-    {
-      title: 'Structural Repairs',
-      description: 'Comprehensive rehabilitation services to restore and strengthen concrete structures.',
-      features: ['Crack Repairs', 'Carbon Fiber', 'Strengthening Systems']
-    }
-  ]
 
   const values = [
     {
@@ -50,7 +33,7 @@ const About = () => {
   return (
     <section id="about" className="bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-28">
+      <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-32">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6">
           <ScrollAnimation animation="fade-in-up" delay={0}>
@@ -87,57 +70,55 @@ const About = () => {
         </div>
       </div>
 
-      {/* Company Overview */}
-      <div className="py-20">
+      {/* Why Choose Us */}
+      <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <ScrollAnimation animation="fade-in-up" delay={100}>
-              <div>
-                <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  <CheckCircle size={16} />
-                  Our Expertise
-                </div>
-                <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-8 leading-tight">
-                  Protecting Structures with
-                  <span className="block text-blue-600">Proven Solutions</span>
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  Sanjana Enterprises combines decades of industry experience with cutting-edge technology 
-                  to deliver waterproofing and flooring solutions that stand the test of time. Our commitment 
-                  to quality and innovation has made us the trusted choice for projects across residential, 
-                  commercial, and industrial sectors.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center group">
-                    Get Free Consultation
-                    <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                  <a href="tel:+919916290799" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center">
-                    <Phone size={20} className="mr-2" />
-                    Call Now
-                  </a>
-                </div>
+          <ScrollAnimation animation="fade-in-up" delay={0}>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Target size={16} />
+                Why Choose Us
               </div>
-            </ScrollAnimation>
-            
-            <ScrollAnimation animation="fade-in-up" delay={200}>
-              <div className="grid gap-6">
-                {services.map((service, index) => (
-                  <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {service.features.map((feature, idx) => (
-                        <span key={idx} className="text-xs font-medium bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
-                          {feature}
-                        </span>
-                      ))}
+              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 leading-tight">
+                Trusted Partner for Waterproofing & Flooring
+              </h2>
+              <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+                Choosing the right partner is critical to the strength, safety, and longevity of your structure. At Sanjana Enterprises, we bring unmatched expertise and professionalism to every project.
+              </p>
+            </div>
+          </ScrollAnimation>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: '30+ Years of Experience', desc: 'Decades of proven expertise across residential, commercial, and industrial projects.' },
+              { title: 'Based in Bangalore, Serving All of Karnataka', desc: 'A strong presence with successful projects delivered across the state.' },
+              { title: 'Professional & Skilled Team', desc: 'Experienced specialists who ensure precision, quality workmanship, and on-time delivery.' },
+              { title: 'Advanced Technology', desc: 'Use of modern leakage detection equipment and industry-leading application techniques.' },
+              { title: 'Premium Quality Materials', desc: 'Trusted systems such as APP, EPDM, SBS membranes, and high-performance coatings.' },
+              { title: 'Customized Solutions', desc: 'Tailor-made services designed to meet your project’s unique requirements, budget, and timeline.' },
+              { title: 'Commitment to Durability', desc: 'Solutions built for long-term performance, protecting and enhancing your property’s value.' },
+            ].map((item, idx) => (
+              <ScrollAnimation key={idx} animation="fade-in-up" delay={idx * 100}>
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1">
+                      <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                      <p className="text-gray-600 mt-1">{item.desc}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </ScrollAnimation>
+                </div>
+              </ScrollAnimation>
+            ))}
           </div>
+
+          <ScrollAnimation animation="fade-in-up" delay={700}>
+            <div className="mt-10 bg-blue-50 rounded-2xl p-6 text-blue-900 text-center">
+              <p className="font-semibold">At Sanjana Enterprises, we don’t just complete projects — we build trust, deliver reliability, and provide solutions that stand the test of time.</p>
+            </div>
+          </ScrollAnimation>
         </div>
       </div>
 
@@ -191,54 +172,55 @@ const About = () => {
           </ScrollAnimation>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Large founder image */}
             <ScrollAnimation animation="fade-in-up" delay={100}>
               <div className="text-center lg:text-left">
-                <div className="inline-block relative mb-8">
-                  <div className="w-52 rounded-2xl overflow-hidden shadow-xl mx-auto lg:mx-0">
+                <div className="inline-block relative">
+                  <div className="w-64 sm:w-80 lg:w-[28rem] rounded-2xl overflow-hidden shadow-2xl mx-auto lg:mr-auto">
                     <img src={founderImage} alt="Mr. Chandrappa B R - Founder" className="w-full h-full object-cover" />
                   </div>
-                  <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                     <Award size={24} className="text-white" />
                   </div>
                 </div>
-                <h3 className="text-3xl font-black text-gray-900 mb-2">Mr. Chandrappa B R</h3>
-                <p className="text-blue-600 font-semibold mb-4 text-lg">Founder & Managing Director</p>
-                <p className="text-gray-600 leading-relaxed">
-                  Civil Engineering Applications Specialist, trained in Germany at TPH Bausysteme GmbH. 
-                  President of the Association of Waterproofing Contractors.
-                </p>
               </div>
             </ScrollAnimation>
-            
+
+            {/* Right: Founder details */}
             <ScrollAnimation animation="fade-in-up" delay={200}>
               <div className="space-y-6">
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                  <h4 className="text-xl font-bold text-gray-900 mb-4">Professional Expertise</h4>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Mr. Chandrappa B R</h3>
+                  <p className="text-blue-600 font-semibold mb-4">Founder & Managing Director</p>
+                  <p className="text-gray-600 leading-relaxed">
+                    Civil Engineering Applications Specialist, trained in Germany at TPH Bausysteme GmbH.
+                  </p>
+                </div>
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">About our Founder</h4>
                   <ul className="space-y-3 text-gray-600">
                     <li className="flex items-start gap-3">
                       <CheckCircle size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>25+ years in waterproofing and structural rehabilitation</span>
+                      <span>Qualified in Civil Engineering Applications, trained in Germany at TPH Bausysteme GmbH</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Founder & President – Association of Waterproofing Contractors</span>
+                      <span>Over 25 years of expertise in waterproofing, industrial flooring, soil stabilization, and structural rehabilitation</span>
                     </li>
+                    
                     <li className="flex items-start gap-3">
                       <CheckCircle size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>International training in advanced waterproofing systems</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Led 1000+ successful projects across Karnataka</span>
+                      <span>Successfully led projects for major industrial, commercial, and residential clients</span>
                     </li>
                   </ul>
                 </div>
                 
                 <div className="bg-blue-50 rounded-2xl p-6">
-                  <h4 className="text-xl font-bold text-blue-900 mb-4">Professional Memberships</h4>
+                  <h4 className="text-xl font-bold text-blue-900 mb-4">Member of</h4>
                   <div className="space-y-2">
                     {[
                       'Indian Concrete Institute',
+                      'Founder & President – Association of Waterproofing Contractors',
                       'INSTRUCT (Institute for Research, Development and Training)',
                       'KASSIA (Karnataka Small Scale Industries Association)'
                     ].map((membership, index) => (

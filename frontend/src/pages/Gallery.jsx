@@ -23,7 +23,7 @@ const Gallery = () => {
   }
 
   return (
-    <section id="gallery" className="py-8">
+    <section id="gallery" className="py-16">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
