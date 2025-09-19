@@ -8,10 +8,13 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [showTopBar, setShowTopBar] = useState(true)
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false)
   const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
     const handleScroll = throttle(() => {
       const scrollY = window.scrollY
       setIsScrolled(scrollY > 50)
@@ -29,6 +32,7 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
       document.body.classList.remove('top-bar-hidden')
     }
   }, [])
@@ -109,7 +113,7 @@ const Header = () => {
       <header 
         className="fixed left-0 w-full z-40 transition-all duration-500 ease-out"
         style={{
-          top: showTopBar ? `${topBarHeight}px` : '0px',
+          top: isMobile ? '0px' : (showTopBar ? `${topBarHeight}px` : '0px'),
           backgroundColor: isScrolled || !showTopBar 
             ? 'rgba(255, 255, 255, 0.98)' 
             : 'rgba(255, 255, 255, 0.95)',

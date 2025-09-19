@@ -23,26 +23,26 @@ const Gallery = () => {
   }
 
   return (
-    <section id="gallery" className="py-16">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="gallery" className="py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10 sm:mb-12">
           <div className="inline-flex items-center space-x-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <ExternalLink size={16} />
             <span>Complete Portfolio</span>
           </div>
-          <h1 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6">
+          <h1 className="text-3xl sm:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
             Our Project
             <span className="block text-blue-600">Gallery</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Discover our comprehensive portfolio of waterproofing and flooring projects across Karnataka. 
             Each project represents our commitment to excellence and customer satisfaction.
           </p>
         </div>
 
         {/* Controls Bar */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-6 mb-10 sm:mb-12">
           {/* Category Filter */}
           <div className="flex flex-wrap gap-3">
             {categories.map((category) => {
@@ -78,7 +78,7 @@ const Gallery = () => {
           </div>
 
           {/* View Mode Toggle */}
-          <div className="flex items-center gap-2 bg-white rounded-xl border border-gray-200 p-1">
+          <div className="flex items-center gap-2 bg-white rounded-xl border border-gray-200 p-1 self-start lg:self-auto">
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded-lg transition-all duration-200 ${
@@ -104,7 +104,7 @@ const Gallery = () => {
 
         {/* Results Summary */}
         {!loading && !error && (
-          <div className="mb-8">
+            <div className="mb-6 sm:mb-8">
             <p className="text-gray-600">
               Showing <span className="font-semibold text-gray-900">{projects.length}</span> projects
               {activeCategory !== 'All' && (

@@ -107,14 +107,14 @@ const Services = () => {
       </div>
 
       {/* Services Tabs */}
-      <section className="pt-32 py-10 relative">
+      <section className="pt-28 sm:pt-32 py-8 sm:py-10 relative">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Target size={16} />
               Our Services
             </div>
-            <h2 className="text-5xl font-black text-gray-900 mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight">
               Complete Solutions for
               <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Every Need
@@ -123,7 +123,7 @@ const Services = () => {
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex justify-center mb-16">
+          <div className="flex justify-center mb-10 sm:mb-16">
             <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-2 border border-gray-200/50 shadow-lg">
               <button
                 onClick={() => setActiveTab('waterproofing')}

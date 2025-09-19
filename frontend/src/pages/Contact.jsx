@@ -74,15 +74,15 @@ const Contact = () => {
         </script>
       </Helmet>
 
-      <main className="pt-24">
+      <main className="pt-16">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-50 to-white py-20">
-          <div className="container-max">
+        <section className="bg-gradient-to-br from-blue-50 to-white py-16 sm:py-20">
+          <div className="container-max px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Contact <span className="text-blue-600">Sanjana Enterprises</span>
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-xl text-gray-600 leading-relaxed">
                 Ready to protect your property? Get in touch with us for a free inspection 
                 and personalized quote. Our expert team is here to help you with all your 
                 waterproofing needs.
@@ -92,17 +92,17 @@ const Contact = () => {
         </section>
 
         {/* Contact Form & Info */}
-        <section className="py-20">
-          <div className="container-max">
-            <div className="grid lg:grid-cols-2 gap-16">
+        <section className="py-4 sm:py-20">
+          <div className="container-max px-4 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-10 sm:gap-16">
               {/* Contact Form */}
               <ContactForm />
 
               {/* Contact Information */}
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-                  <p className="text-gray-600 mb-8">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Get in Touch</h2>
+                  <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
                     We're here to help you with all your waterproofing needs. Contact us through 
                     any of the channels below, and we'll respond promptly.
                   </p>
@@ -111,13 +111,13 @@ const Contact = () => {
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
                     <div key={index} className="flex items-start">
-                      <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                        <info.icon size={24} className="text-blue-600" />
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-50 rounded-lg flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                        <info.icon size={20} className="sm:w-6 sm:h-6 text-blue-600" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-1">{info.title}</h3>
-                        <p className="text-gray-900 font-medium mb-1">{info.details}</p>
-                        <p className="text-gray-600 text-sm">{info.description}</p>
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">{info.title}</h3>
+                        <p className="text-gray-900 font-medium mb-1 break-words whitespace-normal text-sm sm:text-base">{info.details}</p>
+                        <p className="text-gray-600 text-xs sm:text-sm">{info.description}</p>
                       </div>
                     </div>
                   ))}
@@ -128,11 +128,11 @@ const Contact = () => {
         </section>
 
        {/* Google Map */}
-      <section className="pb-16 bg-gray-50">
-        <div className="container-max">
+      <section className="py-8 sm:pb-16 bg-gray-50">
+        <div className="container-max px-4 sm:px-6">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Location</h2>
-            <div className="w-full h-96">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Our Location</h2>
+            <div className="w-full h-64 sm:h-96">
               <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31091.96119488624!2d77.619329!3d13.067775!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1938a69d6de9%3A0x8916add82f543855!2sSANJANA%20ENTERPRISES%20-%20Waterproofing%20%7C%20Epoxy%20%7C%20PU%20Flooring%20Solution%20%26%20Services!5e0!3m2!1sen!2sin!4v1758270940557!5m2!1sen!2sin" width="100%" height="100%" style={{border: 0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
@@ -140,26 +140,26 @@ const Contact = () => {
       </section>
 
         {/* CTA Section */}
-        <section className="bg-blue-600 py-20">
-          <div className="container-max text-center">
-            <h2 className="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        <section className="bg-blue-600 py-16">
+          <div className="container-max text-center px-4 sm:px-6">
+            <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">Ready to Get Started?</h2>
+            <p className="text-base sm:text-xl text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto">
               Don't wait for water damage to occur. Contact us today for a free inspection 
               and protect your property with our professional waterproofing services.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a 
                 href="tel:+919916290799" 
-                className="bg-white text-blue-600 hover:bg-gray-50 font-semibold py-4 px-8 rounded-md transition-colors duration-200 flex items-center justify-center"
+                className="bg-white text-blue-600 hover:bg-gray-50 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-md transition-colors duration-200 flex items-center justify-center"
               >
                 <Phone size={20} className="mr-2" />
                 Call Now
               </a>
               <a 
                 href="mailto:sanjana.waterproofing@gmail.com" 
-                className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-4 px-8 rounded-md transition-colors duration-200 flex items-center justify-center"
+                className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-md transition-colors duration-200 flex items-center justify-center"
               >
-                <MessageCircle size={20} className="mr-2" />
+                <MessageCircle size={18} className="mr-2" />
                 Send Email
               </a>
             </div>

@@ -251,7 +251,7 @@ const Hero = () => {
     if (submitted) return
     const intervalId = setInterval(() => {
       setShowQuoteModal(true)
-    }, 10000)
+    }, 100000)
     return () => clearInterval(intervalId)
   }, [])
 
@@ -285,7 +285,7 @@ const Hero = () => {
       </div>
 
          {/* Main Content */}
-         <div className="relative z-10 max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-4">
+         <div className="relative z-10 max-w-7xl mx-auto px-4 pt-16 sm:px-6 lg:px-4">
            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh] py-12">
             {/* Left Content */}
             <div className={`space-y-8 transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
@@ -348,9 +348,9 @@ const Hero = () => {
 
              {/* Right Content - Segment Tabs and Image Slider */}
              <div className={`relative transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-               {/* Segment Tabs */}
-               <div className="mb-6">
-                 <div className="flex bg-white/80 backdrop-blur-sm rounded-xl p-2 shadow-lg border border-gray-200/50">
+              {/* Segment Tabs (hidden on mobile) */}
+              <div className="mb-6 hidden sm:block">
+                <div className="flex bg-white/80 backdrop-blur-sm rounded-xl p-2 shadow-lg border border-gray-200/50">
                    <button
                      onClick={() => setActiveSegment('waterproofing')}
                      className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${

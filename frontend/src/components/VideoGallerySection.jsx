@@ -29,11 +29,11 @@ const VideoGallerySection = () => {
         </div>
 
         {/* Main Content Card (Video + CTAs) */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-          <div className="p-4 lg:p-4">
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+          <div className="p-4 sm:p-6">
 
             {/* Video Player */}
-            <div className="relative mb-8 max-w-5xl mx-auto">
+            <div className="relative mb-6 sm:mb-8 max-w-5xl mx-auto">
               <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
                 <iframe 
                   width="100%" 
@@ -50,12 +50,12 @@ const VideoGallerySection = () => {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <a
                 href="https://www.youtube.com/watch?v=vnmHM2OzGkE"
                 target="_blank"
                 rel="noreferrer"
-                className="group bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 hover:from-blue-700 hover:via-cyan-700 hover:to-blue-800 text-white px-6 py-3 rounded-2xl font-semibold shadow-xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center"
+                className="group bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 hover:from-blue-700 hover:via-cyan-700 hover:to-blue-800 text-white px-5 py-3 rounded-xl sm:rounded-2xl font-semibold shadow-xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center"
               >
                 <Play size={18} className="mr-2" />
                 Watch Presentation
@@ -65,7 +65,7 @@ const VideoGallerySection = () => {
               <a
                 href={brochureUrl}
                 download
-                className="border-2 border-gray-300 text-gray-800 hover:bg-gray-50 px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center"
+                className="border-2 border-gray-300 text-gray-800 hover:bg-gray-50 px-5 py-3 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 flex items-center"
               >
                 <Download size={18} className="mr-2" />
                 Download Brochure

@@ -33,28 +33,28 @@ const About = () => {
   return (
     <section id="about" className="bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-32">
+      <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-28 sm:py-32">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation animation="fade-in-up" delay={0}>
             <div className="text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
                 <Target size={16} />
                 About Sanjana Enterprises
               </div>
-              <h1 className="text-5xl lg:text-5xl font-black text-white mb-8 leading-tight">
+              <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 sm:mb-8 leading-tight">
                 Karnataka's Premier
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text py-2 text-transparent">
                   Waterproofing & Flooring Specialists
                 </span>
               </h1>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
+              <p className="text-base sm:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12">
                 With over three decades of proven expertise, we deliver comprehensive waterproofing 
                 and flooring solutions that protect and enhance structures across Karnataka.
               </p>
               
               {/* Achievement Stats */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-4xl mx-auto">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="text-center group">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl mb-4 border border-white/20 group-hover:bg-white/20 transition-all duration-300">
@@ -71,24 +71,24 @@ const About = () => {
       </div>
 
       {/* Why Choose Us */}
-      <div className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <div className="py-16 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation animation="fade-in-up" delay={0}>
-            <div className="text-center mb-12">
+            <div className="text-center mb-10 sm:mb-12">
               <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Target size={16} />
                 Why Choose Us
               </div>
-              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-4 leading-tight">
                 Trusted Partner for Waterproofing & Flooring
               </h2>
-              <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+              <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto">
                 Choosing the right partner is critical to the strength, safety, and longevity of your structure. At Sanjana Enterprises, we bring unmatched expertise and professionalism to every project.
               </p>
             </div>
           </ScrollAnimation>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {[
               { title: '30+ Years of Experience', desc: 'Decades of proven expertise across residential, commercial, and industrial projects.' },
               { title: 'Based in Bangalore, Serving All of Karnataka', desc: 'A strong presence with successful projects delivered across the state.' },
@@ -123,24 +123,24 @@ const About = () => {
       </div>
 
       {/* Core Values */}
-      <div className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+      <div className="py-16 sm:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation animation="fade-in-up" delay={0}>
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Star size={16} />
                 Our Values
               </div>
-              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-6 leading-tight">
                 What Sets Us Apart
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
                 Our commitment to excellence drives everything we do, from material selection to project completion.
               </p>
             </div>
           </ScrollAnimation>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
             {values.map((value, index) => (
               <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
                 <div className="bg-white rounded-2xl p-8 text-center shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
@@ -157,15 +157,15 @@ const About = () => {
       </div>
 
       {/* Leadership Section */}
-      <div className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <div className="py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation animation="fade-in-up" delay={0}>
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Award size={16} />
                 Leadership
               </div>
-              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-6 leading-tight">
                 Visionary Leadership
               </h2>
             </div>

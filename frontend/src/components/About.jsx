@@ -13,7 +13,7 @@ const About = () => {
               <Target size={18} />
               <span>About Sanjana Enterprises</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Your Trusted Partner in
               <span className="block bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent py-2">
                 Waterproofing & Flooring Excellence
@@ -36,13 +36,13 @@ const About = () => {
             const logos = Object.values(modules)
             const track = (reverse = false) => (
               <div className={`overflow-hidden relative`}> 
-                <div className={`flex items-center gap-8 py-8 whitespace-nowrap ${reverse ? 'animate-marquee-rtl' : 'animate-marquee-ltr'}`}>
+              <div className={`flex items-center gap-6 sm:gap-8 py-6 sm:py-8 whitespace-nowrap ${reverse ? 'animate-marquee-rtl' : 'animate-marquee-ltr'}`}>
                   {[...logos, ...logos].map((src, idx) => (
                     <div key={`${reverse ? 'r' : 'l'}-${idx}`} className="flex items-center justify-center flex-shrink-0">
                       <img
                         src={src}
                         alt="Partner logo"
-                        className="max-h-28 max-w-[180px] w-auto h-auto object-contain transition-opacity duration-300"
+                        className="max-h-20 sm:max-h-24 md:max-h-28 max-w-[160px] sm:max-w-[180px] w-auto h-auto object-contain transition-opacity duration-300"
                         onError={(e) => { e.currentTarget.style.display = 'none' }}
                       />
                     </div>

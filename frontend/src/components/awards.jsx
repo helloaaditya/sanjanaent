@@ -179,13 +179,13 @@ const Awards = () => {
         </div>
       </div>
       {/* Marquee Container */}
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 overflow-hidden">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 overflow-hidden">
         {/* Gradient overlays for smooth fade effect */}
         <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
         
         {/* Marquee */}
-        <div className="flex animate-marquee items-center px-0 space-x-10 sm:space-x-12">
+        <div className="flex animate-marquee items-center px-2 sm:px-0 space-x-6 sm:space-x-12">
           {duplicatedAwards.map((award, index) => (
             <div
               key={`${award.id}-${index}`}
