@@ -49,7 +49,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone size={16} className="text-blue-400" />
-                <span className="text-gray-300">99162 90799, 99864 98999, 96637 78931, 99726 15309</span>
+                <span className="text-gray-300">9916290799, 9986498999, 9663778931, 9972615309</span>
               </div>
             
               <div className="flex items-center space-x-3">
