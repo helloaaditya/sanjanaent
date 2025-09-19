@@ -31,16 +31,12 @@ const Footer = () => {
           <div className="space-y-6">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-16 h-16 rounded-xl shadow-lg overflow-hidden">
+                <div className="w-68 h-20 rounded-xl shadow-lg overflow-hidden">
                   <img 
                     src={logoImage} 
                     alt="Sanjana Enterprises Logo" 
                     className="w-full h-full object-contain bg-white p-2"
                   />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">Sanjana Enterprises</h3>
-                  <p className="text-gray-400 text-sm">Waterproofing & Flooring Solutions</p>
                 </div>
               </div>
               <p className="text-gray-300 leading-relaxed">
@@ -52,15 +48,16 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone size={16} className="text-blue-400" />
-                <span className="text-gray-300">+91 9876543210</span>
+                <span className="text-gray-300">99162 90799, 99864 98999, 96637 78931, 99726 15309</span>
               </div>
+            
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-blue-400" />
-                <span className="text-gray-300">info@sanjanawaterproofing.com</span>
+                <span className="text-gray-300">sanjana.waterproofing@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin size={16} className="text-blue-400" />
-                <span className="text-gray-300">Bangalore, Karnataka</span>
+                <span className="text-gray-300"># 786/1/30&31, 3rd main, 2nd cross, telecom layout, beside muneshwara temple, srirampura, jakkurpost, Bangalore, India, Karnataka</span>
               </div>
             </div>
           </div>
@@ -114,7 +111,7 @@ const Footer = () => {
               
               <div className="bg-gray-800 rounded-lg p-4">
                 <h5 className="font-semibold mb-2">Emergency Service</h5>
-                <p className="text-gray-300 text-sm mb-3">24/7 Emergency Support Available</p>
+                <p className="text-gray-300 text-sm mb-3">Quick Response</p>
                 <a 
                   href="tel:+919876543210" 
                   className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-2 px-4 rounded transition-colors inline-block"

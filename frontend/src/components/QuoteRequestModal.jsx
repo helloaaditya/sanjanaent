@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { X, Phone, Mail, MapPin, Calendar, MessageSquare, User, Building, CheckCircle } from 'lucide-react'
+import { X, Phone, Mail, User, CheckCircle } from 'lucide-react'
 import apiService from '../services/api'
 
-const QuoteRequestModal = ({ isOpen, onClose }) => {
+const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,6 +34,11 @@ const QuoteRequestModal = ({ isOpen, onClose }) => {
         type: 'quote'
       })
       setSuccess(true)
+      try {
+        if (typeof onSubmitted === 'function') {
+          onSubmitted()
+        }
+      } catch {}
     } catch (err) {
       setError('Failed to submit quote request. Please try again.')
     } finally {
@@ -166,44 +171,8 @@ const QuoteRequestModal = ({ isOpen, onClose }) => {
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
               >
                 <option value="Waterproofing">Waterproofing</option>
-                <option value="Roofing">Roofing</option>
-                <option value="Basement Waterproofing">Basement Waterproofing</option>
-                <option value="Terrace Waterproofing">Terrace Waterproofing</option>
-                <option value="Bathroom Waterproofing">Bathroom Waterproofing</option>
-                <option value="Other">Other</option>
+                <option value="Flooring">Flooring</option>
               </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                <MapPin size={16} className="inline mr-1" />
-                Project Location *
-              </label>
-              <input
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                placeholder="Enter project location/address"
-              />
-            </div>
-
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                <MessageSquare size={16} className="inline mr-1" />
-                Additional Details
-              </label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={4}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                placeholder="Tell us more about your project requirements, specific areas that need waterproofing, or any other details..."
-              />
             </div>
 
             {/* Error Message */}

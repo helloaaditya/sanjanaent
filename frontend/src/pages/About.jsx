@@ -7,8 +7,8 @@ const About = () => {
   const achievements = [
     { number: '30+', label: 'Years Experience', icon: Shield },
     { number: '100000+', label: 'Happy Customers', icon: Award },
-    { number: '22+', label: 'Services Offered', icon: Users },
-    { number: '99%', label: 'Client Satisfaction', icon: Star }
+    { number: '100+', label: 'Services Offered', icon: Users },
+    { number: '98%', label: 'Client Satisfaction', icon: Star }
   ]
 
   const services = [

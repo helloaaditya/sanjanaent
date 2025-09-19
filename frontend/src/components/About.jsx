@@ -42,7 +42,7 @@ const About = () => {
                       <img
                         src={src}
                         alt="Partner logo"
-                        className="max-h-28 max-w-[180px] w-auto h-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                        className="max-h-28 max-w-[180px] w-auto h-auto object-contain transition-opacity duration-300"
                         onError={(e) => { e.currentTarget.style.display = 'none' }}
                       />
                     </div>

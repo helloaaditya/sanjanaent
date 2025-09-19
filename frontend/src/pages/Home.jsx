@@ -4,7 +4,9 @@ import Hero from '../components/Hero'
 import About from '../components/About'
 import Services from '../components/Services'
 import Gallery from '../components/Gallery'
-import Contact from '../components/Contact'
+import AnimatedCounter from '../components/AnimatedCounter'
+import Awards from '../components/awards'
+import VideoGallerySection from '../components/VideoGallerySection' 
 
 const Home = () => {
   return (
@@ -56,10 +58,11 @@ const Home = () => {
       
       <main>
         <Hero />
+        <AnimatedCounter />
+        <Awards />
+        <VideoGallerySection />
         <About />
-        <Services />
-        <Gallery />
-        <Contact />
+        {/* <Gallery /> */}
       </main>
     </>
   )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Users, Shield, Award, Clock, CheckCircle, Star } from 'lucide-react'
+import { Users, Shield, Award, Clock, CheckCircle, Star, FileCheck } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 // Animated Counter Component
@@ -117,7 +117,7 @@ const StatsSection = () => {
         }}></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-600 px-6 py-3 rounded-full text-sm font-medium border border-blue-200 shadow-lg mb-6">
@@ -128,12 +128,11 @@ const StatsSection = () => {
             Our <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-800 bg-clip-text text-transparent">Achievements</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Over a decade of excellence in waterproofing solutions with thousands of satisfied customers
-          </p>
+          Over a decade of excellence in waterproofing & Flooring solutions with thousands of satisfied customers and honored with National & State Awards          </p>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" ref={statsRef}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-32" ref={statsRef}>
           {stats.map((stat, index) => (
             <div
               key={index}

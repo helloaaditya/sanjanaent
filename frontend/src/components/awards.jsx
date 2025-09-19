@@ -1,5 +1,5 @@
-import React from 'react'
-import { Trophy } from 'lucide-react'
+import React, { useState } from 'react'
+import { Trophy, FileCheck, X } from 'lucide-react'
 
 const Awards = () => {
   // Sample awards data - replace with your actual awards
@@ -164,27 +164,44 @@ const Awards = () => {
 
   // Duplicate awards for seamless loop
   const duplicatedAwards = [...awards, ...awards]
+  const [preview, setPreview] = useState(null)
 
   return (
     <div className="w-full py-8 overflow-hidden">
+      {/* ISO badge and stats */}
+      <div className="w-full flex flex-col items-center justify-center mb-6 px-4 text-center">
+        <div className="inline-flex items-center gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200 shadow-sm">
+          <FileCheck size={18} className="text-indigo-600" />
+          <span className="text-sm sm:text-base font-semibold text-gray-800">ISO 9001 Certified</span>
+        </div>
+        <div className="mt-3 text-xs sm:text-sm text-gray-600">
+          {awards.length}+ Awards & Certificates
+        </div>
+      </div>
       {/* Marquee Container */}
-      <div className="relative">
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 overflow-hidden">
         {/* Gradient overlays for smooth fade effect */}
         <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
         
         {/* Marquee */}
-        <div className="flex animate-marquee items-center space-x-8">
+        <div className="flex animate-marquee items-center px-0 space-x-10 sm:space-x-12">
           {duplicatedAwards.map((award, index) => (
             <div
               key={`${award.id}-${index}`}
               className="flex-shrink-0 group cursor-pointer relative"
             >
-              <div className="relative transition-all duration-300 transform hover:-translate-y-2 hover:scale-150 hover:z-50">
+              <div
+                className="relative transition-all duration-300 transform hover:-translate-y-2 hover:scale-125 hover:z-50 cursor-pointer"
+                onClick={() => setPreview(award)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setPreview(award) }}
+              >
                 <img
                   src={assetUrl(award.image)}
                   alt={award.title}
-                  className="max-h-32 max-w-[240px] w-auto h-auto object-contain rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 bg-white p-2 hover:bg-white hover:p-4"
+                  className="h-40 sm:h-48 lg:h-56 w-auto object-contain rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-white p-3 sm:p-4"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none'
                   }}
@@ -194,6 +211,34 @@ const Awards = () => {
           ))}
         </div>
       </div>
+
+      {/* Preview Modal */}
+      {preview && (
+        <div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setPreview(null)}
+        >
+          <div
+            className="relative bg-white rounded-2xl shadow-2xl max-w-5xl w-full overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              aria-label="Close"
+              className="absolute top-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white shadow"
+              onClick={() => setPreview(null)}
+            >
+              <X size={18} />
+            </button>
+            <div className="w-full bg-gray-50 flex items-center justify-center">
+              <img
+                src={assetUrl(preview.image)}
+                alt={preview.title}
+                className="max-h-[80vh] w-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Custom CSS for marquee animation */}
       <style jsx>{`

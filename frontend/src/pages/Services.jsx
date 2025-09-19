@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Shield, CheckCircle, ArrowRight, Award, Phone, Eye, Target, Sparkles, Hammer, Wrench, X } from 'lucide-react'
 import apiService from '../services/api'
 
 const Services = () => {
+  const location = useLocation()
   const [activeTab, setActiveTab] = useState('waterproofing')
   const [dbServices, setDbServices] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [selectedService, setSelectedService] = useState(null)
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const category = (params.get('category') || '').toLowerCase()
+    if (category === 'flooring' || category === 'waterproofing') {
+      setActiveTab(category)
+    }
+  }, [location.search])
 
   useEffect(() => {
     const fetchServices = async () => {
