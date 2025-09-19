@@ -1,6 +1,7 @@
 import React from 'react'
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react'
 import logoImage from '../assets/sanjana-enterprises.png'
+import privacyPolicy from '../assets/Privacy_Policy_&_Terms_and_condition.pdf'
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -130,11 +131,8 @@ const Footer = () => {
               © 2024 Sanjana Enterprises. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+              <a href={privacyPolicy} className="text-gray-400 hover:text-blue-400 transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                Terms of Service
               </a>
             </div>
           </div>

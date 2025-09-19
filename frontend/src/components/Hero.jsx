@@ -251,7 +251,7 @@ const Hero = () => {
     if (submitted) return
     const intervalId = setInterval(() => {
       setShowQuoteModal(true)
-    }, 5000)
+    }, 10000)
     return () => clearInterval(intervalId)
   }, [])
 

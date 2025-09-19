@@ -88,7 +88,7 @@ const StatsSection = () => {
     { 
       icon: Award, 
       label: 'Services Offered', 
-      value: 22, 
+      value: 100, 
       suffix: '+',
       color: 'from-purple-500 to-purple-600',
       bgColor: 'from-purple-50 to-purple-100',
