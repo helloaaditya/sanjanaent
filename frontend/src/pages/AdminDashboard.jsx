@@ -137,7 +137,7 @@ const AdminDashboard = () => {
   const fetchLeads = async (isAutoRefresh = false) => {
     try {
       if (!isAutoRefresh) {
-        setLeadsLoading(true)
+      setLeadsLoading(true)
       }
       const token = localStorage.getItem('adminToken')
       const filters = leadFilter !== 'all' ? { type: leadFilter } : {}
@@ -166,11 +166,11 @@ const AdminDashboard = () => {
     } catch (err) {
       console.error('Fetch leads error:', err)
       if (!isAutoRefresh) {
-        setError('Failed to fetch leads: ' + err.message)
+      setError('Failed to fetch leads: ' + err.message)
       }
     } finally {
       if (!isAutoRefresh) {
-        setLeadsLoading(false)
+      setLeadsLoading(false)
       }
     }
   }
@@ -380,7 +380,7 @@ const AdminDashboard = () => {
       })
 
       if (response.status === 401) { handleLogout(); return }
-      
+
       if (response.ok) {
         fetchProjects()
       } else {
@@ -497,7 +497,7 @@ const AdminDashboard = () => {
   const filteredProjects = projects.filter((p) => {
     const q = projectSearch.trim().toLowerCase()
     if (!q) return true
-    return (
+  return (
       (p.title || '').toLowerCase().includes(q) ||
       (p.category || '').toLowerCase().includes(q) ||
       (p.description || '').toLowerCase().includes(q) ||
@@ -617,7 +617,7 @@ const AdminDashboard = () => {
                       : 'bg-gray-200 text-gray-600'
                   }`}>
                     {item.count}
-                  </span>
+              </span>
                 </button>
               )
             })}
@@ -628,7 +628,7 @@ const AdminDashboard = () => {
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
                 <User className="w-5 h-5 text-white" />
-              </div>
+            </div>
               <div>
                 <p className="text-sm font-medium text-gray-900">{localStorage.getItem('adminUsername')}</p>
                 <p className="text-xs text-gray-500">Administrator</p>
@@ -669,12 +669,12 @@ const AdminDashboard = () => {
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-4">
-                <button
+              <button
                   onClick={() => setSidebarOpen(true)}
                   className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
                 >
                   <Menu className="w-5 h-5" />
-                </button>
+              </button>
                 <div>
                   <h2 className="text-xl font-semibold text-gray-900 capitalize">{activeTab}</h2>
                   <p className="text-sm text-gray-500">Manage your {activeTab} efficiently</p>
@@ -693,7 +693,7 @@ const AdminDashboard = () => {
                 </div>
                 
                 {/* Notifications */}
-                <button
+              <button
                   onClick={() => setShowNotifications(!showNotifications)}
                   className="relative p-2 rounded-lg hover:bg-gray-100"
                 >
@@ -703,7 +703,7 @@ const AdminDashboard = () => {
                       {leads.length}
                     </span>
                   )}
-                </button>
+              </button>
               </div>
             </div>
           </div>
@@ -721,14 +721,14 @@ const AdminDashboard = () => {
                   <p className="font-semibold">New Lead{newLeadsCount > 1 ? 's' : ''} Detected!</p>
                   <p className="text-sm opacity-90">{newLeadsCount} new lead{newLeadsCount > 1 ? 's' : ''} added</p>
                 </div>
-                <button
+              <button
                   onClick={() => setShowNewLeadsNotification(false)}
                   className="ml-4 text-white/80 hover:text-white"
                 >
                   <X className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
+              </button>
+          </div>
+        </div>
           </div>
         )}
 
@@ -769,28 +769,28 @@ const AdminDashboard = () => {
           {/* Content Area */}
           <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden">
 
-            {/* Error Message */}
-            {error && (
+        {/* Error Message */}
+        {error && (
               <div className="bg-red-50 border-l-4 border-red-400 p-4 m-6 rounded-r-lg">
                 <div className="flex">
                   <AlertCircle className="w-5 h-5 text-red-400 mr-3" />
                   <p className="text-red-700">{error}</p>
                 </div>
-              </div>
-            )}
+          </div>
+        )}
 
-            {/* Success Message */}
-            {successMessage && (
+        {/* Success Message */}
+        {successMessage && (
               <div className="bg-green-50 border-l-4 border-green-400 p-4 m-6 rounded-r-lg">
                 <div className="flex">
                   <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
                   <p className="text-green-700">{successMessage}</p>
                 </div>
-              </div>
-            )}
+          </div>
+        )}
 
-            {/* Projects Tab Content */}
-            {activeTab === 'projects' && (
+        {/* Projects Tab Content */}
+        {activeTab === 'projects' && (
               <div className="p-6">
                 {/* Enhanced Toolbar */}
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
@@ -819,41 +819,41 @@ const AdminDashboard = () => {
                     </div>
                     
                     <div className="flex space-x-2">
-                      {projects.length > 0 && (
-                        <button
-                          onClick={handleClearAll}
+            {projects.length > 0 && (
+              <button
+                onClick={handleClearAll}
                           className="flex items-center space-x-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors"
-                        >
+              >
                           <Trash2 size={16} />
-                          <span>Clear All</span>
-                        </button>
-                      )}
-                      <button
-                        onClick={handleAddNew}
+                <span>Clear All</span>
+              </button>
+            )}
+            <button
+              onClick={handleAddNew}
                         className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-                      >
+            >
                         <Plus size={16} />
-                        <span>Add Project</span>
-                      </button>
+              <span>Add Project</span>
+            </button>
                     </div>
-                  </div>
-                </div>
+          </div>
+        </div>
 
                 {/* Enhanced Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredProjects.map((project) => (
                     <div key={project._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                       <div className="relative overflow-hidden">
-                        <img
-                          src={project.image}
-                          alt={project.title}
+                <img
+                  src={project.image}
+                  alt={project.title}
                           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute top-4 right-4">
                           <span className="bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium">
-                            {project.category}
-                          </span>
-                        </div>
+                    {project.category}
+                  </span>
+                </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                       
@@ -864,68 +864,68 @@ const AdminDashboard = () => {
                         </div>
                         
                         <div className="space-y-2 text-xs text-gray-500 mb-4">
-                          {project.location && (
+                  {project.location && (
                             <div className="flex items-center space-x-2">
                               <MapPin size={14} className="text-blue-500" />
-                              <span>{project.location}</span>
-                            </div>
-                          )}
-                          {project.completedDate && (
+                      <span>{project.location}</span>
+                    </div>
+                  )}
+                  {project.completedDate && (
                             <div className="flex items-center space-x-2">
                               <Calendar size={14} className="text-green-500" />
-                              <span>{new Date(project.completedDate).toLocaleDateString()}</span>
-                            </div>
-                          )}
-                          {project.client && (
+                      <span>{new Date(project.completedDate).toLocaleDateString()}</span>
+                    </div>
+                  )}
+                  {project.client && (
                             <div className="flex items-center space-x-2">
                               <User size={14} className="text-purple-500" />
-                              <span>{project.client}</span>
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="flex space-x-2">
-                          <button
-                            onClick={() => handleEdit(project)}
-                            className="flex-1 flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                          >
-                            <Edit size={14} />
-                            <span>Edit</span>
-                          </button>
-                          <button
-                            onClick={() => handleDelete(project._id)}
-                            className="flex-1 flex items-center justify-center space-x-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                          >
-                            <Trash2 size={14} />
-                            <span>Delete</span>
-                          </button>
-                        </div>
-                      </div>
+                      <span>{project.client}</span>
                     </div>
-                  ))}
+                  )}
                 </div>
 
-                {projects.length === 0 && (
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleEdit(project)}
+                            className="flex-1 flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    <Edit size={14} />
+                    <span>Edit</span>
+                  </button>
+                  <button
+                    onClick={() => handleDelete(project._id)}
+                            className="flex-1 flex items-center justify-center space-x-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    <Trash2 size={14} />
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+            {projects.length === 0 && (
                   <div className="text-center py-16">
                     <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <Building className="w-12 h-12 text-blue-500" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">No projects yet</h3>
                     <p className="text-gray-500 mb-8 max-w-md mx-auto">Get started by adding your first project to showcase your work.</p>
-                    <button
-                      onClick={handleAddNew}
+                <button
+                  onClick={handleAddNew}
                       className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
-                    >
+                >
                       <Plus className="w-5 h-5 inline mr-2" />
                       Add Your First Project
-                    </button>
-                  </div>
-                )}
+                </button>
               </div>
             )}
+              </div>
+        )}
 
-            {/* Services Tab Content */}
-            {activeTab === 'services' && (
+        {/* Services Tab Content */}
+        {activeTab === 'services' && (
               <div className="p-6">
                 {/* Enhanced Toolbar */}
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
@@ -954,13 +954,13 @@ const AdminDashboard = () => {
                     </div>
                     
                     <div className="flex space-x-2">
-                      <button
-                        onClick={fetchServices}
+                <button
+                  onClick={fetchServices}
                         className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors"
-                      >
-                        <RefreshCw size={16} />
-                        <span>Refresh</span>
-                      </button>
+                >
+                  <RefreshCw size={16} />
+                  <span>Refresh</span>
+                </button>
                       <button
                         onClick={openAddService}
                         className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
@@ -969,16 +969,16 @@ const AdminDashboard = () => {
                         <span>Add Service</span>
                       </button>
                     </div>
-                  </div>
-                </div>
+              </div>
+            </div>
 
-                {servicesLoading ? (
+            {servicesLoading ? (
                   <div className="text-center py-16">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Loading services...</p>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p className="text-gray-600">Loading services...</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredServices.map((svc) => (
                       <div key={svc._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                         <div className="p-6">
@@ -986,9 +986,9 @@ const AdminDashboard = () => {
                             <div className="flex-1">
                               <h3 className="font-bold text-gray-900 text-lg mb-2">{svc.title}</h3>
                               <span className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
-                                {svc.category}
-                              </span>
-                            </div>
+                          {svc.category}
+                        </span>
+                      </div>
                             {svc.image && (
                               <div className="w-16 h-16 rounded-lg overflow-hidden ml-4">
                                 <img src={svc.image} alt={svc.title} className="w-full h-full object-cover" />
@@ -998,7 +998,7 @@ const AdminDashboard = () => {
                           
                           <p className="text-gray-600 text-sm mb-4 line-clamp-3">{svc.description}</p>
                           
-                          {Array.isArray(svc.features) && svc.features.length > 0 && (
+                      {Array.isArray(svc.features) && svc.features.length > 0 && (
                             <div className="mb-4">
                               <div className="flex flex-wrap gap-1">
                                 {svc.features.slice(0, 3).map((feature, index) => (
@@ -1012,39 +1012,39 @@ const AdminDashboard = () => {
                                   </span>
                                 )}
                               </div>
-                            </div>
-                          )}
-                          
-                          <div className="flex space-x-2">
-                            <button
-                              onClick={() => openEditService(svc)}
-                              className="flex-1 flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                            >
-                              <Edit size={14} />
-                              <span>Edit</span>
-                            </button>
-                            <button
-                              onClick={() => deleteService(svc._id)}
-                              className="flex-1 flex items-center justify-center space-x-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                            >
-                              <Trash2 size={14} />
-                              <span>Delete</span>
-                            </button>
-                          </div>
                         </div>
+                      )}
+                          
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() => openEditService(svc)}
+                              className="flex-1 flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                        >
+                          <Edit size={14} />
+                          <span>Edit</span>
+                        </button>
+                        <button
+                          onClick={() => deleteService(svc._id)}
+                              className="flex-1 flex items-center justify-center space-x-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                        >
+                          <Trash2 size={14} />
+                          <span>Delete</span>
+                        </button>
                       </div>
-                    ))}
+                    </div>
                   </div>
-                )}
+                ))}
               </div>
             )}
+              </div>
+        )}
 
-            {/* Leads Tab Content */}
-            {activeTab === 'leads' && (
+        {/* Leads Tab Content */}
+        {activeTab === 'leads' && (
               <div className="p-6">
                 {/* Enhanced Toolbar */}
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
-                  <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-3">
                       <div className="p-2 bg-purple-100 rounded-lg">
                         <MessageSquare className="w-5 h-5 text-purple-600" />
@@ -1057,17 +1057,17 @@ const AdminDashboard = () => {
                   </div>
                   
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <select
-                      value={leadFilter}
-                      onChange={(e) => setLeadFilter(e.target.value)}
+                <select
+                  value={leadFilter}
+                  onChange={(e) => setLeadFilter(e.target.value)}
                       className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    >
-                      <option value="all">All Leads</option>
-                      <option value="contact">Contact Inquiries</option>
-                      <option value="quote">Quote Requests</option>
-                    </select>
+                >
+                  <option value="all">All Leads</option>
+                  <option value="contact">Contact Inquiries</option>
+                  <option value="quote">Quote Requests</option>
+                </select>
                     
-                    <button
+                <button
                       onClick={() => setAutoRefreshEnabled(!autoRefreshEnabled)}
                       className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                         autoRefreshEnabled
@@ -1084,12 +1084,12 @@ const AdminDashboard = () => {
                     <button
                       onClick={() => fetchLeads(false)}
                       className="flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-                    >
-                      <RefreshCw size={16} />
-                      <span>Refresh</span>
-                    </button>
-                  </div>
-                </div>
+                >
+                  <RefreshCw size={16} />
+                  <span>Refresh</span>
+                </button>
+              </div>
+            </div>
 
                 {/* Auto-refresh indicator */}
                 {autoRefreshEnabled && (
@@ -1118,52 +1118,52 @@ const AdminDashboard = () => {
                 )}
 
                 {/* Enhanced Leads List */}
-                {leadsLoading ? (
+            {leadsLoading ? (
                   <div className="text-center py-16">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Loading leads...</p>
-                  </div>
-                ) : leads.length === 0 ? (
+                <p className="text-gray-600">Loading leads...</p>
+              </div>
+            ) : leads.length === 0 ? (
                   <div className="text-center py-16">
                     <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <MessageSquare className="w-12 h-12 text-purple-500" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">No leads yet</h3>
                     <p className="text-gray-500 mb-8 max-w-md mx-auto">Leads will appear here when customers contact you through your website.</p>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {leads.map((lead) => (
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {leads.map((lead) => (
                       <div key={lead._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
-                        <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-4">
                           <div className="flex items-center space-x-4">
                             <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center">
                               <User className="w-6 h-6 text-purple-600" />
                             </div>
                             <div>
                               <div className="flex items-center space-x-3 mb-2">
-                                {getTypeIcon(lead.type)}
+                          {getTypeIcon(lead.type)}
                                 <span className="text-lg font-bold text-gray-900">
-                                  {lead.type === 'quote' ? 'Quote Request' : 'Contact Inquiry'}
-                                </span>
-                              </div>
+                            {lead.type === 'quote' ? 'Quote Request' : 'Contact Inquiry'}
+                          </span>
+                        </div>
                               <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(lead.status)}`}>
-                                {lead.status}
-                              </span>
-                            </div>
+                          {lead.status}
+                        </span>
+                      </div>
                           </div>
                           <div className="flex items-center space-x-3">
-                            <span className="text-sm text-gray-500">
-                              {new Date(lead.createdAt).toLocaleDateString()}
-                            </span>
-                            <button
-                              onClick={() => handleDeleteLead(lead._id)}
+                        <span className="text-sm text-gray-500">
+                          {new Date(lead.createdAt).toLocaleDateString()}
+                        </span>
+                        <button
+                          onClick={() => handleDeleteLead(lead._id)}
                               className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </div>
-                        </div>
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div>
@@ -1254,9 +1254,9 @@ const AdminDashboard = () => {
                   </div>
                 ))}
               </div>
-                )}
-              </div>
             )}
+              </div>
+        )}
           </div>
         </div>
       </div>

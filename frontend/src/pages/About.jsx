@@ -41,13 +41,13 @@ const About = () => {
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
                 <Target size={16} />
                 About Sanjana Enterprises
-              </div>
+      </div>
               <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 sm:mb-8 leading-tight">
                 Karnataka's Premier
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text py-2 text-transparent">
                   Waterproofing & Flooring Specialists
-                </span>
-              </h1>
+              </span>
+            </h1>
               <p className="text-base sm:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12">
                 With over three decades of proven expertise, we deliver comprehensive waterproofing 
                 and flooring solutions that protect and enhance structures across Karnataka.
@@ -55,20 +55,20 @@ const About = () => {
               
               {/* Achievement Stats */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-4xl mx-auto">
-                {achievements.map((achievement, index) => (
-                  <div key={index} className="text-center group">
+              {achievements.map((achievement, index) => (
+                <div key={index} className="text-center group">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl mb-4 border border-white/20 group-hover:bg-white/20 transition-all duration-300">
                       <achievement.icon size={24} className="text-cyan-400" />
                     </div>
                     <div className="text-3xl lg:text-4xl font-black text-white mb-2">{achievement.number}</div>
                     <div className="text-gray-400 font-medium">{achievement.label}</div>
-                  </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
+          </div>
           </ScrollAnimation>
+          </div>
         </div>
-      </div>
 
       {/* Why Choose Us */}
       <div className="py-16 sm:py-20 bg-white">
@@ -112,7 +112,7 @@ const About = () => {
                 </div>
               </ScrollAnimation>
             ))}
-          </div>
+              </div>
 
           <ScrollAnimation animation="fade-in-up" delay={700}>
             <div className="mt-10 bg-blue-50 rounded-2xl p-6 text-blue-900 text-center">
@@ -129,15 +129,15 @@ const About = () => {
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Star size={16} />
-                Our Values
-              </div>
+              Our Values
+            </div>
               <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-6 leading-tight">
                 What Sets Us Apart
-              </h2>
+            </h2>
               <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
                 Our commitment to excellence drives everything we do, from material selection to project completion.
               </p>
-            </div>
+          </div>
           </ScrollAnimation>
           
           <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
@@ -163,12 +163,12 @@ const About = () => {
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Award size={16} />
-                Leadership
-              </div>
+              Leadership
+            </div>
               <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-6 leading-tight">
                 Visionary Leadership
-              </h2>
-            </div>
+            </h2>
+          </div>
           </ScrollAnimation>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -178,14 +178,14 @@ const About = () => {
                 <div className="inline-block relative">
                   <div className="w-64 sm:w-80 lg:w-[28rem] rounded-2xl overflow-hidden shadow-2xl mx-auto lg:mr-auto">
                     <img src={founderImage} alt="Mr. Chandrappa B R - Founder" className="w-full h-full object-cover" />
-                  </div>
+                      </div>
                   <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                     <Award size={24} className="text-white" />
                   </div>
                 </div>
               </div>
             </ScrollAnimation>
-
+            
             {/* Right: Founder details */}
             <ScrollAnimation animation="fade-in-up" delay={200}>
               <div className="space-y-6">
@@ -194,8 +194,8 @@ const About = () => {
                   <p className="text-blue-600 font-semibold mb-4">Founder & Managing Director</p>
                   <p className="text-gray-600 leading-relaxed">
                     Civil Engineering Applications Specialist, trained in Germany at TPH Bausysteme GmbH.
-                  </p>
-                </div>
+                    </p>
+                  </div>
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                   <h4 className="text-xl font-bold text-gray-900 mb-4">About our Founder</h4>
                   <ul className="space-y-3 text-gray-600">
@@ -213,8 +213,8 @@ const About = () => {
                       <span>Successfully led projects for major industrial, commercial, and residential clients</span>
                     </li>
                   </ul>
-                </div>
-                
+              </div>
+              
                 <div className="bg-blue-50 rounded-2xl p-6">
                   <h4 className="text-xl font-bold text-blue-900 mb-4">Member of</h4>
                   <div className="space-y-2">
@@ -229,7 +229,7 @@ const About = () => {
                         <span className="font-medium">{membership}</span>
                       </div>
                     ))}
-                  </div>
+                    </div>
                 </div>
               </div>
             </ScrollAnimation>
@@ -259,7 +259,7 @@ const About = () => {
             </div>
           </ScrollAnimation>
         </div>
-      </div>
+    </div>
     </section>
   )
 }
