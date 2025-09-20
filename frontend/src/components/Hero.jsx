@@ -446,7 +446,7 @@ const Hero = () => {
               </div>
 
               {/* Key Features - Full Width */}
-              <div className="w-1/3">
+              <div className="w-1/3 sm:w-full">
                 <div className="flex flex-wrap gap-4 justify-center">
                   {features.map((feature, index) => (
                     <div 
