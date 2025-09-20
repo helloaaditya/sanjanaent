@@ -170,64 +170,66 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Leakage Detection Using Special Equipment */}
-      <section className="py-8 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Sparkles size={16} />
-              Leakage Detection Using Special Equipment
-            </div>
-            <h3 className="text-4xl font-black text-gray-900 mb-4">Smart Structural Diagnostics</h3>
-            <p className="text-lg text-gray-600">Advanced tools to identify hidden moisture, leaks, and structural issues with precision.</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Thermal Imaging',
-                desc: 'Detect temperature variations and identify hidden moisture or leaks.',
-                img: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1200&auto=format&fit=crop'
-              },
-              {
-                title: 'Wall & Pipeline Detection',
-                desc: 'Locate concealed pipelines and structural elements.',
-                img: 'https://images.unsplash.com/photo-1554475901-4538ddfbccc0?q=80&w=1200&auto=format&fit=crop'
-              },
-              {
-                title: 'Waterline Integrity',
-                desc: 'Assess the integrity and performance of waterlines.',
-                img: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop'
-              },
-              {
-                title: 'Drone Inspection',
-                desc: 'Aerial monitoring for hard-to-reach areas.',
-                img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop'
-              },
-              {
-                title: 'Rebound Hammer Testing',
-                desc: 'Evaluate concrete strength and surface hardness.',
-                img: 'https://images.unsplash.com/photo-1566217793576-7a55d8f01a7e?q=80&w=1200&auto=format&fit=crop'
-              },
-              {
-                title: 'Moisture Meter Analysis',
-                desc: 'Measure moisture content to prevent dampness and seepage issues.',
-                img: 'https://images.unsplash.com/photo-1520975922172-c2b4277f9c0e?q=80&w=1200&auto=format&fit=crop'
-              }
-            ].map((tool, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
-                <div className="h-48 w-full overflow-hidden">
-                  <img src={tool.img} alt={tool.title} className="w-full h-full object-cover" />
-                </div>
-                <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">{tool.title}</h4>
-                  <p className="text-gray-600 text-sm">{tool.desc}</p>
-                </div>
+      {/* Leakage Detection Using Special Equipment - Only for Waterproofing */}
+      {activeTab === 'waterproofing' && (
+        <section className="py-8 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Sparkles size={16} />
+                Leakage Detection Using Special Equipment
               </div>
-            ))}
+              <h3 className="text-4xl font-black text-gray-900 mb-4">Smart Structural Diagnostics</h3>
+              <p className="text-lg text-gray-600">Advanced tools to identify hidden moisture, leaks, and structural issues with precision.</p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: 'Thermal Imaging',
+                  desc: 'Detect temperature variations and identify hidden moisture or leaks.',
+                  img: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1200&auto=format&fit=crop'
+                },
+                {
+                  title: 'Wall & Pipeline Detection',
+                  desc: 'Locate concealed pipelines and structural elements.',
+                  img: 'https://images.unsplash.com/photo-1554475901-4538ddfbccc0?q=80&w=1200&auto=format&fit=crop'
+                },
+                {
+                  title: 'Waterline Integrity',
+                  desc: 'Assess the integrity and performance of waterlines.',
+                  img: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop'
+                },
+                {
+                  title: 'Drone Inspection',
+                  desc: 'Aerial monitoring for hard-to-reach areas.',
+                  img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop'
+                },
+                {
+                  title: 'Rebound Hammer Testing',
+                  desc: 'Evaluate concrete strength and surface hardness.',
+                  img: 'https://images.unsplash.com/photo-1566217793576-7a55d8f01a7e?q=80&w=1200&auto=format&fit=crop'
+                },
+                {
+                  title: 'Moisture Meter Analysis',
+                  desc: 'Measure moisture content to prevent dampness and seepage issues.',
+                  img: 'https://images.unsplash.com/photo-1520975922172-c2b4277f9c0e?q=80&w=1200&auto=format&fit=crop'
+                }
+              ].map((tool, i) => (
+                <div key={i} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+                  <div className="h-48 w-full overflow-hidden">
+                    <img src={tool.img} alt={tool.title} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">{tool.title}</h4>
+                    <p className="text-gray-600 text-sm">{tool.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Process Section */}
       <section className="py-10 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">

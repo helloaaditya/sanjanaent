@@ -40,10 +40,6 @@ const Footer = () => {
                   />
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
-                With 30+ years of experience, we are Bangalore's trusted waterproofing & flooring specialists, 
-                providing reliable solutions for residential and commercial properties.
-              </p>
             </div>
             
             <div className="space-y-3">

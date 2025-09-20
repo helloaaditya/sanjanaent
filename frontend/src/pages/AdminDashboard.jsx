@@ -540,14 +540,7 @@ const AdminDashboard = () => {
       trend: '+23%',
       change: 'positive'
     },
-    { 
-      label: 'Conversion Rate', 
-      value: '68%', 
-      icon: TrendingUp, 
-      color: 'orange',
-      trend: '+5%',
-      change: 'positive'
-    }
+   
   ]
 
   // Navigation items
