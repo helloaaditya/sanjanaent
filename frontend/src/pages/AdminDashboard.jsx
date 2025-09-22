@@ -34,7 +34,8 @@ const AdminDashboard = () => {
     description: '',
     category: 'Waterproofing',
     features: '',
-    image: ''
+    image: '',
+    order: 0,
   })
   const [specialForm, setSpecialForm] = useState({ title: '', description: '', image: '', order: 0, active: true })
   const [settingsForm, setSettingsForm] = useState({ brochureUrl: '' })
@@ -290,7 +291,7 @@ const AdminDashboard = () => {
   const openAddService = () => {
     setEditingService(null)
     setServiceForm({
-      title: '', description: '', category: 'Waterproofing', features: '', image: ''
+      title: '', description: '', category: 'Waterproofing', features: '', image: '', order: 0
     })
     setShowServiceModal(true)
   }
@@ -302,7 +303,8 @@ const AdminDashboard = () => {
       description: service.description || '',
       category: service.category || 'Waterproofing',
       features: (service.features || []).join(', '),
-      image: service.image || ''
+      image: service.image || '',
+      order: Number(service.order ?? 0),
     })
     setShowServiceModal(true)
   }
@@ -316,6 +318,7 @@ const AdminDashboard = () => {
         description: serviceForm.description,
         category: serviceForm.category,
         image: serviceForm.image,
+        order: Number(serviceForm.order) || 0,
         features: serviceForm.features
           .split(',')
           .map(f => f.trim())
@@ -810,7 +813,7 @@ const AdminDashboard = () => {
                 >
                   <X className="w-5 h-5" />
               </button>
-          </div>
+                </div>
         </div>
           </div>
         )}
@@ -835,16 +838,16 @@ const AdminDashboard = () => {
                 >
                   <RefreshCw size={16} />
                   <span>Refresh</span>
-                </button>
-                <button
+              </button>
+              <button
                   onClick={() => { setEditingSpecial(null); setSpecialForm({ title: '', description: '', image: '', order: 0, active: true }); setShowSpecialModal(true) }}
                   className="flex items-center space-x-2 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
                   <Plus size={16} />
                   <span>Add Item</span>
-                </button>
-              </div>
-            </div>
+              </button>
+          </div>
+        </div>
 
             {specialLoading ? (
               <div className="text-center py-16">
@@ -1157,7 +1160,7 @@ const AdminDashboard = () => {
                       >
                         <Plus size={16} />
                         <span>Add Service</span>
-                      </button>
+                </button>
                     </div>
               </div>
             </div>
@@ -1185,12 +1188,12 @@ const AdminDashboard = () => {
                               <h3 className="font-bold text-gray-900 text-lg mb-2">{svc.title}</h3>
                               <div className="flex items-center gap-2 flex-wrap">
                                 <span className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
-                                  {svc.category}
-                                </span>
+                          {svc.category}
+                        </span>
                                 <span className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-medium">
                                   Order: {Number(svc.order ?? 0)}
                                 </span>
-                              </div>
+                      </div>
                             </div>
                             {svc.image && (
                               <div className="w-16 h-16 rounded-lg overflow-hidden ml-4">
@@ -1920,6 +1923,15 @@ const AdminDashboard = () => {
                       value={serviceForm.image}
                       onChange={(e) => setServiceForm({...serviceForm, image: e.target.value})}
                       placeholder="https://..."
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
+                    <input
+                      type="number"
+                      value={serviceForm.order}
+                      onChange={(e) => setServiceForm({...serviceForm, order: Number(e.target.value) || 0})}
                       className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
                     />
                   </div>

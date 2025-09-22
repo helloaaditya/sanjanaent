@@ -165,7 +165,10 @@ const Services = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {(dbServices.length > 0
                 ? dbServices
-                    .filter(s => (activeTab === 'waterproofing' ? (s.category || '').toLowerCase().includes('water') : (s.category || '').toLowerCase().includes('floor')))
+                    .filter(s => {
+                      const cat = (s.category || '').toLowerCase().trim()
+                      return activeTab === 'waterproofing' ? cat === 'waterproofing' : cat === 'flooring'
+                    })
                     .sort((a,b) => (Number(a.order ?? 0) - Number(b.order ?? 0)))
                 : []
               ).map((service, index) => (
