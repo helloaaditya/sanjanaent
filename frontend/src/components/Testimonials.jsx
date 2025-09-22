@@ -109,7 +109,7 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonials List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {loading ? (
             <div className="col-span-full flex items-center justify-center text-gray-500 py-12">
               <Loader2 className="animate-spin mr-2" /> Loading testimonials...

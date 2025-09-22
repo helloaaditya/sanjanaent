@@ -10,22 +10,22 @@ const WaterproofingSlider = ({ onNavigate, compact = false, imageSet = 1 }) => {
   // Different image sets for different columns
   const imageSet1 = [
     {
-      src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Expansion%20Joints.jpg?updatedAt=1758533570312",
       title: "Injection Grouting",
       description: "Precision waterproofing solutions"
     },
     {
-      src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Basement%20Water%20Proofing.jpg?updatedAt=1758533565611",
       title: "Basement Waterproofing",
       description: "Complete moisture protection"
     },
     {
-      src: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/roof%20water%20proofing.jpg?updatedAt=1758533574476",
       title: "Roof Waterproofing",
       description: "Weather-resistant solutions"
     },
     {
-      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/APP%20%20EPDM%20%20SBS%20-%20Waterproofing.jpg?updatedAt=1758533564880",
       title: "Terrace Waterproofing",
       description: "Advanced sealing technology"
     }
@@ -33,22 +33,22 @@ const WaterproofingSlider = ({ onNavigate, compact = false, imageSet = 1 }) => {
 
   const imageSet2 = [
     {
-      src: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Swimming%20Pools.jpg?updatedAt=1758533574626",
       title: "Foundation Waterproofing",
       description: "Structural protection"
     },
     {
-      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Re%20Painting.jpg?updatedAt=1758533571571",
       title: "Wall Waterproofing",
       description: "Exterior protection"
     },
     {
-      src: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Over%20head%20water%20tanks.jpg?updatedAt=1758533570962",
       title: "Bathroom Waterproofing",
       description: "Wet area solutions"
     },
     {
-      src: "https://images.unsplash.com/photo-1520975922172-c2b4277f9c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Retaining%20Walls.jpg?updatedAt=1758533572084",
       title: "Leak Repair",
       description: "Emergency solutions"
     }
@@ -155,22 +155,22 @@ const FlooringSlider = ({ onNavigate, compact = false, imageSet = 1 }) => {
   // Different image sets for different columns
   const imageSet1 = [
     {
-      src: "https://drive.google.com/file/d/1-xSAauqi3OyQEEsGU_lI-27TEHPqcmGj/view?usp=drive_link",
+      src: "https://ik.imagekit.io/hw07pfjb1/Industrial%20Epoxy%20Flooring.jpg?updatedAt=1758533571267",
       title: "Epoxy Flooring",
       description: "Durable and seamless finish"
     },
     {
-      src: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/PU%20Flooring.jpg?updatedAt=1758533571054",
       title: "Polished Concrete",
       description: "Modern industrial flooring"
     },
     {
-      src: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/ESD%20Flooring.jpg?updatedAt=1758533565482",
       title: "Vinyl Flooring",
       description: "Waterproof and stylish"
     },
     {
-      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Chemical%20Resistance%20Flooring.jpg?updatedAt=1758533565212",
       title: "Tiles Installation",
       description: "Premium ceramic solutions"
     }
@@ -178,22 +178,22 @@ const FlooringSlider = ({ onNavigate, compact = false, imageSet = 1 }) => {
 
   const imageSet2 = [
     {
-      src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Anti%20-%20Corrosion%20Painting.jpg?updatedAt=1758533564728",
       title: "Wood Flooring",
       description: "Natural and elegant"
     },
     {
-      src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Car%20Parking.jpg?updatedAt=1758533565574",
       title: "Marble Flooring",
       description: "Luxury stone finish"
     },
     {
-      src: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Bay%20Markings.jpg?updatedAt=1758533565165",
       title: "Granite Flooring",
       description: "Durable stone surface"
     },
     {
-      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://ik.imagekit.io/hw07pfjb1/Acrylic%20Sports%20Flooring.jpg?updatedAt=1758533564970",
       title: "Laminate Flooring",
       description: "Cost-effective solution"
     }
