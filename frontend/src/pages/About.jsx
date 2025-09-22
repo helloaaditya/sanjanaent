@@ -100,10 +100,10 @@ const About = () => {
               { title: 'Commitment to Durability', desc: 'Solutions built for long-term performance, protecting and enhancing your property’s value.', icon: Shield },
             ].map((item, idx) => (
               <ScrollAnimation key={idx} animation="fade-in-up" delay={idx * 100}>
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
                   <div className="flex items-start gap-3">
                     <div className="mt-1">
-                      <item.icon size={18} className="text-blue-600 flex-shrink-0" />
+                      <item.icon size={28} className="text-blue-600 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 animate-pulse" />
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
