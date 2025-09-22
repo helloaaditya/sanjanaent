@@ -237,6 +237,25 @@ class ApiService {
       headers: { 'Authorization': `Bearer ${token}` }
     })
   }
+
+  // Settings (brochure)
+  async getPublicSettings() {
+    return this.request('/settings/public')
+  }
+
+  async adminGetSettings(token) {
+    return this.request('/admin/settings', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  }
+
+  async adminUpdateSettings(data, token) {
+    return this.request('/admin/settings', {
+      method: 'PUT',
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
 }
 
 export default new ApiService()

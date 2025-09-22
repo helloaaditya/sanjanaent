@@ -776,6 +776,53 @@ app.delete('/api/admin/special-services/:id', authenticateToken, async (req, res
   }
 })
 
+// ---------- SITE SETTINGS (e.g., brochure URL) ----------
+// Public: get settings needed by frontend (limited fields)
+app.get('/api/settings/public', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const settings = await db.collection('settings').findOne({ _id: 'site_settings' })
+    res.json({ brochureUrl: settings?.brochureUrl || null })
+  } catch (error) {
+    console.error('Get public settings error:', error)
+    res.status(500).json({ error: 'Failed to fetch settings' })
+  }
+})
+
+// Admin: get full settings
+app.get('/api/admin/settings', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const settings = await db.collection('settings').findOne({ _id: 'site_settings' })
+    res.json(settings || { _id: 'site_settings' })
+  } catch (error) {
+    console.error('Get admin settings error:', error)
+    res.status(500).json({ error: 'Failed to fetch settings' })
+  }
+})
+
+// Admin: update settings (e.g., set brochureUrl)
+app.put('/api/admin/settings', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const payload = req.body || {}
+    const update = {
+      brochureUrl: typeof payload.brochureUrl === 'string' ? payload.brochureUrl.trim() : null,
+      updatedAt: new Date(),
+    }
+    await db.collection('settings').updateOne(
+      { _id: 'site_settings' },
+      { $set: update, $setOnInsert: { _id: 'site_settings', createdAt: new Date() } },
+      { upsert: true }
+    )
+    const saved = await db.collection('settings').findOne({ _id: 'site_settings' })
+    res.json(saved)
+  } catch (error) {
+    console.error('Update admin settings error:', error)
+    res.status(500).json({ error: 'Failed to update settings' })
+  }
+})
+
 // Public: submit testimonial (goes to pending)
 app.post('/api/testimonials', async (req, res) => {
   try {

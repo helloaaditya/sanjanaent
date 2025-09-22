@@ -8,6 +8,7 @@ const AdminDashboard = () => {
   const [projects, setProjects] = useState([])
   const [services, setServices] = useState([])
   const [testimonials, setTestimonials] = useState([])
+  const [settings, setSettings] = useState({ brochureUrl: '' })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [showModal, setShowModal] = useState(false)
@@ -21,6 +22,7 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('projects')
   const [servicesLoading, setServicesLoading] = useState(false)
   const [testimonialsLoading, setTestimonialsLoading] = useState(false)
+  const [settingsLoading, setSettingsLoading] = useState(false)
   const [showServiceModal, setShowServiceModal] = useState(false)
   const [editingService, setEditingService] = useState(null)
   const [serviceForm, setServiceForm] = useState({
@@ -30,6 +32,7 @@ const AdminDashboard = () => {
     features: '',
     image: ''
   })
+  const [settingsForm, setSettingsForm] = useState({ brochureUrl: '' })
   const [testimonialSearch, setTestimonialSearch] = useState('')
   const [projectSearch, setProjectSearch] = useState('')
   const [serviceSearch, setServiceSearch] = useState('')
@@ -66,6 +69,7 @@ const AdminDashboard = () => {
     fetchProjects()
     fetchServices()
     fetchTestimonials()
+    fetchSettings()
   }, [navigate])
 
   // Fetch leads when tab changes or filter changes
@@ -157,6 +161,26 @@ const AdminDashboard = () => {
       setError('Failed to fetch services')
     } finally {
       setServicesLoading(false)
+    }
+  }
+
+  const fetchSettings = async () => {
+    try {
+      setSettingsLoading(true)
+      const token = localStorage.getItem('adminToken')
+      const data = await apiService.adminGetSettings(token)
+      const normalized = { brochureUrl: data?.brochureUrl || '' }
+      setSettings(normalized)
+      setSettingsForm(normalized)
+    } catch (err) {
+      console.error('Fetch settings error:', err)
+      if (err.status === 401 || err.status === 403) {
+        try { localStorage.removeItem('adminToken') } catch {}
+        navigate('/admin/login')
+        return
+      }
+    } finally {
+      setSettingsLoading(false)
     }
   }
 
@@ -586,6 +610,7 @@ const AdminDashboard = () => {
     { id: 'services', label: 'Services', icon: Briefcase, count: services.length },
     { id: 'leads', label: 'Leads', icon: MessageSquare, count: leads.length },
     { id: 'testimonials', label: 'Testimonials', icon: Star, count: testimonials.length },
+    { id: 'settings', label: 'Settings', icon: Settings, count: 0 },
   ]
 
   return (
@@ -1316,6 +1341,77 @@ const AdminDashboard = () => {
               </div>
             )}
               </div>
+        )}
+
+        {/* Settings Tab Content */}
+        {activeTab === 'settings' && (
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-gray-100 rounded-lg">
+                  <Settings className="w-5 h-5 text-gray-700" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">Site Settings</h2>
+                  <p className="text-sm text-gray-500">Manage brochure and other public configuration</p>
+                </div>
+              </div>
+              <button
+                onClick={fetchSettings}
+                className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors"
+              >
+                <RefreshCw size={16} />
+                <span>Refresh</span>
+              </button>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow border border-gray-100 p-6 max-w-2xl">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Brochure</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Brochure URL</label>
+                  <input
+                    type="url"
+                    value={settingsForm.brochureUrl}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, brochureUrl: e.target.value })}
+                    placeholder="https://your-cdn.com/brochure.pdf"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {settings?.brochureUrl && (
+                    <p className="text-xs text-gray-500 mt-1">Current: <a href={settings.brochureUrl} className="text-blue-600 underline" target="_blank" rel="noreferrer">{settings.brochureUrl}</a></p>
+                  )}
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={async () => {
+                      try {
+                        const token = localStorage.getItem('adminToken')
+                        await apiService.adminUpdateSettings({ brochureUrl: settingsForm.brochureUrl }, token)
+                        await fetchSettings()
+                      } catch (err) {
+                        console.error('Save settings error:', err)
+                        if (err.status === 401 || err.status === 403) {
+                          try { localStorage.removeItem('adminToken') } catch {}
+                          navigate('/admin/login')
+                        }
+                      }
+                    }}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+                  >
+                    Save
+                  </button>
+                  <a
+                    href={settingsForm.brochureUrl || '#'}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg"
+                  >
+                    Preview
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Testimonials Tab Content */}

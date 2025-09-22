@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Video as VideoIcon, Play, Download } from 'lucide-react'
 
 const VideoGallerySection = () => {
-  const brochureUrl = (() => {
-    try {
-      return new URL('../assets/brochure.pdf', import.meta.url).href
-    } catch (e) {
-      return '#'
-    }
-  })()
+  const [brochureUrl, setBrochureUrl] = useState('#')
+  useEffect(() => {
+    let mounted = true
+    import('../services/api').then(({ default: apiService }) => {
+      apiService.getPublicSettings().then((data) => {
+        if (!mounted) return
+        if (data?.brochureUrl) {
+          setBrochureUrl(data.brochureUrl)
+        }
+      }).catch(() => {})
+    })
+    return () => { mounted = false }
+  }, [])
 
   return (
     <section className="py-8">
@@ -63,12 +69,12 @@ const VideoGallerySection = () => {
               </a>
 
               <a
-                href={brochureUrl}
-                download
+                href={brochureUrl || '#'}
+                download={Boolean(brochureUrl)}
                 className="border-2 border-gray-300 text-gray-800 hover:bg-gray-50 px-5 py-3 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 flex items-center"
               >
                 <Download size={18} className="mr-2" />
-                Download Brochure
+                {brochureUrl ? 'Download Brochure' : 'Brochure Coming Soon'}
               </a>
             </div>
           </div>
