@@ -1183,10 +1183,15 @@ const AdminDashboard = () => {
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex-1">
                               <h3 className="font-bold text-gray-900 text-lg mb-2">{svc.title}</h3>
-                              <span className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
-                          {svc.category}
-                        </span>
-                      </div>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+                                  {svc.category}
+                                </span>
+                                <span className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-medium">
+                                  Order: {Number(svc.order ?? 0)}
+                                </span>
+                              </div>
+                            </div>
                             {svc.image && (
                               <div className="w-16 h-16 rounded-lg overflow-hidden ml-4">
                                 <img src={svc.image} alt={svc.title} className="w-full h-full object-cover" />
