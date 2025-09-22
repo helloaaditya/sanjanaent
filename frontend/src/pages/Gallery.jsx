@@ -245,7 +245,7 @@ const Gallery = () => {
                 <img
                   src={selectedImage.image}
                   alt={selectedImage.title}
-                  className="w-80 h-64 sm:h-80 object-cover"
+                  className="w-full h-32 sm:h-80 object-cover"
                 />
                 <div className="absolute top-3 left-3">
                   <span className="inline-block bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
