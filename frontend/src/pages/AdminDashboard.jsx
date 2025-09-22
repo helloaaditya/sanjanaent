@@ -133,10 +133,16 @@ const AdminDashboard = () => {
     try {
       setTestimonialsLoading(true)
       const token = localStorage.getItem('adminToken')
-      const data = await apiService.adminGetTestimonials(token, { status: undefined })
+      const data = await apiService.adminGetTestimonials(token, {})
       setTestimonials(data || [])
     } catch (err) {
       console.error('Fetch testimonials error:', err)
+      // Auto-logout on auth errors
+      if (err.status === 401 || err.status === 403) {
+        try { localStorage.removeItem('adminToken') } catch {}
+        navigate('/admin/login')
+        return
+      }
     } finally {
       setTestimonialsLoading(false)
     }

@@ -177,7 +177,12 @@ class ApiService {
   }
 
   async adminGetTestimonials(token, filters = {}) {
-    const query = new URLSearchParams(filters).toString()
+    // Drop undefined/null/empty values so we don't send status=undefined
+    const clean = {}
+    Object.entries(filters || {}).forEach(([k, v]) => {
+      if (v !== undefined && v !== null && String(v).trim() !== '') clean[k] = v
+    })
+    const query = new URLSearchParams(clean).toString()
     const endpoint = query ? `/admin/testimonials?${query}` : '/admin/testimonials'
     return this.request(endpoint, {
       headers: { 'Authorization': `Bearer ${token}` }
