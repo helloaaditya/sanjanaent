@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Plus, Edit, Trash2, Eye, LogOut, Home, Image, Calendar, MapPin, User, Building, Upload, X, MessageSquare, Phone, Mail, Filter, CheckCircle, Clock, AlertCircle, RefreshCw, Calculator, Settings, BarChart3, Search, Menu, X as CloseIcon, ChevronDown, Star, TrendingUp, Users, Briefcase } from 'lucide-react'
+import { Plus, Edit, Trash2, Eye, LogOut, Home, Image, Calendar, MapPin, User, Building, Upload, X, MessageSquare, Phone, Mail, Filter, CheckCircle, Clock, AlertCircle, RefreshCw, Calculator, Settings, BarChart3, Search, Menu, X as CloseIcon, ChevronDown, Star, TrendingUp, Users, Briefcase, Sparkles } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import apiService from '../services/api'
 
 const AdminDashboard = () => {
   const [projects, setProjects] = useState([])
   const [services, setServices] = useState([])
+  const [specialServices, setSpecialServices] = useState([])
   const [testimonials, setTestimonials] = useState([])
   const [settings, setSettings] = useState({ brochureUrl: '' })
   const [loading, setLoading] = useState(true)
@@ -21,10 +22,13 @@ const AdminDashboard = () => {
   const [leadsLoading, setLeadsLoading] = useState(false)
   const [activeTab, setActiveTab] = useState('projects')
   const [servicesLoading, setServicesLoading] = useState(false)
+  const [specialLoading, setSpecialLoading] = useState(false)
   const [testimonialsLoading, setTestimonialsLoading] = useState(false)
   const [settingsLoading, setSettingsLoading] = useState(false)
   const [showServiceModal, setShowServiceModal] = useState(false)
+  const [showSpecialModal, setShowSpecialModal] = useState(false)
   const [editingService, setEditingService] = useState(null)
+  const [editingSpecial, setEditingSpecial] = useState(null)
   const [serviceForm, setServiceForm] = useState({
     title: '',
     description: '',
@@ -32,6 +36,7 @@ const AdminDashboard = () => {
     features: '',
     image: ''
   })
+  const [specialForm, setSpecialForm] = useState({ title: '', description: '', image: '', order: 0, active: true })
   const [settingsForm, setSettingsForm] = useState({ brochureUrl: '' })
   const [testimonialSearch, setTestimonialSearch] = useState('')
   const [projectSearch, setProjectSearch] = useState('')
@@ -70,6 +75,7 @@ const AdminDashboard = () => {
     fetchServices()
     fetchTestimonials()
     fetchSettings()
+    fetchSpecialServices()
   }, [navigate])
 
   // Fetch leads when tab changes or filter changes
@@ -161,6 +167,19 @@ const AdminDashboard = () => {
       setError('Failed to fetch services')
     } finally {
       setServicesLoading(false)
+    }
+  }
+
+  const fetchSpecialServices = async () => {
+    try {
+      setSpecialLoading(true)
+      const token = localStorage.getItem('adminToken')
+      const data = await apiService.adminGetSpecialServices(token)
+      setSpecialServices(Array.isArray(data) ? data : [])
+    } catch (err) {
+      console.error('Fetch special services error:', err)
+    } finally {
+      setSpecialLoading(false)
     }
   }
 
@@ -608,6 +627,7 @@ const AdminDashboard = () => {
   const navigationItems = [
     { id: 'projects', label: 'Projects', icon: Image, count: projects.length },
     { id: 'services', label: 'Services', icon: Briefcase, count: services.length },
+    { id: 'special', label: 'Special Services', icon: Sparkles, count: specialServices.length },
     { id: 'leads', label: 'Leads', icon: MessageSquare, count: leads.length },
     { id: 'testimonials', label: 'Testimonials', icon: Star, count: testimonials.length },
     { id: 'settings', label: 'Settings', icon: Settings, count: 0 },
@@ -795,6 +815,113 @@ const AdminDashboard = () => {
           </div>
         )}
 
+        {/* Special Services Tab Content */}
+        {activeTab === 'special' && (
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-yellow-100 rounded-lg">
+                  <Sparkles className="w-5 h-5 text-yellow-700" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">Special Services</h2>
+                  <p className="text-sm text-gray-500">Manage Leakage Detection Using Special Equipment items</p>
+                </div>
+              </div>
+              <div className="flex space-x-2">
+                <button
+                  onClick={fetchSpecialServices}
+                  className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors"
+                >
+                  <RefreshCw size={16} />
+                  <span>Refresh</span>
+                </button>
+                <button
+                  onClick={() => { setEditingSpecial(null); setSpecialForm({ title: '', description: '', image: '', order: 0, active: true }); setShowSpecialModal(true) }}
+                  className="flex items-center space-x-2 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+                >
+                  <Plus size={16} />
+                  <span>Add Item</span>
+                </button>
+              </div>
+            </div>
+
+            {specialLoading ? (
+              <div className="text-center py-16">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+                <p className="text-gray-600">Loading special services...</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {specialServices.map((it) => (
+                  <div key={it._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    {it.image && (
+                      <div className="h-40 w-full overflow-hidden">
+                        <img src={it.image} alt={it.title} className="w-full h-full object-cover" />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-bold text-gray-900 text-lg line-clamp-1">{it.title}</h3>
+                        <span className={`px-2 py-1 rounded text-xs font-semibold ${it.active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}`}>{it.active ? 'Active' : 'Inactive'}</span>
+                      </div>
+                      <p className="text-gray-600 text-sm line-clamp-2 mb-4">{it.description}</p>
+                      <div className="flex flex-wrap gap-2 items-center">
+                        <div className="flex items-center space-x-2 bg-gray-50 border border-gray-200 rounded-lg px-2 py-1 text-xs text-gray-600">
+                          <span>Order: {it.order ?? 0}</span>
+                          <button onClick={async()=>{const token=localStorage.getItem('adminToken');await apiService.adminUpdateSpecialService(it._id,{order:(it.order??0)-1},token);fetchSpecialServices()}} className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded">Up</button>
+                          <button onClick={async()=>{const token=localStorage.getItem('adminToken');await apiService.adminUpdateSpecialService(it._id,{order:(it.order??0)+1},token);fetchSpecialServices()}} className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded">Down</button>
+                          <button onClick={async()=>{const token=localStorage.getItem('adminToken');await apiService.adminUpdateSpecialService(it._id,{active:!it.active},token);fetchSpecialServices()}} className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded">{it.active?'Disable':'Enable'}</button>
+                        </div>
+                        <button onClick={()=>{setEditingSpecial(it); setSpecialForm({ title: it.title||'', description: it.description||'', image: it.image||'', order: it.order||0, active: !!it.active }); setShowSpecialModal(true)}} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium">Edit</button>
+                        <button onClick={async()=>{if(!window.confirm('Delete this item?'))return; const token=localStorage.getItem('adminToken'); await apiService.adminDeleteSpecialService(it._id,token); fetchSpecialServices()}} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Special Service Modal */}
+        {showSpecialModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg max-w-xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                <h3 className="text-lg font-semibold mb-4">{editingSpecial ? 'Edit Special Service' : 'Add Special Service'}</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                    <input type="text" value={specialForm.title} onChange={(e)=>setSpecialForm({...specialForm,title:e.target.value})} className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                    <textarea rows={3} value={specialForm.description} onChange={(e)=>setSpecialForm({...specialForm,description:e.target.value})} className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                    <input type="url" value={specialForm.image} onChange={(e)=>setSpecialForm({...specialForm,image:e.target.value})} className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
+                      <input type="number" value={specialForm.order} onChange={(e)=>setSpecialForm({...specialForm,order:Number(e.target.value)||0})} className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                    </div>
+                    <div className="flex items-center space-x-2 mt-6">
+                      <input id="special-active" type="checkbox" checked={specialForm.active} onChange={(e)=>setSpecialForm({...specialForm,active:e.target.checked})} />
+                      <label htmlFor="special-active" className="text-sm text-gray-700">Active</label>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-end space-x-2 mt-6">
+                  <button onClick={()=>setShowSpecialModal(false)} className="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                  <button onClick={async()=>{const token=localStorage.getItem('adminToken'); if(editingSpecial){await apiService.adminUpdateSpecialService(editingSpecial._id,specialForm,token)} else {await apiService.adminCreateSpecialService(specialForm,token)} setShowSpecialModal(false); setEditingSpecial(null); fetchSpecialServices()}} className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="p-6">
           {/* Enhanced Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
