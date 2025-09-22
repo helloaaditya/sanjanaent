@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Star, Send, Loader2, CheckCircle2, AlertCircle, MessageSquare, X } from 'lucide-react'
+import { Star, Send, Loader2, CheckCircle2, AlertCircle, MessageSquare, X, ExternalLink } from 'lucide-react'
 import apiService from '../services/api'
 
 const StarRating = ({ value, onChange, size = 18 }) => {
@@ -71,7 +71,7 @@ const Testimonials = () => {
         message: form.message.trim(),
         rating: form.rating,
       })
-      setSuccess('Thanks! Your feedback was submitted for approval.')
+      setSuccess('Thanks! Your feedback was submitted successfully.')
       setForm({ name: '', message: '', rating: 5 })
       setTimeout(() => {
         setIsModalOpen(false)
@@ -89,6 +89,10 @@ const Testimonials = () => {
     setIsModalOpen(false)
     setError('')
     setSuccess('')
+  }
+
+  const handleViewMore = () => {
+    window.open('https://share.google/FY3rQCyviNLNPl8bU', '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -132,6 +136,19 @@ const Testimonials = () => {
             ))
           )}
         </div>
+
+        {/* View More Button */}
+        {!loading && items.length > 0 && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={handleViewMore}
+              className="inline-flex items-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-8 py-3 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
+            >
+              View More
+              <ExternalLink className="ml-2" size={18} />
+            </button>
+          </div>
+        )}
 
         {/* Feedback Modal */}
         <Modal isOpen={isModalOpen} onClose={closeModal}>
@@ -216,6 +233,7 @@ const Testimonials = () => {
             </form>
           </div>
         </Modal>
+
       </div>
     </section>
   )
