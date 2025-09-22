@@ -1169,7 +1169,15 @@ const AdminDashboard = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredServices.map((svc) => (
+                    {filteredServices
+                      .slice()
+                      .sort((a,b) => {
+                        const ca = (a.category||'').toLowerCase()
+                        const cb = (b.category||'').toLowerCase()
+                        if (ca !== cb) return ca < cb ? -1 : 1
+                        return Number(a.order ?? 0) - Number(b.order ?? 0)
+                      })
+                      .map((svc) => (
                       <div key={svc._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                         <div className="p-6">
                           <div className="flex items-start justify-between mb-4">

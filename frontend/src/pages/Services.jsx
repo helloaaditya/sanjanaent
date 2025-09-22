@@ -164,7 +164,9 @@ const Services = () => {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {(dbServices.length > 0
-                ? dbServices.filter(s => (activeTab === 'waterproofing' ? (s.category || '').toLowerCase().includes('water') : (s.category || '').toLowerCase().includes('floor')))
+                ? dbServices
+                    .filter(s => (activeTab === 'waterproofing' ? (s.category || '').toLowerCase().includes('water') : (s.category || '').toLowerCase().includes('floor')))
+                    .sort((a,b) => (Number(a.order ?? 0) - Number(b.order ?? 0)))
                 : []
               ).map((service, index) => (
                 <ServiceCard key={service._id || index} service={service} index={index} />
