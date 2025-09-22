@@ -363,7 +363,11 @@ app.get('/api/services', async (req, res) => {
         { description: { $regex: q, $options: 'i' } },
       ]
     }
-    const services = await db.collection('services').find(query).sort({ createdAt: -1 }).toArray()
+    const services = await db
+      .collection('services')
+      .find(query)
+      .sort({ order: 1, createdAt: -1 })
+      .toArray()
     res.json(services)
   } catch (error) {
     console.error('Get services error:', error)
@@ -402,6 +406,7 @@ app.post('/api/admin/services', authenticateToken, async (req, res) => {
       category: payload.category || null,
       image: payload.image || null,
       price: payload.price || null,
+      order: Number.isFinite(Number(payload.order)) ? Number(payload.order) : 0,
       features: Array.isArray(payload.features) ? payload.features : [],
       active: typeof payload.active === 'boolean' ? payload.active : true,
       createdAt: now,
@@ -422,6 +427,10 @@ app.put('/api/admin/services/:id', authenticateToken, async (req, res) => {
     let _id
     try { _id = new ObjectId(idParam) } catch { _id = null }
     const update = { ...req.body, updatedAt: new Date() }
+    if (update.order !== undefined) {
+      const n = Number(update.order)
+      update.order = Number.isFinite(n) ? n : 0
+    }
     const query = _id ? { $or: [{ _id }, { _id: idParam }] } : { _id: idParam }
     const result = await db.collection('services').updateOne(query, { $set: update })
     if (result.matchedCount === 0) return res.status(404).json({ error: 'Service not found' })
@@ -672,6 +681,98 @@ app.get('/api/testimonials', async (req, res) => {
   } catch (error) {
     console.error('Get testimonials error:', error)
     res.status(500).json({ error: 'Failed to fetch testimonials' })
+  }
+})
+
+// ---------- SPECIAL SERVICES (Leakage Detection etc.) ----------
+// Public: list active special services (ordered)
+app.get('/api/special-services', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const items = await db
+      .collection('special_services')
+      .find({ active: { $ne: false } })
+      .sort({ order: 1, createdAt: -1 })
+      .toArray()
+    res.json(items)
+  } catch (error) {
+    console.error('Get special services error:', error)
+    res.status(500).json({ error: 'Failed to fetch special services' })
+  }
+})
+
+// Admin: list all
+app.get('/api/admin/special-services', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const items = await db
+      .collection('special_services')
+      .find({})
+      .sort({ order: 1, createdAt: -1 })
+      .toArray()
+    res.json(items)
+  } catch (error) {
+    console.error('Admin get special services error:', error)
+    res.status(500).json({ error: 'Failed to fetch special services' })
+  }
+})
+
+// Admin: create
+app.post('/api/admin/special-services', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const payload = req.body || {}
+    const now = new Date()
+    const doc = {
+      title: (payload.title || 'Untitled').trim(),
+      description: (payload.description || '').trim(),
+      image: payload.image || null,
+      order: Number.isFinite(Number(payload.order)) ? Number(payload.order) : 0,
+      active: typeof payload.active === 'boolean' ? payload.active : true,
+      createdAt: now,
+      updatedAt: now,
+    }
+    const result = await db.collection('special_services').insertOne(doc)
+    res.json({ _id: result.insertedId, ...doc })
+  } catch (error) {
+    console.error('Create special service error:', error)
+    res.status(500).json({ error: 'Failed to create special service' })
+  }
+})
+
+// Admin: update
+app.put('/api/admin/special-services/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try { _id = new ObjectId(req.params.id) } catch { return res.status(400).json({ error: 'Invalid id' }) }
+    const update = { ...req.body, updatedAt: new Date() }
+    if (update.order !== undefined) {
+      const n = Number(update.order)
+      update.order = Number.isFinite(n) ? n : 0
+    }
+    const result = await db.collection('special_services').updateOne({ _id }, { $set: update })
+    if (result.matchedCount === 0) return res.status(404).json({ error: 'Item not found' })
+    const updated = await db.collection('special_services').findOne({ _id })
+    res.json(updated)
+  } catch (error) {
+    console.error('Update special service error:', error)
+    res.status(500).json({ error: 'Failed to update special service' })
+  }
+})
+
+// Admin: delete
+app.delete('/api/admin/special-services/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try { _id = new ObjectId(req.params.id) } catch { return res.status(400).json({ error: 'Invalid id' }) }
+    const result = await db.collection('special_services').deleteOne({ _id })
+    if (result.deletedCount === 0) return res.status(404).json({ error: 'Item not found' })
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Delete special service error:', error)
+    res.status(500).json({ error: 'Failed to delete special service' })
   }
 })
 

@@ -1053,7 +1053,29 @@ const AdminDashboard = () => {
                         </div>
                       )}
                           
-                      <div className="flex space-x-2">
+                      <div className="flex flex-wrap gap-2">
+                        {/* Order controls */}
+                        <div className="flex items-center space-x-2 bg-gray-50 border border-gray-200 rounded-lg px-2 py-1 text-xs text-gray-600">
+                          <span>Order: {svc.order ?? 0}</span>
+                          <button
+                            onClick={async () => {
+                              const token = localStorage.getItem('adminToken')
+                              const newOrder = (svc.order ?? 0) - 1
+                              await apiService.updateService(svc._id, { order: newOrder }, token)
+                              fetchServices()
+                            }}
+                            className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
+                          >Up</button>
+                          <button
+                            onClick={async () => {
+                              const token = localStorage.getItem('adminToken')
+                              const newOrder = (svc.order ?? 0) + 1
+                              await apiService.updateService(svc._id, { order: newOrder }, token)
+                              fetchServices()
+                            }}
+                            className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
+                          >Down</button>
+                        </div>
                         <button
                           onClick={() => openEditService(svc)}
                               className="flex-1 flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"

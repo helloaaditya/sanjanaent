@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, Shield, Award, Users, CheckCircle, Star, Phone, MapPin, Play, Sparkles, Zap, Calculator, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, Shield, Award, Users, CheckCircle, Star, Phone, MapPin, Play, Sparkles, Zap, Calculator, ChevronLeft, Globe,  ChevronRight } from 'lucide-react'
 import QuoteRequestModal from './QuoteRequestModal'
 
-// Waterproofing ImageSlider component
+// Waterproofing ImageSlider component  
 const WaterproofingSlider = ({ onNavigate, compact = false, imageSet = 1 }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   
@@ -327,7 +327,8 @@ const Hero = () => {
 
   const features = [
     { icon: Shield, text: '30+ Years Experience', color: 'text-blue-500' },
-    { icon: Award, text: 'Quality Guaranteed', color: 'text-yellow-500' }
+    { icon: Award, text: 'Quality Guaranteed', color: 'text-yellow-500' },
+    { icon: Globe, text: 'ISO 9001:2015 Certified', color: 'text-green-500' }
   ]
 
   
@@ -446,7 +447,7 @@ const Hero = () => {
             </div>
 
               {/* Key Features - Full Width */}
-              <div className="w-full sm:w-1/2">
+              <div className="w-full">
                 <div className="flex flex-wrap gap-4 justify-center">
               {features.map((feature, index) => (
                 <div 

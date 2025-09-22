@@ -10,6 +10,7 @@ const Services = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [selectedService, setSelectedService] = useState(null)
+  const [specialServices, setSpecialServices] = useState([])
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
@@ -26,6 +27,9 @@ const Services = () => {
         setError('')
         const services = await apiService.getServices()
         setDbServices(Array.isArray(services) ? services : [])
+        // fetch special services (public)
+        const specials = await apiService.getSpecialServices()
+        setSpecialServices(Array.isArray(specials) ? specials : [])
       } catch (e) {
         setError('Failed to load services')
       } finally {
@@ -184,45 +188,16 @@ const Services = () => {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  title: 'Thermal Imaging',
-                  desc: 'Detect temperature variations and identify hidden moisture or leaks.',
-                  img: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1200&auto=format&fit=crop'
-                },
-                {
-                  title: 'Wall & Pipeline Detection',
-                  desc: 'Locate concealed pipelines and structural elements.',
-                  img: 'https://images.unsplash.com/photo-1554475901-4538ddfbccc0?q=80&w=1200&auto=format&fit=crop'
-                },
-                {
-                  title: 'Waterline Integrity',
-                  desc: 'Assess the integrity and performance of waterlines.',
-                  img: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop'
-                },
-                {
-                  title: 'Drone Inspection',
-                  desc: 'Aerial monitoring for hard-to-reach areas.',
-                  img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop'
-                },
-                {
-                  title: 'Rebound Hammer Testing',
-                  desc: 'Evaluate concrete strength and surface hardness.',
-                  img: 'https://images.unsplash.com/photo-1566217793576-7a55d8f01a7e?q=80&w=1200&auto=format&fit=crop'
-                },
-                {
-                  title: 'Moisture Meter Analysis',
-                  desc: 'Measure moisture content to prevent dampness and seepage issues.',
-                  img: 'https://images.unsplash.com/photo-1520975922172-c2b4277f9c0e?q=80&w=1200&auto=format&fit=crop'
-                }
-              ].map((tool, i) => (
-                <div key={i} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
-                  <div className="h-48 w-full overflow-hidden">
-                    <img src={tool.img} alt={tool.title} className="w-full h-full object-cover" />
-                  </div>
+              {specialServices.map((item) => (
+                <div key={item._id} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+                  {item.image && (
+                    <div className="h-48 w-full overflow-hidden">
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                    </div>
+                  )}
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">{tool.title}</h4>
-                    <p className="text-gray-600 text-sm">{tool.desc}</p>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
+                    <p className="text-gray-600 text-sm">{item.description}</p>
                   </div>
                 </div>
               ))}

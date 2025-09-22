@@ -203,6 +203,40 @@ class ApiService {
       headers: { 'Authorization': `Bearer ${token}` }
     })
   }
+
+  // Special Services API
+  async getSpecialServices() {
+    return this.request('/special-services')
+  }
+
+  async adminGetSpecialServices(token) {
+    return this.request('/admin/special-services', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  }
+
+  async adminCreateSpecialService(data, token) {
+    return this.request('/admin/special-services', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminUpdateSpecialService(id, data, token) {
+    return this.request(`/admin/special-services/${id}`, {
+      method: 'PUT',
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminDeleteSpecialService(id, token) {
+    return this.request(`/admin/special-services/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  }
 }
 
 export default new ApiService()

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Shield, Award, Users, CheckCircle, Star, Target, Phone, ArrowRight } from 'lucide-react'
+import { Shield, Award, Users, CheckCircle, Star, Target, Phone, ArrowRight, MapPin, Cpu, Layers, Wrench } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 import founderImage from '../assets/founder.jpg'
+import isoImage from '../assets/ISO.jpg'
 
 const About = () => {
   const achievements = [
@@ -71,7 +72,7 @@ const About = () => {
         </div>
 
       {/* Why Choose Us */}
-      <div className="py-16 sm:py-20 bg-white">
+      <div className="py-8 sm:py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation animation="fade-in-up" delay={0}>
             <div className="text-center mb-10 sm:mb-12">
@@ -90,19 +91,19 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {[
-              { title: '30+ Years of Experience', desc: 'Decades of proven expertise across residential, commercial, and industrial projects.' },
-              { title: 'Based in Bangalore, Serving All of Karnataka', desc: 'A strong presence with successful projects delivered across the state.' },
-              { title: 'Professional & Skilled Team', desc: 'Experienced specialists who ensure precision, quality workmanship, and on-time delivery.' },
-              { title: 'Advanced Technology', desc: 'Use of modern leakage detection equipment and industry-leading application techniques.' },
-              { title: 'Premium Quality Materials', desc: 'Trusted systems such as APP, EPDM, SBS membranes, and high-performance coatings.' },
-              { title: 'Customized Solutions', desc: 'Tailor-made services designed to meet your project’s unique requirements, budget, and timeline.' },
-              { title: 'Commitment to Durability', desc: 'Solutions built for long-term performance, protecting and enhancing your property’s value.' },
+              { title: '30+ Years of Experience', desc: 'Decades of proven expertise across residential, commercial, and industrial projects.', icon: Award },
+              { title: 'Based in Bangalore, Serving All of Karnataka', desc: 'A strong presence with successful projects delivered across the state.', icon: MapPin },
+              { title: 'Professional & Skilled Team', desc: 'Experienced specialists who ensure precision, quality workmanship, and on-time delivery.', icon: Users },
+              { title: 'Advanced Technology', desc: 'Use of modern leakage detection equipment and industry-leading application techniques.', icon: Cpu },
+              { title: 'Premium Quality Materials', desc: 'Trusted systems such as APP, EPDM, SBS membranes, and high-performance coatings.', icon: Layers },
+              { title: 'Customized Solutions', desc: 'Tailor-made services designed to meet your project’s unique requirements, budget, and timeline.', icon: Wrench },
+              { title: 'Commitment to Durability', desc: 'Solutions built for long-term performance, protecting and enhancing your property’s value.', icon: Shield },
             ].map((item, idx) => (
               <ScrollAnimation key={idx} animation="fade-in-up" delay={idx * 100}>
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
                   <div className="flex items-start gap-3">
                     <div className="mt-1">
-                      <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                      <item.icon size={18} className="text-blue-600 flex-shrink-0" />
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
@@ -123,41 +124,64 @@ const About = () => {
       </div>
 
       {/* Core Values */}
-      <div className="py-16 sm:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <ScrollAnimation animation="fade-in-up" delay={0}>
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Star size={16} />
-              Our Values
-            </div>
-              <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-6 leading-tight">
-                What Sets Us Apart
-            </h2>
-              <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
-                Our commitment to excellence drives everything we do, from material selection to project completion.
-              </p>
-          </div>
-          </ScrollAnimation>
-          
-          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
-            {values.map((value, index) => (
-              <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
-                <div className="bg-white rounded-2xl p-8 text-center shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl mb-6 group-hover:bg-blue-100 transition-colors duration-300">
-                    <value.icon size={28} />
+<div className="py-8 sm:py-8 bg-gray-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <ScrollAnimation animation="fade-in-up" delay={0}>
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <Star size={16} />
+          Our Values
+        </div>
+        <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-6 leading-tight">
+          What Sets Us Apart
+        </h2>
+        <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+          Our commitment to excellence drives everything we do, from material selection to project completion.
+        </p>
+      </div>
+    </ScrollAnimation>
+   
+    {/* Main Content: Values Left, ISO Right */}
+    <div className="grid lg:grid-cols-2 gap-12">
+      {/* Left Side - Core Values */}
+      <div>
+        <div className="grid gap-2">
+          {values.map((value, index) => (
+            <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                <div className="flex items-center gap-4">
+                  <div className="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 bg-blue-50 text-blue-600 rounded-xl group-hover:bg-blue-100 transition-colors duration-300">
+                    <value.icon size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
+                  </div>
                 </div>
-              </ScrollAnimation>
-            ))}
-          </div>
+              </div>
+            </ScrollAnimation>
+          ))}
         </div>
       </div>
 
+      {/* Right Side - ISO Certification */}
+      <div className="flex gap-4 justify-center items-center">
+        <ScrollAnimation animation="fade-in-up" delay={300}>
+          <div className="text-center rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+            <img 
+              src={isoImage} 
+              alt="ISO 9001:2015 Certified" 
+              className="w-64 h-auto rounded-2xl shadow-lg mx-auto mb-4" 
+            />
+            </div>
+        </ScrollAnimation>
+      </div>
+    </div>
+  </div>
+</div>
+
       {/* Leadership Section */}
-      <div className="py-16 sm:py-20">
+      <div className="py-8 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation animation="fade-in-up" delay={0}>
             <div className="text-center mb-16">
