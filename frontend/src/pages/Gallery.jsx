@@ -22,6 +22,10 @@ const Gallery = () => {
     }, 100)
   }
 
+  const closeModal = () => {
+    setSelectedImage(null)
+  }
+
   return (
     <section id="gallery" className="py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -224,43 +228,54 @@ const Gallery = () => {
         )}
       </div>
 
-      {/* Enhanced Image Modal */}
+      {/* Compact Image Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-6xl w-full max-h-[90vh] overflow-hidden">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="relative max-w-2xl w-full max-h-[80vh] overflow-hidden">
+            {/* Close Button */}
             <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+              onClick={closeModal}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10 bg-black/20 rounded-full p-2 backdrop-blur-sm"
             >
-              <X size={36} />
+              <X size={24} />
             </button>
-            <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
+            
+            <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
               <div className="relative">
                 <img
                   src={selectedImage.image}
                   alt={selectedImage.title}
-                  className="w-full max-h-[60vh] object-contain bg-gray-100"
+                  className="w-full h-64 sm:h-80 object-cover"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <div className="absolute top-3 left-3">
+                  <span className="inline-block bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
                     {selectedImage.category}
                   </span>
                 </div>
+                {/* Close button inside image for mobile */}
+                <button
+                  onClick={closeModal}
+                  className="absolute top-3 right-3 text-white bg-black/50 rounded-full p-1.5 hover:bg-black/70 transition-colors sm:hidden"
+                >
+                  <X size={18} />
+                </button>
               </div>
-              <div className="p-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">{selectedImage.title}</h3>
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">{selectedImage.description}</p>
-                <div className="grid md:grid-cols-2 gap-6 pt-6 border-t border-gray-200">
+              
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{selectedImage.title}</h3>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">{selectedImage.description}</p>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
                   {selectedImage.location && (
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Location</h4>
-                      <p className="text-gray-900 font-medium">{selectedImage.location}</p>
+                      <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Location</h4>
+                      <p className="text-gray-900 text-sm font-medium">{selectedImage.location}</p>
                     </div>
                   )}
                   {selectedImage.completedDate && (
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Completed</h4>
-                      <p className="text-gray-900 font-medium">{new Date(selectedImage.completedDate).toLocaleDateString()}</p>
+                      <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Completed</h4>
+                      <p className="text-gray-900 text-sm font-medium">{new Date(selectedImage.completedDate).toLocaleDateString()}</p>
                     </div>
                   )}
                 </div>
