@@ -252,10 +252,11 @@ const Gallery = () => {
                     {selectedImage.category}
                   </span>
                 </div>
-                {/* Close button inside image for mobile */}
+                {/* Close button inside image (visible on all sizes) */}
                 <button
                   onClick={closeModal}
-                  className="absolute top-3 right-3 text-white bg-black/50 rounded-full p-1.5 hover:bg-black/70 transition-colors sm:hidden"
+                  className="absolute top-3 right-3 text-white bg-black/50 rounded-full p-1.5 hover:bg-black/70 transition-colors"
+                  aria-label="Close"
                 >
                   <X size={18} />
                 </button>
