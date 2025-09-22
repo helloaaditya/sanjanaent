@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Shield, Award, Users, CheckCircle, Star, Target, Phone, ArrowRight, MapPin, Cpu, Layers, Wrench } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 import founderImage from '../assets/founder.jpg'
@@ -32,7 +33,20 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="bg-white">
+    <>
+      <Helmet>
+        <title>About Sanjana Enterprises | Waterproofing & Flooring Experts in Karnataka</title>
+        <meta name="description" content="Sanjana Enterprises: 30+ years waterproofing and industrial flooring expertise in Bangalore and Karnataka. ISO 9001 certified, professional team, modern technology." />
+        <meta name="keywords" content="about waterproofing company bangalore, best waterproofing in bangalore, experienced waterproofing contractor bangalore, iso certified waterproofing bangalore, industrial flooring experts bangalore, epoxy flooring experts bangalore, pu flooring experts bangalore, polyurethane flooring experts bangalore, injection grouting experts bangalore, leakage detection experts bangalore" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://sanjanawaterproofing.com/about" />
+        <meta property="og:title" content="About Sanjana Enterprises" />
+        <meta property="og:description" content="Premier waterproofing and flooring specialists in Karnataka with decades of experience." />
+        <meta property="og:url" content="https://sanjanawaterproofing.com/about" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <section id="about" className="bg-white">
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-28 sm:py-32">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -284,7 +298,8 @@ const About = () => {
           </ScrollAnimation>
         </div>
     </div>
-    </section>
+      </section>
+    </>
   )
 }
 

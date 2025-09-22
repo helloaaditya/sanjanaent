@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { Shield, CheckCircle, ArrowRight, Award, Phone, Eye, Target, Sparkles, Hammer, Wrench, X } from 'lucide-react'
 import apiService from '../services/api'
 
@@ -102,7 +103,40 @@ const Services = () => {
   )
 
   return (
-    <div className="min-h-screen bg-blue-50">
+    <>
+      <Helmet>
+        <title>Waterproofing & Flooring Services in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Explore Sanjana Enterprises services: terrace, bathroom, basement, roof waterproofing and industrial flooring (epoxy, PU). Free inspection. 30+ years experience." />
+        <meta name="keywords" content="waterproofing services bangalore, waterproofing services bengaluru, best waterproofing bangalore, waterproofing contractor bangalore, terrace waterproofing bangalore, bathroom waterproofing bangalore, basement waterproofing bangalore, roof waterproofing bangalore, injection grouting bangalore, app membrane bangalore, sbs membrane bangalore, epoxy flooring bangalore, epoxy self leveling bangalore, self leveling epoxy bangalore, esd flooring bangalore, antistatic flooring bangalore, anti static flooring bangalore, pu flooring bangalore, polyurethane flooring bangalore, pu concrete flooring bangalore, urethane concrete flooring bangalore, epoxy screed bangalore, floor screeding bangalore, anti slip flooring bangalore, non slip flooring bangalore, parking deck coating bangalore, car park epoxy bangalore, warehouse flooring bangalore, factory flooring bangalore, cleanroom flooring bangalore, food grade flooring bangalore, hygienic flooring bangalore, chemical resistant flooring bangalore, heavy duty flooring bangalore, industrial flooring services bangalore, commercial waterproofing bangalore, residential waterproofing bangalore, hebbal waterproofing, jakkur waterproofing, yelahanka waterproofing, whitefield waterproofing, hsr waterproofing, koramangala waterproofing" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://sanjanawaterproofing.com/services" />
+
+        <meta property="og:title" content="Waterproofing & Flooring Services in Bangalore" />
+        <meta property="og:description" content="Complete waterproofing and industrial flooring services across Karnataka. Free site inspection." />
+        <meta property="og:url" content="https://sanjanawaterproofing.com/services" />
+        <meta property="og:type" content="website" />
+
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          'name': 'Waterproofing and Flooring Services',
+          'provider': {
+            '@type': 'LocalBusiness',
+            'name': 'Sanjana Enterprises',
+            'telephone': '+91-9916290799',
+            'address': {
+              '@type': 'PostalAddress',
+              'addressLocality': 'Bangalore',
+              'addressRegion': 'Karnataka',
+              'addressCountry': 'IN'
+            }
+          },
+          'areaServed': 'Karnataka',
+          'serviceType': ['Waterproofing', 'Industrial Flooring']
+        })}</script>
+      </Helmet>
+
+      <div className="min-h-screen bg-blue-50">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
@@ -395,7 +429,8 @@ const Services = () => {
           backdrop-filter: blur(4px);
         }
       `}</style>
-    </div>
+      </div>
+    </>
   )
 }
 

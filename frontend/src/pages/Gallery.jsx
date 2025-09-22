@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { ExternalLink, ZoomIn, X, Loader2, AlertCircle, RefreshCw, Grid3X3, List } from 'lucide-react'
 import { useProjects, useProjectsByCategory, useCategories } from '../hooks/useProjects'
 
@@ -27,7 +28,20 @@ const Gallery = () => {
   }
 
   return (
-    <section id="gallery" className="py-12 sm:py-16">
+    <>
+      <Helmet>
+        <title>Project Gallery | Waterproofing & Flooring Projects | Sanjana Enterprises</title>
+        <meta name="description" content="Explore our waterproofing and industrial flooring project gallery across Bangalore and Karnataka. Residential, commercial, and industrial case studies." />
+        <meta name="keywords" content="waterproofing projects bangalore, waterproofing gallery bangalore, flooring projects bangalore, epoxy flooring projects bangalore, epoxy self leveling projects bangalore, esd flooring projects bangalore, antistatic flooring projects bangalore, pu flooring projects bangalore, polyurethane concrete projects bangalore, injection grouting projects bangalore, terrace waterproofing projects bangalore, basement waterproofing projects bangalore, roof waterproofing projects bangalore" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://sanjanawaterproofing.com/gallery" />
+        <meta property="og:title" content="Project Gallery - Sanjana Enterprises" />
+        <meta property="og:description" content="See our executed projects in waterproofing and flooring across Karnataka." />
+        <meta property="og:url" content="https://sanjanawaterproofing.com/gallery" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <section id="gallery" className="py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-10 sm:mb-12">
@@ -300,7 +314,8 @@ const Gallery = () => {
           overflow: hidden;
         }
       `}</style>
-    </section>
+      </section>
+    </>
   )
 }
 

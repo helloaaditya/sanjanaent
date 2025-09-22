@@ -38,7 +38,7 @@ const Contact = () => {
       <Helmet>
         <title>Contact Sanjana Enterprises - Waterproofing Company in Bangalore | Free Quote</title>
         <meta name="description" content="Contact Sanjana Enterprises for waterproofing services in Bangalore. Free inspection & quote. Call +91 9916290799 or email sanjana.waterproofing@gmail.com" />
-        <meta name="keywords" content="contact waterproofing company bangalore, waterproofing quote bangalore, waterproofing inspection bangalore, waterproofing contractor contact bangalore" />
+        <meta name="keywords" content="contact waterproofing bangalore, waterproofing quote bangalore, waterproofing inspection bangalore, waterproofing contractor contact bangalore, epoxy flooring contractor bangalore contact, pu flooring bangalore contact, polyurethane flooring bangalore contact, pu concrete flooring bangalore contact, epoxy self leveling bangalore contact, esd flooring bangalore contact, antistatic flooring bangalore contact, injection grouting bangalore contact, terrace waterproofing bangalore contact, basement waterproofing bangalore contact, roof waterproofing bangalore contact, hebbal waterproofing contact, jakkur waterproofing contact, yelahanka waterproofing contact, whitefield waterproofing contact, koramangala waterproofing contact, hsr layout waterproofing contact" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/contact" />
         
