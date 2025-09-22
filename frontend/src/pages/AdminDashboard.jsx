@@ -7,6 +7,7 @@ import apiService from '../services/api'
 const AdminDashboard = () => {
   const [projects, setProjects] = useState([])
   const [services, setServices] = useState([])
+  const [testimonials, setTestimonials] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [showModal, setShowModal] = useState(false)
@@ -19,6 +20,7 @@ const AdminDashboard = () => {
   const [leadsLoading, setLeadsLoading] = useState(false)
   const [activeTab, setActiveTab] = useState('projects')
   const [servicesLoading, setServicesLoading] = useState(false)
+  const [testimonialsLoading, setTestimonialsLoading] = useState(false)
   const [showServiceModal, setShowServiceModal] = useState(false)
   const [editingService, setEditingService] = useState(null)
   const [serviceForm, setServiceForm] = useState({
@@ -28,6 +30,7 @@ const AdminDashboard = () => {
     features: '',
     image: ''
   })
+  const [testimonialSearch, setTestimonialSearch] = useState('')
   const [projectSearch, setProjectSearch] = useState('')
   const [serviceSearch, setServiceSearch] = useState('')
   const [leadFilter, setLeadFilter] = useState('all')
@@ -62,12 +65,16 @@ const AdminDashboard = () => {
     }
     fetchProjects()
     fetchServices()
+    fetchTestimonials()
   }, [navigate])
 
   // Fetch leads when tab changes or filter changes
   useEffect(() => {
     if (activeTab === 'leads') {
       fetchLeads()
+    }
+    if (activeTab === 'testimonials') {
+      fetchTestimonials()
     }
   }, [activeTab, leadFilter])
 
@@ -119,6 +126,19 @@ const AdminDashboard = () => {
       setError('Failed to fetch projects')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchTestimonials = async () => {
+    try {
+      setTestimonialsLoading(true)
+      const token = localStorage.getItem('adminToken')
+      const data = await apiService.adminGetTestimonials(token, { status: undefined })
+      setTestimonials(data || [])
+    } catch (err) {
+      console.error('Fetch testimonials error:', err)
+    } finally {
+      setTestimonialsLoading(false)
     }
   }
 
@@ -514,6 +534,17 @@ const AdminDashboard = () => {
     )
   })
 
+  const filteredTestimonials = testimonials.filter((t) => {
+    const q = testimonialSearch.trim().toLowerCase()
+    if (!q) return true
+    return (
+      (t.name || '').toLowerCase().includes(q) ||
+      (t.message || '').toLowerCase().includes(q) ||
+      String(t.rating || '').includes(q) ||
+      (t.status || '').toLowerCase().includes(q)
+    )
+  })
+
   // Enhanced stats with icons and trends
   const stats = [
     { 
@@ -548,6 +579,7 @@ const AdminDashboard = () => {
     { id: 'projects', label: 'Projects', icon: Image, count: projects.length },
     { id: 'services', label: 'Services', icon: Briefcase, count: services.length },
     { id: 'leads', label: 'Leads', icon: MessageSquare, count: leads.length },
+    { id: 'testimonials', label: 'Testimonials', icon: Star, count: testimonials.length },
   ]
 
   return (
@@ -1256,6 +1288,94 @@ const AdminDashboard = () => {
               </div>
             )}
               </div>
+        )}
+
+        {/* Testimonials Tab Content */}
+        {activeTab === 'testimonials' && (
+          <div className="p-6">
+            {/* Toolbar */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-yellow-100 rounded-lg">
+                    <Star className="w-5 h-5 text-yellow-600" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900">Testimonials</h2>
+                    <p className="text-sm text-gray-500">{testimonials.length} submissions</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input
+                    type="text"
+                    value={testimonialSearch}
+                    onChange={(e) => setTestimonialSearch(e.target.value)}
+                    placeholder="Search testimonials..."
+                    className="pl-10 pr-4 py-2 w-64 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                  />
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={fetchTestimonials}
+                    className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors"
+                  >
+                    <RefreshCw size={16} />
+                    <span>Refresh</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Table */}
+            <div className="overflow-x-auto bg-white rounded-2xl shadow border border-gray-100">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Message</th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-4 py-2"></th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {testimonialsLoading ? (
+                    <tr><td className="px-4 py-3 text-gray-500" colSpan={5}>Loading...</td></tr>
+                  ) : filteredTestimonials.length === 0 ? (
+                    <tr><td className="px-4 py-3 text-gray-500" colSpan={5}>No testimonials found.</td></tr>
+                  ) : (
+                    filteredTestimonials.map((t) => (
+                      <tr key={t._id}>
+                        <td className="px-4 py-3 font-medium text-gray-900">{t.name}</td>
+                        <td className="px-4 py-3">{t.rating} / 5</td>
+                        <td className="px-4 py-3 text-gray-700 max-w-xl truncate">{t.message}</td>
+                        <td className="px-4 py-3">
+                          <span className={`px-2 py-1 rounded text-xs font-semibold ${t.status === 'approved' ? 'bg-green-100 text-green-700' : t.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>{t.status}</span>
+                        </td>
+                        <td className="px-4 py-3 text-right space-x-2">
+                          <button
+                            onClick={async () => { const token = localStorage.getItem('adminToken'); await apiService.adminUpdateTestimonial(t._id, { status: 'approved' }, token); fetchTestimonials() }}
+                            className="px-3 py-1.5 rounded bg-green-600 text-white text-sm hover:bg-green-700"
+                          >Approve</button>
+                          <button
+                            onClick={async () => { const token = localStorage.getItem('adminToken'); await apiService.adminUpdateTestimonial(t._id, { status: 'rejected' }, token); fetchTestimonials() }}
+                            className="px-3 py-1.5 rounded bg-yellow-600 text-white text-sm hover:bg-yellow-700"
+                          >Reject</button>
+                          <button
+                            onClick={async () => { const token = localStorage.getItem('adminToken'); await apiService.adminDeleteTestimonial(t._id, token); fetchTestimonials() }}
+                            className="px-3 py-1.5 rounded bg-red-600 text-white text-sm hover:bg-red-700"
+                          >Delete</button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
         )}
           </div>
         </div>

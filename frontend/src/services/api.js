@@ -163,6 +163,41 @@ class ApiService {
       }
     })
   }
+
+  // Testimonials API
+  async getTestimonials() {
+    return this.request('/testimonials')
+  }
+
+  async submitTestimonial(data) {
+    return this.request('/testimonials', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminGetTestimonials(token, filters = {}) {
+    const query = new URLSearchParams(filters).toString()
+    const endpoint = query ? `/admin/testimonials?${query}` : '/admin/testimonials'
+    return this.request(endpoint, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  }
+
+  async adminUpdateTestimonial(id, data, token) {
+    return this.request(`/admin/testimonials/${id}`, {
+      method: 'PUT',
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminDeleteTestimonial(id, token) {
+    return this.request(`/admin/testimonials/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  }
 }
 
 export default new ApiService()

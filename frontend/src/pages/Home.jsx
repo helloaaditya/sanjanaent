@@ -7,6 +7,7 @@ import Gallery from '../components/Gallery'
 import AnimatedCounter from '../components/AnimatedCounter'
 import Awards from '../components/awards'
 import VideoGallerySection from '../components/VideoGallerySection' 
+import Testimonials from '../components/Testimonials'
 
 const Home = () => {
   return (
@@ -63,6 +64,7 @@ const Home = () => {
         <VideoGallerySection />
         <About />
         {/* <Gallery /> */}
+        <Testimonials />
       </main>
     </>
   )

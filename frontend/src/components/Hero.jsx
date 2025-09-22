@@ -157,7 +157,7 @@ const FlooringSlider = ({ onNavigate, compact = false, imageSet = 1 }) => {
   // Different image sets for different columns
   const imageSet1 = [
     {
-      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80",
+      src: "https://drive.google.com/file/d/1-xSAauqi3OyQEEsGU_lI-27TEHPqcmGj/view?usp=drive_link",
       title: "Epoxy Flooring",
       description: "Durable and seamless finish"
     },
@@ -321,7 +321,7 @@ const Hero = () => {
     if (submitted) return
     const intervalId = setInterval(() => {
       setShowQuoteModal(true)
-    }, 10000)
+    }, 500000)
     return () => clearInterval(intervalId)
   }, [])
 
@@ -371,7 +371,7 @@ const Hero = () => {
               <div className="flex space-x-4">
                 <button
                   onClick={() => setActiveSegment('waterproofing')}
-                  className={`px-6 py-3  rounded-xl font-bold transition-all duration-300 ${
+                  className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
                     activeSegment === 'waterproofing'
                       ? 'bg-blue-600 text-white shadow-lg'
                       : 'bg-white text-gray-600 hover:text-blue-600 hover:bg-blue-50'
@@ -446,7 +446,7 @@ const Hero = () => {
               </div>
 
               {/* Key Features - Full Width */}
-              <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
+              <div className="w-full sm:w-1/2">
                 <div className="flex flex-wrap gap-4 justify-center">
                   {features.map((feature, index) => (
                     <div 
@@ -461,7 +461,7 @@ const Hero = () => {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex space-x-4 justify-center sm:justify-start">
+              <div className="flex space-x-4">
                 <button
                   onClick={() => setShowQuoteModal(true)}
                   className="group bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"

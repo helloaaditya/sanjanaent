@@ -658,6 +658,111 @@ app.delete('/api/leads/:id', authenticateToken, async (req, res) => {
   }
 })
 
+// ---------- TESTIMONIALS ----------
+// Public: list approved testimonials
+app.get('/api/testimonials', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const testimonials = await db
+      .collection('testimonials')
+      .find({ status: 'approved' })
+      .sort({ createdAt: -1 })
+      .toArray()
+    res.json(testimonials)
+  } catch (error) {
+    console.error('Get testimonials error:', error)
+    res.status(500).json({ error: 'Failed to fetch testimonials' })
+  }
+})
+
+// Public: submit testimonial (goes to pending)
+app.post('/api/testimonials', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const payload = req.body || {}
+    const name = (payload.name || '').trim()
+    const message = (payload.message || '').trim()
+    let rating = Number(payload.rating || 0)
+    if (!name || !message) return res.status(400).json({ error: 'Name and message are required' })
+    if (!Number.isFinite(rating) || rating < 1) rating = 1
+    if (rating > 5) rating = 5
+
+    const now = new Date()
+    const doc = {
+      name,
+      message,
+      rating,
+      status: 'pending',
+      createdAt: now,
+      updatedAt: now,
+    }
+    const result = await db.collection('testimonials').insertOne(doc)
+    res.json({ _id: result.insertedId, ...doc })
+  } catch (error) {
+    console.error('Submit testimonial error:', error)
+    res.status(500).json({ error: 'Failed to submit testimonial' })
+  }
+})
+
+// Admin: list all testimonials with optional status filter
+app.get('/api/admin/testimonials', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const { status, q } = req.query
+    const query = {}
+    if (status) query.status = status
+    if (q) {
+      query.$or = [
+        { name: { $regex: q, $options: 'i' } },
+        { message: { $regex: q, $options: 'i' } },
+      ]
+    }
+    const testimonials = await db.collection('testimonials').find(query).sort({ createdAt: -1 }).toArray()
+    res.json(testimonials)
+  } catch (error) {
+    console.error('Admin get testimonials error:', error)
+    res.status(500).json({ error: 'Failed to fetch testimonials' })
+  }
+})
+
+// Admin: update testimonial (approve/reject/edit)
+app.put('/api/admin/testimonials/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try { _id = new ObjectId(req.params.id) } catch { return res.status(400).json({ error: 'Invalid testimonial id' }) }
+    const update = { ...req.body, updatedAt: new Date() }
+    if (update.rating !== undefined) {
+      let r = Number(update.rating)
+      if (!Number.isFinite(r) || r < 1) r = 1
+      if (r > 5) r = 5
+      update.rating = r
+    }
+    const result = await db.collection('testimonials').updateOne({ _id }, { $set: update })
+    if (result.matchedCount === 0) return res.status(404).json({ error: 'Testimonial not found' })
+    const updated = await db.collection('testimonials').findOne({ _id })
+    res.json(updated)
+  } catch (error) {
+    console.error('Update testimonial error:', error)
+    res.status(500).json({ error: 'Failed to update testimonial' })
+  }
+})
+
+// Admin: delete testimonial
+app.delete('/api/admin/testimonials/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try { _id = new ObjectId(req.params.id) } catch { return res.status(400).json({ error: 'Invalid testimonial id' }) }
+    const result = await db.collection('testimonials').deleteOne({ _id })
+    if (result.deletedCount === 0) return res.status(404).json({ error: 'Testimonial not found' })
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Delete testimonial error:', error)
+    res.status(500).json({ error: 'Failed to delete testimonial' })
+  }
+})
+
 // Catch-all handler for client-side routing only if frontend build exists
 if (shouldServeFrontend) {
   app.get(/.*/, (req, res) => {
