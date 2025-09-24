@@ -53,6 +53,9 @@ const AdminDashboard = () => {
   const [projectSearch, setProjectSearch] = useState('')
   const [serviceSearch, setServiceSearch] = useState('')
   const [leadFilter, setLeadFilter] = useState('all')
+  const [statusFilter, setStatusFilter] = useState('all')
+  const [dateFrom, setDateFrom] = useState('')
+  const [dateTo, setDateTo] = useState('')
   const [updatingLead, setUpdatingLead] = useState(null)
   const [successMessage, setSuccessMessage] = useState('')
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -249,7 +252,11 @@ const AdminDashboard = () => {
       setLeadsLoading(true)
       }
       const token = localStorage.getItem('adminToken')
-      const filters = leadFilter !== 'all' ? { type: leadFilter } : {}
+      const filters = {}
+      if (leadFilter !== 'all') filters.type = leadFilter
+      if (statusFilter !== 'all') filters.status = statusFilter
+      if (dateFrom) filters.from = dateFrom
+      if (dateTo) filters.to = dateTo
       console.log('Fetching leads with filters:', filters)
       const data = await apiService.getLeads(token, filters)
       console.log('Fetched leads:', data)
@@ -1522,7 +1529,7 @@ const AdminDashboard = () => {
         {activeTab === 'leads' && (
               <div className="p-6">
                 {/* Enhanced Toolbar */}
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
               <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-3">
                       <div className="p-2 bg-purple-100 rounded-lg">
@@ -1535,7 +1542,7 @@ const AdminDashboard = () => {
                     </div>
                   </div>
                   
-                  <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <select
                   value={leadFilter}
                   onChange={(e) => setLeadFilter(e.target.value)}
@@ -1545,6 +1552,32 @@ const AdminDashboard = () => {
                   <option value="contact">Contact Inquiries</option>
                   <option value="quote">Quote Requests</option>
                 </select>
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="all">All Statuses</option>
+                  <option value="new">New</option>
+                  <option value="contacted">Contacted</option>
+                  <option value="quoted">Quoted</option>
+                  <option value="converted">Converted</option>
+                  <option value="closed">Closed</option>
+                </select>
+                <input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="From"
+                />
+                <input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="To"
+                />
                     
                 <button
                       onClick={() => setAutoRefreshEnabled(!autoRefreshEnabled)}
@@ -1566,6 +1599,36 @@ const AdminDashboard = () => {
                 >
                   <RefreshCw size={16} />
                   <span>Refresh</span>
+                </button>
+                <button
+                  onClick={() => {
+                    try {
+                      const header = ['Name','Email','Phone','Type','Status','ProjectType','Subject','Message','CreatedAt']
+                      const rows = leads.map(l => [
+                        (l.name||'').replaceAll(',',' '),
+                        (l.email||'').replaceAll(',',' '),
+                        (l.phone||'').replaceAll(',',' '),
+                        l.type||'',
+                        l.status||'',
+                        l.projectType||'',
+                        (l.subject||'').replaceAll(',',' '),
+                        (l.message||'').replaceAll('\n',' ').replaceAll(',',' '),
+                        l.createdAt ? new Date(l.createdAt).toISOString() : ''
+                      ])
+                      const csv = [header, ...rows].map(r => r.map(v => `"${String(v||'').replaceAll('"','""')}"`).join(',')).join('\n')
+                      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+                      const url = URL.createObjectURL(blob)
+                      const a = document.createElement('a')
+                      a.href = url
+                      a.download = `leads_${Date.now()}.csv`
+                      a.click()
+                      URL.revokeObjectURL(url)
+                    } catch (e) { console.error('CSV export failed', e) }
+                  }}
+                  className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg"
+                >
+                  <Download size={16} />
+                  <span>Export CSV</span>
                 </button>
               </div>
             </div>
