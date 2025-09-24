@@ -30,8 +30,8 @@ const Gallery = () => {
   return (
     <>
       <Helmet>
-        <title>Project Gallery | Waterproofing & Flooring Projects | Sanjana Enterprises</title>
-        <meta name="description" content="Explore our waterproofing and industrial flooring project gallery across Bangalore and Karnataka. Residential, commercial, and industrial case studies." />
+        <title>Project Gallery | Waterproofing & Flooring Work in Bangalore</title>
+        <meta name="description" content="View completed waterproofing and industrial flooring projects across Bangalore & Karnataka. Residential, commercial, and industrial case studies." />
         <meta name="keywords" content="waterproofing projects bangalore, waterproofing gallery bangalore, flooring projects bangalore, epoxy flooring projects bangalore, epoxy self leveling projects bangalore, esd flooring projects bangalore, antistatic flooring projects bangalore, pu flooring projects bangalore, polyurethane concrete projects bangalore, injection grouting projects bangalore, terrace waterproofing projects bangalore, basement waterproofing projects bangalore, roof waterproofing projects bangalore" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/gallery" />

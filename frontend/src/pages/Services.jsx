@@ -106,8 +106,8 @@ const Services = () => {
   return (
     <>
       <Helmet>
-        <title>Waterproofing & Flooring Services in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Explore Sanjana Enterprises services: terrace, bathroom, basement, roof waterproofing and industrial flooring (epoxy, PU). Free inspection. 30+ years experience." />
+        <title>Waterproofing & Industrial Flooring Services in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Terrace, bathroom, basement & roof waterproofing. Epoxy, PU, ESD, anti-static flooring. Free inspection. Serving Bangalore & Karnataka." />
         <meta name="keywords" content="waterproofing services bangalore, waterproofing services bengaluru, best waterproofing bangalore, waterproofing contractor bangalore, terrace waterproofing bangalore, bathroom waterproofing bangalore, basement waterproofing bangalore, roof waterproofing bangalore, injection grouting bangalore, app membrane bangalore, sbs membrane bangalore, epoxy flooring bangalore, epoxy self leveling bangalore, self leveling epoxy bangalore, esd flooring bangalore, antistatic flooring bangalore, anti static flooring bangalore, pu flooring bangalore, polyurethane flooring bangalore, pu concrete flooring bangalore, urethane concrete flooring bangalore, epoxy screed bangalore, floor screeding bangalore, anti slip flooring bangalore, non slip flooring bangalore, parking deck coating bangalore, car park epoxy bangalore, warehouse flooring bangalore, factory flooring bangalore, cleanroom flooring bangalore, food grade flooring bangalore, hygienic flooring bangalore, chemical resistant flooring bangalore, heavy duty flooring bangalore, industrial flooring services bangalore, commercial waterproofing bangalore, residential waterproofing bangalore, hebbal waterproofing, jakkur waterproofing, yelahanka waterproofing, whitefield waterproofing, hsr waterproofing, koramangala waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/services" />

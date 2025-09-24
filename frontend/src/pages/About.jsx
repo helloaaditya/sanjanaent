@@ -43,8 +43,8 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Sanjana Enterprises | Waterproofing & Flooring Experts in Karnataka</title>
-        <meta name="description" content="Sanjana Enterprises: 30+ years waterproofing and industrial flooring expertise in Bangalore and Karnataka. ISO 9001 certified, professional team, modern technology." />
+        <title>About Sanjana Enterprises | Waterproofing & Flooring Experts in Bangalore</title>
+        <meta name="description" content="30+ years of waterproofing and industrial flooring expertise in Bangalore. ISO-certified processes, professional team, advanced leakage detection." />
         <meta name="keywords" content="about waterproofing company bangalore, best waterproofing in bangalore, experienced waterproofing contractor bangalore, iso certified waterproofing bangalore, industrial flooring experts bangalore, epoxy flooring experts bangalore, pu flooring experts bangalore, polyurethane flooring experts bangalore, injection grouting experts bangalore, leakage detection experts bangalore" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/about" />
