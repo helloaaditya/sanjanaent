@@ -256,6 +256,40 @@ class ApiService {
       body: JSON.stringify(data)
     })
   }
+
+  // Brochures API
+  async getBrochures() {
+    return this.request('/api/brochures')
+  }
+
+  async adminGetBrochures(token) {
+    return this.request('/api/admin/brochures', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+  }
+
+  async adminCreateBrochure(data, token) {
+    return this.request('/api/admin/brochures', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminUpdateBrochure(id, data, token) {
+    return this.request(`/api/admin/brochures/${id}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminDeleteBrochure(id, token) {
+    return this.request(`/api/admin/brochures/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+  }
 }
 
 export default new ApiService()

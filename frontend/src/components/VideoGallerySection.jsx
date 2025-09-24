@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Video as VideoIcon, Play, Download } from 'lucide-react'
+import { ArrowRight, Video as VideoIcon, Play, Download, X } from 'lucide-react'
 
 const VideoGallerySection = () => {
-  const [brochureUrl, setBrochureUrl] = useState('#')
+  const [brochures, setBrochures] = useState([])
+  const [showBrochureModal, setShowBrochureModal] = useState(false)
+  
   useEffect(() => {
     let mounted = true
     import('../services/api').then(({ default: apiService }) => {
-      apiService.getPublicSettings().then((data) => {
+      apiService.getBrochures().then((data) => {
         if (!mounted) return
-        if (data?.brochureUrl) {
-          setBrochureUrl(data.brochureUrl)
-        }
+        setBrochures(Array.isArray(data) ? data : [])
       }).catch(() => {})
     })
     return () => { mounted = false }
@@ -68,18 +68,72 @@ const VideoGallerySection = () => {
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
 
-              <a
-                href={brochureUrl || '#'}
-                download={Boolean(brochureUrl)}
+              <button
+                onClick={() => setShowBrochureModal(true)}
                 className="border-2 border-gray-300 text-gray-800 hover:bg-gray-50 px-5 py-3 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 flex items-center"
               >
                 <Download size={18} className="mr-2" />
-                {brochureUrl ? 'Download Brochure' : 'Brochure Coming Soon'}
-              </a>
+                {brochures.length > 0 ? 'Download Brochures' : 'Brochures Coming Soon'}
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Brochure Modal */}
+      {showBrochureModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-gray-900">Download Brochures</h3>
+                <button
+                  onClick={() => setShowBrochureModal(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X size={20} className="text-gray-500" />
+                </button>
+              </div>
+              
+              {brochures.length > 0 ? (
+                <div className="space-y-4">
+                  {brochures.map((brochure) => (
+                    <div key={brochure._id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-blue-100 rounded-lg">
+                          <Download size={20} className="text-blue-600" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900">{brochure.title}</h4>
+                          <p className="text-sm text-gray-600">Order: {brochure.order || 0}</p>
+                        </div>
+                      </div>
+                      <a
+                        href={brochure.url}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                      >
+                        <Download size={16} />
+                        Download
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="p-4 bg-gray-100 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Download size={24} className="text-gray-400" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">No Brochures Available</h4>
+                  <p className="text-gray-600">Brochures will be available soon. Please check back later.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
     </section>
   )

@@ -235,8 +235,33 @@ const Services = () => {
                     </div>
                   )}
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
-                    <p className="text-gray-600 text-sm">{item.description}</p>
+                    <h4 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h4>
+                    <p className="text-gray-600 text-sm mb-4">{item.description}</p>
+                    
+                    {item.features && (
+                      <div className="mb-4">
+                        <ul className="space-y-2">
+                          {item.features.split(',').slice(0, 3).map((feature, index) => (
+                            <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
+                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                              <span>{feature.trim()}</span>
+                            </li>
+                          ))}
+                          {item.features.split(',').length > 3 && (
+                            <li className="text-sm text-blue-600 font-medium">
+                              +{item.features.split(',').length - 3} more features
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    <button 
+                      onClick={() => navigate('/contact')}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                    >
+                      View More Details
+                    </button>
                   </div>
                 </div>
               ))}
