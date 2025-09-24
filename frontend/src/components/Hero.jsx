@@ -367,7 +367,10 @@ const Hero = () => {
               {/* Service Tabs */}
               <div className="flex space-x-4">
                 <button
-                  onClick={() => setActiveSegment('waterproofing')}
+                  onClick={() => {
+                    setActiveSegment('waterproofing')
+                    navigate('/services?category=waterproofing')
+                  }}
                   className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${activeSegment === 'waterproofing'
                       ? 'bg-blue-600 text-white shadow-lg'
                       : 'bg-white text-gray-600 hover:text-blue-600 hover:bg-blue-50'
@@ -376,7 +379,10 @@ const Hero = () => {
                   Advanced Water Proofing
                 </button>
                 <button
-                  onClick={() => setActiveSegment('flooring')}
+                  onClick={() => {
+                    setActiveSegment('flooring')
+                    navigate('/services?category=flooring')
+                  }}
                   className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${activeSegment === 'flooring'
                       ? 'bg-blue-600 text-white shadow-lg'
                       : 'bg-white text-gray-600 hover:text-blue-600 hover:bg-blue-50'

@@ -11,6 +11,7 @@ const Services = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [selectedService, setSelectedService] = useState(null)
+  const [selectedSpecialService, setSelectedSpecialService] = useState(null)
   const [specialServices, setSpecialServices] = useState([])
 
   useEffect(() => {
@@ -228,40 +229,30 @@ const Services = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {specialServices.map((item) => (
-                <div key={item._id} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
-                  {item.image && (
-                    <div className="h-48 w-full overflow-hidden">
-                      <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h4>
-                    <p className="text-gray-600 text-sm mb-4">{item.description}</p>
-                    
-                    {item.features && (
-                      <div className="mb-4">
-                        <ul className="space-y-2">
-                          {item.features.split(',').slice(0, 3).map((feature, index) => (
-                            <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                              <span>{feature.trim()}</span>
-                            </li>
-                          ))}
-                          {item.features.split(',').length > 3 && (
-                            <li className="text-sm text-blue-600 font-medium">
-                              +{item.features.split(',').length - 3} more features
-                            </li>
-                          )}
-                        </ul>
+                <div key={item._id} className="group cursor-pointer animate-fade-in-up hover:transform hover:-translate-y-2 transition-all duration-500">
+                  <div className="relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/30 rounded-2xl blur-sm group-hover:blur-none transition-all duration-300"></div>
+                    <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-300 h-full flex flex-col overflow-hidden">
+                      {/* Image header */}
+                      {item.image && (
+                        <div className="w-full h-48 overflow-hidden">
+                          <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                      )}
+
+                      <div className="p-6 flex flex-col flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                          {item.title}
+                        </h4>
+                        <button 
+                          onClick={() => setSelectedSpecialService(item)}
+                          className="mt-auto w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center group-hover:shadow-lg transform group-hover:scale-[1.02]"
+                        >
+                          View Details
+                          <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </button>
                       </div>
-                    )}
-                    
-                    <button 
-                      onClick={() => navigate('/contact')}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                    >
-                      View More Details
-                    </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -366,6 +357,60 @@ const Services = () => {
                   </ul>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Special Service Detail Modal */}
+      {selectedSpecialService && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="p-6">
+              <div className="flex items-start justify-between mb-4">
+                <h3 className="text-2xl font-bold text-gray-900">{selectedSpecialService.title}</h3>
+                <button onClick={() => setSelectedSpecialService(null)} className="p-2 hover:bg-gray-100 rounded-full">
+                  <X size={20} />
+                </button>
+              </div>
+              
+              {selectedSpecialService.image && (
+                <div className="mb-6">
+                  <img src={selectedSpecialService.image} alt={selectedSpecialService.title} className="w-full h-64 object-cover rounded-xl" />
+                </div>
+              )}
+              
+              <p className="text-gray-700 mb-6">{selectedSpecialService.description}</p>
+              
+              {selectedSpecialService.features && (
+                <div className="mb-6">
+                  <h4 className="font-semibold mb-3 text-lg">Key Features</h4>
+                  <ul className="space-y-2">
+                    {selectedSpecialService.features.split(',').map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3 text-gray-700">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>{feature.trim()}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              <div className="flex gap-4">
+                <button 
+                  onClick={() => window.location.href = '/contact'}
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center"
+                >
+                  <Phone size={16} className="mr-2" />
+                  Contact Us
+                </button>
+                <button 
+                  onClick={() => setSelectedSpecialService(null)}
+                  className="px-6 py-3 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-300"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
