@@ -225,6 +225,7 @@ const Services = () => {
               </div>
               <h3 className="text-4xl font-black text-gray-900 mb-4">Smart Structural Diagnostics</h3>
               <p className="text-lg text-gray-600">Advanced tools to identify hidden moisture, leaks, and structural issues with precision.</p>
+              <p className="text-blue-600"><b>Observation by using machines will be on chargeable basis</b></p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">

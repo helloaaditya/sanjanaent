@@ -20,9 +20,7 @@ const About = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              With <span className="font-bold text-cyan-600">30+ years of expertise</span>, innovative solutions, 
-              and a commitment to delivering exceptional results, Sanjana Enterprises has become Bangalore's 
-              <span className="font-bold text-blue-600"> most trusted waterproofing & flooring company</span>.
+            With over <span className="font-bold text-blue-600">30 years of expertise</span>, innovative solutions, and a strong commitment to excellence, Sanjana Enterprises has earned its reputation as <span className="font-bold text-gray-600">Bangalore’s most trusted waterproofing and flooring company </span>, serving clients across India.
             </p>
           </div>
         </ScrollAnimation>

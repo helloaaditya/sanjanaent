@@ -128,7 +128,7 @@ const StatsSection = () => {
             Our <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-800 bg-clip-text text-transparent">Achievements</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Over a decade of excellence in waterproofing & Flooring solutions with thousands of satisfied customers and honored with National & State Awards          </p>
+          Over 3 decades of excellence in waterproofing & Flooring solutions with thousands of satisfied customers and honored with National & State Awards </p>
         </div>
 
         {/* Stats Grid */}
