@@ -10,6 +10,7 @@ const AdminDashboard = () => {
   const [specialServices, setSpecialServices] = useState([])
   const [brochures, setBrochures] = useState([])
   const [testimonials, setTestimonials] = useState([])
+  const [team, setTeam] = useState([])
   const [settings, setSettings] = useState({ brochureUrl: '' })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -26,13 +27,16 @@ const AdminDashboard = () => {
   const [specialLoading, setSpecialLoading] = useState(false)
   const [brochuresLoading, setBrochuresLoading] = useState(false)
   const [testimonialsLoading, setTestimonialsLoading] = useState(false)
+  const [teamLoading, setTeamLoading] = useState(false)
   const [settingsLoading, setSettingsLoading] = useState(false)
   const [showServiceModal, setShowServiceModal] = useState(false)
   const [showSpecialModal, setShowSpecialModal] = useState(false)
   const [showBrochureModal, setShowBrochureModal] = useState(false)
+  const [showTeamModal, setShowTeamModal] = useState(false)
   const [editingService, setEditingService] = useState(null)
   const [editingSpecial, setEditingSpecial] = useState(null)
   const [editingBrochure, setEditingBrochure] = useState(null)
+  const [editingTeam, setEditingTeam] = useState(null)
   const [serviceForm, setServiceForm] = useState({
     title: '',
     description: '',
@@ -43,6 +47,7 @@ const AdminDashboard = () => {
   })
   const [specialForm, setSpecialForm] = useState({ title: '', description: '', image: '', order: 0, active: true, features: '' })
   const [brochureForm, setBrochureForm] = useState({ title: '', url: '', order: 0, active: true })
+  const [teamForm, setTeamForm] = useState({ name: '', role: '', image: '', order: 0, active: true })
   const [settingsForm, setSettingsForm] = useState({ brochureUrl: '' })
   const [testimonialSearch, setTestimonialSearch] = useState('')
   const [projectSearch, setProjectSearch] = useState('')
@@ -83,6 +88,7 @@ const AdminDashboard = () => {
     fetchSettings()
     fetchSpecialServices()
     fetchBrochures()
+    fetchTeam()
   }, [navigate])
 
   // Fetch leads when tab changes or filter changes
@@ -143,6 +149,20 @@ const AdminDashboard = () => {
       setError('Failed to fetch projects')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchTeam = async () => {
+    try {
+      setTeamLoading(true)
+      const token = localStorage.getItem('adminToken')
+      const items = await apiService.adminGetTeam(token)
+      setTeam(items || [])
+    } catch (e) {
+      console.error(e)
+      setError('Failed to load team')
+    } finally {
+      setTeamLoading(false)
     }
   }
 
@@ -651,6 +671,7 @@ const AdminDashboard = () => {
     { id: 'services', label: 'Services', icon: Briefcase, count: services.length },
     { id: 'special', label: 'Special Services', icon: Sparkles, count: specialServices.length },
     { id: 'brochures', label: 'Brochures', icon: Download, count: brochures.length },
+    { id: 'team', label: 'Team', icon: Users, count: team.length },
     { id: 'leads', label: 'Leads', icon: MessageSquare, count: leads.length },
     { id: 'testimonials', label: 'Testimonials', icon: Star, count: testimonials.length },
     { id: 'settings', label: 'Settings', icon: Settings, count: 0 },
@@ -1014,6 +1035,109 @@ const AdminDashboard = () => {
                 ))}
               </div>
             )}
+          </div>
+        )}
+
+        {/* Team Tab Content */}
+        {activeTab === 'team' && (
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-purple-100 rounded-lg">
+                  <Users className="w-5 h-5 text-purple-700" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">Team</h2>
+                  <p className="text-sm text-gray-500">Manage team members (image, name, role, order, active)</p>
+                </div>
+              </div>
+              <div className="flex space-x-2">
+                <button onClick={fetchTeam} className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors">
+                  <RefreshCw size={16} />
+                  <span>Refresh</span>
+                </button>
+                <button onClick={()=>{setEditingTeam(null); setTeamForm({ name:'', role:'', image:'', order:0, active:true }); setShowTeamModal(true)}} className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                  <Plus size={16} />
+                  <span>Add Member</span>
+                </button>
+              </div>
+            </div>
+
+            {teamLoading ? (
+              <div className="text-center py-16">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+                <p className="text-gray-600">Loading team...</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {team.map((member) => (
+                  <div key={member._id} className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="relative h-40 w-full bg-gray-100">
+                      {member.image ? (
+                        <img src={member.image} alt={member.name} className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-400">No Image</div>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="text-lg font-bold text-gray-900">{member.name}</h3>
+                        <div className="flex items-center space-x-2 bg-gray-50 border border-gray-200 rounded-lg px-2 py-1 text-xs text-gray-600">
+                          <span>Order: {member.order ?? 0}</span>
+                          <button onClick={async()=>{const token=localStorage.getItem('adminToken'); await apiService.adminUpdateTeamMember(member._id,{order:(member.order??0)-1},token); fetchTeam()}} className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded">Up</button>
+                          <button onClick={async()=>{const token=localStorage.getItem('adminToken'); await apiService.adminUpdateTeamMember(member._id,{order:(member.order??0)+1},token); fetchTeam()}} className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded">Down</button>
+                          <button onClick={async()=>{const token=localStorage.getItem('adminToken'); await apiService.adminUpdateTeamMember(member._id,{active:!member.active},token); fetchTeam()}} className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded">{member.active?'Disable':'Enable'}</button>
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-4">{member.role}</p>
+                      <div className="flex space-x-2">
+                        <button onClick={()=>{setEditingTeam(member); setTeamForm({ name: member.name||'', role: member.role||'', image: member.image||'', order: member.order||0, active: !!member.active }); setShowTeamModal(true)}} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm font-medium">Edit</button>
+                        <button onClick={async()=>{ if(!window.confirm('Delete this member?')) return; const token=localStorage.getItem('adminToken'); await apiService.adminDeleteTeamMember(member._id,token); fetchTeam()}} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Team Modal */}
+        {showTeamModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg max-w-xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                <h3 className="text-lg font-semibold mb-4">{editingTeam ? 'Edit Member' : 'Add Member'}</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                    <input type="text" value={teamForm.name} onChange={(e)=>setTeamForm({...teamForm,name:e.target.value})} className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                    <input type="text" value={teamForm.role} onChange={(e)=>setTeamForm({...teamForm,role:e.target.value})} className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                    <input type="url" value={teamForm.image} onChange={(e)=>setTeamForm({...teamForm,image:e.target.value})} className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
+                      <input type="number" value={teamForm.order} onChange={(e)=>setTeamForm({...teamForm,order:Number(e.target.value)||0})} className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                    </div>
+                    <div className="flex items-center space-x-2 mt-6">
+                      <input id="team-active" type="checkbox" checked={teamForm.active} onChange={(e)=>setTeamForm({...teamForm,active:e.target.checked})} />
+                      <label htmlFor="team-active" className="text-sm text-gray-700">Active</label>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-end space-x-2 mt-6">
+                  <button onClick={()=>setShowTeamModal(false)} className="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                  <button onClick={async()=>{const token=localStorage.getItem('adminToken'); if(editingTeam){await apiService.adminUpdateTeamMember(editingTeam._id,teamForm,token)} else {await apiService.adminCreateTeamMember(teamForm,token)} setShowTeamModal(false); setEditingTeam(null); fetchTeam()}} className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Save</button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 

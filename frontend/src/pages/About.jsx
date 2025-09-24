@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Shield, Award, Users, CheckCircle, Star, Target, Phone, ArrowRight, MapPin, Cpu, Layers, Wrench } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 import founderImage from '../assets/founder.jpg'
+import apiService from '../services/api'
 import isoImage from '../assets/ISO.jpg'
 
 const About = () => {
@@ -31,6 +32,13 @@ const About = () => {
       description: 'Latest technologies and techniques for superior performance.',
     }
   ]
+
+  const [team, setTeam] = useState([])
+  useEffect(() => {
+    let mounted = true
+    apiService.getTeam().then((items)=>{ if(mounted) setTeam(items||[]) }).catch(()=>{})
+    return () => { mounted = false }
+  }, [])
 
   return (
     <>
@@ -274,6 +282,44 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      {/* Our Team */}
+      {team && team.length > 0 && (
+        <div className="py-8 sm:py-8 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-10 sm:mb-12">
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Users size={16} />
+                  Our Team
+                </div>
+                <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-4 leading-tight">Meet Our Experts</h2>
+                <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">The passionate professionals driving quality and results at Sanjana Enterprises.</p>
+              </div>
+            </ScrollAnimation>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {team.map((member, idx) => (
+                <ScrollAnimation key={member._id || idx} animation="fade-in-up" delay={idx * 100}>
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+                    <div className="h-56 bg-gray-100">
+                      {member.image ? (
+                        <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
+                      )}
+                    </div>
+                    <div className="p-5 text-center">
+                      <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
+                      <p className="text-blue-600 font-medium mt-1">{member.role}</p>
+                    </div>
+                  </div>
+                </ScrollAnimation>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Call to Action */}
       <div className="py-20 bg-gradient-to-r from-blue-600 to-blue-700">

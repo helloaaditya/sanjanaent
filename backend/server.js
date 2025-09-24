@@ -794,6 +794,98 @@ app.get('/api/brochures', async (req, res) => {
   }
 })
 
+// ---------- TEAM MEMBERS ----------
+// Public: list active team members (ordered)
+app.get('/api/team', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const team = await db
+      .collection('team')
+      .find({ active: { $ne: false } })
+      .sort({ order: 1, createdAt: -1 })
+      .toArray()
+    res.json(team)
+  } catch (error) {
+    console.error('Get team error:', error)
+    res.status(500).json({ error: 'Failed to fetch team' })
+  }
+})
+
+// Admin: list all team members
+app.get('/api/admin/team', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const team = await db
+      .collection('team')
+      .find({})
+      .sort({ order: 1, createdAt: -1 })
+      .toArray()
+    res.json(team)
+  } catch (error) {
+    console.error('Admin get team error:', error)
+    res.status(500).json({ error: 'Failed to fetch team' })
+  }
+})
+
+// Admin: create team member
+app.post('/api/admin/team', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const payload = req.body || {}
+    const now = new Date()
+    const doc = {
+      name: (payload.name || 'Unnamed').trim(),
+      role: (payload.role || '').trim(),
+      image: payload.image || null,
+      order: Number.isFinite(Number(payload.order)) ? Number(payload.order) : 0,
+      active: typeof payload.active === 'boolean' ? payload.active : true,
+      createdAt: now,
+      updatedAt: now,
+    }
+    const result = await db.collection('team').insertOne(doc)
+    res.json({ _id: result.insertedId, ...doc })
+  } catch (error) {
+    console.error('Create team error:', error)
+    res.status(500).json({ error: 'Failed to create team member' })
+  }
+})
+
+// Admin: update team member
+app.put('/api/admin/team/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try { _id = new ObjectId(req.params.id) } catch { return res.status(400).json({ error: 'Invalid id' }) }
+    const update = { ...req.body, updatedAt: new Date() }
+    if (update.order !== undefined) {
+      const n = Number(update.order)
+      update.order = Number.isFinite(n) ? n : 0
+    }
+    const result = await db.collection('team').updateOne({ _id }, { $set: update })
+    if (result.matchedCount === 0) return res.status(404).json({ error: 'Member not found' })
+    const updated = await db.collection('team').findOne({ _id })
+    res.json(updated)
+  } catch (error) {
+    console.error('Update team error:', error)
+    res.status(500).json({ error: 'Failed to update team member' })
+  }
+})
+
+// Admin: delete team member
+app.delete('/api/admin/team/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try { _id = new ObjectId(req.params.id) } catch { return res.status(400).json({ error: 'Invalid id' }) }
+    const result = await db.collection('team').deleteOne({ _id })
+    if (result.deletedCount === 0) return res.status(404).json({ error: 'Member not found' })
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Delete team error:', error)
+    res.status(500).json({ error: 'Failed to delete team member' })
+  }
+})
+
 // Admin: list all brochures
 app.get('/api/admin/brochures', authenticateToken, async (req, res) => {
   try {

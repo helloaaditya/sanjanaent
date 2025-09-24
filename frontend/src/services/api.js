@@ -290,6 +290,40 @@ class ApiService {
       headers: { Authorization: `Bearer ${token}` }
     })
   }
+
+  // Team API
+  async getTeam() {
+    return this.request('/team')
+  }
+
+  async adminGetTeam(token) {
+    return this.request('/admin/team', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+  }
+
+  async adminCreateTeamMember(data, token) {
+    return this.request('/admin/team', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminUpdateTeamMember(id, data, token) {
+    return this.request(`/admin/team/${id}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminDeleteTeamMember(id, token) {
+    return this.request(`/admin/team/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+  }
 }
 
 export default new ApiService()
