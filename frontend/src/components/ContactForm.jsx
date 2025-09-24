@@ -31,15 +31,7 @@ const ContactForm = () => {
         ...formData,
         type: 'contact'
       })
-      // Best-effort email notification (backend optional)
-      try {
-        await apiService.notifyLeadEmail({
-          leadDetails: {
-            ...formData,
-            type: 'contact'
-          }
-        })
-      } catch {}
+      // Immediately update UI
       setSuccess(true)
       setFormData({
         name: '',
@@ -48,6 +40,15 @@ const ContactForm = () => {
         subject: '',
         message: ''
       })
+      // Fire-and-forget email notification so UI doesn't wait
+      try {
+        apiService.notifyLeadEmail({
+          leadDetails: {
+            ...formData,
+            type: 'contact'
+          }
+        }).catch(() => {})
+      } catch {}
     } catch (err) {
       setError('Failed to send message. Please try again.')
     } finally {

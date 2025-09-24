@@ -33,20 +33,22 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
         ...formData,
         type: 'quote'
       })
-      // Best-effort email notification (backend optional)
-      try {
-        await apiService.notifyLeadEmail({
-          leadDetails: {
-            ...formData,
-            type: 'quote'
-          }
-        })
-      } catch {}
+      // Immediately show success and close behavior
       setSuccess(true)
       try {
         if (typeof onSubmitted === 'function') {
           onSubmitted()
         }
+      } catch {}
+      // Fire-and-forget email notification (do not block UI)
+      try {
+        // Intentionally not awaiting to avoid delaying the UI
+        apiService.notifyLeadEmail({
+          leadDetails: {
+            ...formData,
+            type: 'quote'
+          }
+        }).catch(() => {})
       } catch {}
     } catch (err) {
       setError('Failed to submit quote request. Please try again.')
