@@ -94,7 +94,7 @@ const AdminDashboard = () => {
     fetchTeam()
   }, [navigate])
 
-  // Fetch leads when tab changes or filter changes
+  // Fetch leads when tab changes or any lead filters change
   useEffect(() => {
     if (activeTab === 'leads') {
       fetchLeads()
@@ -102,7 +102,7 @@ const AdminDashboard = () => {
     if (activeTab === 'testimonials') {
       fetchTestimonials()
     }
-  }, [activeTab, leadFilter])
+  }, [activeTab, leadFilter, statusFilter, dateFrom, dateTo])
 
   // Auto-refresh leads every 30 seconds when on leads tab
   useEffect(() => {

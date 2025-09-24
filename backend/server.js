@@ -607,8 +607,22 @@ app.get('/api/leads', authenticateToken, async (req, res) => {
     if (status) query.status = status
     if (from || to) {
       query.createdAt = {}
-      if (from) query.createdAt.$gte = new Date(from)
-      if (to) query.createdAt.$lte = new Date(to)
+      if (from) {
+        const fromDate = new Date(from)
+        if (!isNaN(fromDate.getTime())) {
+          // start of day
+          fromDate.setHours(0, 0, 0, 0)
+          query.createdAt.$gte = fromDate
+        }
+      }
+      if (to) {
+        const toDate = new Date(to)
+        if (!isNaN(toDate.getTime())) {
+          // end of day
+          toDate.setHours(23, 59, 59, 999)
+          query.createdAt.$lte = toDate
+        }
+      }
     }
     if (q) {
       query.$or = [
