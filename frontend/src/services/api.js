@@ -259,17 +259,17 @@ class ApiService {
 
   // Brochures API
   async getBrochures() {
-    return this.request('/api/brochures')
+    return this.request('/brochures')
   }
 
   async adminGetBrochures(token) {
-    return this.request('/api/admin/brochures', {
+    return this.request('/admin/brochures', {
       headers: { Authorization: `Bearer ${token}` }
     })
   }
 
   async adminCreateBrochure(data, token) {
-    return this.request('/api/admin/brochures', {
+    return this.request('/admin/brochures', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(data)
@@ -277,7 +277,7 @@ class ApiService {
   }
 
   async adminUpdateBrochure(id, data, token) {
-    return this.request(`/api/admin/brochures/${id}`, {
+    return this.request(`/admin/brochures/${id}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(data)
@@ -285,7 +285,7 @@ class ApiService {
   }
 
   async adminDeleteBrochure(id, token) {
-    return this.request(`/api/admin/brochures/${id}`, {
+    return this.request(`/admin/brochures/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` }
     })
