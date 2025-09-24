@@ -33,6 +33,12 @@ const ContactForm = () => {
       })
       // Immediately update UI
       setSuccess(true)
+      // Fire Google Ads conversion (non-blocking)
+      try {
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', { send_to: 'AW-17547780538/rh1hCMvS4aAbELrDt69B' })
+        }
+      } catch {}
       setFormData({
         name: '',
         email: '',

@@ -35,6 +35,12 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
       })
       // Immediately show success and close behavior
       setSuccess(true)
+      // Fire Google Ads conversion (non-blocking)
+      try {
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', { send_to: 'AW-17547780538/rh1hCMvS4aAbELrDt69B' })
+        }
+      } catch {}
       try {
         if (typeof onSubmitted === 'function') {
           onSubmitted()
