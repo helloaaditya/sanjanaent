@@ -105,7 +105,6 @@ const VideoGallerySection = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold text-gray-900">{brochure.title}</h4>
-                          <p className="text-sm text-gray-600">Order: {brochure.order || 0}</p>
                         </div>
                       </div>
                       <a
