@@ -9,17 +9,10 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [showTopBar, setShowTopBar] = useState(true)
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false)
-  const [isIOS, setIsIOS] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Detect iOS devices (iPhone, iPad, iPod)
-    try {
-      const ua = navigator.userAgent || navigator.vendor || ''
-      setIsIOS(/iPad|iPhone|iPod/.test(ua))
-    } catch {}
-
     const handleResize = () => setIsMobile(window.innerWidth < 768)
     window.addEventListener('resize', handleResize)
     const handleScroll = throttle(() => {
@@ -118,24 +111,20 @@ const Header = () => {
 
       {/* Main Header */}
       <header 
-        className={`${(isIOS && isMobile) ? '' : 'fixed'} left-0 w-full z-50 transition-all duration-500 ease-out`}
+        className="fixed left-0 w-full z-40 transition-all duration-500 ease-out"
         style={{
-          top: (isIOS && isMobile) ? undefined : (isMobile ? 'env(safe-area-inset-top, 0px)' : (showTopBar ? `${topBarHeight}px` : 'env(safe-area-inset-top, 0px)')),
-          backgroundColor: (isIOS && isMobile)
-            ? '#ffffff'
-            : (isScrolled || !showTopBar 
-              ? 'rgba(255, 255, 255, 0.98)'
-              : 'rgba(255, 255, 255, 0.95)'),
-          backdropFilter: (isIOS && isMobile) ? undefined : 'blur(20px)',
-          WebkitBackdropFilter: (isIOS && isMobile) ? undefined : 'blur(20px)',
+          top: isMobile ? 'env(safe-area-inset-top, 0px)' : (showTopBar ? `${topBarHeight}px` : 'env(safe-area-inset-top, 0px)'),
+          backgroundColor: isScrolled || !showTopBar 
+            ? 'rgba(255, 255, 255, 0.98)' 
+            : 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           boxShadow: isScrolled || !showTopBar
             ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(59, 130, 246, 0.1)'
             : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
           borderBottom: isScrolled || !showTopBar 
             ? '1px solid rgba(59, 130, 246, 0.1)' 
-            : '1px solid rgba(0, 0, 0, 0.05)',
-          WebkitTransform: (isIOS && isMobile) ? 'translateZ(0)' : undefined,
-          transform: (isIOS && isMobile) ? 'translateZ(0)' : undefined
+            : '1px solid rgba(0, 0, 0, 0.05)'
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,10 +135,7 @@ const Header = () => {
                 <img 
                   src={logoImage} 
                   alt="Sanjana Enterprises Logo" 
-                  width="160"
-                  height="80"
                   className="w-full h-full object-contain drop-shadow-lg"
-                  onError={(e) => { try { e.currentTarget.src = '/fevicon.png' } catch {} }}
                 />
               </div>
             </Link>
