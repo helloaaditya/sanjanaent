@@ -8,34 +8,46 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [showTopBar, setShowTopBar] = useState(true)
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false)
+  const [isMobile, setIsMobile] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
 
+  // Initialize mobile state properly
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    const checkIsMobile = () => window.innerWidth < 768
+    setIsMobile(checkIsMobile())
+    
+    const handleResize = () => setIsMobile(checkIsMobile())
     window.addEventListener('resize', handleResize)
+    
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
     const handleScroll = throttle(() => {
       const scrollY = window.scrollY
       setIsScrolled(scrollY > 50)
-      const shouldShowTopBar = scrollY < 100
-      setShowTopBar(shouldShowTopBar)
       
-      // Update body class for padding adjustment
-      if (shouldShowTopBar) {
-        document.body.classList.remove('top-bar-hidden')
-      } else {
-        document.body.classList.add('top-bar-hidden')
+      // Only show/hide top bar on desktop
+      if (!isMobile) {
+        const shouldShowTopBar = scrollY < 100
+        setShowTopBar(shouldShowTopBar)
+        
+        // Update body class for padding adjustment
+        if (shouldShowTopBar) {
+          document.body.classList.remove('top-bar-hidden')
+        } else {
+          document.body.classList.add('top-bar-hidden')
+        }
       }
     }, 16) // ~60fps
     
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleResize)
       document.body.classList.remove('top-bar-hidden')
     }
-  }, [])
+  }, [isMobile])
 
   const handleNavigation = (item) => {
     navigate(item.path)
@@ -54,16 +66,16 @@ const Header = () => {
     { name: 'Contact', path: '/contact', id: 'contact' }
   ]
 
-  const topBarHeight = 56 // Increased height for better spacing
+  const topBarHeight = 56
 
   return (
     <>
-      {/* Premium Top Bar */}
+      {/* Premium Top Bar - Desktop Only */}
       <div className={`fixed top-0 left-0 w-full bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 py-3.5 px-4 hidden md:block relative overflow-hidden transition-all duration-700 ease-in-out z-50 ${
         showTopBar ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
         {/* Animated background elements */}
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)] bg-[length:250px_250px] animate-[shimmer_3s_linear_infinite]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)] bg-[length:250px_250px] animate-shimmer"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
         
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm relative z-10">
@@ -111,31 +123,30 @@ const Header = () => {
 
       {/* Main Header */}
       <header 
-        className="fixed left-0 w-full z-40 transition-all duration-500 ease-out"
+        className={`fixed left-0 w-full z-40 transition-all duration-500 ease-out ${
+          isScrolled || !showTopBar || isMobile
+            ? 'bg-white/98 backdrop-blur-xl shadow-lg border-b border-blue-100' 
+            : 'bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100'
+        }`}
         style={{
-          top: isMobile ? 'env(safe-area-inset-top, 0px)' : (showTopBar ? `${topBarHeight}px` : 'env(safe-area-inset-top, 0px)'),
-          backgroundColor: isScrolled || !showTopBar 
-            ? 'rgba(255, 255, 255, 0.98)' 
-            : 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(20px)',
+          top: isMobile ? '0px' : (showTopBar ? `${topBarHeight}px` : '0px'),
           WebkitBackdropFilter: 'blur(20px)',
-          boxShadow: isScrolled || !showTopBar
-            ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(59, 130, 246, 0.1)'
-            : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-          borderBottom: isScrolled || !showTopBar 
-            ? '1px solid rgba(59, 130, 246, 0.1)' 
-            : '1px solid rgba(0, 0, 0, 0.05)'
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24">
+          <div className="flex justify-between items-center h-16 md:h-20 lg:h-24">
             {/* Logo - Left Side */}
-            <Link to="/" className="flex-shrink-0 group" onClick={() => setIsMenuOpen(false)}>
-              <div className="h-20 transition-all duration-300 group-hover:scale-105">
+            <Link 
+              to="/" 
+              className="flex-shrink-0 group relative z-50" 
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div className="h-12 sm:h-14 md:h-16 lg:h-20 transition-all duration-300 group-hover:scale-105">
                 <img 
                   src={logoImage} 
                   alt="Sanjana Enterprises Logo" 
                   className="w-full h-full object-contain drop-shadow-lg"
+                  style={{ maxWidth: 'none' }}
                 />
               </div>
             </Link>
@@ -171,28 +182,18 @@ const Header = () => {
                 ))}
               </nav>
 
-
-
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden relative p-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 group"
+                className="lg:hidden relative p-2.5 sm:p-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 group z-50"
+                aria-label="Toggle menu"
               >
-                <div className="relative w-5 h-5 flex items-center justify-center">
-                  <div className={`absolute transition-all duration-300 ${
-                    isMenuOpen ? 'rotate-45 translate-y-0' : 'rotate-0 -translate-y-1'
-                  }`}>
-                    <div className={`w-5 h-0.5 bg-white rounded-full ${isMenuOpen ? 'opacity-100' : 'opacity-100'}`}></div>
-                  </div>
-                  <div className={`absolute w-5 h-0.5 bg-white rounded-full transition-all duration-300 ${
-                    isMenuOpen ? 'opacity-0' : 'opacity-100'
-                    
-                  }`}></div>
-                  <div className={`absolute transition-all duration-300 ${
-                    isMenuOpen ? '-rotate-45 translate-y-0' : 'rotate-0 translate-y-1'
-                  }`}>
-                    <div className={`w-5 h-0.5 bg-white rounded-full ${isMenuOpen ? 'opacity-100' : 'opacity-100'}`}></div>
-                  </div>
+                <div className="relative w-6 h-6 flex items-center justify-center">
+                  {isMenuOpen ? (
+                    <X size={20} className="transition-all duration-300 rotate-0" />
+                  ) : (
+                    <Menu size={20} className="transition-all duration-300" />
+                  )}
                 </div>
               </button>
             </div>
@@ -200,16 +201,16 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/50 shadow-2xl transition-all duration-500 ease-out overflow-hidden ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        <div className={`lg:hidden absolute top-full left-0 w-full bg-white/98 backdrop-blur-xl border-t border-gray-200/50 shadow-2xl transition-all duration-500 ease-out overflow-hidden ${
+          isMenuOpen ? 'max-h-[400px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
         }`}>
-          <div className="max-w-7xl mx-auto px-4 py-6">
-            <nav className="flex flex-col space-y-2">
+          <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+            <nav className="flex flex-col space-y-1 sm:space-y-2">
               {navItems.map((item, index) => (
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item)}
-                  className={`nav-button relative px-6 py-4 rounded-xl font-semibold text-left transition-all duration-300 group overflow-hidden ${
+                  className={`nav-button relative px-4 sm:px-6 py-3 sm:py-4 rounded-xl font-semibold text-left transition-all duration-300 group overflow-hidden ${
                     isActivePage(item)
                       ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/25 scale-[1.02]'
                       : 'text-gray-700 hover:text-white bg-gray-50 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 hover:scale-[1.02]'
@@ -217,11 +218,12 @@ const Header = () => {
                   style={{ 
                     animationDelay: `${index * 100}ms`,
                     transform: isMenuOpen ? 'translateY(0)' : 'translateY(-20px)',
-                    opacity: isMenuOpen ? 1 : 0
+                    opacity: isMenuOpen ? 1 : 0,
+                    transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms'
                   }}
                 >
                   <span className="relative z-10 flex items-center justify-between">
-                    <span>{item.name}</span>
+                    <span className="text-base sm:text-lg">{item.name}</span>
                     <ArrowRight size={16} className={`transition-all duration-300 ${
                       isActivePage(item) ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                     }`} />
@@ -234,17 +236,28 @@ const Header = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
                 </button>
               ))}
-
             </nav>
           </div>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMenuOpen && (
+          <div 
+            className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-30"
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
       </header>
 
-      {/* Custom CSS for animations */}
-      <style jsx>{`
+      {/* Global Styles */}
+      <style jsx global>{`
         @keyframes shimmer {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(100%); }
+        }
+        
+        .animate-shimmer {
+          animation: shimmer 3s linear infinite;
         }
         
         .nav-button {
@@ -265,6 +278,32 @@ const Header = () => {
         
         .nav-button:hover::before {
           transform: translateX(100%);
+        }
+
+        /* Prevent body scroll when menu is open on mobile */
+        body.menu-open {
+          overflow: hidden;
+        }
+
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+          .backdrop-blur-xl {
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+          }
+          
+          .backdrop-blur-lg {
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            backdrop-filter: blur(16px) saturate(160%);
+          }
+        }
+
+        /* Fix for very small screens */
+        @media (max-width: 320px) {
+          .max-w-7xl {
+            padding-left: 12px;
+            padding-right: 12px;
+          }
         }
       `}</style>
     </>
