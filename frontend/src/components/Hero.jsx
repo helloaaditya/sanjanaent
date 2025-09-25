@@ -317,7 +317,7 @@ const Hero = () => {
     if (submitted) return
     const intervalId = setInterval(() => {
       setShowQuoteModal(true)
-    }, 10000)
+    }, 90000)
     return () => clearInterval(intervalId)
   }, [])
 
@@ -352,8 +352,8 @@ const Hero = () => {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 pt-16 mb-16 sm:px-6 lg:px-4">
-          <div className="py-16 pb-0">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 mb-4 sm:px-6 lg:px-4">
+          <div className="py-4 pb-0">
 
             {/* Content Section */}
             <div className={`space-y-8 transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
