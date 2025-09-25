@@ -186,6 +186,7 @@ const Header = () => {
                   </div>
                   <div className={`absolute w-5 h-0.5 bg-white rounded-full transition-all duration-300 ${
                     isMenuOpen ? 'opacity-0' : 'opacity-100'
+                    
                   }`}></div>
                   <div className={`absolute transition-all duration-300 ${
                     isMenuOpen ? '-rotate-45 translate-y-0' : 'rotate-0 translate-y-1'
