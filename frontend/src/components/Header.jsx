@@ -118,12 +118,14 @@ const Header = () => {
 
       {/* Main Header */}
       <header 
-        className={`${(isIOS && isMobile) ? 'relative' : 'fixed'} left-0 w-full z-40 transition-all duration-500 ease-out`}
+        className={`${(isIOS && isMobile) ? '' : 'fixed'} left-0 w-full z-50 transition-all duration-500 ease-out`}
         style={{
           top: (isIOS && isMobile) ? undefined : (isMobile ? 'env(safe-area-inset-top, 0px)' : (showTopBar ? `${topBarHeight}px` : 'env(safe-area-inset-top, 0px)')),
-          backgroundColor: isScrolled || !showTopBar 
-            ? 'rgba(255, 255, 255, 0.98)' 
-            : 'rgba(255, 255, 255, 0.95)',
+          backgroundColor: (isIOS && isMobile)
+            ? '#ffffff'
+            : (isScrolled || !showTopBar 
+              ? 'rgba(255, 255, 255, 0.98)'
+              : 'rgba(255, 255, 255, 0.95)'),
           backdropFilter: (isIOS && isMobile) ? undefined : 'blur(20px)',
           WebkitBackdropFilter: (isIOS && isMobile) ? undefined : 'blur(20px)',
           boxShadow: isScrolled || !showTopBar
@@ -131,7 +133,9 @@ const Header = () => {
             : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
           borderBottom: isScrolled || !showTopBar 
             ? '1px solid rgba(59, 130, 246, 0.1)' 
-            : '1px solid rgba(0, 0, 0, 0.05)'
+            : '1px solid rgba(0, 0, 0, 0.05)',
+          WebkitTransform: (isIOS && isMobile) ? 'translateZ(0)' : undefined,
+          transform: (isIOS && isMobile) ? 'translateZ(0)' : undefined
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,7 +146,10 @@ const Header = () => {
                 <img 
                   src={logoImage} 
                   alt="Sanjana Enterprises Logo" 
+                  width="160"
+                  height="80"
                   className="w-full h-full object-contain drop-shadow-lg"
+                  onError={(e) => { try { e.currentTarget.src = '/fevicon.png' } catch {} }}
                 />
               </div>
             </Link>
