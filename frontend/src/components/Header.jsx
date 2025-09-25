@@ -113,7 +113,7 @@ const Header = () => {
       <header 
         className="fixed left-0 w-full z-40 transition-all duration-500 ease-out"
         style={{
-          top: isMobile ? '0px' : (showTopBar ? `${topBarHeight}px` : '0px'),
+          top: isMobile ? 'env(safe-area-inset-top, 0px)' : (showTopBar ? `${topBarHeight}px` : 'env(safe-area-inset-top, 0px)'),
           backgroundColor: isScrolled || !showTopBar 
             ? 'rgba(255, 255, 255, 0.98)' 
             : 'rgba(255, 255, 255, 0.95)',
