@@ -6,7 +6,6 @@ import AnimatedCounter from '../components/AnimatedCounter'
 import Awards from '../components/awards'
 import VideoGallerySection from '../components/VideoGallerySection' 
 import Testimonials from '../components/Testimonials'
-import Header from '../components/Header'
 
 const Home = () => {
   return (

@@ -333,23 +333,23 @@ const Hero = () => {
     <div className="relative p">
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div 
             className="absolute w-96 h-96 bg-gradient-to-r from-blue-500/8 to-cyan-500/8 rounded-full blur-3xl transition-all duration-1000"
-            style={{
+          style={{
               left: `${mousePosition.x * 0.015}px`,
               top: `${mousePosition.y * 0.015}px`,
-            }}
-          ></div>
-          <div
+          }}
+        ></div>
+        <div 
             className="absolute w-80 h-80 bg-gradient-to-r from-purple-500/6 to-pink-500/6 rounded-full blur-3xl transition-all duration-1000"
-            style={{
-              right: `${mousePosition.x * 0.01}px`,
-              bottom: `${mousePosition.y * 0.01}px`,
-            }}
-          ></div>
-        </div>
+          style={{
+            right: `${mousePosition.x * 0.01}px`,
+            bottom: `${mousePosition.y * 0.01}px`,
+          }}
+        ></div>
+      </div>
 
         {/* Main Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 pt-16 mb-16 sm:px-6 lg:px-4">
@@ -439,46 +439,46 @@ const Hero = () => {
                     Waterproofing & Flooring
                   </span>
                   <span className="block text-gray-900">Solutions</span>
-                </h1>
-
+              </h1>
+              
                 <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
                   With 30+ years of expertise, Sanjana Enterprises is a trusted name in Waterproofing and Flooring solutions across Karnataka. Based in Bangalore, we deliver reliable, durable, and customized services for residential, commercial, and industrial projects — ensuring quality, innovation, and long-lasting protection.
-                </p>
-              </div>
+              </p>
+            </div>
 
               {/* Key Features - Full Width */}
               {/* Key Features - Mobile Friendly */}
               <div className="w-full">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
-                  {features.map((feature, index) => (
-                    <div
-                      key={index}
+              {features.map((feature, index) => (
+                <div 
+                  key={index} 
                       className="flex items-center space-x-3 bg-white rounded-xl px-4 py-3 sm:px-6 sm:py-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200"
                     >
                       <feature.icon size={18} className={`${feature.color} flex-shrink-0`} />
                       <span className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">
                         {feature.text}
                       </span>
-                    </div>
-                  ))}
                 </div>
-              </div>
+              ))}
+                </div>
+            </div>
 
               {/* CTA Buttons - Mobile Friendly */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-                <button
-                  onClick={() => setShowQuoteModal(true)}
+              <button
+                onClick={() => setShowQuoteModal(true)}
                   className="group bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-bold flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto min-h-[48px] text-sm sm:text-base"
-                >
-                  Get Free Quote
+              >
+                Get Free Quote
                   <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300 sm:inline hidden" />
-                </button>
-                <a
-                  href="tel:+919916290799"
+              </button>
+              <a 
+                href="tel:+919916290799" 
                   className="group bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-300 hover:border-blue-300 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-bold flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto min-h-[48px] text-sm sm:text-base"
-                >
-                  Call Now
-                </a>
+              >
+                Call Now
+              </a>
               </div>
             </div>
           </div>
@@ -486,9 +486,9 @@ const Hero = () => {
       </section>
 
       {/* Quote Request Modal */}
-      <QuoteRequestModal
-        isOpen={showQuoteModal}
-        onClose={() => setShowQuoteModal(false)}
+      <QuoteRequestModal 
+        isOpen={showQuoteModal} 
+        onClose={() => setShowQuoteModal(false)} 
         onSubmitted={() => {
           try { localStorage.setItem('quote_submitted', 'true') } catch { }
           setShowQuoteModal(false)

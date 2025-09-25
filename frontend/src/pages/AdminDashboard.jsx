@@ -838,10 +838,10 @@ const AdminDashboard = () => {
                     </span>
                   )}
               </button>
-              </div>
             </div>
           </div>
-        </header>
+        </div>
+      </header>
 
         {/* New Leads Notification */}
         {showNewLeadsNotification && (
@@ -894,7 +894,7 @@ const AdminDashboard = () => {
                   <Plus size={16} />
                   <span>Add Item</span>
               </button>
-          </div>
+                </div>
         </div>
 
             {specialLoading ? (
@@ -999,15 +999,15 @@ const AdminDashboard = () => {
                 >
                   <RefreshCw size={16} />
                   <span>Refresh</span>
-                </button>
-                <button
+              </button>
+              <button
                   onClick={() => { setEditingBrochure(null); setBrochureForm({ title: '', url: '', order: 0, active: true }); setShowBrochureModal(true) }}
                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
                 >
                   <Plus size={16} />
                   <span>Add Brochure</span>
                 </button>
-              </div>
+                </div>
             </div>
 
             {brochuresLoading ? (
@@ -1062,13 +1062,13 @@ const AdminDashboard = () => {
                 <button onClick={fetchTeam} className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors">
                   <RefreshCw size={16} />
                   <span>Refresh</span>
-                </button>
+              </button>
                 <button onClick={()=>{setEditingTeam(null); setTeamForm({ name:'', role:'', image:'', order:0, active:true }); setShowTeamModal(true)}} className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
                   <Plus size={16} />
                   <span>Add Member</span>
                 </button>
-              </div>
-            </div>
+          </div>
+        </div>
 
             {teamLoading ? (
               <div className="text-center py-16">
@@ -1450,7 +1450,7 @@ const AdminDashboard = () => {
                         </span>
                                 <span className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-medium">
                                   Order: {Number(svc.order ?? 0)}
-                                </span>
+                        </span>
                       </div>
                             </div>
                             {svc.image && (
