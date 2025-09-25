@@ -333,8 +333,8 @@ const Hero = () => {
     <div className="relative p">
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute w-96 h-96 bg-gradient-to-r from-blue-500/8 to-cyan-500/8 rounded-full blur-3xl transition-all duration-1000"
             style={{

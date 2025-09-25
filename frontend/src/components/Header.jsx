@@ -63,8 +63,13 @@ const Header = () => {
   }, [isMenuOpen])
 
   const handleNavigation = (item) => {
-    navigate(item.path)
+    // Close mobile menu first
     setIsMenuOpen(false)
+    
+    // Small delay to allow menu close animation
+    setTimeout(() => {
+      navigate(item.path)
+    }, 100)
   }
 
   const isActivePage = (item) => {
@@ -142,7 +147,7 @@ const Header = () => {
         className="fixed left-0 w-full bg-white shadow-lg border-b border-gray-200"
         style={{
           top: isMobile ? '0px' : (showTopBar ? `${topBarHeight}px` : '0px'),
-          zIndex: 999,
+          zIndex: 2000,
           minHeight: '64px'
         }}
       >
@@ -216,24 +221,41 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div 
-            className="lg:hidden bg-white border-t border-gray-200 shadow-2xl"
-            style={{ zIndex: 1000 }}
+            className="lg:hidden bg-white border-t border-gray-200 shadow-2xl pointer-events-auto"
+            style={{ 
+              position: 'fixed',
+              top: isMobile ? '64px' : (showTopBar ? `${topBarHeight + 64}px` : '64px'),
+              left: 0,
+              right: 0,
+              zIndex: 3000,
+              maxHeight: 'calc(100vh - 64px)',
+              overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch'
+            }}
           >
             <div className="max-w-7xl mx-auto px-4 py-4">
               <nav className="flex flex-col space-y-2">
                 {navItems.map((item) => (
                   <button
                     key={item.name}
-                    onClick={() => handleNavigation(item)}
-                    className={`px-6 py-4 rounded-xl font-semibold text-left transition-all duration-300 ${
+                    onClick={() => {
+                      console.log(`Navigating to: ${item.name} - ${item.path}`)
+                      handleNavigation(item)
+                    }}
+                    className={`px-6 py-4 rounded-xl font-semibold text-left transition-all duration-300 active:scale-95 ${
                       isActivePage(item)
                         ? 'bg-blue-600 text-white shadow-lg'
-                        : 'text-gray-700 hover:text-white bg-gray-50 hover:bg-blue-600'
+                        : 'text-gray-700 hover:text-white bg-gray-50 hover:bg-blue-600 active:bg-blue-700'
                     }`}
+                    style={{ 
+                      minHeight: '56px',
+                      touchAction: 'manipulation',
+                      WebkitTapHighlightColor: 'transparent'
+                    }}
                   >
                     <span className="flex items-center justify-between">
                       <span className="text-lg">{item.name}</span>
-                      <ArrowRight size={16} />
+                      <ArrowRight size={16} className="transition-transform duration-200 group-active:translate-x-1" />
                     </span>
                   </button>
                 ))}
@@ -245,9 +267,12 @@ const Header = () => {
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
           <div 
-            className="lg:hidden fixed inset-0 bg-black bg-opacity-50"
-            onClick={() => setIsMenuOpen(false)}
-            style={{ zIndex: 998 }}
+            className="lg:hidden fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+            onClick={() => {
+              console.log('Overlay clicked - closing menu')
+              setIsMenuOpen(false)
+            }}
+            style={{ zIndex: 2500 }}
           />
         )}
       </header>
