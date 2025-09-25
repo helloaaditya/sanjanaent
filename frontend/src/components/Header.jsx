@@ -193,17 +193,14 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Only show on mobile/tablet */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-lg bg-blue-600 text-white shadow-lg"
+              className="flex lg:hidden p-2 rounded-lg bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-colors duration-200 items-center justify-center"
               style={{ 
                 zIndex: 1001,
                 minWidth: '44px',
-                minHeight: '44px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
+                minHeight: '44px'
               }}
               aria-label="Toggle menu"
             >

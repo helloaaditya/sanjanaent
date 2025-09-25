@@ -56,7 +56,7 @@ const About = () => {
 
       <section id="about" className="bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-28 sm:py-32">
+      <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-16 sm:py-16">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <ScrollAnimation animation="fade-in-up" delay={0}>

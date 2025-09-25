@@ -76,7 +76,7 @@ const Contact = () => {
 
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-50 to-white py-16 sm:py-20">
+        <section className="bg-gradient-to-br from-blue-50 to-white py-16 sm:py-16">
           <div className="container-max px-4 sm:px-6">
             <div className="text-center max-w-4xl mx-auto">
               <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
