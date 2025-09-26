@@ -85,16 +85,22 @@ After setting up the environment variables:
 
 #### Render.com Specific Issues:
 
-**Connection Timeouts**: Render.com's free tier has limitations with SMTP connections. The system is now configured to:
-- Skip connection verification to avoid timeouts
-- Use shorter timeouts (20 seconds instead of 60)
-- Return success even if email fails (leads are still saved)
-- Log detailed error information for debugging
+**Connection Timeouts**: Render.com's free tier has limitations with SMTP connections. The system now uses a **background email processing** approach:
+- ✅ **Immediate response**: API returns success immediately (no more 500 errors)
+- ✅ **Background processing**: Emails are sent asynchronously without blocking the UI
+- ✅ **Shorter timeouts**: 10-second timeout for email sending
+- ✅ **Graceful failure**: If email fails, it's logged but doesn't affect the user experience
+- ✅ **Leads always saved**: Database operations are separate from email notifications
+
+**How it works now**:
+1. User submits form → Lead saved to database → Success message shown immediately
+2. Email notification is processed in the background
+3. If email fails, it's logged but doesn't affect the user
 
 **Solutions for Render.com**:
-1. **Upgrade to paid plan**: Better network reliability
-2. **Use SendGrid**: More reliable for cloud platforms
-3. **Accept current behavior**: Leads are saved, emails may occasionally fail
+1. **Current solution**: Background processing (recommended)
+2. **Upgrade to paid plan**: Better network reliability
+3. **Use SendGrid**: More reliable for cloud platforms
 
 ### Security Notes
 
