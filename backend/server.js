@@ -23,8 +23,8 @@ const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
 // Gmail configuration with App Password
 let gmailTransporter = null
 
-if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
-  gmailTransporter = nodemailer.createTransporter({
+ if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+   gmailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER,
