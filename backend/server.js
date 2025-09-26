@@ -36,11 +36,10 @@ let gmailTransporter = null
     socketTimeout: 15000      // 15 seconds
   })
 
-  // Verify connection on startup
-  gmailTransporter.verify((error, success) => {
+  // Try to verify connection on startup, but don't disable on failure (timeouts common on Render)
+  gmailTransporter.verify((error) => {
     if (error) {
-      console.error('Gmail configuration error:', error.message)
-      gmailTransporter = null
+      console.warn('Gmail verify failed (continuing):', error.message)
     } else {
       console.log('Gmail configured successfully')
     }
