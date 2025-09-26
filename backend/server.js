@@ -20,41 +20,54 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 const BASE_URL = process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || ''
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
 
-// Gmail configuration with App Password
-let gmailTransporter = null
+// Create Gmail transporter (try SSL 465 first, then STARTTLS 587)
+async function createGmailTransporter() {
+  const user = process.env.GMAIL_USER
+  const pass = process.env.GMAIL_APP_PASSWORD
+  if (!user || !pass) return null
 
- if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
-   gmailTransporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD
-    },
-    // Add timeout configurations
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 5000,    // 5 seconds
-    socketTimeout: 15000      // 15 seconds
-  })
+  // Attempt SSL (465)
+  try {
+    const t = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: { user, pass },
+      connectionTimeout: 10000,
+      greetingTimeout: 5000,
+      socketTimeout: 15000,
+      tls: { rejectUnauthorized: false }
+    })
+    return t
+  } catch {}
 
-  // Try to verify connection on startup, but don't disable on failure (timeouts common on Render)
-  gmailTransporter.verify((error) => {
-    if (error) {
-      console.warn('Gmail verify failed (continuing):', error.message)
-    } else {
-      console.log('Gmail configured successfully')
-    }
-  })
+  // Fallback to STARTTLS (587)
+  try {
+    const t = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      auth: { user, pass },
+      connectionTimeout: 10000,
+      greetingTimeout: 5000,
+      socketTimeout: 15000,
+      tls: { ciphers: 'SSLv3', rejectUnauthorized: false }
+    })
+    return t
+  } catch {}
+
+  return null
 }
 
-// Gmail mailer function with timeout handling
+// Gmail mailer function with timeout handling (per-send transporter)
 async function sendLeadEmailGmail(leadDetails) {
-  if (!gmailTransporter) {
+  const transporter = await createGmailTransporter()
+  if (!transporter) {
     console.warn('Gmail not configured - missing GMAIL_USER or GMAIL_APP_PASSWORD')
     return false
   }
 
   const toEmail = process.env.NOTIFY_TO || process.env.GMAIL_USER
-
   if (!toEmail) {
     console.warn('No notification email configured (NOTIFY_TO)')
     return false
@@ -96,7 +109,7 @@ async function sendLeadEmailGmail(leadDetails) {
 
     // Send email with timeout wrapper
     const result = await Promise.race([
-      gmailTransporter.sendMail(mailOptions),
+      transporter.sendMail(mailOptions),
       new Promise((_, reject) => 
         setTimeout(() => reject(new Error('Email timeout')), 30000) // 30 second timeout
       )
@@ -304,11 +317,11 @@ app.post('/api/upload', authenticateToken, upload.single('image'), (req, res) =>
 })
 
 // ---------- HEALTH CHECK ----------
-app.get('/api/health', (req, res) => {
+  app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
     timestamp: new Date().toISOString(),
-    emailConfigured: !!gmailTransporter
+      emailConfigured: !!(process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD)
   })
 })
 
