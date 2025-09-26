@@ -29,7 +29,7 @@ const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
 // Simple Gmail mailer using App Password
 async function sendLeadEmailSendGrid(leadDetails) {
   const sendGridApiKey = process.env.SENDGRID_API_KEY
-  const fromEmail = process.env.FROM_EMAIL || 'noreply@sanjanawaterproofing.com'
+  const fromEmail = process.env.FROM_EMAIL || 'sanjana.waterproofing@gmail.com'
   const toEmail = process.env.NOTIFY_TO
 
   if (!sendGridApiKey || !toEmail) {
