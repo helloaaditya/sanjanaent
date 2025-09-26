@@ -11,8 +11,14 @@ import { fileURLToPath } from 'url'
 import helmet from 'helmet'
 import fs from 'fs'
 import nodemailer from 'nodemailer'
+import sgMail from '@sendgrid/mail'
 
 dotenv.config()
+
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  console.log('SendGrid configured')
+}
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -21,45 +27,65 @@ const BASE_URL = process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || ''
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
 
 // Simple Gmail mailer using App Password
-async function sendLeadEmailSimple(leadDoc) {
-  const senderUser = process.env.GMAIL_USER
-  const senderPass = process.env.GMAIL_APP_PASSWORD
-  const notifyTo = process.env.NOTIFY_TO || senderUser
-  if (!senderUser || !senderPass || !notifyTo) {
-    console.warn('Email not configured. Skipping send.', {
-      hasUser: !!senderUser,
-      hasPass: !!senderPass,
-      hasTo: !!notifyTo,
+async function sendLeadEmailSendGrid(leadDetails) {
+  const sendGridApiKey = process.env.SENDGRID_API_KEY
+  const fromEmail = process.env.FROM_EMAIL || 'noreply@sanjanawaterproofing.com'
+  const toEmail = process.env.NOTIFY_TO
+
+  if (!sendGridApiKey || !toEmail) {
+    console.warn('SendGrid not configured:', {
+      hasApiKey: !!sendGridApiKey,
+      hasToEmail: !!toEmail
     })
     return
   }
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: { user: senderUser, pass: senderPass },
-  })
+  try {
+    // Format lead details
+    const lines = []
+    if (leadDetails?.name) lines.push(`Name: ${leadDetails.name}`)
+    if (leadDetails?.email) lines.push(`Email: ${leadDetails.email}`)
+    if (leadDetails?.phone) lines.push(`Phone: ${leadDetails.phone}`)
+    if (leadDetails?.subject) lines.push(`Subject: ${leadDetails.subject}`)
+    if (leadDetails?.projectType) lines.push(`Project Type: ${leadDetails.projectType}`)
+    if (leadDetails?.message) lines.push(`Message: ${leadDetails.message}`)
+    if (leadDetails?.type) lines.push(`Lead Type: ${leadDetails.type}`)
 
-  const lines = []
-  if (leadDoc.name) lines.push(`Name: ${leadDoc.name}`)
-  if (leadDoc.email) lines.push(`Email: ${leadDoc.email}`)
-  if (leadDoc.phone) lines.push(`Phone: ${leadDoc.phone}`)
-  if (leadDoc.subject) lines.push(`Subject: ${leadDoc.subject}`)
-  if (leadDoc.projectType) lines.push(`Project Type: ${leadDoc.projectType}`)
-  if (leadDoc.message) lines.push(`Message: ${leadDoc.message}`)
-  if (leadDoc.type) lines.push(`Lead Type: ${leadDoc.type}`)
+    const leadType = leadDetails?.type || (leadDetails?.projectType ? 'Quote Request' : 'Contact Message')
+    const subject = `New ${leadType} - Sanjana Enterprises`
 
-  const leadType = leadDoc.type || (leadDoc.projectType ? 'quote' : 'contact')
-  const subject = `New ${leadType === 'quote' ? 'Quote Request' : 'Contact Message'} - Sanjana Enterprises`
+    const msg = {
+      to: toEmail,
+      from: fromEmail, // This must be a verified sender in SendGrid
+      subject: subject,
+      text: `A new lead was submitted on the website.\n\n${lines.join('\n')}\n\nSubmitted at: ${new Date().toISOString()}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">New ${leadType}</h2>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3>Lead Details:</h3>
+            ${lines.map(line => `<p>${line}</p>`).join('')}
+          </div>
+          <p style="color: #666; font-size: 12px;">
+            Submitted: ${new Date().toLocaleString()}<br>
+            Source: Sanjana Enterprises Website
+          </p>
+        </div>
+      `
+    }
 
-  const text = `A new lead was submitted on the website.\n\n${lines.join('\n')}\n\nSubmitted at: ${new Date().toISOString()}`
-
-  await transporter.sendMail({
-    from: senderUser,
-    to: notifyTo,
-    subject,
-    text,
-  })
+    await sgMail.send(msg)
+    console.log('Email sent successfully via SendGrid')
+    return true
+  } catch (error) {
+    console.error('SendGrid email failed:', error.message)
+    if (error.response) {
+      console.error('SendGrid error details:', error.response.body)
+    }
+    throw error
+  }
 }
+
 
 // File upload configuration
 const __filename = fileURLToPath(import.meta.url)
@@ -541,7 +567,10 @@ app.post('/api/leads', async (req, res) => {
       name: lead.name,
       email: lead.email || null,
       phone: lead.phone || null,
+      subject: lead.subject || null,
       message: lead.message || null,
+      projectType: lead.projectType || null,
+      type: lead.type || null,
       source: lead.source || 'website',
       meta: lead.meta || {},
       status: 'new',
@@ -550,43 +579,46 @@ app.post('/api/leads', async (req, res) => {
     }
 
     const result = await db.collection('leads').insertOne(doc)
+    const savedLead = { _id: result.insertedId, ...doc }
 
-    // Fire-and-forget email using simple Gmail app password
-    try {
-      sendLeadEmailSimple({ ...doc }).catch(() => {})
-    } catch {}
+    // Send email notification asynchronously using SendGrid
+    if (process.env.SENDGRID_API_KEY) {
+      sendLeadEmailSendGrid(savedLead).catch(err => {
+        console.error('Lead email notification failed:', err.message)
+      })
+    }
 
-    res.json({ _id: result.insertedId, ...doc })
+    res.json(savedLead)
   } catch (error) {
     console.error('Create lead error:', error)
     res.status(500).json({ error: 'Failed to submit lead' })
   }
 })
 
-// Email notification route for leads (Gmail via app password) - FIXED VERSION
+// Replace your /api/leads/notify route with this
 app.post('/api/leads/notify', async (req, res) => {
   try {
     const { leadDetails } = req.body || {}
-    const senderUser = process.env.GMAIL_USER
-    const senderPass = process.env.GMAIL_APP_PASSWORD
-    const notifyTo = process.env.NOTIFY_TO || senderUser
-
-    if (!senderUser || !senderPass) {
-      return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
-    }
-
-    // Return success immediately to avoid UI blocking
-    res.status(200).json({ ok: true })
-
-    // Send email asynchronously using your existing simple function
-    // This prevents timeout issues and UI blocking
-    sendLeadEmailSimple(leadDetails).catch(err => {
-      console.error('Background email failed:', err.message)
+    
+    // Return success immediately to avoid blocking UI
+    res.status(200).json({ 
+      ok: true, 
+      message: 'Notification queued successfully' 
     })
 
+    // Send email asynchronously
+    if (process.env.SENDGRID_API_KEY) {
+      sendLeadEmailSendGrid(leadDetails).catch(err => {
+        console.error('Background email failed:', err.message)
+      })
+    } else {
+      console.log('Email notification skipped - SendGrid not configured')
+      console.log('Lead details:', leadDetails)
+    }
+
   } catch (err) {
-    console.error('Email notification route error:', err)
-    return res.status(500).json({ error: 'Failed to process email notification' })
+    console.error('Notification route error:', err)
+    return res.status(500).json({ error: 'Failed to process notification' })
   }
 })
 
