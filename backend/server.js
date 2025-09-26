@@ -73,16 +73,42 @@ async function connectToDatabase() {
 // Middleware
 let corsMiddleware
 if (CORS_ORIGIN === '*') {
-  corsMiddleware = cors()
+  corsMiddleware = cors({
+    origin: true,
+    credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  })
 } else {
   const allowedOrigins = CORS_ORIGIN.split(',').map((o) => o.trim()).filter(Boolean)
   corsMiddleware = cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      // Allow no origin (mobile apps, curl) and exact matches from whitelist
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true)
+      }
+      return callback(new Error('CORS not allowed for origin: ' + origin))
+    },
     credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 204
   })
 }
-app.use(corsMiddleware)
-app.options(/.*/, corsMiddleware)
+// Apply CORS and ensure preflight is handled
+app.use((req, res, next) => {
+  // Let the cors middleware set headers
+  corsMiddleware(req, res, () => {
+    // Explicitly handle OPTIONS quickly
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(204)
+    }
+    next()
+  })
+})
+// Extra explicit preflight routes for critical endpoints
+app.options('/api/leads', corsMiddleware)
+app.options('/api/leads/notify', corsMiddleware)
 app.use(
   helmet({
     contentSecurityPolicy: false,
