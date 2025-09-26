@@ -11,14 +11,8 @@ import { fileURLToPath } from 'url'
 import helmet from 'helmet'
 import fs from 'fs'
 import nodemailer from 'nodemailer'
-import sgMail from '@sendgrid/mail'
 
 dotenv.config()
-
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-  console.log('SendGrid configured')
-}
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -26,18 +20,45 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 const BASE_URL = process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || ''
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
 
-// Simple Gmail mailer using App Password
-async function sendLeadEmailSendGrid(leadDetails) {
-  const sendGridApiKey = process.env.SENDGRID_API_KEY
-  const fromEmail = process.env.FROM_EMAIL || 'sanjana.waterproofing@gmail.com'
-  const toEmail = process.env.NOTIFY_TO
+// Gmail configuration with App Password
+let gmailTransporter = null
 
-  if (!sendGridApiKey || !toEmail) {
-    console.warn('SendGrid not configured:', {
-      hasApiKey: !!sendGridApiKey,
-      hasToEmail: !!toEmail
-    })
-    return
+if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+  gmailTransporter = nodemailer.createTransporter({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD
+    },
+    // Add timeout configurations
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 5000,    // 5 seconds
+    socketTimeout: 15000      // 15 seconds
+  })
+
+  // Verify connection on startup
+  gmailTransporter.verify((error, success) => {
+    if (error) {
+      console.error('Gmail configuration error:', error.message)
+      gmailTransporter = null
+    } else {
+      console.log('Gmail configured successfully')
+    }
+  })
+}
+
+// Gmail mailer function with timeout handling
+async function sendLeadEmailGmail(leadDetails) {
+  if (!gmailTransporter) {
+    console.warn('Gmail not configured - missing GMAIL_USER or GMAIL_APP_PASSWORD')
+    return false
+  }
+
+  const toEmail = process.env.NOTIFY_TO || process.env.GMAIL_USER
+
+  if (!toEmail) {
+    console.warn('No notification email configured (NOTIFY_TO)')
+    return false
   }
 
   try {
@@ -54,9 +75,9 @@ async function sendLeadEmailSendGrid(leadDetails) {
     const leadType = leadDetails?.type || (leadDetails?.projectType ? 'Quote Request' : 'Contact Message')
     const subject = `New ${leadType} - Sanjana Enterprises`
 
-    const msg = {
+    const mailOptions = {
+      from: process.env.GMAIL_USER,
       to: toEmail,
-      from: fromEmail, // This must be a verified sender in SendGrid
       subject: subject,
       text: `A new lead was submitted on the website.\n\n${lines.join('\n')}\n\nSubmitted at: ${new Date().toISOString()}`,
       html: `
@@ -74,18 +95,33 @@ async function sendLeadEmailSendGrid(leadDetails) {
       `
     }
 
-    await sgMail.send(msg)
-    console.log('Email sent successfully via SendGrid')
+    // Send email with timeout wrapper
+    const result = await Promise.race([
+      gmailTransporter.sendMail(mailOptions),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Email timeout')), 30000) // 30 second timeout
+      )
+    ])
+
+    console.log('Email sent successfully via Gmail:', result.messageId)
     return true
+
   } catch (error) {
-    console.error('SendGrid email failed:', error.message)
-    if (error.response) {
-      console.error('SendGrid error details:', error.response.body)
+    console.error('Gmail email failed:', error.message)
+    
+    // Log specific error types for debugging
+    if (error.code === 'EAUTH') {
+      console.error('Gmail authentication failed - check GMAIL_USER and GMAIL_APP_PASSWORD')
+    } else if (error.code === 'ETIMEDOUT') {
+      console.error('Gmail connection timeout - network issue')
+    } else if (error.message === 'Email timeout') {
+      console.error('Email sending timeout - took too long to send')
     }
-    throw error
+    
+    // Don't throw error to prevent blocking the API response
+    return false
   }
 }
-
 
 // File upload configuration
 const __filename = fileURLToPath(import.meta.url)
@@ -270,7 +306,11 @@ app.post('/api/upload', authenticateToken, upload.single('image'), (req, res) =>
 
 // ---------- HEALTH CHECK ----------
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() })
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    emailConfigured: !!gmailTransporter
+  })
 })
 
 // ---------- PROJECTS ----------
@@ -581,13 +621,14 @@ app.post('/api/leads', async (req, res) => {
     const result = await db.collection('leads').insertOne(doc)
     const savedLead = { _id: result.insertedId, ...doc }
 
-    // Send email notification asynchronously using SendGrid (ONLY HERE)
-    if (process.env.SENDGRID_API_KEY) {
-      sendLeadEmailSendGrid(savedLead).catch(err => {
+    // Send email notification asynchronously using Gmail (ONLY HERE)
+    if (gmailTransporter) {
+      // Don't await - send in background to avoid blocking response
+      sendLeadEmailGmail(savedLead).catch(err => {
         console.error('Lead email notification failed:', err.message)
       })
     } else {
-      console.log('Email notification skipped - SendGrid not configured')
+      console.log('Email notification skipped - Gmail not configured')
       console.log('New lead saved:', savedLead.name, savedLead.email || savedLead.phone)
     }
 
@@ -1139,6 +1180,7 @@ app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`)
     console.log(`📡 API endpoints at /api`)
   }
+  console.log(`📧 Email configured: ${!!gmailTransporter}`)
 })
 
 // Graceful shutdown
