@@ -633,16 +633,11 @@ app.post('/api/leads', async (req, res) => {
     const result = await db.collection('leads').insertOne(doc)
     const savedLead = { _id: result.insertedId, ...doc }
 
-    // Send email notification asynchronously using Gmail (ONLY HERE)
-    if (gmailTransporter) {
-      // Don't await - send in background to avoid blocking response
-      sendLeadEmailGmail(savedLead).catch(err => {
-        console.error('Lead email notification failed:', err.message)
-      })
-    } else {
-      console.log('Email notification skipped - Gmail not configured')
-      console.log('New lead saved:', savedLead.name, savedLead.email || savedLead.phone)
-    }
+    // Send email notification asynchronously using Gmail (per-send transporter)
+    // Don't await - send in background to avoid blocking response
+    sendLeadEmailGmail(savedLead).catch(err => {
+      console.error('Lead email notification failed:', err.message)
+    })
 
     res.json(savedLead)
   } catch (error) {
