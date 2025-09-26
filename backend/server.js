@@ -1192,7 +1192,8 @@ app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`)
     console.log(`📡 API endpoints at /api`)
   }
-  console.log(`📧 Email configured: ${!!gmailTransporter}`)
+  const emailConfigured = !!(process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD)
+  console.log(`📧 Email configured: ${emailConfigured}`)
 })
 
 // Graceful shutdown
