@@ -62,6 +62,10 @@ async function sendLeadEmailSendGrid(leadDetails) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #1e40af;">New ${leadType}</h2>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3>Lead Details:</h3>
+            ${lines.map(line => `<p>${line}</p>`).join('')}
+          </div>
           <p style="color: #666; font-size: 12px;">
             Submitted: ${new Date().toLocaleString()}<br>
             Source: Sanjana Enterprises Website
