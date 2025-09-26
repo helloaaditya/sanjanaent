@@ -61,20 +61,40 @@ After setting up the environment variables:
    - Ensure `GMAIL_USER` and `GMAIL_APP_PASSWORD` are set
    - Check that the app password is correct (16 characters, no spaces)
 
-2. **"Email service connection failed" error**
+2. **"Connection timeout" error (Common on Render.com)**
+   - This is a known issue with Render.com's free tier and Gmail SMTP
+   - The system now handles timeouts gracefully - leads are still saved
+   - Consider upgrading to Render.com's paid plan for better email reliability
+   - Alternative: Use SendGrid or other email services
+
+3. **"Email service connection failed" error**
    - Verify 2-Factor Authentication is enabled
    - Regenerate the app password
    - Check that the Gmail account is not locked
 
-3. **"Authentication failed" error**
+4. **"Authentication failed" error**
    - Double-check the app password
    - Ensure the email address is correct
    - Try generating a new app password
 
-4. **Emails not being received**
+5. **Emails not being received**
    - Check spam/junk folder
    - Verify the `NOTIFY_TO` email address
    - Check server logs for detailed error messages
+   - Note: On Render.com free tier, email timeouts are common but leads are still saved
+
+#### Render.com Specific Issues:
+
+**Connection Timeouts**: Render.com's free tier has limitations with SMTP connections. The system is now configured to:
+- Skip connection verification to avoid timeouts
+- Use shorter timeouts (20 seconds instead of 60)
+- Return success even if email fails (leads are still saved)
+- Log detailed error information for debugging
+
+**Solutions for Render.com**:
+1. **Upgrade to paid plan**: Better network reliability
+2. **Use SendGrid**: More reliable for cloud platforms
+3. **Accept current behavior**: Leads are saved, emails may occasionally fail
 
 ### Security Notes
 

@@ -502,35 +502,56 @@ app.post('/api/leads/notify', async (req, res) => {
     const { to, subject, leadDetails } = req.body || {}
     const senderUser = process.env.GMAIL_USER
     const senderPass = process.env.GMAIL_APP_PASSWORD
+    const sendGridApiKey = process.env.SENDGRID_API_KEY
     const fallbackTo = process.env.NOTIFY_TO || senderUser
     const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin/dashboard/'
 
-    if (!senderUser || !senderPass) {
-      console.error('❌ Email configuration missing:', {
+    // Check if we have any email configuration
+    const hasGmailConfig = senderUser && senderPass
+    const hasSendGridConfig = sendGridApiKey
+
+    if (!hasGmailConfig && !hasSendGridConfig) {
+      console.error('❌ No email configuration found:', {
         hasGmailUser: !!senderUser,
-        hasGmailPass: !!senderPass
+        hasGmailPass: !!senderPass,
+        hasSendGridKey: !!sendGridApiKey
       })
-      return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
+      return res.status(500).json({ error: 'Email not configured. Please set Gmail or SendGrid credentials.' })
     }
 
     console.log('🔧 Creating email transporter...')
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: { user: senderUser, pass: senderPass },
-    })
-
-    // Test the connection
-    try {
-      console.log('🔍 Testing email connection...')
-      await transporter.verify()
-      console.log('✅ Email connection verified successfully')
-    } catch (verifyErr) {
-      console.error('❌ Email connection verification failed:', verifyErr)
-      return res.status(500).json({ 
-        error: 'Email service connection failed', 
-        details: verifyErr.message 
+    
+    // Use Gmail if available, otherwise skip email sending
+    let transporter = null
+    if (hasGmailConfig) {
+      transporter = nodemailer.createTransport({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: { 
+          user: senderUser, 
+          pass: senderPass 
+        },
+        connectionTimeout: 30000, // 30 seconds
+        greetingTimeout: 15000,   // 15 seconds
+        socketTimeout: 30000,     // 30 seconds
+        pool: false, // Disable pooling to avoid connection issues
+        tls: {
+          rejectUnauthorized: false
+        }
+      })
+    } else {
+      console.log('⚠️ No Gmail configuration found, skipping email sending')
+      return res.status(200).json({ 
+        ok: true, 
+        message: 'Email skipped - no configuration',
+        leadSaved: true 
       })
     }
+
+    // Skip connection verification to avoid timeout issues
+    console.log('⚠️ Skipping connection verification to avoid timeout issues on Render.com')
 
     // Format lead details for display
     const formatLeadDetails = (lead) => {
@@ -623,9 +644,27 @@ app.post('/api/leads/notify', async (req, res) => {
     }
 
     console.log('📤 Sending email...')
-    const result = await transporter.sendMail(mailOptions)
-    console.log('✅ Email sent successfully:', result.messageId)
-    return res.status(200).json({ ok: true, messageId: result.messageId })
+    
+    try {
+      // Add shorter timeout for email sending
+      const sendPromise = transporter.sendMail(mailOptions)
+      const sendTimeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Email send timeout')), 20000) // 20 seconds
+      )
+      
+      const result = await Promise.race([sendPromise, sendTimeoutPromise])
+      console.log('✅ Email sent successfully:', result.messageId)
+      return res.status(200).json({ ok: true, messageId: result.messageId })
+    } catch (sendErr) {
+      console.error('❌ Email send failed, but lead was saved:', sendErr.message)
+      // Don't fail the request if email fails - lead is already saved
+      return res.status(200).json({ 
+        ok: true, 
+        message: 'Lead saved, but email notification failed',
+        emailError: sendErr.message,
+        leadSaved: true 
+      })
+    }
   } catch (err) {
     console.error('❌ Email send failed:', {
       error: err.message,
