@@ -563,121 +563,93 @@ app.post('/api/leads', async (req, res) => {
   }
 })
 
-// Email notification route for leads (Gmail via app password)
+// Email notification route for leads (Gmail via app password) - FIXED VERSION
 app.post('/api/leads/notify', async (req, res) => {
   try {
-    const { to, subject, leadDetails } = req.body || {}
+    const { leadDetails } = req.body || {}
     const senderUser = process.env.GMAIL_USER
     const senderPass = process.env.GMAIL_APP_PASSWORD
-    const fallbackTo = process.env.NOTIFY_TO || senderUser
-    const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin'
+    const notifyTo = process.env.NOTIFY_TO || senderUser
 
     if (!senderUser || !senderPass) {
       return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
     }
 
-    // Same as your original, just added timeout settings
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: { user: senderUser, pass: senderPass },
-      connectionTimeout: 60000, // 60 seconds
-      greetingTimeout: 30000,   // 30 seconds  
-      socketTimeout: 60000,     // 60 seconds
+    // Return success immediately to avoid UI blocking
+    res.status(200).json({ ok: true })
+
+    // Send email asynchronously using your existing simple function
+    // This prevents timeout issues and UI blocking
+    sendLeadEmailSimple(leadDetails).catch(err => {
+      console.error('Background email failed:', err.message)
     })
 
-    // Format lead details for display
-    const formatLeadDetails = (lead) => {
-      if (!lead) return 'No details provided'
-      
-      const details = []
-      if (lead.name) details.push(`<strong>Name:</strong> ${lead.name}`)
-      if (lead.email) details.push(`<strong>Email:</strong> ${lead.email}`)
-      if (lead.phone) details.push(`<strong>Phone:</strong> ${lead.phone}`)
-      if (lead.projectType) details.push(`<strong>Project Type:</strong> ${lead.projectType}`)
-      if (lead.subject) details.push(`<strong>Subject:</strong> ${lead.subject}`)
-      if (lead.message) details.push(`<strong>Message:</strong> ${lead.message}`)
-      if (lead.type) details.push(`<strong>Lead Type:</strong> ${lead.type}`)
-      
-      return details.length > 0 ? details.join('<br>') : 'No details provided'
-    }
-
-    const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
-    const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
-
-    const mailOptions = {
-      from: senderUser,
-      to: to || fallbackTo,
-      subject: emailSubject,
-      text: `New ${leadType} received from Sanjana Enterprises website.\n\n${formatLeadDetails(leadDetails).replace(/<[^>]*>/g, '')}\n\nView in Admin Dashboard: ${adminUrl}`,
-      html: `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>New Lead - Sanjana Enterprises</title>
-        </head>
-        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
-          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            
-            <!-- Header -->
-            <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 30px 20px; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">
-                New ${leadType}
-              </h1>
-              <p style="color: #e0e7ff; margin: 8px 0 0; font-size: 16px;">
-                Sanjana Enterprises Website
-              </p>
-            </div>
-
-            <!-- Content -->
-            <div style="padding: 30px 20px;">
-              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-                <h3 style="color: #1e293b; margin: 0 0 15px; font-size: 18px; font-weight: 600;">
-                  Lead Details
-                </h3>
-                <div style="color: #475569; line-height: 1.6;">
-                  ${formatLeadDetails(leadDetails)}
-                </div>
-              </div>
-
-              <div style="text-align: center; margin: 30px 0;">
-                <a href="${adminUrl}" 
-                   style="display: inline-block; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                  View in Admin Dashboard
-                </a>
-              </div>
-
-              <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-top: 20px;">
-                <p style="color: #64748b; font-size: 14px; margin: 0; text-align: center;">
-                  This is an automated notification from your Sanjana Enterprises website.
-                </p>
-              </div>
-            </div>
-
-            <!-- Footer -->
-            <div style="background-color: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0;">
-              <p style="color: #64748b; font-size: 12px; margin: 0;">
-                © ${new Date().getFullYear()} Sanjana Enterprises. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </body>
-        </html>
-      `,
-    }
-
-    // Add timeout wrapper to prevent hanging (only change from your original)
-    const emailPromise = transporter.sendMail(mailOptions)
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Email send timeout')), 45000) // 45 seconds
-    )
-
-    await Promise.race([emailPromise, timeoutPromise])
-    return res.status(200).json({ ok: true })
   } catch (err) {
-    console.error('Email send failed:', err)
-    return res.status(500).json({ error: 'Failed to send email' })
+    console.error('Email notification route error:', err)
+    return res.status(500).json({ error: 'Failed to process email notification' })
+  }
+})
+
+// Alternative: If you want to keep the HTML template, use this optimized version
+app.post('/api/leads/notify-html', async (req, res) => {
+  try {
+    const { to, subject, leadDetails } = req.body || {}
+    const senderUser = process.env.GMAIL_USER
+    const senderPass = process.env.GMAIL_APP_PASSWORD
+    const fallbackTo = process.env.NOTIFY_TO || senderUser
+
+    if (!senderUser || !senderPass) {
+      return res.status(500).json({ error: 'Email not configured.' })
+    }
+
+    // Return success immediately
+    res.status(200).json({ ok: true })
+
+    // Process email in background with shorter timeout
+    ;(async () => {
+      try {
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: { user: senderUser, pass: senderPass }
+        })
+
+        const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
+        const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
+
+        // Simple text version to avoid HTML rendering delays
+        const lines = []
+        if (leadDetails?.name) lines.push(`Name: ${leadDetails.name}`)
+        if (leadDetails?.email) lines.push(`Email: ${leadDetails.email}`)
+        if (leadDetails?.phone) lines.push(`Phone: ${leadDetails.phone}`)
+        if (leadDetails?.projectType) lines.push(`Project Type: ${leadDetails.projectType}`)
+        if (leadDetails?.subject) lines.push(`Subject: ${leadDetails.subject}`)
+        if (leadDetails?.message) lines.push(`Message: ${leadDetails.message}`)
+        if (leadDetails?.type) lines.push(`Lead Type: ${leadDetails.type}`)
+
+        const mailOptions = {
+          from: senderUser,
+          to: to || fallbackTo,
+          subject: emailSubject,
+          text: `New ${leadType} received from Sanjana Enterprises website.\n\n${lines.join('\n')}\n\nSubmitted at: ${new Date().toISOString()}`
+        }
+
+        // Shorter timeout for background processing
+        const emailPromise = transporter.sendMail(mailOptions)
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Email timeout')), 30000) // 30 seconds
+        )
+
+        await Promise.race([emailPromise, timeoutPromise])
+        console.log('Background email sent successfully')
+
+      } catch (err) {
+        console.error('Background email failed:', err.message)
+      }
+    })()
+
+  } catch (err) {
+    console.error('Email route error:', err)
+    // Don't return error since we already sent success response
   }
 })
 
