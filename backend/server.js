@@ -490,45 +490,27 @@ app.post('/api/leads', async (req, res) => {
   }
 })
 
-// Async email processing function with improved timeout handling
-async function processEmailAsync(leadDetails, senderUser, senderPass, fallbackTo, adminUrl, to, subject) {
+// Email notification route for leads (Gmail via app password)
+app.post('/api/leads/notify', async (req, res) => {
   try {
-    console.log('🔧 Creating email transporter...')
-    
-    const transporter = nodemailer.createTransporter({
-      service: 'gmail',
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      auth: { 
-        user: senderUser, 
-        pass: senderPass 
-      },
-      connectionTimeout: 30000, // Increased to 30 seconds
-      greetingTimeout: 20000,   // Increased to 20 seconds
-      socketTimeout: 30000,     // Increased to 30 seconds
-      pool: true,               // Enable connection pooling
-      maxConnections: 1,
-      maxMessages: 100,
-      tls: {
-        rejectUnauthorized: false,
-        ciphers: 'SSLv3'
-      }
-    })
+    const { to, subject, leadDetails } = req.body || {}
+    const senderUser = process.env.GMAIL_USER
+    const senderPass = process.env.GMAIL_APP_PASSWORD
+    const fallbackTo = process.env.NOTIFY_TO || senderUser
+    const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin'
 
-    // Test connection first with timeout
-    console.log('🔌 Testing SMTP connection...')
-    const connectionPromise = transporter.verify()
-    const connectionTimeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Connection test timeout')), 15000)
-    )
-    
-    try {
-      await Promise.race([connectionPromise, connectionTimeoutPromise])
-      console.log('✅ SMTP connection verified')
-    } catch (connErr) {
-      console.warn('⚠️ SMTP connection test failed, proceeding anyway:', connErr.message)
+    if (!senderUser || !senderPass) {
+      return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
     }
+
+    // Same as your original, just added timeout settings
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: senderUser, pass: senderPass },
+      connectionTimeout: 60000, // 60 seconds
+      greetingTimeout: 30000,   // 30 seconds  
+      socketTimeout: 60000,     // 60 seconds
+    })
 
     // Format lead details for display
     const formatLeadDetails = (lead) => {
@@ -548,18 +530,10 @@ async function processEmailAsync(leadDetails, senderUser, senderPass, fallbackTo
 
     const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
     const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
-    const recipientEmail = to || fallbackTo
-
-    console.log('📝 Preparing email:', {
-      from: senderUser,
-      to: recipientEmail,
-      subject: emailSubject,
-      leadType
-    })
 
     const mailOptions = {
       from: senderUser,
-      to: recipientEmail,
+      to: to || fallbackTo,
       subject: emailSubject,
       text: `New ${leadType} received from Sanjana Enterprises website.\n\n${formatLeadDetails(leadDetails).replace(/<[^>]*>/g, '')}\n\nView in Admin Dashboard: ${adminUrl}`,
       html: `
@@ -617,187 +591,20 @@ async function processEmailAsync(leadDetails, senderUser, senderPass, fallbackTo
           </div>
         </body>
         </html>
-      `
+      `,
     }
 
-    console.log('📤 Sending email...')
-    
-    // Increased timeout for email sending
-    const sendPromise = transporter.sendMail(mailOptions)
-    const sendTimeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Email send timeout after 45 seconds')), 45000) // Increased to 45 seconds
+    // Add timeout wrapper to prevent hanging (only change from your original)
+    const emailPromise = transporter.sendMail(mailOptions)
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Email send timeout')), 45000) // 45 seconds
     )
-    
-    const result = await Promise.race([sendPromise, sendTimeoutPromise])
-    console.log('✅ Email sent successfully:', result.messageId)
-    
-    // Close transporter
-    transporter.close()
-    return result
-    
+
+    await Promise.race([emailPromise, timeoutPromise])
+    return res.status(200).json({ ok: true })
   } catch (err) {
-    console.error('❌ Background email send failed:', {
-      error: err.message,
-      code: err.code,
-      stack: err.stack
-    })
-    throw err
-  }
-}
-
-// Alternative email function with retry mechanism
-async function processEmailAsyncWithRetry(leadDetails, senderUser, senderPass, fallbackTo, adminUrl, to, subject, maxRetries = 3) {
-  let lastError
-  
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      console.log(`🔄 Email attempt ${attempt}/${maxRetries}`)
-      
-      const result = await processEmailAsync(leadDetails, senderUser, senderPass, fallbackTo, adminUrl, to, subject)
-      console.log(`✅ Email sent successfully on attempt ${attempt}`)
-      return result
-      
-    } catch (err) {
-      lastError = err
-      console.warn(`⚠️ Email attempt ${attempt} failed:`, err.message)
-      
-      if (attempt < maxRetries) {
-        const delay = Math.min(1000 * Math.pow(2, attempt - 1), 10000) // Exponential backoff, max 10s
-        console.log(`⏳ Waiting ${delay}ms before retry...`)
-        await new Promise(resolve => setTimeout(resolve, delay))
-      }
-    }
-  }
-  
-  throw lastError
-}
-
-// Fallback email function using alternative SMTP settings
-async function processEmailFallback(leadDetails, senderUser, senderPass, fallbackTo, adminUrl, to, subject) {
-  try {
-    console.log('🔄 Attempting fallback email method...')
-    
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465, // Use secure port
-      secure: true, // Use SSL
-      auth: { 
-        user: senderUser, 
-        pass: senderPass 
-      },
-      connectionTimeout: 60000, // 60 seconds
-      greetingTimeout: 30000,   // 30 seconds
-      socketTimeout: 60000,     // 60 seconds
-      pool: false,
-      tls: {
-        rejectUnauthorized: false
-      }
-    })
-
-    // ... (same email preparation code as above)
-    const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
-    const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
-    const recipientEmail = to || fallbackTo
-
-    const formatLeadDetails = (lead) => {
-      if (!lead) return 'No details provided'
-      
-      const details = []
-      if (lead.name) details.push(`Name: ${lead.name}`)
-      if (lead.email) details.push(`Email: ${lead.email}`)
-      if (lead.phone) details.push(`Phone: ${lead.phone}`)
-      if (lead.projectType) details.push(`Project Type: ${lead.projectType}`)
-      if (lead.subject) details.push(`Subject: ${lead.subject}`)
-      if (lead.message) details.push(`Message: ${lead.message}`)
-      if (lead.type) details.push(`Lead Type: ${lead.type}`)
-      
-      return details.length > 0 ? details.join('\n') : 'No details provided'
-    }
-
-    // Simplified email for fallback
-    const mailOptions = {
-      from: senderUser,
-      to: recipientEmail,
-      subject: emailSubject,
-      text: `New ${leadType} received from Sanjana Enterprises website.\n\n${formatLeadDetails(leadDetails)}\n\nView in Admin Dashboard: ${adminUrl}`
-    }
-
-    const result = await transporter.sendMail(mailOptions)
-    console.log('✅ Fallback email sent successfully:', result.messageId)
-    transporter.close()
-    return result
-    
-  } catch (err) {
-    console.error('❌ Fallback email failed:', err.message)
-    throw err
-  }
-}
-
-// Email notification route for leads (Gmail via app password)
-app.post('/api/leads/notify', async (req, res) => {
-  try {
-    console.log('📧 Email notification request received:', {
-      body: req.body,
-      hasGmailUser: !!process.env.GMAIL_USER,
-      hasGmailPass: !!process.env.GMAIL_APP_PASSWORD
-    })
-
-    const { to, subject, leadDetails } = req.body || {}
-    const senderUser = process.env.GMAIL_USER
-    const senderPass = process.env.GMAIL_APP_PASSWORD
-    const sendGridApiKey = process.env.SENDGRID_API_KEY
-    const fallbackTo = process.env.NOTIFY_TO || senderUser
-    const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin/dashboard/'
-
-    // Check if we have any email configuration
-    const hasGmailConfig = senderUser && senderPass
-    const hasSendGridConfig = sendGridApiKey
-
-    if (!hasGmailConfig && !hasSendGridConfig) {
-      console.error('❌ No email configuration found:', {
-        hasGmailUser: !!senderUser,
-        hasGmailPass: !!senderPass,
-        hasSendGridKey: !!sendGridApiKey
-      })
-      return res.status(500).json({ error: 'Email not configured. Please set Gmail or SendGrid credentials.' })
-    }
-
-    // Immediately return success to avoid blocking the UI
-    res.status(200).json({ 
-      ok: true, 
-      message: 'Email notification queued',
-      leadSaved: true 
-    })
-
-    // Process email asynchronously with retry mechanism
-    ;(async () => {
-      try {
-        // Try main method with retries
-        await processEmailAsyncWithRetry(leadDetails, senderUser, senderPass, fallbackTo, adminUrl, to, subject, 3)
-      } catch (retryErr) {
-        console.warn('⚠️ Retry method failed, trying fallback...', retryErr.message)
-        
-        try {
-          // Try fallback method
-          await processEmailFallback(leadDetails, senderUser, senderPass, fallbackTo, adminUrl, to, subject)
-        } catch (fallbackErr) {
-          console.error('❌ All email methods failed:', {
-            retryError: retryErr.message,
-            fallbackError: fallbackErr.message
-          })
-        }
-      }
-    })()
-
-  } catch (err) {
-    console.error('❌ Email notification route error:', {
-      error: err.message,
-      code: err.code
-    })
-    return res.status(500).json({ 
-      error: 'Failed to process email notification', 
-      details: err.message
-    })
+    console.error('Email send failed:', err)
+    return res.status(500).json({ error: 'Failed to send email' })
   }
 })
 
