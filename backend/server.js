@@ -20,121 +20,6 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 const BASE_URL = process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || ''
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
 
-// Create Gmail transporter (try SSL 465 first, then STARTTLS 587)
-async function createGmailTransporter() {
-  const user = process.env.GMAIL_USER
-  const pass = process.env.GMAIL_APP_PASSWORD
-  if (!user || !pass) return null
-
-  // Attempt SSL (465)
-  try {
-    const t = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: { user, pass },
-      connectionTimeout: 10000,
-      greetingTimeout: 5000,
-      socketTimeout: 15000,
-      tls: { rejectUnauthorized: false }
-    })
-    return t
-  } catch {}
-
-  // Fallback to STARTTLS (587)
-  try {
-    const t = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      auth: { user, pass },
-      connectionTimeout: 10000,
-      greetingTimeout: 5000,
-      socketTimeout: 15000,
-      tls: { ciphers: 'SSLv3', rejectUnauthorized: false }
-    })
-    return t
-  } catch {}
-
-  return null
-}
-
-// Gmail mailer function with timeout handling (per-send transporter)
-async function sendLeadEmailGmail(leadDetails) {
-  const transporter = await createGmailTransporter()
-  if (!transporter) {
-    console.warn('Gmail not configured - missing GMAIL_USER or GMAIL_APP_PASSWORD')
-    return false
-  }
-
-  const toEmail = process.env.NOTIFY_TO || process.env.GMAIL_USER
-  if (!toEmail) {
-    console.warn('No notification email configured (NOTIFY_TO)')
-    return false
-  }
-
-  try {
-    // Format lead details
-    const lines = []
-    if (leadDetails?.name) lines.push(`Name: ${leadDetails.name}`)
-    if (leadDetails?.email) lines.push(`Email: ${leadDetails.email}`)
-    if (leadDetails?.phone) lines.push(`Phone: ${leadDetails.phone}`)
-    if (leadDetails?.subject) lines.push(`Subject: ${leadDetails.subject}`)
-    if (leadDetails?.projectType) lines.push(`Project Type: ${leadDetails.projectType}`)
-    if (leadDetails?.message) lines.push(`Message: ${leadDetails.message}`)
-    if (leadDetails?.type) lines.push(`Lead Type: ${leadDetails.type}`)
-
-    const leadType = leadDetails?.type || (leadDetails?.projectType ? 'Quote Request' : 'Contact Message')
-    const subject = `New ${leadType} - Sanjana Enterprises`
-
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: toEmail,
-      subject: subject,
-      text: `A new lead was submitted on the website.\n\n${lines.join('\n')}\n\nSubmitted at: ${new Date().toISOString()}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1e40af;">New ${leadType}</h2>
-          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3>Lead Details:</h3>
-            ${lines.map(line => `<p>${line}</p>`).join('')}
-          </div>
-          <p style="color: #666; font-size: 12px;">
-            Submitted: ${new Date().toLocaleString()}<br>
-            Source: Sanjana Enterprises Website
-          </p>
-        </div>
-      `
-    }
-
-    // Send email with timeout wrapper
-    const result = await Promise.race([
-      transporter.sendMail(mailOptions),
-      new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Email timeout')), 30000) // 30 second timeout
-      )
-    ])
-
-    console.log('Email sent successfully via Gmail:', result.messageId)
-    return true
-
-  } catch (error) {
-    console.error('Gmail email failed:', error.message)
-    
-    // Log specific error types for debugging
-    if (error.code === 'EAUTH') {
-      console.error('Gmail authentication failed - check GMAIL_USER and GMAIL_APP_PASSWORD')
-    } else if (error.code === 'ETIMEDOUT') {
-      console.error('Gmail connection timeout - network issue')
-    } else if (error.message === 'Email timeout') {
-      console.error('Email sending timeout - took too long to send')
-    }
-    
-    // Don't throw error to prevent blocking the API response
-    return false
-  }
-}
-
 // File upload configuration
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -604,6 +489,7 @@ app.delete('/api/admin/services/:id', authenticateToken, async (req, res) => {
 })
 
 // ---------- LEADS (Contact / Quote Requests) ----------
+// ---------- LEADS (Contact / Quote Requests) ----------
 // Public submit lead
 app.post('/api/leads', async (req, res) => {
   try {
@@ -619,10 +505,7 @@ app.post('/api/leads', async (req, res) => {
       name: lead.name,
       email: lead.email || null,
       phone: lead.phone || null,
-      subject: lead.subject || null,
       message: lead.message || null,
-      projectType: lead.projectType || null,
-      type: lead.type || null,
       source: lead.source || 'website',
       meta: lead.meta || {},
       status: 'new',
@@ -631,32 +514,118 @@ app.post('/api/leads', async (req, res) => {
     }
 
     const result = await db.collection('leads').insertOne(doc)
-    const savedLead = { _id: result.insertedId, ...doc }
-
-    // Send email notification asynchronously using Gmail (per-send transporter)
-    // Don't await - send in background to avoid blocking response
-    sendLeadEmailGmail(savedLead).catch(err => {
-      console.error('Lead email notification failed:', err.message)
-    })
-
-    res.json(savedLead)
+    res.json({ _id: result.insertedId, ...doc })
   } catch (error) {
     console.error('Create lead error:', error)
     res.status(500).json({ error: 'Failed to submit lead' })
   }
 })
 
-// Simplified notify route - NO EMAIL SENDING (prevents duplicates)
+// Email notification route for leads (Gmail via app password)
 app.post('/api/leads/notify', async (req, res) => {
   try {
-    // Just return success - email is already sent in /api/leads route above
-    res.status(200).json({ 
-      ok: true, 
-      message: 'Notification handled automatically when lead was created'
+    const { to, subject, leadDetails } = req.body || {}
+    const senderUser = process.env.GMAIL_USER
+    const senderPass = process.env.GMAIL_APP_PASSWORD
+    const fallbackTo = process.env.NOTIFY_TO || senderUser
+    const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin'
+
+    if (!senderUser || !senderPass) {
+      return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: senderUser, pass: senderPass },
     })
+
+    // Format lead details for display
+    const formatLeadDetails = (lead) => {
+      if (!lead) return 'No details provided'
+      
+      const details = []
+      if (lead.name) details.push(`<strong>Name:</strong> ${lead.name}`)
+      if (lead.email) details.push(`<strong>Email:</strong> ${lead.email}`)
+      if (lead.phone) details.push(`<strong>Phone:</strong> ${lead.phone}`)
+      if (lead.projectType) details.push(`<strong>Project Type:</strong> ${lead.projectType}`)
+      if (lead.subject) details.push(`<strong>Subject:</strong> ${lead.subject}`)
+      if (lead.message) details.push(`<strong>Message:</strong> ${lead.message}`)
+      if (lead.type) details.push(`<strong>Lead Type:</strong> ${lead.type}`)
+      
+      return details.length > 0 ? details.join('<br>') : 'No details provided'
+    }
+
+    const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
+    const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
+
+    const mailOptions = {
+      from: senderUser,
+      to: to || fallbackTo,
+      subject: emailSubject,
+      text: `New ${leadType} received from Sanjana Enterprises website.\n\n${formatLeadDetails(leadDetails).replace(/<[^>]*>/g, '')}\n\nView in Admin Dashboard: ${adminUrl}`,
+      html: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>New Lead - Sanjana Enterprises</title>
+        </head>
+        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
+          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 30px 20px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">
+                New ${leadType}
+              </h1>
+              <p style="color: #e0e7ff; margin: 8px 0 0; font-size: 16px;">
+                Sanjana Enterprises Website
+              </p>
+            </div>
+
+            <!-- Content -->
+            <div style="padding: 30px 20px;">
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #1e293b; margin: 0 0 15px; font-size: 18px; font-weight: 600;">
+                  Lead Details
+                </h3>
+                <div style="color: #475569; line-height: 1.6;">
+                  ${formatLeadDetails(leadDetails)}
+                </div>
+              </div>
+
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="${adminUrl}" 
+                   style="display: inline-block; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  View in Admin Dashboard
+                </a>
+              </div>
+
+              <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-top: 20px;">
+                <p style="color: #64748b; font-size: 14px; margin: 0; text-align: center;">
+                  This is an automated notification from your Sanjana Enterprises website.
+                </p>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div style="background-color: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="color: #64748b; font-size: 12px; margin: 0;">
+                © ${new Date().getFullYear()} Sanjana Enterprises. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `,
+    }
+
+    await transporter.sendMail(mailOptions)
+    return res.status(200).json({ ok: true })
   } catch (err) {
-    console.error('Notification route error:', err)
-    res.status(500).json({ error: 'Failed to process notification' })
+    console.error('Email send failed:', err)
+    return res.status(500).json({ error: 'Failed to send email' })
   }
 })
 

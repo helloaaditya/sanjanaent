@@ -31,14 +31,16 @@ const ContactForm = () => {
         ...formData,
         type: 'contact'
       })
-      // Immediately update UI
-      setSuccess(true)
-      // Fire Google Ads conversion (non-blocking)
+      // Best-effort email notification (backend optional)
       try {
-        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-          window.gtag('event', 'conversion', { send_to: 'AW-17547780538/rh1hCMvS4aAbELrDt69B' })
-        }
+        await apiService.notifyLeadEmail({
+          leadDetails: {
+            ...formData,
+            type: 'contact'
+          }
+        })
       } catch {}
+      setSuccess(true)
       setFormData({
         name: '',
         email: '',
@@ -46,15 +48,6 @@ const ContactForm = () => {
         subject: '',
         message: ''
       })
-      // Fire-and-forget email notification so UI doesn't wait
-      try {
-        apiService.notifyLeadEmail({
-          leadDetails: {
-            ...formData,
-            type: 'contact'
-          }
-        }).catch(() => {})
-      } catch {}
     } catch (err) {
       setError('Failed to send message. Please try again.')
     } finally {

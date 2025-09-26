@@ -33,27 +33,21 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
         ...formData,
         type: 'quote'
       })
-      
-      // Immediately show success
-      setSuccess(true)
-      
-      // Fire Google Ads conversion (non-blocking)
+      // Best-effort email notification (backend optional)
       try {
-        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-          window.gtag('event', 'conversion', { send_to: 'AW-17547780538/rh1hCMvS4aAbELrDt69B' })
-        }
-      } catch { }
-      
-      // Call onSubmitted callback if provided
+        await apiService.notifyLeadEmail({
+          leadDetails: {
+            ...formData,
+            type: 'quote'
+          }
+        })
+      } catch {}
+      setSuccess(true)
       try {
         if (typeof onSubmitted === 'function') {
           onSubmitted()
         }
-      } catch { }
-
-      // Note: Email notification is now handled automatically by the backend
-      // when the lead is submitted to /api/leads
-      
+      } catch {}
     } catch (err) {
       setError('Failed to submit quote request. Please try again.')
     } finally {
