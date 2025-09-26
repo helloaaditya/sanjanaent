@@ -20,6 +20,47 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 const BASE_URL = process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || ''
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
 
+// Simple Gmail mailer using App Password
+async function sendLeadEmailSimple(leadDoc) {
+  const senderUser = process.env.GMAIL_USER
+  const senderPass = process.env.GMAIL_APP_PASSWORD
+  const notifyTo = process.env.NOTIFY_TO || senderUser
+  if (!senderUser || !senderPass || !notifyTo) {
+    console.warn('Email not configured. Skipping send.', {
+      hasUser: !!senderUser,
+      hasPass: !!senderPass,
+      hasTo: !!notifyTo,
+    })
+    return
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user: senderUser, pass: senderPass },
+  })
+
+  const lines = []
+  if (leadDoc.name) lines.push(`Name: ${leadDoc.name}`)
+  if (leadDoc.email) lines.push(`Email: ${leadDoc.email}`)
+  if (leadDoc.phone) lines.push(`Phone: ${leadDoc.phone}`)
+  if (leadDoc.subject) lines.push(`Subject: ${leadDoc.subject}`)
+  if (leadDoc.projectType) lines.push(`Project Type: ${leadDoc.projectType}`)
+  if (leadDoc.message) lines.push(`Message: ${leadDoc.message}`)
+  if (leadDoc.type) lines.push(`Lead Type: ${leadDoc.type}`)
+
+  const leadType = leadDoc.type || (leadDoc.projectType ? 'quote' : 'contact')
+  const subject = `New ${leadType === 'quote' ? 'Quote Request' : 'Contact Message'} - Sanjana Enterprises`
+
+  const text = `A new lead was submitted on the website.\n\n${lines.join('\n')}\n\nSubmitted at: ${new Date().toISOString()}`
+
+  await transporter.sendMail({
+    from: senderUser,
+    to: notifyTo,
+    subject,
+    text,
+  })
+}
+
 // File upload configuration
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -509,6 +550,12 @@ app.post('/api/leads', async (req, res) => {
     }
 
     const result = await db.collection('leads').insertOne(doc)
+
+    // Fire-and-forget email using simple Gmail app password
+    try {
+      sendLeadEmailSimple({ ...doc }).catch(() => {})
+    } catch {}
+
     res.json({ _id: result.insertedId, ...doc })
   } catch (error) {
     console.error('Create lead error:', error)
