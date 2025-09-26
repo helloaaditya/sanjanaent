@@ -493,20 +493,44 @@ app.post('/api/leads', async (req, res) => {
 // Email notification route for leads (Gmail via app password)
 app.post('/api/leads/notify', async (req, res) => {
   try {
+    console.log('📧 Email notification request received:', {
+      body: req.body,
+      hasGmailUser: !!process.env.GMAIL_USER,
+      hasGmailPass: !!process.env.GMAIL_APP_PASSWORD
+    })
+
     const { to, subject, leadDetails } = req.body || {}
     const senderUser = process.env.GMAIL_USER
     const senderPass = process.env.GMAIL_APP_PASSWORD
     const fallbackTo = process.env.NOTIFY_TO || senderUser
-    const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin'
+    const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin/dashboard/'
 
     if (!senderUser || !senderPass) {
+      console.error('❌ Email configuration missing:', {
+        hasGmailUser: !!senderUser,
+        hasGmailPass: !!senderPass
+      })
       return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
     }
 
+    console.log('🔧 Creating email transporter...')
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: { user: senderUser, pass: senderPass },
     })
+
+    // Test the connection
+    try {
+      console.log('🔍 Testing email connection...')
+      await transporter.verify()
+      console.log('✅ Email connection verified successfully')
+    } catch (verifyErr) {
+      console.error('❌ Email connection verification failed:', verifyErr)
+      return res.status(500).json({ 
+        error: 'Email service connection failed', 
+        details: verifyErr.message 
+      })
+    }
 
     // Format lead details for display
     const formatLeadDetails = (lead) => {
@@ -526,10 +550,18 @@ app.post('/api/leads/notify', async (req, res) => {
 
     const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
     const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
+    const recipientEmail = to || fallbackTo
+
+    console.log('📝 Preparing email:', {
+      from: senderUser,
+      to: recipientEmail,
+      subject: emailSubject,
+      leadType
+    })
 
     const mailOptions = {
       from: senderUser,
-      to: to || fallbackTo,
+      to: recipientEmail,
       subject: emailSubject,
       text: `New ${leadType} received from Sanjana Enterprises website.\n\n${formatLeadDetails(leadDetails).replace(/<[^>]*>/g, '')}\n\nView in Admin Dashboard: ${adminUrl}`,
       html: `
@@ -587,14 +619,25 @@ app.post('/api/leads/notify', async (req, res) => {
           </div>
         </body>
         </html>
-      `,
+      `
     }
 
-    await transporter.sendMail(mailOptions)
-    return res.status(200).json({ ok: true })
+    console.log('📤 Sending email...')
+    const result = await transporter.sendMail(mailOptions)
+    console.log('✅ Email sent successfully:', result.messageId)
+    return res.status(200).json({ ok: true, messageId: result.messageId })
   } catch (err) {
-    console.error('Email send failed:', err)
-    return res.status(500).json({ error: 'Failed to send email' })
+    console.error('❌ Email send failed:', {
+      error: err.message,
+      code: err.code,
+      response: err.response,
+      stack: err.stack
+    })
+    return res.status(500).json({ 
+      error: 'Failed to send email', 
+      details: err.message,
+      code: err.code 
+    })
   }
 })
 
