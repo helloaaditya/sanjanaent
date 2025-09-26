@@ -222,7 +222,7 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
             </form>
           )}
         </div>
-      </div>4
+      </div>
     </>
   )
 }
