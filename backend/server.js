@@ -581,11 +581,14 @@ app.post('/api/leads', async (req, res) => {
     const result = await db.collection('leads').insertOne(doc)
     const savedLead = { _id: result.insertedId, ...doc }
 
-    // Send email notification asynchronously using SendGrid
+    // Send email notification asynchronously using SendGrid (ONLY HERE)
     if (process.env.SENDGRID_API_KEY) {
       sendLeadEmailSendGrid(savedLead).catch(err => {
         console.error('Lead email notification failed:', err.message)
       })
+    } else {
+      console.log('Email notification skipped - SendGrid not configured')
+      console.log('New lead saved:', savedLead.name, savedLead.email || savedLead.phone)
     }
 
     res.json(savedLead)
@@ -595,93 +598,17 @@ app.post('/api/leads', async (req, res) => {
   }
 })
 
-// Replace your /api/leads/notify route with this
+// Simplified notify route - NO EMAIL SENDING (prevents duplicates)
 app.post('/api/leads/notify', async (req, res) => {
   try {
-    const { leadDetails } = req.body || {}
-    
-    // Return success immediately to avoid blocking UI
+    // Just return success - email is already sent in /api/leads route above
     res.status(200).json({ 
       ok: true, 
-      message: 'Notification queued successfully' 
+      message: 'Notification handled automatically when lead was created'
     })
-
-    // Send email asynchronously
-    if (process.env.SENDGRID_API_KEY) {
-      sendLeadEmailSendGrid(leadDetails).catch(err => {
-        console.error('Background email failed:', err.message)
-      })
-    } else {
-      console.log('Email notification skipped - SendGrid not configured')
-      console.log('Lead details:', leadDetails)
-    }
-
   } catch (err) {
     console.error('Notification route error:', err)
-    return res.status(500).json({ error: 'Failed to process notification' })
-  }
-})
-
-// Alternative: If you want to keep the HTML template, use this optimized version
-app.post('/api/leads/notify-html', async (req, res) => {
-  try {
-    const { to, subject, leadDetails } = req.body || {}
-    const senderUser = process.env.GMAIL_USER
-    const senderPass = process.env.GMAIL_APP_PASSWORD
-    const fallbackTo = process.env.NOTIFY_TO || senderUser
-
-    if (!senderUser || !senderPass) {
-      return res.status(500).json({ error: 'Email not configured.' })
-    }
-
-    // Return success immediately
-    res.status(200).json({ ok: true })
-
-    // Process email in background with shorter timeout
-    ;(async () => {
-      try {
-        const transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: { user: senderUser, pass: senderPass }
-        })
-
-        const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
-        const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
-
-        // Simple text version to avoid HTML rendering delays
-        const lines = []
-        if (leadDetails?.name) lines.push(`Name: ${leadDetails.name}`)
-        if (leadDetails?.email) lines.push(`Email: ${leadDetails.email}`)
-        if (leadDetails?.phone) lines.push(`Phone: ${leadDetails.phone}`)
-        if (leadDetails?.projectType) lines.push(`Project Type: ${leadDetails.projectType}`)
-        if (leadDetails?.subject) lines.push(`Subject: ${leadDetails.subject}`)
-        if (leadDetails?.message) lines.push(`Message: ${leadDetails.message}`)
-        if (leadDetails?.type) lines.push(`Lead Type: ${leadDetails.type}`)
-
-        const mailOptions = {
-          from: senderUser,
-          to: to || fallbackTo,
-          subject: emailSubject,
-          text: `New ${leadType} received from Sanjana Enterprises website.\n\n${lines.join('\n')}\n\nSubmitted at: ${new Date().toISOString()}`
-        }
-
-        // Shorter timeout for background processing
-        const emailPromise = transporter.sendMail(mailOptions)
-        const timeoutPromise = new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Email timeout')), 30000) // 30 seconds
-        )
-
-        await Promise.race([emailPromise, timeoutPromise])
-        console.log('Background email sent successfully')
-
-      } catch (err) {
-        console.error('Background email failed:', err.message)
-      }
-    })()
-
-  } catch (err) {
-    console.error('Email route error:', err)
-    // Don't return error since we already sent success response
+    res.status(500).json({ error: 'Failed to process notification' })
   }
 })
 
