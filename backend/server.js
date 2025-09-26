@@ -11,14 +11,81 @@ import { fileURLToPath } from 'url'
 import helmet from 'helmet'
 import fs from 'fs'
 import nodemailer from 'nodemailer'
+import sgMail from '@sendgrid/mail'
 
 dotenv.config()
+
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  console.log('SendGrid configured')
+}
 
 const app = express()
 const PORT = process.env.PORT || 3001
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production'
 const BASE_URL = process.env.BASE_URL || process.env.RENDER_EXTERNAL_URL || ''
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*'
+
+// Simple Gmail mailer using App Password
+async function sendLeadEmailSendGrid(leadDetails) {
+  const sendGridApiKey = process.env.SENDGRID_API_KEY
+  const fromEmail = process.env.FROM_EMAIL || 'sanjana.waterproofing@gmail.com'
+  const toEmail = process.env.NOTIFY_TO
+
+  if (!sendGridApiKey || !toEmail) {
+    console.warn('SendGrid not configured:', {
+      hasApiKey: !!sendGridApiKey,
+      hasToEmail: !!toEmail
+    })
+    return
+  }
+
+  try {
+    // Format lead details
+    const lines = []
+    if (leadDetails?.name) lines.push(`Name: ${leadDetails.name}`)
+    if (leadDetails?.email) lines.push(`Email: ${leadDetails.email}`)
+    if (leadDetails?.phone) lines.push(`Phone: ${leadDetails.phone}`)
+    if (leadDetails?.subject) lines.push(`Subject: ${leadDetails.subject}`)
+    if (leadDetails?.projectType) lines.push(`Project Type: ${leadDetails.projectType}`)
+    if (leadDetails?.message) lines.push(`Message: ${leadDetails.message}`)
+    if (leadDetails?.type) lines.push(`Lead Type: ${leadDetails.type}`)
+
+    const leadType = leadDetails?.type || (leadDetails?.projectType ? 'Quote Request' : 'Contact Message')
+    const subject = `New ${leadType} - Sanjana Enterprises`
+
+    const msg = {
+      to: toEmail,
+      from: fromEmail, // This must be a verified sender in SendGrid
+      subject: subject,
+      text: `A new lead was submitted on the website.\n\n${lines.join('\n')}\n\nSubmitted at: ${new Date().toISOString()}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af;">New ${leadType}</h2>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3>Lead Details:</h3>
+            ${lines.map(line => `<p>${line}</p>`).join('')}
+          </div>
+          <p style="color: #666; font-size: 12px;">
+            Submitted: ${new Date().toLocaleString()}<br>
+            Source: Sanjana Enterprises Website
+          </p>
+        </div>
+      `
+    }
+
+    await sgMail.send(msg)
+    console.log('Email sent successfully via SendGrid')
+    return true
+  } catch (error) {
+    console.error('SendGrid email failed:', error.message)
+    if (error.response) {
+      console.error('SendGrid error details:', error.response.body)
+    }
+    throw error
+  }
+}
+
 
 // File upload configuration
 const __filename = fileURLToPath(import.meta.url)
@@ -202,12 +269,8 @@ app.post('/api/upload', authenticateToken, upload.single('image'), (req, res) =>
 })
 
 // ---------- HEALTH CHECK ----------
-  app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
-    timestamp: new Date().toISOString(),
-      emailConfigured: !!(process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD)
-  })
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() })
 })
 
 // ---------- PROJECTS ----------
@@ -489,7 +552,6 @@ app.delete('/api/admin/services/:id', authenticateToken, async (req, res) => {
 })
 
 // ---------- LEADS (Contact / Quote Requests) ----------
-// ---------- LEADS (Contact / Quote Requests) ----------
 // Public submit lead
 app.post('/api/leads', async (req, res) => {
   try {
@@ -505,7 +567,10 @@ app.post('/api/leads', async (req, res) => {
       name: lead.name,
       email: lead.email || null,
       phone: lead.phone || null,
+      subject: lead.subject || null,
       message: lead.message || null,
+      projectType: lead.projectType || null,
+      type: lead.type || null,
       source: lead.source || 'website',
       meta: lead.meta || {},
       status: 'new',
@@ -514,118 +579,36 @@ app.post('/api/leads', async (req, res) => {
     }
 
     const result = await db.collection('leads').insertOne(doc)
-    res.json({ _id: result.insertedId, ...doc })
+    const savedLead = { _id: result.insertedId, ...doc }
+
+    // Send email notification asynchronously using SendGrid (ONLY HERE)
+    if (process.env.SENDGRID_API_KEY) {
+      sendLeadEmailSendGrid(savedLead).catch(err => {
+        console.error('Lead email notification failed:', err.message)
+      })
+    } else {
+      console.log('Email notification skipped - SendGrid not configured')
+      console.log('New lead saved:', savedLead.name, savedLead.email || savedLead.phone)
+    }
+
+    res.json(savedLead)
   } catch (error) {
     console.error('Create lead error:', error)
     res.status(500).json({ error: 'Failed to submit lead' })
   }
 })
 
-// Email notification route for leads (Gmail via app password)
+// Simplified notify route - NO EMAIL SENDING (prevents duplicates)
 app.post('/api/leads/notify', async (req, res) => {
   try {
-    const { to, subject, leadDetails } = req.body || {}
-    const senderUser = process.env.GMAIL_USER
-    const senderPass = process.env.GMAIL_APP_PASSWORD
-    const fallbackTo = process.env.NOTIFY_TO || senderUser
-    const adminUrl = process.env.ADMIN_URL || 'https://sanjanademo.vercel.app/admin'
-
-    if (!senderUser || !senderPass) {
-      return res.status(500).json({ error: 'Email not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing).' })
-    }
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: { user: senderUser, pass: senderPass },
+    // Just return success - email is already sent in /api/leads route above
+    res.status(200).json({ 
+      ok: true, 
+      message: 'Notification handled automatically when lead was created'
     })
-
-    // Format lead details for display
-    const formatLeadDetails = (lead) => {
-      if (!lead) return 'No details provided'
-      
-      const details = []
-      if (lead.name) details.push(`<strong>Name:</strong> ${lead.name}`)
-      if (lead.email) details.push(`<strong>Email:</strong> ${lead.email}`)
-      if (lead.phone) details.push(`<strong>Phone:</strong> ${lead.phone}`)
-      if (lead.projectType) details.push(`<strong>Project Type:</strong> ${lead.projectType}`)
-      if (lead.subject) details.push(`<strong>Subject:</strong> ${lead.subject}`)
-      if (lead.message) details.push(`<strong>Message:</strong> ${lead.message}`)
-      if (lead.type) details.push(`<strong>Lead Type:</strong> ${lead.type}`)
-      
-      return details.length > 0 ? details.join('<br>') : 'No details provided'
-    }
-
-    const leadType = leadDetails?.type || leadDetails?.projectType ? 'Quote Request' : 'Contact Message'
-    const emailSubject = subject || `New ${leadType} - Sanjana Enterprises`
-
-    const mailOptions = {
-      from: senderUser,
-      to: to || fallbackTo,
-      subject: emailSubject,
-      text: `New ${leadType} received from Sanjana Enterprises website.\n\n${formatLeadDetails(leadDetails).replace(/<[^>]*>/g, '')}\n\nView in Admin Dashboard: ${adminUrl}`,
-      html: `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>New Lead - Sanjana Enterprises</title>
-        </head>
-        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
-          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            
-            <!-- Header -->
-            <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 30px 20px; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">
-                New ${leadType}
-              </h1>
-              <p style="color: #e0e7ff; margin: 8px 0 0; font-size: 16px;">
-                Sanjana Enterprises Website
-              </p>
-            </div>
-
-            <!-- Content -->
-            <div style="padding: 30px 20px;">
-              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-                <h3 style="color: #1e293b; margin: 0 0 15px; font-size: 18px; font-weight: 600;">
-                  Lead Details
-                </h3>
-                <div style="color: #475569; line-height: 1.6;">
-                  ${formatLeadDetails(leadDetails)}
-                </div>
-              </div>
-
-              <div style="text-align: center; margin: 30px 0;">
-                <a href="${adminUrl}" 
-                   style="display: inline-block; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                  View in Admin Dashboard
-                </a>
-              </div>
-
-              <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-top: 20px;">
-                <p style="color: #64748b; font-size: 14px; margin: 0; text-align: center;">
-                  This is an automated notification from your Sanjana Enterprises website.
-                </p>
-              </div>
-            </div>
-
-            <!-- Footer -->
-            <div style="background-color: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0;">
-              <p style="color: #64748b; font-size: 12px; margin: 0;">
-                © ${new Date().getFullYear()} Sanjana Enterprises. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </body>
-        </html>
-      `,
-    }
-
-    await transporter.sendMail(mailOptions)
-    return res.status(200).json({ ok: true })
   } catch (err) {
-    console.error('Email send failed:', err)
-    return res.status(500).json({ error: 'Failed to send email' })
+    console.error('Notification route error:', err)
+    res.status(500).json({ error: 'Failed to process notification' })
   }
 })
 
@@ -1156,8 +1139,6 @@ app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`)
     console.log(`📡 API endpoints at /api`)
   }
-  const emailConfigured = !!(process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD)
-  console.log(`📧 Email configured: ${emailConfigured}`)
 })
 
 // Graceful shutdown
