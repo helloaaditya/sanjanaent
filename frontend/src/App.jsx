@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { initGtag } from './gtag'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -14,6 +15,10 @@ import AdminDashboard from './pages/AdminDashboard'
 
 function App() {
   useEffect(() => {
+    // Initialize Google Ads tracking
+    initGtag()
+    
+    // Initialize AOS animations
     AOS.init({
       duration: 800,
       easing: 'ease-in-out-cubic',

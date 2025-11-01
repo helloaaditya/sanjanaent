@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X, Phone, Mail, MapPin, Clock, Star, ArrowRight } from 'lucide-react'
 import { smoothScrollToWithEasing, throttle } from '../utils/smoothScroll'
+import { reportCallConversion } from '../gtag'
 import logoImage from '../assets/sanjana-enterprises.png'
 
 const Header = () => {
@@ -86,6 +87,11 @@ const Header = () => {
 
   const topBarHeight = 56
 
+  const handlePhoneClick = () => {
+    reportCallConversion()
+    window.location.href = "tel:+919916290799"
+  }
+
   return (
     <div className="relative w-full">
       {/* Premium Top Bar - Desktop Only */}
@@ -101,7 +107,10 @@ const Header = () => {
           <div className="max-w-7xl mx-auto flex justify-between items-center text-sm relative z-10">
             {/* Left side - Contact info */}
             <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-300 group cursor-pointer">
+              <div 
+                onClick={handlePhoneClick}
+                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-300 group cursor-pointer"
+              >
                 <div className="p-1.5 rounded-full bg-blue-600/20 group-hover:bg-blue-600 transition-all duration-300">
                   <Phone size={12} />
                 </div>

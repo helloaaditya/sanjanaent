@@ -1,11 +1,17 @@
 import React from 'react'
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react'
+import { reportCallConversion } from '../gtag'
 import logoImage from '../assets/sanjana-enterprises.png'
 import privacyPolicy from '../assets/Privacy_Policy_&_Terms_and_condition.pdf'
 
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handlePhoneClick = () => {
+    reportCallConversion()
+    window.location.href = "tel:+919916290799"
   }
 
 
@@ -109,12 +115,12 @@ const Footer = () => {
               <div className="bg-gray-800 rounded-lg p-4">
                 <h5 className="font-semibold mb-2">Emergency Service</h5>
                 <p className="text-gray-300 text-sm mb-3">Quick Response</p>
-                <a 
-                  href="tel:+919876543210" 
+                <button 
+                  onClick={handlePhoneClick}
                   className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-2 px-4 rounded transition-colors inline-block"
                 >
                   Call Now
-                </a>
+                </button>
               </div>
             </div>
           </div>

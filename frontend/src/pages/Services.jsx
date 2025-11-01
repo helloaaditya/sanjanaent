@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { Shield, CheckCircle, ArrowRight, Award, Phone, Eye, Target, Sparkles, Hammer, Wrench, X } from 'lucide-react'
+import { reportCallConversion } from '../gtag'
 import apiService from '../services/api'
 
 const Services = () => {
+  const handlePhoneClick = () => {
+    reportCallConversion()
+    window.location.href = "tel:+919916290799"
+  }
   const location = useLocation()
   const [activeTab, setActiveTab] = useState('waterproofing')
   const [dbServices, setDbServices] = useState([])
@@ -326,12 +331,12 @@ const Services = () => {
               Get Free Consultation
             </button>
             </a>
-            <a 
-              href="tel:+919916290799"
+            <button 
+              onClick={handlePhoneClick}
               className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
             >
               Call Now: +91 9916290799
-            </a>
+            </button>
           </div>
         </div>
       </section>

@@ -1,9 +1,14 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react'
+import { reportCallConversion } from '../gtag'
 import ContactForm from '../components/ContactForm'
 
 const Contact = () => {
+  const handlePhoneClick = () => {
+    reportCallConversion()
+    window.location.href = "tel:+919916290799"
+  }
 
   const contactInfo = [
     {
@@ -148,13 +153,13 @@ const Contact = () => {
               and protect your property with our professional waterproofing services.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <a 
-                href="tel:+919916290799" 
+              <button 
+                onClick={handlePhoneClick}
                 className="bg-white text-blue-600 hover:bg-gray-50 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-md transition-colors duration-200 flex items-center justify-center"
               >
                 <Phone size={20} className="mr-2" />
                 Call Now
-              </a>
+              </button>
               <a 
                 href="mailto:sanjana.waterproofing@gmail.com" 
                 className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-md transition-colors duration-200 flex items-center justify-center"

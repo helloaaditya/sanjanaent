@@ -1,8 +1,14 @@
 import React from 'react'
 import { Target, ArrowRight, Phone } from 'lucide-react'
+import { reportCallConversion } from '../gtag'
 import ScrollAnimation from './ScrollAnimation'
 
 const About = () => {
+  const handlePhoneClick = () => {
+    reportCallConversion()
+    window.location.href = "tel:+919916290799"
+  }
+
   return (
     <section id="about" className="section-padding bg-white ">
       <div className="container-max">
@@ -61,10 +67,10 @@ const About = () => {
               Get Free Consultation
               <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="tel:+919916290799" className="border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center">
+            <button onClick={handlePhoneClick} className="border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center">
               <Phone size={20} className="mr-2" />
               Call Now
-            </a>
+            </button>
           </div>
         </ScrollAnimation>
       </div>

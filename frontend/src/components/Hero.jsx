@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Shield, Award, Users, CheckCircle, Star, Phone, MapPin, Play, Sparkles, Zap, Calculator, ChevronLeft, Globe, ChevronRight } from 'lucide-react'
+import { reportCallConversion } from '../gtag'
 import QuoteRequestModal from './QuoteRequestModal'
 
 // Waterproofing ImageSlider component  
@@ -327,7 +328,10 @@ const Hero = () => {
     { icon: Globe, text: 'ISO 9001:2015 Certified', color: 'text-green-500' }
   ]
 
-
+  const handlePhoneClick = () => {
+    reportCallConversion()
+    window.location.href = "tel:+919916290799"
+  }
 
   return (
     <div className="relative p">
@@ -473,12 +477,12 @@ const Hero = () => {
                 Get Free Quote
                   <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300 sm:inline hidden" />
               </button>
-              <a 
-                href="tel:+919916290799" 
+              <button 
+                onClick={handlePhoneClick}
                   className="group bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-300 hover:border-blue-300 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-bold flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto min-h-[48px] text-sm sm:text-base"
               >
                 Call Now
-              </a>
+              </button>
               </div>
             </div>
           </div>
