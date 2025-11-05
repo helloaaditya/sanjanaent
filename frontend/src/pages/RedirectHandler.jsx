@@ -13,7 +13,8 @@ const RedirectHandler = () => {
     '/terrace-waterproofing.html': '/terrace-waterproofing',
     '/basement-waterproofing.html': '/basement-waterproofing',
     '/water-tanks-waterproofing.html': '/water-tanks-waterproofing',
-    '/repair-section.html': '/repair-section'
+    '/repair-section.html': '/repair-section',
+    '/about.html': '/about'
   }
 
   const newPath = redirectMap[location.pathname]

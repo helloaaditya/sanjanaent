@@ -73,6 +73,7 @@ function App() {
         <Route path="/basement-waterproofing.html" element={<RedirectHandler />} />
         <Route path="/water-tanks-waterproofing.html" element={<RedirectHandler />} />
         <Route path="/repair-section.html" element={<RedirectHandler />} />
+        <Route path="/about.html" element={<RedirectHandler />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/setup" element={<AdminSetup />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />

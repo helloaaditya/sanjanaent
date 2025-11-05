@@ -10,6 +10,7 @@
     { "source": "/terrace-waterproofing.html", "destination": "/terrace-waterproofing", "permanent": true },
     { "source": "/basement-waterproofing.html", "destination": "/basement-waterproofing", "permanent": true },
     { "source": "/water-tanks-waterproofing.html", "destination": "/water-tanks-waterproofing", "permanent": true },
-    { "source": "/repair-section.html", "destination": "/repair-section", "permanent": true }
+    { "source": "/repair-section.html", "destination": "/repair-section", "permanent": true },
+    { "source": "/about.html", "destination": "/about", "permanent": true }
   ]
 }
