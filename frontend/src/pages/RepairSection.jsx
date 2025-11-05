@@ -5,6 +5,11 @@ import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Spa
 import ScrollAnimation from '../components/ScrollAnimation'
 
 const RepairSection = () => {
+  // Simple icons since they're not imported
+  const Droplets = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.5-2.26-1.7-3.05-.5-.27-.9-.48-1.3-.48-.4 0-.8.19-1.3.48-1.2.79-1.7 1.89-1.7 3.05 0 2.22 1.8 4.05 4 4.05z"/><path d="M16 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.5-2.26-1.7-3.05-.5-.27-.9-.48-1.3-.48-.4 0-.8.19-1.3.48-1.2.79-1.7 1.89-1.7 3.05 0 2.22 1.8 4.05 4 4.05z"/></svg>
+  const Square = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+  const Brush = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"/></svg>
+
   const handlePhoneClick = () => {
     window.location.href = "tel:+919916290799"
   }
@@ -91,11 +96,6 @@ const RepairSection = () => {
     "Uses advanced materials and techniques",
     "Backed by expert craftsmanship and warranty"
   ]
-
-  // Simple icons since they're not imported
-  const Droplets = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.5-2.26-1.7-3.05-.5-.27-.9-.48-1.3-.48-.4 0-.8.19-1.3.48-1.2.79-1.7 1.89-1.7 3.05 0 2.22 1.8 4.05 4 4.05z"/><path d="M16 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.5-2.26-1.7-3.05-.5-.27-.9-.48-1.3-.48-.4 0-.8.19-1.3.48-1.2.79-1.7 1.89-1.7 3.05 0 2.22 1.8 4.05 4 4.05z"/></svg>
-  const Square = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
-  const Brush = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"/></svg>
 
   return (
     <>

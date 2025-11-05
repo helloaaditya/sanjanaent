@@ -213,7 +213,12 @@ const Header = () => {
                     <div 
                       className="relative"
                       onMouseEnter={() => setIsServicesDropdownOpen(true)}
-                      onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                      onMouseLeave={() => {
+                        // Add a small delay to allow moving to the dropdown menu
+                        setTimeout(() => {
+                          setIsServicesDropdownOpen(false)
+                        }, 100)
+                      }}
                     >
                       <button
                         onClick={() => handleNavigation(item)}
@@ -230,7 +235,7 @@ const Header = () => {
                       {/* Services Dropdown */}
                       {isServicesDropdownOpen && (
                         <div 
-                          className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-50"
+                          className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-50"
                           onMouseEnter={() => setIsServicesDropdownOpen(true)}
                           onMouseLeave={() => setIsServicesDropdownOpen(false)}
                         >
