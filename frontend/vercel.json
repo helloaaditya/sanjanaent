@@ -1,5 +1,15 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
+  ],
+  
+  "redirects": [
+    { "source": "/epoxy-flooring.html", "destination": "/epoxy-flooring", "permanent": true },
+    { "source": "/pu-flooring.html", "destination": "/pu-flooring", "permanent": true },
+    { "source": "/water-leakage-detection-by-thermal-imaging.html", "destination": "/water-leakage-detection", "permanent": true },
+    { "source": "/terrace-waterproofing.html", "destination": "/terrace-waterproofing", "permanent": true },
+    { "source": "/basement-waterproofing.html", "destination": "/basement-waterproofing", "permanent": true },
+    { "source": "/water-tanks-waterproofing.html", "destination": "/water-tanks-waterproofing", "permanent": true },
+    { "source": "/repair-section.html", "destination": "/repair-section", "permanent": true }
   ]
 }
