@@ -112,20 +112,24 @@ const Services = () => {
     <>
       <Helmet>
         <title>Waterproofing & Industrial Flooring Services in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Terrace, bathroom, basement & roof waterproofing. Epoxy, PU, ESD, anti-static flooring. Free inspection. Serving Bangalore & Karnataka." />
-        <meta name="keywords" content="waterproofing services bangalore, waterproofing services bengaluru, best waterproofing bangalore, waterproofing contractor bangalore, terrace waterproofing bangalore, bathroom waterproofing bangalore, basement waterproofing bangalore, roof waterproofing bangalore, injection grouting bangalore, app membrane bangalore, sbs membrane bangalore, epoxy flooring bangalore, epoxy self leveling bangalore, self leveling epoxy bangalore, esd flooring bangalore, antistatic flooring bangalore, anti static flooring bangalore, pu flooring bangalore, polyurethane flooring bangalore, pu concrete flooring bangalore, urethane concrete flooring bangalore, epoxy screed bangalore, floor screeding bangalore, anti slip flooring bangalore, non slip flooring bangalore, parking deck coating bangalore, car park epoxy bangalore, warehouse flooring bangalore, factory flooring bangalore, cleanroom flooring bangalore, food grade flooring bangalore, hygienic flooring bangalore, chemical resistant flooring bangalore, heavy duty flooring bangalore, industrial flooring services bangalore, commercial waterproofing bangalore, residential waterproofing bangalore, hebbal waterproofing, jakkur waterproofing, yelahanka waterproofing, whitefield waterproofing, hsr waterproofing, koramangala waterproofing" />
+        <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. Free inspection & quote." />
+        <meta name="keywords" content="waterproofing services bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/services" />
-
-        <meta property="og:title" content="Waterproofing & Flooring Services in Bangalore" />
-        <meta property="og:description" content="Complete waterproofing and industrial flooring services across Karnataka. Free site inspection." />
+        <meta property="og:title" content="Waterproofing & Industrial Flooring Services in Bangalore" />
+        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Free site inspection with expert solutions for residential and commercial properties." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/services" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="geo.placename" content="Bangalore, Karnataka" />
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.position" content="12.9716;77.5946" />
+        <meta name="ICBM" content="12.9716, 77.5946" />
 
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Service',
-          'name': 'Waterproofing and Flooring Services',
+          'name': 'Waterproofing and Industrial Flooring Services',
           'provider': {
             '@type': 'LocalBusiness',
             'name': 'Sanjana Enterprises',

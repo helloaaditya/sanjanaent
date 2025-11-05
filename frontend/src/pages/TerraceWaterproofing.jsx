@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Home, Sun } from 'lucide-react'
+import { Thermometer, Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Home, Sun } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 
 const TerraceWaterproofing = () => {
@@ -96,15 +96,20 @@ const TerraceWaterproofing = () => {
   return (
     <>
       <Helmet>
-        <title>Terrace Waterproofing Services in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Professional terrace waterproofing services in Bangalore. Protect your home from water damage with our advanced waterproofing solutions. Free inspection." />
-        <meta name="keywords" content="terrace waterproofing bangalore, rooftop waterproofing bangalore, terrace leakage repair bangalore, waterproofing contractors bangalore, terrace coating services bangalore" />
+        <title>Terrace Waterproofing in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Professional terrace waterproofing services in Bangalore. Protect your home from water damage with advanced solutions. 10-15 year warranty. Free inspection." />
+        <meta name="keywords" content="terrace waterproofing bangalore, rooftop waterproofing, terrace leakage repair, waterproofing contractors, terrace coating services" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/terrace-waterproofing" />
         <meta property="og:title" content="Terrace Waterproofing Services in Bangalore" />
-        <meta property="og:description" content="Professional terrace waterproofing services to protect your home from water damage. Advanced solutions for long-term protection." />
+        <meta property="og:description" content="Professional terrace waterproofing services to protect your home from water damage. Advanced solutions with 10-15 year warranty." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/terrace-waterproofing" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="geo.placename" content="Bangalore, Karnataka" />
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.position" content="12.9716;77.5946" />
+        <meta name="ICBM" content="12.9716, 77.5946" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
@@ -341,7 +346,7 @@ const TerraceWaterproofing = () => {
                 Protect Your Terrace Today
               </h2>
               <p className="text-xl text-orange-100 mb-10 leading-relaxed">
-                Don't wait for the next monsoon to reveal terrace leaks. Get a free consultation and quote 
+                Don't let the next monsoon reveal terrace leaks. Get a free consultation and quote 
                 for professional terrace waterproofing to safeguard your property.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -361,6 +366,67 @@ const TerraceWaterproofing = () => {
                 </button>
               </div>
             </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Related Services Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-16">
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Related
+                  <span className="block text-orange-600">Services</span>
+                </h2>
+                <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+                  Explore our other specialized services that complement terrace waterproofing.
+                </p>
+              </div>
+            </ScrollAnimation>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <ScrollAnimation animation="fade-in-up" delay={100}>
+                <Link to="/basement-waterproofing" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group block">
+                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Home size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Basement Waterproofing</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">Prevent water damage and create dry, usable basement spaces.</p>
+                  <div className="text-orange-600 font-semibold flex items-center">
+                    Learn more
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-up" delay={200}>
+                <Link to="/water-leakage-detection" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group block">
+                  <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Thermometer size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Water Leakage Detection</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">Advanced thermal imaging to locate hidden water leaks without damage.</p>
+                  <div className="text-orange-600 font-semibold flex items-center">
+                    Learn more
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-up" delay={300}>
+                <Link to="/repair-section" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group block">
+                  <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Wrench size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Repair Services</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">Expert repair and restoration services for all types of water damage.</p>
+                  <div className="text-orange-600 font-semibold flex items-center">
+                    Learn more
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </ScrollAnimation>
+            </div>
           </div>
         </section>
       </div>

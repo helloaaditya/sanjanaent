@@ -44,14 +44,19 @@ const About = () => {
     <>
       <Helmet>
         <title>About Sanjana Enterprises | Waterproofing & Flooring Experts in Bangalore</title>
-        <meta name="description" content="30+ years of waterproofing and industrial flooring expertise in Bangalore. ISO-certified processes, professional team, advanced leakage detection." />
-        <meta name="keywords" content="about waterproofing company bangalore, best waterproofing in bangalore, experienced waterproofing contractor bangalore, iso certified waterproofing bangalore, industrial flooring experts bangalore, epoxy flooring experts bangalore, pu flooring experts bangalore, polyurethane flooring experts bangalore, injection grouting experts bangalore, leakage detection experts bangalore" />
+        <meta name="description" content="30+ years of waterproofing and industrial flooring expertise in Bangalore. ISO-certified processes, professional team, advanced leakage detection. Serving Karnataka." />
+        <meta name="keywords" content="about waterproofing company bangalore, best waterproofing in bangalore, experienced waterproofing contractor, iso certified waterproofing, industrial flooring experts, epoxy flooring experts, pu flooring experts" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/about" />
-        <meta property="og:title" content="About Sanjana Enterprises" />
-        <meta property="og:description" content="Premier waterproofing and flooring specialists in Karnataka with decades of experience." />
+        <meta property="og:title" content="About Sanjana Enterprises | Waterproofing & Flooring Experts" />
+        <meta property="og:description" content="30+ years of waterproofing and industrial flooring expertise in Bangalore. ISO-certified processes, professional team, advanced leakage detection. Serving Karnataka." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/about" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="geo.placename" content="Bangalore, Karnataka" />
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.position" content="12.9716;77.5946" />
+        <meta name="ICBM" content="12.9716, 77.5946" />
       </Helmet>
 
       <section id="about" className="bg-white">

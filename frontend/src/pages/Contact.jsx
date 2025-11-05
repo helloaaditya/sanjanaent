@@ -42,8 +42,8 @@ const Contact = () => {
     <>
       <Helmet>
         <title>Contact Sanjana Enterprises | Waterproofing Company in Bangalore</title>
-        <meta name="description" content="Get a free waterproofing inspection and quote in Bangalore. Call +91 9916290799 or email sanjana.waterproofing@gmail.com." />
-        <meta name="keywords" content="contact waterproofing bangalore, waterproofing quote bangalore, waterproofing inspection bangalore, waterproofing contractor contact bangalore, epoxy flooring contractor bangalore contact, pu flooring bangalore contact, polyurethane flooring bangalore contact, pu concrete flooring bangalore contact, epoxy self leveling bangalore contact, esd flooring bangalore contact, antistatic flooring bangalore contact, injection grouting bangalore contact, terrace waterproofing bangalore contact, basement waterproofing bangalore contact, roof waterproofing bangalore contact, hebbal waterproofing contact, jakkur waterproofing contact, yelahanka waterproofing contact, whitefield waterproofing contact, koramangala waterproofing contact, hsr layout waterproofing contact" />
+        <meta name="description" content="Contact Sanjana Enterprises for professional waterproofing & industrial flooring services in Bangalore. Free inspection & quote. Call +91 9916290799." />
+        <meta name="keywords" content="contact waterproofing bangalore, waterproofing quote, waterproofing inspection, epoxy flooring contractor, pu flooring bangalore, terrace waterproofing, basement waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/contact" />
         
@@ -52,6 +52,11 @@ const Contact = () => {
         <meta property="og:description" content="Contact Sanjana Enterprises for waterproofing services in Bangalore. Free inspection & quote. Call +91 9916290799" />
         <meta property="og:url" content="https://sanjanawaterproofing.com/contact" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="geo.placename" content="Bangalore, Karnataka" />
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.position" content="13.067775;77.619329" />
+        <meta name="ICBM" content="13.067775, 77.619329" />
         
         {/* Contact Schema */}
         <script type="application/ld+json">
@@ -70,6 +75,7 @@ const Contact = () => {
               "streetAddress": "# 786/1/30&31, 3rd main, 2nd cross, telecom layout, beside muneshwara temple, srirampura, jakkurpost",
               "addressLocality": "Bangalore",
               "addressRegion": "Karnataka",
+              "postalCode": "560064",
               "addressCountry": "IN"
               },
               "openingHours": "Mo-Sa 09:00-18:00",

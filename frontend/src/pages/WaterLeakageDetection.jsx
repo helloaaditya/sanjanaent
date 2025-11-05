@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Thermometer, Wifi, Camera } from 'lucide-react'
+import { Home, Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Thermometer, Wifi, Camera } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 
 const WaterLeakageDetection = () => {
@@ -87,15 +87,20 @@ const WaterLeakageDetection = () => {
   return (
     <>
       <Helmet>
-        <title>Water Leakage Detection Services in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Advanced water leakage detection using thermal imaging and specialized equipment in Bangalore. Locate hidden leaks quickly and accurately. Free inspection." />
-        <meta name="keywords" content="water leakage detection bangalore, thermal imaging water leak detection bangalore, hidden water leak detection bangalore, moisture detection services bangalore, infrared thermography water leak detection bangalore" />
+        <title>Water Leakage Detection in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Advanced water leakage detection using thermal imaging in Bangalore. Locate hidden leaks quickly & accurately without damage. Free inspection." />
+        <meta name="keywords" content="water leakage detection bangalore, thermal imaging water leak detection, hidden water leak detection, moisture detection services, infrared thermography water leak detection" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/water-leakage-detection" />
         <meta property="og:title" content="Water Leakage Detection Services in Bangalore" />
-        <meta property="og:description" content="Advanced water leakage detection using thermal imaging and specialized equipment. Locate hidden leaks quickly and accurately." />
+        <meta property="og:description" content="Advanced water leakage detection using thermal imaging and specialized equipment. Locate hidden leaks quickly and accurately without damage." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/water-leakage-detection" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="geo.placename" content="Bangalore, Karnataka" />
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.position" content="12.9716;77.5946" />
+        <meta name="ICBM" content="12.9716, 77.5946" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
@@ -342,6 +347,67 @@ const WaterLeakageDetection = () => {
                 </button>
               </div>
             </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Related Services Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-16">
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Related
+                  <span className="block text-teal-600">Services</span>
+                </h2>
+                <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+                  Explore our other specialized services that complement water leak detection.
+                </p>
+              </div>
+            </ScrollAnimation>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <ScrollAnimation animation="fade-in-up" delay={100}>
+                <Link to="/terrace-waterproofing" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group block">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Home size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Terrace Waterproofing</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">Professional terrace waterproofing to prevent water damage and extend terrace life.</p>
+                  <div className="text-teal-600 font-semibold flex items-center">
+                    Learn more
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-up" delay={200}>
+                <Link to="/basement-waterproofing" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group block">
+                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Home size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Basement Waterproofing</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">Prevent water damage and create dry, usable basement spaces.</p>
+                  <div className="text-teal-600 font-semibold flex items-center">
+                    Learn more
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-up" delay={300}>
+                <Link to="/repair-section" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group block">
+                  <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Wrench size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Repair Services</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">Expert repair and restoration services for all types of water damage.</p>
+                  <div className="text-teal-600 font-semibold flex items-center">
+                    Learn more
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </ScrollAnimation>
+            </div>
           </div>
         </section>
       </div>

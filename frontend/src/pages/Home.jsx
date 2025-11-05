@@ -11,17 +11,22 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Sanjana Enterprises | Waterproofing & Flooring Contractors in Bangalore</title>
-        <meta name="description" content="Waterproofing contractors in Bangalore for terrace, bathroom, basement & roof. Epoxy/PU industrial flooring. 30+ years. Free site inspection." />
-        <meta name="keywords" content="waterproofing bangalore, waterproofing bengaluru, waterproofing contractor bangalore, waterproofing company bangalore, terrace waterproofing bangalore, roof waterproofing bangalore, basement waterproofing bangalore, bathroom waterproofing bangalore, injection grouting bangalore, leakage detection bangalore, sump waterproofing bangalore, water tank waterproofing bangalore, swimming pool waterproofing bangalore, industrial flooring bangalore, epoxy flooring bangalore, epoxy self leveling bangalore, self-leveling epoxy bangalore, esd flooring bangalore, antistatic flooring bangalore, anti static flooring bangalore, pu flooring bangalore, polyurethane flooring bangalore, pu concrete flooring bangalore, polyurethane concrete bangalore, urethane concrete bangalore, epoxy screed bangalore, floor screeding bangalore, anti slip flooring bangalore, non slip flooring bangalore, car park deck coating bangalore, parking epoxy flooring bangalore, warehouse flooring bangalore, factory flooring bangalore, cleanroom flooring bangalore, food grade flooring bangalore, hygienic flooring bangalore, chemical resistant flooring bangalore, heavy duty flooring bangalore, epoxy coating bangalore, floor coating bangalore, app membrane bangalore, sbs membrane bangalore, expansion joint waterproofing bangalore, structural rehabilitation bangalore, karnataka waterproofing, hebbal, jakkur, yelahanka, whitefield, indiranagar, koramangala, hsr layout, electronic city, marathahalli, sarjapur road, bellandur, jp nagar, rt nagar, mg road, rajajinagar, malleshwaram, banashankari, basaveshwaranagar, peenya, nagarbhavi, k r puram, btm layout" />
+        <title>Sanjana Enterprises | Waterproofing & Industrial Flooring in Bangalore</title>
+        <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. 30+ years experience. Free inspection." />
+        <meta name="keywords" content="waterproofing bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Sanjana Enterprises | Waterproofing & Industrial Flooring" />
-        <meta property="og:description" content="Waterproofing and industrial flooring in Bangalore and across Karnataka. Free site inspection. 30+ years of experience." />
+        <meta property="og:title" content="Sanjana Enterprises | Waterproofing & Industrial Flooring in Bangalore" />
+        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Free site inspection with 30+ years of experience." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="geo.placename" content="Bangalore, Karnataka" />
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.position" content="12.9716;77.5946" />
+        <meta name="ICBM" content="12.9716, 77.5946" />
         
         {/* Local Business Schema */}
         <script type="application/ld+json">
@@ -29,20 +34,22 @@ const Home = () => {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Sanjana Enterprises",
-            "description": "Waterproofing and industrial flooring services in Bangalore and across Karnataka.",
+            "description": "Professional waterproofing and industrial flooring services in Bangalore and across Karnataka.",
             "url": "https://sanjanawaterproofing.com",
             "telephone": "+91-9916290799",
             "email": "sanjana.waterproofing@gmail.com",
             "address": {
               "@type": "PostalAddress",
+              "streetAddress": "# 786/1/30&31, 3rd main, 2nd cross, telecom layout, beside muneshwara temple, srirampura, jakkurpost",
               "addressLocality": "Bangalore",
               "addressRegion": "Karnataka",
+              "postalCode": "560064",
               "addressCountry": "IN"
             },
             "geo": {
               "@type": "GeoCoordinates",
-              "latitude": "12.9716",
-              "longitude": "77.5946"
+              "latitude": "13.067775",
+              "longitude": "77.619329"
             },
             "openingHours": "Mo-Sa 09:00-18:00",
             "priceRange": "₹₹",

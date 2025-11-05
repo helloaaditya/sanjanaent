@@ -30,15 +30,20 @@ const Gallery = () => {
   return (
     <>
       <Helmet>
-        <title>Project Gallery | Waterproofing & Flooring Work in Bangalore</title>
-        <meta name="description" content="View completed waterproofing and industrial flooring projects across Bangalore & Karnataka. Residential, commercial, and industrial case studies." />
-        <meta name="keywords" content="waterproofing projects bangalore, waterproofing gallery bangalore, flooring projects bangalore, epoxy flooring projects bangalore, epoxy self leveling projects bangalore, esd flooring projects bangalore, antistatic flooring projects bangalore, pu flooring projects bangalore, polyurethane concrete projects bangalore, injection grouting projects bangalore, terrace waterproofing projects bangalore, basement waterproofing projects bangalore, roof waterproofing projects bangalore" />
+        <title>Project Gallery | Waterproofing & Industrial Flooring in Bangalore</title>
+        <meta name="description" content="View our completed waterproofing and industrial flooring projects in Bangalore. Residential, commercial, and industrial case studies with before/after photos." />
+        <meta name="keywords" content="waterproofing projects bangalore, industrial flooring projects, epoxy flooring projects, pu flooring projects, terrace waterproofing projects, basement waterproofing projects, water tank waterproofing projects" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/gallery" />
         <meta property="og:title" content="Project Gallery - Sanjana Enterprises" />
-        <meta property="og:description" content="See our executed projects in waterproofing and flooring across Karnataka." />
+        <meta property="og:description" content="View our completed waterproofing and industrial flooring projects in Bangalore. Residential, commercial, and industrial case studies." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/gallery" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="geo.placename" content="Bangalore, Karnataka" />
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.position" content="12.9716;77.5946" />
+        <meta name="ICBM" content="12.9716, 77.5946" />
       </Helmet>
 
       <section id="gallery" className="py-12 sm:py-16">
