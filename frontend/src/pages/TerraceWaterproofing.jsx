@@ -102,7 +102,7 @@ const TerraceWaterproofing = () => {
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/terrace-waterproofing" />
         <meta property="og:title" content="Terrace Waterproofing Services in Bangalore" />
-        <meta property="og:description" content="Professional terrace waterproofing services to protect your home from water damage. Advanced solutions for long-lasting protection." />
+        <meta property="og:description" content="Professional terrace waterproofing services to protect your home from water damage. Advanced solutions for long-term protection." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/terrace-waterproofing" />
         <meta property="og:type" content="website" />
       </Helmet>
