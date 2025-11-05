@@ -11,6 +11,15 @@
     { "source": "/basement-waterproofing.html", "destination": "/basement-waterproofing", "permanent": true },
     { "source": "/water-tanks-waterproofing.html", "destination": "/water-tanks-waterproofing", "permanent": true },
     { "source": "/repair-section.html", "destination": "/repair-section", "permanent": true },
-    { "source": "/about.html", "destination": "/about", "permanent": true }
+    { "source": "/about.html", "destination": "/about", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/services.html", "destination": "/services", "permanent": true },
+    { "source": "/blog.html", "destination": "/services", "permanent": true },
+    { "source": "/gallery.html", "destination": "/gallery", "permanent": true },
+    { "source": "/training.html", "destination": "/contact", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/client.html", "destination": "/contact", "permanent": true },
+    { "source": "/search?q={search_term_string}", "destination": "/contact", "permanent": true }
+
   ]
 }
