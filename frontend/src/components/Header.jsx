@@ -436,14 +436,14 @@ const Header = () => {
                                         className={`flex-shrink-0 transition-transform duration-200 ${openSubMenu === service.name ? 'rotate-180' : ''}`} 
                                       />
                                     </button>
-                                    {/* Sub-items */}
+                                    {/* Sub-items - Mobile */}
                                     {openSubMenu === service.name && (
-                                      <div className="pl-2 pr-2 pt-1.5 pb-1.5 space-y-0.5 bg-gray-50 rounded-lg mt-1">
-                                        {service.subItems.map((subItem) => (
+                                      <div className="w-full bg-gray-50 rounded-lg mt-1 py-1 shadow-sm border border-gray-100">
+                                        {service.subItems.map((subItem, index) => (
                                           <button
                                             key={subItem.name}
                                             onClick={() => handleNavigation(subItem)}
-                                            className={`w-full text-left px-6 py-3 rounded-md text-gray-600 hover:text-white hover:bg-blue-500 transition-all duration-300 font-normal text-sm active:scale-98 ${
+                                            className={`w-full text-left px-6 py-3 text-gray-600 hover:text-white hover:bg-blue-500 transition-all duration-200 font-normal text-sm active:scale-98 ${
                                               isActivePage(subItem)
                                                 ? 'bg-blue-500 text-white'
                                                 : ''
@@ -454,7 +454,7 @@ const Header = () => {
                                               WebkitTapHighlightColor: 'transparent'
                                             }}
                                           >
-                                            <span className="break-words leading-relaxed">{subItem.name}</span>
+                                            <span className="break-words leading-relaxed block">{subItem.name}</span>
                                           </button>
                                         ))}
                                       </div>
