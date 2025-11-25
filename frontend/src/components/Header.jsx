@@ -228,12 +228,16 @@ const Header = () => {
                   {item.name === 'Services' ? (
                     <div 
                       className="relative"
-                      onMouseEnter={() => setIsServicesDropdownOpen(true)}
-                      onMouseLeave={() => {
-                        // Add a small delay to allow moving to the dropdown menu
-                        setTimeout(() => {
-                          setIsServicesDropdownOpen(false)
-                        }, 100)
+                      onMouseEnter={() => {
+                        setIsServicesDropdownOpen(true)
+                      }}
+                      onMouseLeave={(e) => {
+                        // Don't close if moving to dropdown
+                        const relatedTarget = e.relatedTarget
+                        if (relatedTarget && e.currentTarget.contains(relatedTarget)) {
+                          return
+                        }
+                        setIsServicesDropdownOpen(false)
                       }}
                     >
                       <button
@@ -251,88 +255,80 @@ const Header = () => {
                       {/* Services Dropdown */}
                       {isServicesDropdownOpen && (
                         <div 
-                          className="absolute top-full left-0 mt-1 w-72 sm:w-80 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-50 max-h-[80vh] overflow-y-auto"
-                          style={{
-                            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
-                          }}
+                          className="absolute top-full left-0 pt-1 w-72 sm:w-80"
+                          style={{ zIndex: 9999 }}
                           onMouseEnter={() => setIsServicesDropdownOpen(true)}
-                          onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                          onMouseLeave={(e) => {
+                            const relatedTarget = e.relatedTarget
+                            if (!relatedTarget || !e.currentTarget.contains(relatedTarget)) {
+                              setIsServicesDropdownOpen(false)
+                            }
+                          }}
                         >
+                          <div 
+                            className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2 max-h-[80vh] overflow-y-auto"
+                            style={{
+                              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                            }}
+                          >
                           {serviceItems.map((service) => (
-                            <div key={service.name} className="relative group">
+                            <div 
+                              key={service.name} 
+                              className="relative"
+                              onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                            >
                               {service.subItems ? (
                                 <>
                                   <button
-                                    onClick={() => handleNavigation(service)}
-                                    className="w-full text-left px-5 py-3 text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-200 font-medium flex items-center justify-between break-words group/item"
-                                    onMouseEnter={(e) => {
-                                      e.currentTarget.classList.add('bg-blue-50')
+                                    onClick={(e) => {
+                                      e.stopPropagation()
+                                      setOpenSubMenu(openSubMenu === service.name ? null : service.name)
                                     }}
-                                    onMouseLeave={(e) => {
-                                      if (!e.currentTarget.matches(':hover')) {
-                                        e.currentTarget.classList.remove('bg-blue-50')
-                                      }
-                                    }}
+                                    className="w-full text-left px-5 py-3 text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-200 font-medium flex items-center justify-between break-words"
+                                    onMouseEnter={() => setIsServicesDropdownOpen(true)}
                                   >
                                     <span className="flex-1 pr-2 text-sm leading-snug">{service.name}</span>
-                                    <ChevronDown size={16} className="ml-2 flex-shrink-0 transition-transform duration-200 group-hover/item:rotate-180" />
+                                    <ChevronDown 
+                                      size={16} 
+                                      className={`ml-2 flex-shrink-0 transition-transform duration-200 ${openSubMenu === service.name ? 'rotate-180' : ''}`} 
+                                    />
                                   </button>
-                                  {/* Sub-items dropdown - Desktop */}
-                                  <div 
-                                    className="absolute left-full top-0 ml-1 w-80 xl:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] max-h-[60vh] overflow-y-auto lg:block hidden"
-                                    style={{
-                                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                      const subMenu = e.currentTarget
-                                      const parent = subMenu.parentElement
-                                      parent.classList.add('z-50')
-                                      // Check if submenu goes off-screen and adjust
-                                      const rect = subMenu.getBoundingClientRect()
-                                      const viewportWidth = window.innerWidth
-                                      if (rect.right > viewportWidth - 10) {
-                                        subMenu.style.left = 'auto'
-                                        subMenu.style.right = '100%'
-                                        subMenu.style.marginLeft = '0'
-                                        subMenu.style.marginRight = '0.25rem'
-                                      }
-                                    }}
-                                    onMouseLeave={(e) => {
-                                      const subMenu = e.currentTarget
-                                      const parent = subMenu.parentElement
-                                      parent.classList.remove('z-50')
-                                      // Reset positioning
-                                      subMenu.style.left = ''
-                                      subMenu.style.right = ''
-                                      subMenu.style.marginLeft = ''
-                                      subMenu.style.marginRight = ''
-                                    }}
-                                  >
-                                    {service.subItems.map((subItem, index) => (
-                                      <button
-                                        key={subItem.name}
-                                        onClick={() => handleNavigation(subItem)}
-                                        className={`w-full text-left px-5 py-2.5 text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-200 font-normal text-sm break-words leading-relaxed ${
-                                          index === 0 ? 'rounded-t-lg' : ''
-                                        } ${
-                                          index === service.subItems.length - 1 ? 'rounded-b-lg' : ''
-                                        }`}
-                                      >
-                                        <span className="block">{subItem.name}</span>
-                                      </button>
-                                    ))}
-                                  </div>
+                                  {/* Sub-items dropdown - Desktop - Below */}
+                                  {openSubMenu === service.name && (
+                                    <div 
+                                      className="absolute top-full left-0 w-full bg-gray-50 rounded-lg mt-1 py-1 shadow-lg border border-gray-200 lg:block hidden"
+                                      style={{
+                                        zIndex: 10000
+                                      }}
+                                      onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                                    >
+                                      {service.subItems.map((subItem, index) => (
+                                        <button
+                                          key={subItem.name}
+                                          onClick={(e) => {
+                                            e.stopPropagation()
+                                            handleNavigation(subItem)
+                                          }}
+                                          className="w-full text-left px-6 py-2.5 text-gray-600 hover:text-white hover:bg-blue-500 transition-all duration-200 font-normal text-sm break-words leading-relaxed"
+                                        >
+                                          <span className="block">{subItem.name}</span>
+                                        </button>
+                                      ))}
+                                    </div>
+                                  )}
                                 </>
                               ) : (
                                 <button
                                   onClick={() => handleNavigation(service)}
                                   className="w-full text-left px-5 py-3 text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-200 font-medium break-words text-sm leading-snug"
+                                  onMouseEnter={() => setIsServicesDropdownOpen(true)}
                                 >
                                   <span className="block">{service.name}</span>
                                 </button>
                               )}
                             </div>
                           ))}
+                          </div>
                         </div>
                       )}
                     </div>
