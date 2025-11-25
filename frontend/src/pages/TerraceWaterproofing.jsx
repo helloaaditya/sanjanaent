@@ -1,10 +1,30 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Thermometer, Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Home, Sun } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 
 const TerraceWaterproofing = () => {
+  const location = useLocation()
+  
+  // SEO configuration based on route
+  const seoConfig = {
+    '/roof-waterproofing-services-in-bangalore': {
+      title: 'Roof Waterproofing Services in Bangalore | Sanjana Enterprises',
+      description: 'Trusted roof waterproofing services in Bangalore. Protect your terrace, roof, and walls from leakage and seepage.',
+      h1: 'Roof Waterproofing Services in Bangalore',
+      canonical: 'https://sanjanawaterproofing.com/roof-waterproofing-services-in-bangalore'
+    },
+    default: {
+      title: 'Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
+      description: 'Protect your terrace with professional waterproofing services in Bangalore. Long-lasting leak-proof solutions.',
+      h1: 'Terrace Roof Waterproofing in Bangalore',
+      canonical: 'https://sanjanawaterproofing.com/terrace-roof-waterproofing-in-bangalore'
+    }
+  }
+  
+  const currentConfig = seoConfig[location.pathname] || seoConfig.default
+
   // Simple Droplets icon since it's not imported
   const Droplets = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.5-2.26-1.7-3.05-.5-.27-.9-.48-1.3-.48-.4 0-.8.19-1.3.48-1.2.79-1.7 1.89-1.7 3.05 0 2.22 1.8 4.05 4 4.05z"/><path d="M16 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.5-2.26-1.7-3.05-.5-.27-.9-.48-1.3-.48-.4 0-.8.19-1.3.48-1.2.79-1.7 1.89-1.7 3.05 0 2.22 1.8 4.05 4 4.05z"/></svg>
 
@@ -96,14 +116,14 @@ const TerraceWaterproofing = () => {
   return (
     <>
       <Helmet>
-        <title>Terrace Waterproofing in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Professional terrace waterproofing services in Bangalore. Protect your home from water damage with advanced solutions. 10-15 year warranty. Free inspection." />
+        <title>{currentConfig.title}</title>
+        <meta name="description" content={currentConfig.description} />
         <meta name="keywords" content="terrace waterproofing bangalore, rooftop waterproofing, terrace leakage repair, waterproofing contractors, terrace coating services" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/terrace-waterproofing" />
-        <meta property="og:title" content="Terrace Waterproofing Services in Bangalore" />
-        <meta property="og:description" content="Professional terrace waterproofing services to protect your home from water damage. Advanced solutions with 10-15 year warranty." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/terrace-waterproofing" />
+        <link rel="canonical" href={currentConfig.canonical} />
+        <meta property="og:title" content={currentConfig.title} />
+        <meta property="og:description" content={currentConfig.description} />
+        <meta property="og:url" content={currentConfig.canonical} />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />
@@ -127,10 +147,21 @@ const TerraceWaterproofing = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Protect Your
-                  <span className="block bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-                    Terrace Investment
-                  </span>
+                  {location.pathname.includes('roof-waterproofing-services') ? (
+                    <>
+                      Roof Waterproofing Services
+                      <span className="block bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                        in Bangalore
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      Terrace Roof Waterproofing
+                      <span className="block bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                        in Bangalore
+                      </span>
+                    </>
+                  )}
                 </h1>
               </ScrollAnimation>
               

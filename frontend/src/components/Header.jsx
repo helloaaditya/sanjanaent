@@ -11,6 +11,7 @@ const Header = () => {
   const [showTopBar, setShowTopBar] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
+  const [openSubMenu, setOpenSubMenu] = useState(null)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -68,6 +69,7 @@ const Header = () => {
     // Close mobile menu first
     setIsMenuOpen(false)
     setIsServicesDropdownOpen(false)
+    setOpenSubMenu(null)
     
     // Small delay to allow menu close animation
     setTimeout(() => {
@@ -88,13 +90,27 @@ const Header = () => {
   ]
 
   const serviceItems = [
-    { name: 'Epoxy Flooring', path: '/epoxy-flooring' },
-    { name: 'PU Flooring', path: '/pu-flooring' },
+    { 
+      name: 'Epoxy Flooring', 
+      path: '/epoxy-flooring',
+      subItems: [
+        { name: 'Epoxy flooring services in bangalore', path: '/epoxy-flooring-services-in-bangalore' },
+        { name: 'Heavy duty epoxy flooring in bangalore', path: '/heavy-duty-epoxy-flooring-in-bangalore' },
+        { name: 'Epoxy flooring for warehouses in bangalore', path: '/epoxy-flooring-for-warehouses-in-bangalore' },
+        { name: 'Industrial epoxy screed flooring in bangalore', path: '/industrial-epoxy-screed-flooring-in-bangalore' },
+        { name: 'Antiskid epoxy flooring in bangalore', path: '/antiskid-epoxy-flooring-in-bangalore' }
+      ]
+    },
+    { name: 'PU Flooring', path: '/best-pu-flooring-services-in-bangalore' },
     { name: 'Water Leakage Detection', path: '/water-leakage-detection' },
-    { name: 'Terrace Waterproofing', path: '/terrace-waterproofing' },
+    { name: 'Terrace Waterproofing', path: '/terrace-roof-waterproofing-in-bangalore' },
     { name: 'Basement Waterproofing', path: '/basement-waterproofing' },
     { name: 'Water Tanks Waterproofing', path: '/water-tanks-waterproofing' },
-    { name: 'Repair Services', path: '/repair-section' }
+    { name: 'Repair Services', path: '/repair-section' },
+    { name: 'ESD flooring installation in Bangalore', path: '/esd-flooring-installation-in-bangalore' },
+    { name: 'Car parking flooring solutions in bangalore', path: '/car-parking-flooring-solutions-in-bangalore' },
+    { name: 'Warehouse bay marking in bangalore', path: '/warehouse-bay-marking-in-bangalore' },
+    { name: 'Anti corrosion coating services in bangalore', path: '/anti-corrosion-coating-services-in-bangalore' }
   ]
 
   const topBarHeight = 56
@@ -235,18 +251,87 @@ const Header = () => {
                       {/* Services Dropdown */}
                       {isServicesDropdownOpen && (
                         <div 
-                          className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-50"
+                          className="absolute top-full left-0 mt-1 w-72 sm:w-80 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-50 max-h-[80vh] overflow-y-auto"
+                          style={{
+                            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                          }}
                           onMouseEnter={() => setIsServicesDropdownOpen(true)}
                           onMouseLeave={() => setIsServicesDropdownOpen(false)}
                         >
                           {serviceItems.map((service) => (
-                            <button
-                              key={service.name}
-                              onClick={() => handleNavigation(service)}
-                              className="w-full text-left px-6 py-3 text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-300 font-medium"
-                            >
-                              {service.name}
-                            </button>
+                            <div key={service.name} className="relative group">
+                              {service.subItems ? (
+                                <>
+                                  <button
+                                    onClick={() => handleNavigation(service)}
+                                    className="w-full text-left px-5 py-3 text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-200 font-medium flex items-center justify-between break-words group/item"
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.classList.add('bg-blue-50')
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      if (!e.currentTarget.matches(':hover')) {
+                                        e.currentTarget.classList.remove('bg-blue-50')
+                                      }
+                                    }}
+                                  >
+                                    <span className="flex-1 pr-2 text-sm leading-snug">{service.name}</span>
+                                    <ChevronDown size={16} className="ml-2 flex-shrink-0 transition-transform duration-200 group-hover/item:rotate-180" />
+                                  </button>
+                                  {/* Sub-items dropdown - Desktop */}
+                                  <div 
+                                    className="absolute left-full top-0 ml-1 w-80 xl:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] max-h-[60vh] overflow-y-auto lg:block hidden"
+                                    style={{
+                                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                      const subMenu = e.currentTarget
+                                      const parent = subMenu.parentElement
+                                      parent.classList.add('z-50')
+                                      // Check if submenu goes off-screen and adjust
+                                      const rect = subMenu.getBoundingClientRect()
+                                      const viewportWidth = window.innerWidth
+                                      if (rect.right > viewportWidth - 10) {
+                                        subMenu.style.left = 'auto'
+                                        subMenu.style.right = '100%'
+                                        subMenu.style.marginLeft = '0'
+                                        subMenu.style.marginRight = '0.25rem'
+                                      }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      const subMenu = e.currentTarget
+                                      const parent = subMenu.parentElement
+                                      parent.classList.remove('z-50')
+                                      // Reset positioning
+                                      subMenu.style.left = ''
+                                      subMenu.style.right = ''
+                                      subMenu.style.marginLeft = ''
+                                      subMenu.style.marginRight = ''
+                                    }}
+                                  >
+                                    {service.subItems.map((subItem, index) => (
+                                      <button
+                                        key={subItem.name}
+                                        onClick={() => handleNavigation(subItem)}
+                                        className={`w-full text-left px-5 py-2.5 text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-200 font-normal text-sm break-words leading-relaxed ${
+                                          index === 0 ? 'rounded-t-lg' : ''
+                                        } ${
+                                          index === service.subItems.length - 1 ? 'rounded-b-lg' : ''
+                                        }`}
+                                      >
+                                        <span className="block">{subItem.name}</span>
+                                      </button>
+                                    ))}
+                                  </div>
+                                </>
+                              ) : (
+                                <button
+                                  onClick={() => handleNavigation(service)}
+                                  className="w-full text-left px-5 py-3 text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-200 font-medium break-words text-sm leading-snug"
+                                >
+                                  <span className="block">{service.name}</span>
+                                </button>
+                              )}
+                            </div>
                           ))}
                         </div>
                       )}
@@ -299,50 +384,104 @@ const Header = () => {
               zIndex: 3000,
               maxHeight: 'calc(100vh - 64px)',
               overflowY: 'auto',
-              WebkitOverflowScrolling: 'touch'
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain'
             }}
           >
-            <div className="max-w-7xl mx-auto px-4 py-4">
-              <nav className="flex flex-col space-y-2">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
+              <nav className="flex flex-col space-y-1.5 sm:space-y-2">
                 {navItems.map((item) => (
                   <div key={item.name}>
                     {item.name === 'Services' ? (
                       <div>
                         <button
                           onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
-                          className={`w-full px-6 py-4 rounded-xl font-semibold text-left transition-all duration-300 active:scale-95 flex justify-between items-center ${
+                          className={`w-full px-4 sm:px-6 py-3.5 sm:py-4 rounded-xl font-semibold text-left transition-all duration-300 active:scale-[0.98] flex justify-between items-center ${
                             isActivePage(item)
                               ? 'bg-blue-600 text-white shadow-lg'
                               : 'text-gray-700 hover:text-white bg-gray-50 hover:bg-blue-600 active:bg-blue-700'
                           }`}
                           style={{ 
-                            minHeight: '56px',
+                            minHeight: '52px',
                             touchAction: 'manipulation',
                             WebkitTapHighlightColor: 'transparent'
                           }}
                         >
-                          <span className="text-lg">{item.name}</span>
+                          <span className="text-base sm:text-lg">{item.name}</span>
                           <ChevronDown 
-                            size={16} 
-                            className={`transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`} 
+                            size={18} 
+                            className={`flex-shrink-0 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`} 
                           />
                         </button>
                         
                         {/* Mobile Services Dropdown */}
                         {isServicesDropdownOpen && (
-                          <div className="pl-6 pr-4 pb-2 space-y-2">
+                          <div className="pl-4 pr-4 pb-2 pt-2 space-y-1">
                             {serviceItems.map((service) => (
-                              <button
-                                key={service.name}
-                                onClick={() => handleNavigation(service)}
-                                className={`w-full text-left px-6 py-3 rounded-lg text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-300 font-medium ${
-                                  isActivePage(service)
-                                    ? 'bg-blue-600 text-white'
-                                    : ''
-                                }`}
-                              >
-                                {service.name}
-                              </button>
+                              <div key={service.name} className="w-full">
+                                {service.subItems ? (
+                                  <>
+                                    <button
+                                      onClick={() => setOpenSubMenu(openSubMenu === service.name ? null : service.name)}
+                                      className={`w-full text-left px-4 py-3.5 rounded-lg text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-300 font-medium flex items-center justify-between active:scale-98 ${
+                                        isActivePage(service)
+                                          ? 'bg-blue-600 text-white'
+                                          : 'bg-gray-50'
+                                      }`}
+                                      style={{ 
+                                        minHeight: '48px',
+                                        touchAction: 'manipulation',
+                                        WebkitTapHighlightColor: 'transparent'
+                                      }}
+                                    >
+                                      <span className="flex-1 pr-2 text-base break-words">{service.name}</span>
+                                      <ChevronDown 
+                                        size={18} 
+                                        className={`flex-shrink-0 transition-transform duration-200 ${openSubMenu === service.name ? 'rotate-180' : ''}`} 
+                                      />
+                                    </button>
+                                    {/* Sub-items */}
+                                    {openSubMenu === service.name && (
+                                      <div className="pl-2 pr-2 pt-1.5 pb-1.5 space-y-0.5 bg-gray-50 rounded-lg mt-1">
+                                        {service.subItems.map((subItem) => (
+                                          <button
+                                            key={subItem.name}
+                                            onClick={() => handleNavigation(subItem)}
+                                            className={`w-full text-left px-6 py-3 rounded-md text-gray-600 hover:text-white hover:bg-blue-500 transition-all duration-300 font-normal text-sm active:scale-98 ${
+                                              isActivePage(subItem)
+                                                ? 'bg-blue-500 text-white'
+                                                : ''
+                                            }`}
+                                            style={{ 
+                                              minHeight: '44px',
+                                              touchAction: 'manipulation',
+                                              WebkitTapHighlightColor: 'transparent'
+                                            }}
+                                          >
+                                            <span className="break-words leading-relaxed">{subItem.name}</span>
+                                          </button>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </>
+                                ) : (
+                                  <button
+                                    onClick={() => handleNavigation(service)}
+                                    className={`w-full text-left px-4 py-3.5 rounded-lg text-gray-700 hover:text-white hover:bg-blue-600 transition-all duration-300 font-medium active:scale-98 ${
+                                      isActivePage(service)
+                                        ? 'bg-blue-600 text-white'
+                                        : 'bg-gray-50'
+                                    }`}
+                                    style={{ 
+                                      minHeight: '48px',
+                                      touchAction: 'manipulation',
+                                      WebkitTapHighlightColor: 'transparent'
+                                    }}
+                                  >
+                                    <span className="text-base break-words leading-relaxed">{service.name}</span>
+                                  </button>
+                                )}
+                              </div>
                             ))}
                           </div>
                         )}
@@ -386,6 +525,7 @@ const Header = () => {
               console.log('Overlay clicked - closing menu')
               setIsMenuOpen(false)
               setIsServicesDropdownOpen(false)
+              setOpenSubMenu(null)
             }}
             style={{ zIndex: 2500 }}
           />

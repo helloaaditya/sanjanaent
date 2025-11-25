@@ -1,48 +1,10 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 
-const EpoxyFlooring = () => {
-  const location = useLocation()
-  
-  // SEO configuration based on route
-  const seoConfig = {
-    '/heavy-duty-epoxy-flooring-in-bangalore': {
-      title: 'Heavy Duty Epoxy Flooring in Bangalore | Sanjana Enterprises',
-      description: 'Durable heavy-duty epoxy flooring for industrial and commercial spaces in Bangalore. Expert installation guaranteed.',
-      h1: 'Heavy Duty Epoxy Flooring in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore'
-    },
-    '/epoxy-flooring-for-warehouses-in-bangalore': {
-      title: 'Epoxy Flooring for Warehouses in Bangalore | Sanjana Enterprises',
-      description: 'Top-quality epoxy flooring solutions for warehouses in Bangalore. Durable, safe, and long-lasting.',
-      h1: 'Epoxy Flooring for Warehouses in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore'
-    },
-    '/industrial-epoxy-screed-flooring-in-bangalore': {
-      title: 'Industrial Epoxy Screed Flooring in Bangalore | Sanjana Enterprises',
-      description: 'Professional industrial epoxy screed flooring in Bangalore. Ideal for factories, warehouses & production areas.',
-      h1: 'Industrial Epoxy Screed Flooring in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore'
-    },
-    '/antiskid-epoxy-flooring-in-bangalore': {
-      title: 'Antiskid Epoxy Flooring in Bangalore | Sanjana Enterprises',
-      description: 'Reduce slip hazards with antiskid epoxy flooring in Bangalore. Durable, safe, and industrial-grade solutions.',
-      h1: 'Antiskid Epoxy Flooring in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore'
-    },
-    default: {
-      title: 'Epoxy Flooring Services in Bangalore | Sanjana Enterprises',
-      description: 'Get professional epoxy flooring services in Bangalore. Industrial, anti-skid, and warehouse flooring solutions. Free site inspection!',
-      h1: 'Industrial-Strength Epoxy Flooring Solutions',
-      canonical: 'https://sanjanawaterproofing.com/epoxy-flooring'
-    }
-  }
-  
-  const currentConfig = seoConfig[location.pathname] || seoConfig.default
-
+const EpoxyFlooringServicesBangalore = () => {
   const handlePhoneClick = () => {
     window.location.href = "tel:+919916290799"
   }
@@ -121,14 +83,14 @@ const EpoxyFlooring = () => {
   return (
     <>
       <Helmet>
-        <title>{currentConfig.title}</title>
-        <meta name="description" content={currentConfig.description} />
+        <title>Epoxy Flooring Services in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Get professional epoxy flooring services in Bangalore. Industrial, anti-skid, and warehouse flooring solutions. Free site inspection!" />
         <meta name="keywords" content="Epoxy flooring services in bangalore" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={currentConfig.canonical} />
-        <meta property="og:title" content={currentConfig.title} />
-        <meta property="og:description" content={currentConfig.description} />
-        <meta property="og:url" content={currentConfig.canonical} />
+        <link rel="canonical" href="https://sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
+        <meta property="og:title" content="Epoxy Flooring Services in Bangalore" />
+        <meta property="og:description" content="High-performance epoxy flooring for industrial and commercial spaces. Durable, seamless, and customizable with 15-20 year lifespan." />
+        <meta property="og:url" content="https://sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />
@@ -152,42 +114,10 @@ const EpoxyFlooring = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  {location.pathname.includes('heavy-duty') ? (
-                    <>
-                      Heavy Duty Epoxy Flooring
-                      <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        in Bangalore
-                      </span>
-                    </>
-                  ) : location.pathname.includes('warehouses') ? (
-                    <>
-                      Epoxy Flooring for Warehouses
-                      <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        in Bangalore
-                      </span>
-                    </>
-                  ) : location.pathname.includes('screed') ? (
-                    <>
-                      Industrial Epoxy Screed Flooring
-                      <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        in Bangalore
-                      </span>
-                    </>
-                  ) : location.pathname.includes('antiskid') ? (
-                    <>
-                      Antiskid Epoxy Flooring
-                      <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        in Bangalore
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      Industrial-Strength
-                      <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        Epoxy Flooring Solutions
-                      </span>
-                    </>
-                  )}
+                  Epoxy Flooring Services
+                  <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    in Bangalore
+                  </span>
                 </h1>
               </ScrollAnimation>
               
@@ -220,6 +150,7 @@ const EpoxyFlooring = () => {
           </div>
         </section>
 
+        {/* Rest of the page content - same as EpoxyFlooring */}
         {/* Introduction Section */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -481,4 +412,5 @@ const EpoxyFlooring = () => {
   )
 }
 
-export default EpoxyFlooring
+export default EpoxyFlooringServicesBangalore
+
