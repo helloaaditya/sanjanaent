@@ -42,14 +42,14 @@ const Contact = () => {
     <>
       <Helmet>
         <title>Contact Sanjana Enterprises | Waterproofing Company in Bangalore</title>
-        <meta name="description" content="Contact Sanjana Enterprises for professional waterproofing & industrial flooring services in Bangalore. Free inspection & quote. Call +91 9916290799." />
+        <meta name="description" content="Contact Sanjana Enterprises for professional waterproofing & industrial flooring services in Bangalore.  inspection & quote. Call +91 9916290799." />
         <meta name="keywords" content="contact waterproofing bangalore, waterproofing quote, waterproofing inspection, epoxy flooring contractor, pu flooring bangalore, terrace waterproofing, basement waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/contact" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Contact Sanjana Enterprises - Waterproofing Company in Bangalore" />
-        <meta property="og:description" content="Contact Sanjana Enterprises for waterproofing services in Bangalore. Free inspection & quote. Call +91 9916290799" />
+        <meta property="og:description" content="Contact Sanjana Enterprises for waterproofing services in Bangalore.  inspection & quote. Call +91 9916290799" />
         <meta property="og:url" content="https://sanjanawaterproofing.com/contact" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -94,7 +94,7 @@ const Contact = () => {
                 Contact <span className="text-blue-600">Sanjana Enterprises</span>
               </h1>
               <p className="text-base sm:text-xl text-gray-600 leading-relaxed">
-                Ready to protect your property? Get in touch with us for a free inspection 
+                Ready to protect your property? Get in touch with us for an inspection 
                 and personalized quote. Our expert team is here to help you with all your 
                 waterproofing needs.
               </p>
@@ -155,7 +155,7 @@ const Contact = () => {
           <div className="container-max text-center px-4 sm:px-6">
             <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">Ready to Get Started?</h2>
             <p className="text-base sm:text-xl text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto">
-              Don't wait for water damage to occur. Contact us today for a free inspection 
+              Don't wait for water damage to occur. Contact us today for a inspection 
               and protect your property with our professional waterproofing services.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

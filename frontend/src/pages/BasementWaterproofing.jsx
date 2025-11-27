@@ -97,7 +97,7 @@ const BasementWaterproofing = () => {
     <>
       <Helmet>
         <title>Basement Waterproofing in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Professional basement waterproofing services in Bangalore. Prevent water damage & mold growth with advanced solutions. 15-20 year warranty. Free inspection." />
+        <meta name="description" content="Professional basement waterproofing services in Bangalore. Prevent water damage & mold growth with advanced solutions. 15-20 year warranty. Quick inspection." />
         <meta name="keywords" content="basement waterproofing bangalore, underground waterproofing, basement leakage repair, waterproofing contractors, foundation waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/basement-waterproofing" />

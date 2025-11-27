@@ -50,7 +50,7 @@ const Services = () => {
   const process = [
     {
       step: '01',
-      title: 'Free Inspection',
+      title: 'Quick Inspection',
       description: 'We conduct a thorough inspection of your property to identify problem areas and recommend the best solution.',
       icon: Eye,
       color: 'from-blue-500 to-blue-600'
@@ -112,12 +112,12 @@ const Services = () => {
     <>
       <Helmet>
         <title>Waterproofing & Industrial Flooring Services in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. Free inspection & quote." />
+        <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. Quick inspection & quote." />
         <meta name="keywords" content="waterproofing services bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/services" />
         <meta property="og:title" content="Waterproofing & Industrial Flooring Services in Bangalore" />
-        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Free site inspection with expert solutions for residential and commercial properties." />
+        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Quick site inspection with expert solutions for residential and commercial properties." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/services" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -325,7 +325,7 @@ const Services = () => {
             Get Your Free Quote Today
           </h2>
           <p className="text-xl text-white/90 mb-12 leading-relaxed">
-            Don't let water damage or flooring issues affect your property. Contact us now for a free inspection 
+            Don't let water damage or flooring issues affect your property. Contact us now for an inspection 
             and personalized solution for all your waterproofing and flooring needs.
           </p>
           

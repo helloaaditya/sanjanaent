@@ -12,14 +12,14 @@ const Home = () => {
     <>
       <Helmet>
         <title>Sanjana Enterprises | Waterproofing & Industrial Flooring in Bangalore</title>
-        <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. 30+ years experience. Free inspection." />
+        <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. 30+ years experience. Quick inspection." />
         <meta name="keywords" content="waterproofing bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Sanjana Enterprises | Waterproofing & Industrial Flooring in Bangalore" />
-        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Free site inspection with 30+ years of experience." />
+        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Quick site inspection with 30+ years of experience." />
         <meta property="og:url" content="https://sanjanawaterproofing.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />

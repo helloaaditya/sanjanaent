@@ -88,7 +88,7 @@ const WaterLeakageDetection = () => {
     <>
       <Helmet>
         <title>Water Leakage Detection in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Advanced water leakage detection using thermal imaging in Bangalore. Locate hidden leaks quickly & accurately without damage. Free inspection." />
+        <meta name="description" content="Advanced water leakage detection using thermal imaging in Bangalore. Locate hidden leaks quickly & accurately without damage. Quick inspection." />
         <meta name="keywords" content="water leakage detection bangalore, thermal imaging water leak detection, hidden water leak detection, moisture detection services, infrared thermography water leak detection" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/water-leakage-detection" />
@@ -138,7 +138,7 @@ const WaterLeakageDetection = () => {
                     to="/contact" 
                     className="bg-gradient-to-r from-cyan-500 to-teal-600 hover:from-cyan-600 hover:to-teal-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center group"
                   >
-                    Get Free Inspection
+                    Get Quick Inspection
                     <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                   <button 

@@ -98,7 +98,7 @@ const WaterTanksWaterproofing = () => {
     <>
       <Helmet>
         <title>Water Tank Waterproofing in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Professional water tank waterproofing services in Bangalore. Prevent water loss & contamination with advanced solutions for concrete & metal tanks. 10-15 year warranty. Free inspection." />
+        <meta name="description" content="Professional water tank waterproofing services in Bangalore. Prevent water loss & contamination with advanced solutions for concrete & metal tanks. 10-15 year warranty. Quick inspection." />
         <meta name="keywords" content="water tank waterproofing bangalore, concrete water tank waterproofing, metal water tank coating, water tank leakage repair, potable water tank waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/water-tanks-waterproofing" />
