@@ -83,8 +83,8 @@ const EpoxyFlooringServicesBangalore = () => {
   return (
     <>
       <Helmet>
-        <title>Epoxy Flooring Services in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Get professional epoxy flooring services in Bangalore. Industrial, anti-skid, and warehouse flooring solutions. Quick site inspection!" />
+        <title>Premium Epoxy Flooring Services in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Get premium epoxy flooring in Bangalore with Sanjana Enterprises. Durable, seamless & chemical-resistant solutions for industrial, commercial and residential spaces." />
         <meta name="keywords" content="Epoxy flooring services in bangalore" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />

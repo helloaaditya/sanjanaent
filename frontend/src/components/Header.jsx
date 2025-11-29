@@ -94,11 +94,11 @@ const Header = () => {
       name: 'Epoxy Flooring', 
       path: '/epoxy-flooring',
       subItems: [
-        { name: 'Epoxy flooring services in bangalore', path: '/epoxy-flooring-services-in-bangalore' },
-        { name: 'Heavy duty epoxy flooring in bangalore', path: '/heavy-duty-epoxy-flooring-in-bangalore' },
-        { name: 'Epoxy flooring for warehouses in bangalore', path: '/epoxy-flooring-for-warehouses-in-bangalore' },
-        { name: 'Industrial epoxy screed flooring in bangalore', path: '/industrial-epoxy-screed-flooring-in-bangalore' },
-        { name: 'Antiskid epoxy flooring in bangalore', path: '/antiskid-epoxy-flooring-in-bangalore' }
+        { name: 'Epoxy flooring services', path: '/epoxy-flooring-services-in-bangalore' },
+        { name: 'Heavy duty epoxy flooring', path: '/heavy-duty-epoxy-flooring-in-bangalore' },
+        { name: 'Epoxy flooring for warehouses', path: '/epoxy-flooring-for-warehouses-in-bangalore' },
+        { name: 'Industrial epoxy screed flooring', path: '/industrial-epoxy-screed-flooring-in-bangalore' },
+        { name: 'Antiskid epoxy flooring', path: '/antiskid-epoxy-flooring-in-bangalore' }
       ]
     },
     { name: 'PU Flooring', path: '/best-pu-flooring-services-in-bangalore' },
@@ -107,10 +107,10 @@ const Header = () => {
     { name: 'Basement Waterproofing', path: '/basement-waterproofing' },
     { name: 'Water Tanks Waterproofing', path: '/water-tanks-waterproofing' },
     { name: 'Repair Services', path: '/repair-section' },
-    { name: 'ESD flooring installation in Bangalore', path: '/esd-flooring-installation-in-bangalore' },
-    { name: 'Car parking flooring solutions in bangalore', path: '/car-parking-flooring-solutions-in-bangalore' },
-    { name: 'Warehouse bay marking in bangalore', path: '/warehouse-bay-marking-in-bangalore' },
-    { name: 'Anti corrosion coating services in bangalore', path: '/anti-corrosion-coating-services-in-bangalore' }
+    { name: 'ESD flooring installation', path: '/esd-flooring-installation-in-bangalore' },
+    { name: 'Car parking flooring solutions', path: '/car-parking-flooring-solutions-in-bangalore' },
+    { name: 'Warehouse bay marking', path: '/warehouse-bay-marking-in-bangalore' },
+    { name: 'Anti corrosion coating services', path: '/anti-corrosion-coating-services-in-bangalore' }
   ]
 
   const topBarHeight = 56
