@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer, Factory, Layers, SlidersHorizontal, Sparkles2 } from 'lucide-react'
+import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer, Factory, Layers, SlidersHorizontal, Star } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 
 const HeavyDutyEpoxyFlooring = () => {
@@ -56,7 +56,7 @@ const HeavyDutyEpoxyFlooring = () => {
     {
       title: "Metallic Epoxy Flooring",
       description: "Modern, beautiful and eye-catching. Ideal for showrooms and a luxury style.",
-      icon: Sparkles2
+      icon: Star
     },
     {
       title: "Anti-Slip Epoxy Flooring",
