@@ -103,17 +103,6 @@ const AntiCorrosionCoating = () => {
     }
   ]
 
-  const applications = [
-    "Steel Structures and Bridges",
-    "Industrial Equipment and Machinery",
-    "Storage Tanks and Vessels",
-    "Pipelines and Ductwork",
-    "Marine and Offshore Structures",
-    "Automotive Components",
-    "Chemical Processing Plants",
-    "Power Generation Facilities"
-  ]
-
   return (
     <>
       <Helmet>
