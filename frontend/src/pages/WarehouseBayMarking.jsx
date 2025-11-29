@@ -9,39 +9,6 @@ const WarehouseBayMarking = () => {
     window.location.href = "tel:+919916290799"
   }
 
-  const features = [
-    {
-      title: "Clear Visual Organization",
-      description: "Professional floor markings create clear zones, lanes, and storage areas for efficient warehouse operations.",
-      icon: Grid3x3
-    },
-    {
-      title: "Safety Compliance",
-      description: "Meets safety standards with proper aisle markings, hazard zones, and traffic flow indicators.",
-      icon: Shield
-    },
-    {
-      title: "Durable Materials",
-      description: "High-quality paints and tapes that withstand heavy forklift traffic and frequent cleaning.",
-      icon: Award
-    },
-    {
-      title: "Custom Designs",
-      description: "Tailored marking solutions designed to match your specific warehouse layout and requirements.",
-      icon: Layout
-    },
-    {
-      title: "Color Coding",
-      description: "Standard color coding for different zones, hazards, and traffic patterns for easy recognition.",
-      icon: Sparkles
-    },
-    {
-      title: "Quick Installation",
-      description: "Efficient installation process minimizes warehouse downtime and disruption to operations.",
-      icon: Target
-    }
-  ]
-
   const process = [
     {
       step: '01',
@@ -69,15 +36,67 @@ const WarehouseBayMarking = () => {
     }
   ]
 
+  const services = [
+    "Marking of Storage Bays",
+    "Lane and Aisle Marking",
+    "Zone Marking for Loading and Unloading",
+    "Path Marking for Forklifts",
+    "Marking of Safety and Hazard Zones",
+    "Marking of Equipment Parking Areas",
+    "Marking of Emergency Exit Pathways",
+    "Numbering and Directional Arrows"
+  ]
+
+  const features = [
+    {
+      title: "Highly visible markings",
+      description: "Clear, prominent markings that are easily visible even in low-light conditions.",
+      icon: Grid3x3
+    },
+    {
+      title: "Durable PU and epoxy paints",
+      description: "High-quality paints that withstand heavy forklift traffic and frequent cleaning.",
+      icon: Shield
+    },
+    {
+      title: "A coating that dries quickly and resists abrasion",
+      description: "Fast-drying, abrasion-resistant coatings for minimal downtime and long-lasting performance.",
+      icon: Award
+    },
+    {
+      title: "Accurate, clean lines with machine-cut finishing",
+      description: "Precise, professional markings with clean, sharp edges for maximum clarity.",
+      icon: Layout
+    },
+    {
+      title: "Ideal for industrial floors with high traffic",
+      description: "Designed specifically for high-traffic industrial environments with heavy equipment.",
+      icon: Target
+    },
+    {
+      title: "Works with PU flooring, epoxy, and concrete",
+      description: "Compatible with all major industrial floor types for versatile application.",
+      icon: Sparkles
+    }
+  ]
+
   const applications = [
-    "Distribution Centers",
-    "Manufacturing Warehouses",
-    "Cold Storage Facilities",
-    "Retail Distribution Hubs",
-    "Automotive Parts Warehouses",
-    "E-commerce Fulfillment Centers",
-    "Food & Beverage Storage",
-    "Pharmaceutical Warehouses"
+    "Warehouses",
+    "Logistics & distribution centres",
+    "Manufacturing units",
+    "Automotive units",
+    "Cold storage facilities",
+    "Retail & FMCG warehouses",
+    "Pharmaceutical & packaging industries"
+  ]
+
+  const whyChooseUs = [
+    "Knowledgeable experts in industrial marking",
+    "Superior industrial paints and coatings",
+    "Accurate measurement and design",
+    "Quick and effective execution",
+    "Reliable and economical service",
+    "Adherence to safety regulations"
   ]
 
   return (
@@ -122,9 +141,10 @@ const WarehouseBayMarking = () => {
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
-                <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-                  Organize your warehouse with professional floor marking solutions. Improve safety, efficiency, 
-                  and operational flow with clear visual indicators and organized bay markings.
+                <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed">
+                  Sanjana Waterproofing assists businesses in establishing secure, well-organised, and productive work environments by providing 
+                  accurate and long-lasting Warehouse Bay Marking services in Bangalore. Inside warehouses and industrial spaces, our superior bay 
+                  marking solutions guarantee that storage zones, traffic lanes, pathways, and hazard areas are clearly identified.
                 </p>
               </ScrollAnimation>
               
@@ -147,6 +167,53 @@ const WarehouseBayMarking = () => {
                 </div>
               </ScrollAnimation>
             </div>
+          </div>
+        </section>
+
+        {/* Why Warehouse Bay Marking Is Important Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 md:p-12 border-2 border-green-200 shadow-lg max-w-5xl mx-auto">
+                <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Shield size={16} />
+                  Why Warehouse Bay Marking Is Important
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Why Warehouse Bay Marking Is Important
+                </h2>
+                <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                  Accidents are decreased, workflow is improved, and safety is increased with proper bay marking. Clear markings facilitate easy 
+                  navigation for employees, guarantee forklift operation, and uphold adherence to industrial safety regulations.
+                </p>
+              </div>
+            </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Our Warehouse Bay Marking Services Include Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Our Warehouse Bay Marking
+                  <span className="block text-green-600">Services Include</span>
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                {services.map((service, index) => (
+                  <ScrollAnimation key={index} animation="fade-in-up" delay={index * 50}>
+                    <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+                      <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                        <span className="text-gray-800 font-medium text-sm">{service}</span>
+                      </div>
+                    </div>
+                  </ScrollAnimation>
+                ))}
+              </div>
+            </ScrollAnimation>
           </div>
         </section>
 
