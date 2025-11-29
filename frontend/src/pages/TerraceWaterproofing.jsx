@@ -140,11 +140,6 @@ const TerraceWaterproofing = () => {
     "Offers long-lasting protection from harsh weather conditions",
     "Perfect for residential, commercial, and industrial terraces"
   ]
-      title: 'Quality Check',
-      description: 'Comprehensive inspection to ensure complete waterproofing coverage and effectiveness.',
-      icon: CheckCircle
-    }
-  ]
 
   const materials = [
     "Bituminous Membranes",
