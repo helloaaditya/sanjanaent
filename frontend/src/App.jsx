@@ -26,6 +26,7 @@ import CarParkingFlooring from './pages/CarParkingFlooring'
 import WarehouseBayMarking from './pages/WarehouseBayMarking'
 import AntiCorrosionCoating from './pages/AntiCorrosionCoating'
 import EpoxyFlooringServicesBangalore from './pages/EpoxyFlooringServicesBangalore'
+import HeavyDutyEpoxyFlooring from './pages/HeavyDutyEpoxyFlooring'
 // Import redirect handler
 import RedirectHandler from './pages/RedirectHandler'
 
@@ -67,7 +68,7 @@ function App() {
         <Route path="/epoxy-flooring" element={<Layout><EpoxyFlooring /></Layout>} />
         {/* Epoxy Flooring Sub-pages - SEO URLs */}
         <Route path="/epoxy-flooring-services-in-bangalore" element={<Layout><EpoxyFlooringServicesBangalore /></Layout>} />
-        <Route path="/heavy-duty-epoxy-flooring-in-bangalore" element={<Layout><EpoxyFlooring /></Layout>} />
+        <Route path="/heavy-duty-epoxy-flooring-in-bangalore" element={<Layout><HeavyDutyEpoxyFlooring /></Layout>} />
         <Route path="/epoxy-flooring-for-warehouses-in-bangalore" element={<Layout><EpoxyFlooring /></Layout>} />
         <Route path="/industrial-epoxy-screed-flooring-in-bangalore" element={<Layout><EpoxyFlooring /></Layout>} />
         <Route path="/antiskid-epoxy-flooring-in-bangalore" element={<Layout><EpoxyFlooring /></Layout>} />
