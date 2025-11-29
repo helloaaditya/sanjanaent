@@ -11,14 +11,14 @@ const PUFlooring = () => {
   // SEO configuration based on route
   const seoConfig = {
     '/pu-concrete-flooring-in-bangalore': {
-      title: 'Best PU Concrete Flooring Services in Bangalore | Sanjana Enterprises',
-      description: 'Professional PU concrete flooring services in Bangalore. Perfect for factories, warehouses & parking areas. Thermal-shock resistant & long-lasting.',
+      title: 'Best PU Flooring Services in Bangalore | PU Concrete Flooring in Bangalore | Sanjana Enterprises',
+      description: 'Get the Best PU flooring services in Bangalore with high-quality, durable PU concrete flooring in Bangalore for industrial, commercial, and residential spaces. Our PU floor coatings offer seamless finish, chemical resistance, and long-lasting performance. Contact us for expert installation and affordable pricing.',
       h1: 'Best PU Concrete Flooring Services in Bangalore',
       canonical: 'https://sanjanawaterproofing.com/pu-concrete-flooring-in-bangalore'
     },
     default: {
-      title: 'Best PU Flooring Services in Bangalore | Sanjana Enterprises',
-      description: 'Expert PU flooring services in Bangalore for industrial & commercial spaces. Long-lasting, durable, and chemical resistant.',
+      title: 'Best PU Flooring Services in Bangalore | PU Concrete Flooring in Bangalore | Sanjana Enterprises',
+      description: 'Get the Best PU flooring services in Bangalore with high-quality, durable PU concrete flooring in Bangalore for industrial, commercial, and residential spaces. Our PU floor coatings offer seamless finish, chemical resistance, and long-lasting performance. Contact us for expert installation and affordable pricing.',
       h1: 'Best PU Flooring Services in Bangalore',
       canonical: 'https://sanjanawaterproofing.com/best-pu-flooring-services-in-bangalore'
     }

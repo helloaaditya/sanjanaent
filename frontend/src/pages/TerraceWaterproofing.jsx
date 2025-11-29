@@ -13,20 +13,20 @@ const TerraceWaterproofing = () => {
   // SEO configuration based on route
   const seoConfig = {
     '/roof-waterproofing-services-in-bangalore': {
-      title: 'Roof Waterproofing Services in Bangalore | Sanjana Enterprises',
-      description: 'Keep your building safe from water damage with top-notch roof waterproofing services in Bangalore. Expert team dedicated to stopping leaks, seepage, dampness, and structural issues.',
+      title: 'Roof Waterproofing Services in Bangalore | Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
+      description: 'Get reliable and long-lasting roof waterproofing services in Bangalore along with expert terrace roof waterproofing in Bangalore. We provide premium waterproof coatings, leak-proof solutions, and durable protection for residential, commercial, and industrial buildings. Contact us for professional and affordable waterproofing services.',
       h1: 'Roof Waterproofing Services in Bangalore',
       canonical: 'https://sanjanawaterproofing.com/roof-waterproofing-services-in-bangalore'
     },
     '/terrace-roof-waterproofing-in-bangalore': {
-      title: 'Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
-      description: 'Expert terrace waterproofing services in Bangalore. Stop water seepage, eliminate damp patches, and prevent structural damage on flat terraces, balconies, and rooftops.',
+      title: 'Roof Waterproofing Services in Bangalore | Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
+      description: 'Get reliable and long-lasting roof waterproofing services in Bangalore along with expert terrace roof waterproofing in Bangalore. We provide premium waterproof coatings, leak-proof solutions, and durable protection for residential, commercial, and industrial buildings. Contact us for professional and affordable waterproofing services.',
       h1: 'Terrace Roof Waterproofing in Bangalore',
       canonical: 'https://sanjanawaterproofing.com/terrace-roof-waterproofing-in-bangalore'
     },
     default: {
-      title: 'Terrace Waterproofing in Bangalore | Sanjana Enterprises',
-      description: 'Professional terrace waterproofing services in Bangalore. Protect your home from water damage with advanced solutions. 10-15 year warranty. Free inspection.',
+      title: 'Roof Waterproofing Services in Bangalore | Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
+      description: 'Get reliable and long-lasting roof waterproofing services in Bangalore along with expert terrace roof waterproofing in Bangalore. We provide premium waterproof coatings, leak-proof solutions, and durable protection for residential, commercial, and industrial buildings. Contact us for professional and affordable waterproofing services.',
       h1: 'Protect Your Terrace Investment',
       canonical: 'https://sanjanawaterproofing.com/terrace-waterproofing'
     }
