@@ -102,17 +102,6 @@ const CarParkingFlooring = () => {
     }
   ]
 
-  const applications = [
-    "Commercial Parking Garages",
-    "Residential Apartment Parking",
-    "Shopping Mall Parking Areas",
-    "Office Building Basements",
-    "Hotel Parking Facilities",
-    "Hospital Parking Lots",
-    "Airport Parking Structures",
-    "Multi-Level Parking Complexes"
-  ]
-
   return (
     <>
       <Helmet>
