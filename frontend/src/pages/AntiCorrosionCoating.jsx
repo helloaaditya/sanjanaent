@@ -9,37 +9,71 @@ const AntiCorrosionCoating = () => {
     window.location.href = "tel:+919916290799"
   }
 
-  const features = [
+  const benefits = [
     {
-      title: "Corrosion Protection",
-      description: "Advanced coating systems provide superior protection against rust, oxidation, and chemical corrosion.",
+      title: "Prevents Surface Damage and Rust",
+      description: "Advanced coating systems provide superior protection against rust, oxidation, and surface deterioration.",
       icon: Shield
     },
     {
-      title: "Chemical Resistance",
+      title: "Strong Resistance to Moisture and Chemicals",
       description: "Excellent resistance to acids, alkalis, solvents, and other corrosive chemicals in industrial environments.",
       icon: Droplets
     },
     {
-      title: "Weather Resistant",
-      description: "Protects against UV radiation, moisture, and extreme weather conditions in outdoor applications.",
-      icon: Lock
-    },
-    {
-      title: "Long Lifespan",
-      description: "Extends the life of metal structures and equipment significantly, reducing replacement costs.",
+      title: "Durable Defence",
+      description: "Long-lasting protection that extends the life of metal structures and equipment significantly.",
       icon: Award
     },
     {
-      title: "Versatile Application",
-      description: "Suitable for various substrates including steel, iron, concrete, and other metal surfaces.",
+      title: "Lowers the Cost of Maintenance",
+      description: "Reduces maintenance costs and frequency, saving money over the long term.",
+      icon: Lock
+    },
+    {
+      title: "Increases Metal Parts' Durability",
+      description: "Enhances the durability and lifespan of metal components and structures.",
       icon: Target
     },
     {
-      title: "Easy Maintenance",
-      description: "Low-maintenance coating systems that retain protective properties with minimal upkeep.",
+      title: "Appropriate for Both Indoor and Outdoor Use",
+      description: "Versatile application suitable for indoor and outdoor environments, including harsh conditions.",
       icon: Sparkles
+    },
+    {
+      title: "Improves Overall Structural Performance",
+      description: "Enhances the structural integrity and performance of coated surfaces.",
+      icon: Hammer
     }
+  ]
+
+  const coatingTypes = [
+    "Epoxy Coatings",
+    "PU (Polyurethane) Coatings",
+    "Zinc-Rich Primers",
+    "Metallic Coatings",
+    "Chemical-Resistant Coatings",
+    "High-Temperature Coatings"
+  ]
+
+  const applications = [
+    "Industrial machinery & equipment",
+    "Pipelines & tanks",
+    "Metal structures & steel frameworks",
+    "Factory floors & production areas",
+    "Marine & coastal structures",
+    "Warehouse shutters & storage racks",
+    "Automotive parts & fabrication units",
+    "Heavy-duty industrial environments"
+  ]
+
+  const whyChooseUs = [
+    "Expert assessment and professional application",
+    "Use of premium-grade industrial coating materials",
+    "High-quality, long-lasting finish",
+    "Fast and safe execution",
+    "Customized solutions for industries",
+    "Competitive and transparent pricing"
   ]
 
   const process = [
@@ -122,9 +156,10 @@ const AntiCorrosionCoating = () => {
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
-                <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-                  Protect your metal structures and equipment from corrosion with our professional anti-corrosion 
-                  coating services. Advanced protection against rust, chemicals, and environmental damage.
+                <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed">
+                  Sanjana Waterproofing offers dependable and durable Anti-Corrosion Coating services in Bangalore to shield industrial surfaces, 
+                  machinery, pipelines, and metal structures from rust, chemical attack, and environmental damage. Our cutting-edge coating systems 
+                  prolong the life of your assets, increase durability, and lower maintenance costs.
                 </p>
               </ScrollAnimation>
               
@@ -164,14 +199,9 @@ const AntiCorrosionCoating = () => {
                     Advanced Protection
                     <span className="block text-red-600">Against Corrosion</span>
                   </h2>
-                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    Anti-corrosion coating is a protective layer applied to metal surfaces to prevent rust, 
-                    oxidation, and chemical degradation. These specialized coatings create a barrier that 
-                    shields metal from moisture, chemicals, and environmental factors that cause corrosion.
-                  </p>
                   <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our anti-corrosion coating services extend the lifespan of metal structures and equipment, 
-                    reducing maintenance costs and ensuring long-term protection.
+                    A protective layer called an anti-corrosion coating is applied to concrete or metal surfaces to stop rust, oxidation, and chemical 
+                    deterioration. These coatings provide a robust defence against oils, chemicals, moisture, and abrasive environments.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <div className="flex items-center gap-2 text-gray-700">
@@ -228,24 +258,21 @@ const AntiCorrosionCoating = () => {
                   Premium Features
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
-                  Why Choose Our
-                  <span className="block text-red-600">Anti-Corrosion Coating?</span>
+                  Key Benefits of Our
+                  <span className="block text-red-600">Anti-Corrosion Coating</span>
                 </h2>
-                <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-                  Our anti-corrosion coating systems provide superior protection and durability.
-                </p>
               </div>
             </ScrollAnimation>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
+              {benefits.map((benefit, index) => (
                 <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
                   <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
                     <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-rose-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                       <feature.icon size={24} className="text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                   </div>
                 </ScrollAnimation>
               ))}
@@ -259,13 +286,12 @@ const AntiCorrosionCoating = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <ScrollAnimation animation="fade-in-right" delay={0}>
                 <div className="bg-gradient-to-br from-red-600 to-rose-600 rounded-2xl p-8 text-white">
-                  <h2 className="text-3xl font-black mb-6">Applications</h2>
+                  <h2 className="text-3xl font-black mb-6">Applications of Anti-Corrosion Coating</h2>
                   <p className="text-red-100 text-lg mb-8 leading-relaxed">
-                    Our anti-corrosion coating services are essential for protecting metal structures and 
-                    equipment in various industrial and commercial applications.
+                    Our coatings are ideal for:
                   </p>
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                    <h3 className="text-xl font-bold mb-4">Perfect For:</h3>
+                    <h3 className="text-xl font-bold mb-4">Applications:</h3>
                     <ul className="space-y-3">
                       {applications.map((application, index) => (
                         <li key={index} className="flex items-center gap-3">
@@ -315,16 +341,75 @@ const AntiCorrosionCoating = () => {
           </div>
         </section>
 
+        {/* Types of Anti-Corrosion Coatings Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Types of Anti-Corrosion Coatings
+                  <span className="block text-red-600">We Provide</span>
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {coatingTypes.map((type, index) => (
+                  <div key={index} className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-red-600 rounded-full"></div>
+                      <span className="text-gray-800 font-medium">{type}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Award size={16} />
+                  Why Choose Us
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Why Choose Sanjana Waterproofing?
+                </h2>
+              </div>
+            </ScrollAnimation>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {whyChooseUs.map((item, index) => (
+                <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
+                  <div className="bg-red-50 rounded-xl p-5 border border-red-100">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle size={16} className="text-white" />
+                      </div>
+                      <span className="text-gray-700 leading-relaxed">{item}</span>
+                    </div>
+                  </div>
+                </ScrollAnimation>
+              ))}
+            </div>
+            <div className="mt-8 text-center max-w-3xl mx-auto">
+              <p className="text-gray-600 text-lg">
+                We ensure proper surface preparation, coating thickness, and application standards to deliver maximum protection.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-red-600 to-rose-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
             <ScrollAnimation animation="fade-in-up" delay={0}>
               <h2 className="text-4xl lg:text-5xl font-black text-white mb-8 leading-tight">
-                Ready to Protect Your Assets?
+                Contact Us for Anti-Corrosion Coating Services in Bangalore
               </h2>
               <p className="text-xl text-red-100 mb-10 leading-relaxed">
-                Get a free consultation and quote for your anti-corrosion coating project. Our experts will assess 
-                your needs and recommend the best protection solution.
+                Protect your assets with durable, high-performance anti-corrosion coatings.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
