@@ -27,6 +27,9 @@ import WarehouseBayMarking from './pages/WarehouseBayMarking'
 import AntiCorrosionCoating from './pages/AntiCorrosionCoating'
 import EpoxyFlooringServicesBangalore from './pages/EpoxyFlooringServicesBangalore'
 import HeavyDutyEpoxyFlooring from './pages/HeavyDutyEpoxyFlooring'
+import EpoxyFlooringForWarehouses from './pages/EpoxyFlooringForWarehouses'
+import IndustrialEpoxyScreedFlooring from './pages/IndustrialEpoxyScreedFlooring'
+import AntiskidEpoxyFlooring from './pages/AntiskidEpoxyFlooring'
 // Import redirect handler
 import RedirectHandler from './pages/RedirectHandler'
 
@@ -69,9 +72,9 @@ function App() {
         {/* Epoxy Flooring Sub-pages - SEO URLs */}
         <Route path="/epoxy-flooring-services-in-bangalore" element={<Layout><EpoxyFlooringServicesBangalore /></Layout>} />
         <Route path="/heavy-duty-epoxy-flooring-in-bangalore" element={<Layout><HeavyDutyEpoxyFlooring /></Layout>} />
-        <Route path="/epoxy-flooring-for-warehouses-in-bangalore" element={<Layout><EpoxyFlooring /></Layout>} />
-        <Route path="/industrial-epoxy-screed-flooring-in-bangalore" element={<Layout><EpoxyFlooring /></Layout>} />
-        <Route path="/antiskid-epoxy-flooring-in-bangalore" element={<Layout><EpoxyFlooring /></Layout>} />
+        <Route path="/epoxy-flooring-for-warehouses-in-bangalore" element={<Layout><EpoxyFlooringForWarehouses /></Layout>} />
+        <Route path="/industrial-epoxy-screed-flooring-in-bangalore" element={<Layout><IndustrialEpoxyScreedFlooring /></Layout>} />
+        <Route path="/antiskid-epoxy-flooring-in-bangalore" element={<Layout><AntiskidEpoxyFlooring /></Layout>} />
         {/* PU Flooring - SEO URLs */}
         <Route path="/best-pu-flooring-services-in-bangalore" element={<Layout><PUFlooring /></Layout>} />
         <Route path="/pu-concrete-flooring-in-bangalore" element={<Layout><PUFlooring /></Layout>} />
