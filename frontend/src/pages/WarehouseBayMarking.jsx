@@ -326,13 +326,12 @@ const WarehouseBayMarking = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <ScrollAnimation animation="fade-in-right" delay={0}>
                 <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-2xl p-8 text-white">
-                  <h2 className="text-3xl font-black mb-6">Applications</h2>
+                  <h2 className="text-3xl font-black mb-6">Industries We Serve</h2>
                   <p className="text-green-100 text-lg mb-8 leading-relaxed">
-                    Our warehouse bay marking services are essential for all types of warehouse and distribution 
-                    facilities that require organized operations and safety compliance.
+                    Our bay marking services are ideal for:
                   </p>
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                    <h3 className="text-xl font-bold mb-4">Perfect For:</h3>
+                    <h3 className="text-xl font-bold mb-4">Industries:</h3>
                     <ul className="space-y-3">
                       {applications.map((application, index) => (
                         <li key={index} className="flex items-center gap-3">
@@ -378,6 +377,37 @@ const WarehouseBayMarking = () => {
                   </div>
                 </div>
               </ScrollAnimation>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 bg-green-50 text-green-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Award size={16} />
+                  Why Choose Us
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Why Choose Sanjana Waterproofing?
+                </h2>
+              </div>
+            </ScrollAnimation>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {whyChooseUs.map((item, index) => (
+                <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
+                  <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle size={16} className="text-white" />
+                      </div>
+                      <span className="text-gray-700 leading-relaxed">{item}</span>
+                    </div>
+                  </div>
+                </ScrollAnimation>
+              ))}
             </div>
           </div>
         </section>
