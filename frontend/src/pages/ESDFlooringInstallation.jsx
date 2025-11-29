@@ -11,34 +11,39 @@ const ESDFlooringInstallation = () => {
 
   const features = [
     {
-      title: "Static Dissipation",
-      description: "Effectively controls static electricity buildup, protecting sensitive electronic equipment and components.",
+      title: "Anti-Static & Static-Control Properties",
+      description: "Prevents static electricity buildup and safely channels charges to ground.",
       icon: Zap
     },
     {
-      title: "ESD Compliance",
-      description: "Meets industry standards for electrostatic discharge protection in manufacturing and electronics facilities.",
+      title: "Prevents Electronic Parts from Getting Damaged",
+      description: "Protects delicate electronic components from static discharge damage.",
       icon: Shield
     },
     {
-      title: "Conductive Properties",
-      description: "Provides controlled electrical conductivity to safely ground static charges.",
-      icon: Lock
-    },
-    {
-      title: "Durable Surface",
-      description: "Resistant to heavy traffic, chemicals, and wear while maintaining ESD properties.",
-      icon: Award
-    },
-    {
-      title: "Seamless Installation",
-      description: "Joint-free surface prevents static charge accumulation in gaps and seams.",
+      title: "Seamless & Tough Surface Finish",
+      description: "Joint-free, durable surface that maintains ESD properties under heavy use.",
       icon: Target
     },
     {
-      title: "Easy Maintenance",
-      description: "Simple cleaning procedures maintain ESD properties without compromising performance.",
+      title: "Won't be Affected by Chemicals, Oil & Wear",
+      description: "Resistant to chemicals, oils, and wear while maintaining performance.",
+      icon: Award
+    },
+    {
+      title: "Quickly Cleaned & Costs Little for Upkeep",
+      description: "Easy maintenance with minimal upkeep costs.",
       icon: Sparkles
+    },
+    {
+      title: "Extended Life Cycle",
+      description: "Long-lasting performance with extended service life.",
+      icon: Lock
+    },
+    {
+      title: "Variety of Colors & Thicknesses Offered",
+      description: "Multiple color options and thickness configurations available.",
+      icon: Hammer
     }
   ]
 
@@ -70,14 +75,24 @@ const ESDFlooringInstallation = () => {
   ]
 
   const applications = [
-    "Electronics Manufacturing Facilities",
-    "Semiconductor Production Plants",
-    "Data Centers and Server Rooms",
-    "Medical Device Manufacturing",
-    "Aerospace Component Assembly",
-    "Telecommunications Equipment Rooms",
-    "Laboratories and Clean Rooms",
-    "Pharmaceutical Production Areas"
+    "Electronic manufacturing units",
+    "PCB assembly plants",
+    "Semiconductor industries",
+    "Data centers",
+    "Laboratories & R&D centers",
+    "Server rooms",
+    "Telecommunications units",
+    "Aerospace & defense manufacturing",
+    "Hospitals & diagnostic labs"
+  ]
+
+  const whyChooseUs = [
+    "Skilled team with expertise in static-control flooring technology",
+    "Top-notch ESD epoxy & conductive flooring materials",
+    "Accurate and expert installation",
+    "Flooring solutions customized for your industry's requirements",
+    "Timely delivery with durability to last",
+    "Cost-effective and clear pricing"
   ]
 
   return (
@@ -122,9 +137,10 @@ const ESDFlooringInstallation = () => {
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
-                <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-                  Protect your sensitive electronics and equipment with our professional ESD flooring installation 
-                  services. Compliant, durable, and designed for static electricity control.
+                <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed">
+                  Sanjana Waterproofing offers high-performance anti-static flooring systems designed to safeguard delicate electronic components, 
+                  machinery, and equipment. We specialise in ESD (Electrostatic Discharge) flooring installation in Bangalore. For industries 
+                  where static electricity can cause damage or disruptions, our ESD floors guarantee a secure, controlled environment.
                 </p>
               </ScrollAnimation>
               
@@ -165,13 +181,9 @@ const ESDFlooringInstallation = () => {
                     <span className="block text-yellow-600">Protection Flooring</span>
                   </h2>
                   <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    ESD (Electrostatic Discharge) flooring is a specialized conductive flooring system designed 
-                    to control static electricity buildup. It safely dissipates static charges to protect sensitive 
-                    electronic components and equipment from damage.
-                  </p>
-                  <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our ESD flooring solutions meet industry standards and provide reliable static control for 
-                    electronics manufacturing, data centers, and other sensitive environments.
+                    ESD flooring is an engineered floor system that is specifically designed to inhibit the accumulation of static electricity 
+                    and to channel electric charges to the ground in a safe manner. It is applied in places where electronic parts, chemicals, 
+                    or top-notch machines are used and assures safety, solidity, and protection.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <div className="flex items-center gap-2 text-gray-700">
@@ -259,10 +271,9 @@ const ESDFlooringInstallation = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <ScrollAnimation animation="fade-in-right" delay={0}>
                 <div className="bg-gradient-to-br from-yellow-600 to-orange-600 rounded-2xl p-8 text-white">
-                  <h2 className="text-3xl font-black mb-6">Applications</h2>
+                  <h2 className="text-3xl font-black mb-6">Best Applications of ESD Flooring</h2>
                   <p className="text-yellow-100 text-lg mb-8 leading-relaxed">
-                    Our ESD flooring solutions are essential for environments where static electricity can 
-                    damage sensitive equipment or compromise product quality.
+                    Our ESD flooring solutions are ideal for:
                   </p>
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                     <h3 className="text-xl font-bold mb-4">Perfect For:</h3>
@@ -315,16 +326,47 @@ const ESDFlooringInstallation = () => {
           </div>
         </section>
 
+        {/* Why Choose Us Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 bg-yellow-50 text-yellow-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Award size={16} />
+                  Why Choose Us
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Why Choose Sanjana Waterproofing
+                  <span className="block text-yellow-600">for ESD Flooring in Bangalore?</span>
+                </h2>
+              </div>
+            </ScrollAnimation>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {whyChooseUs.map((item, index) => (
+                <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
+                  <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-yellow-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle size={16} className="text-white" />
+                      </div>
+                      <span className="text-gray-700 leading-relaxed">{item}</span>
+                    </div>
+                  </div>
+                </ScrollAnimation>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-yellow-600 to-orange-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
             <ScrollAnimation animation="fade-in-up" delay={0}>
               <h2 className="text-4xl lg:text-5xl font-black text-white mb-8 leading-tight">
-                Ready for ESD Flooring Installation?
+                Contact Us for ESD Flooring Installation in Bangalore
               </h2>
               <p className="text-xl text-yellow-100 mb-10 leading-relaxed">
-                Get a free consultation and quote for your ESD flooring project. Our experts will assess 
-                your facility requirements and provide the best ESD solution.
+                Ensure complete protection for your equipment and workspace with our high-quality ESD flooring solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 

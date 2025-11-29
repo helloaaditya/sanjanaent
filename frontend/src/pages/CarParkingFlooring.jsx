@@ -11,35 +11,68 @@ const CarParkingFlooring = () => {
 
   const features = [
     {
-      title: "Heavy Load Bearing",
-      description: "Designed to withstand constant vehicle traffic, heavy loads, and frequent movement without damage.",
+      title: "Anti-Skid Surface for more secure driving",
+      description: "Provides superior traction for safe vehicle movement even in wet conditions.",
       icon: Shield
     },
     {
-      title: "Oil & Chemical Resistant",
-      description: "Excellent resistance to oil, grease, fuel, and automotive chemicals commonly found in parking areas.",
-      icon: CheckCircle
-    },
-    {
-      title: "Anti-Slip Surface",
-      description: "Textured finish provides superior traction, reducing slip hazards even when wet or oily.",
+      title: "High Capacity to Bear Loads",
+      description: "Designed to withstand constant vehicle traffic and heavy loads without damage.",
       icon: Award
     },
     {
-      title: "Weather Resistant",
-      description: "Withstands temperature variations, UV exposure, and weather conditions in covered and open parking areas.",
+      title: "Chemical, Fuel, and Oil Resistance",
+      description: "Excellent resistance to oil, grease, fuel, and automotive chemicals.",
+      icon: CheckCircle
+    },
+    {
+      title: "UV and Weather Defence",
+      description: "Withstands temperature variations, UV exposure, and harsh weather conditions.",
       icon: Target
     },
     {
-      title: "Easy Maintenance",
-      description: "Smooth, seamless surface is easy to clean and maintain, keeping parking areas looking professional.",
+      title: "Durable, Dust-Free, and Smooth Finish",
+      description: "Long-lasting, seamless surface that's easy to clean and maintain.",
       icon: Sparkles
     },
     {
-      title: "Aesthetic Appeal",
-      description: "Available in various colors and finishes to enhance the appearance of parking facilities.",
+      title: "Simple to Maintain & Clean",
+      description: "Easy maintenance keeps parking areas looking professional with minimal effort.",
       icon: ParkingCircle
+    },
+    {
+      title: "Accessible in a Variety of Colours and Markings",
+      description: "Multiple color options and custom markings available for better organization.",
+      icon: Hammer
     }
+  ]
+
+  const parkingTypes = [
+    "Parking flooring made of epoxy",
+    "PU Flooring for Parking",
+    "Coating to Prevent Skid",
+    "Parking on Rooftops Flooring that is waterproof",
+    "Floor Coating for Basement Parking",
+    "Directional and Bay Marking"
+  ]
+
+  const applications = [
+    "Apartments for residents",
+    "Commercial structures",
+    "Mall shopping",
+    "IT offices and parks",
+    "Medical facilities",
+    "Units of industry",
+    "Public parking lots and hotels"
+  ]
+
+  const whyChooseUs = [
+    "Expert installers with technical know-how",
+    "Superior epoxy and PU coating materials",
+    "Durable and weatherproof flooring",
+    "Precise labelling and line arrangement",
+    "Timely completion of the project",
+    "Competitive and open pricing"
   ]
 
   const process = [
@@ -122,9 +155,10 @@ const CarParkingFlooring = () => {
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
-                <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-                  Transform your parking areas with our durable, anti-slip, and weather-resistant flooring solutions. 
-                  Designed to withstand heavy traffic and maintain a professional appearance.
+                <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed">
+                  Sanjana Waterproofing offers high-performance, long-lasting car parking flooring solutions in Bangalore that are resistant 
+                  to weather exposure, heavy vehicle movement, oil spills, and normal wear and tear. Our parking floor coatings prolong the 
+                  life of your parking area, increase safety, and improve aesthetics.
                 </p>
               </ScrollAnimation>
               
@@ -158,16 +192,15 @@ const CarParkingFlooring = () => {
                 <div>
                   <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
                     <Car size={16} />
-                    What is Parking Flooring?
+                    About Our Car Parking Flooring
                   </div>
                   <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    Durable & Safe
-                    <span className="block text-indigo-600">Parking Solutions</span>
+                    About Our Car Parking Flooring
                   </h2>
                   <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    Car parking flooring is a specialized flooring system designed to handle the unique demands 
-                    of parking facilities. It provides durability against heavy vehicle traffic, resistance to 
-                    automotive chemicals, and enhanced safety with anti-slip properties.
+                    Vehicle pressure, friction, and environmental factors all put constant stress on car parking floors. For commercial, residential, 
+                    and industrial parking spaces, our speciality flooring systems—epoxy, PU coating, anti-skid finish, and waterproof coatings—offer 
+                    a robust, seamless, and long-lasting solution.
                   </p>
                   <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                     Our parking flooring solutions combine strength, safety, and aesthetics to create functional 
@@ -259,13 +292,12 @@ const CarParkingFlooring = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <ScrollAnimation animation="fade-in-right" delay={0}>
                 <div className="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl p-8 text-white">
-                  <h2 className="text-3xl font-black mb-6">Applications</h2>
+                  <h2 className="text-3xl font-black mb-6">Ideal for</h2>
                   <p className="text-indigo-100 text-lg mb-8 leading-relaxed">
-                    Our parking flooring solutions are ideal for all types of parking facilities, from 
-                    commercial garages to residential complexes.
+                    Our car parking flooring is suitable for:
                   </p>
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                    <h3 className="text-xl font-bold mb-4">Perfect For:</h3>
+                    <h3 className="text-xl font-bold mb-4">Applications:</h3>
                     <ul className="space-y-3">
                       {applications.map((application, index) => (
                         <li key={index} className="flex items-center gap-3">
@@ -315,16 +347,75 @@ const CarParkingFlooring = () => {
           </div>
         </section>
 
+        {/* Types of Parking Flooring Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Types of Parking Flooring
+                  <span className="block text-indigo-600">We Offer</span>
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {parkingTypes.map((type, index) => (
+                  <div key={index} className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
+                      <span className="text-gray-800 font-medium">{type}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Award size={16} />
+                  Why Choose Us
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                  Why Choose Sanjana Waterproofing?
+                </h2>
+              </div>
+            </ScrollAnimation>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {whyChooseUs.map((item, index) => (
+                <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
+                  <div className="bg-indigo-50 rounded-xl p-5 border border-indigo-100">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle size={16} className="text-white" />
+                      </div>
+                      <span className="text-gray-700 leading-relaxed">{item}</span>
+                    </div>
+                  </div>
+                </ScrollAnimation>
+              ))}
+            </div>
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 text-lg">
+                We customize parking floor coatings based on traffic load, location, and surface condition.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
             <ScrollAnimation animation="fade-in-up" delay={0}>
               <h2 className="text-4xl lg:text-5xl font-black text-white mb-8 leading-tight">
-                Ready for Professional Parking Flooring?
+                Contact Us for Car Parking Flooring Solutions in Bangalore
               </h2>
               <p className="text-xl text-indigo-100 mb-10 leading-relaxed">
-                Get a free consultation and quote for your parking flooring project. Our experts will assess 
-                your parking area and recommend the best solution.
+                Make your parking area safer, stronger, and more attractive with our reliable flooring solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
