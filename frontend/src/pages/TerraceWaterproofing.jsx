@@ -7,19 +7,28 @@ import ScrollAnimation from '../components/ScrollAnimation'
 const TerraceWaterproofing = () => {
   const location = useLocation()
   
+  const isRoofWaterproofing = location.pathname === '/roof-waterproofing-services-in-bangalore'
+  const isTerraceRoofWaterproofing = location.pathname === '/terrace-roof-waterproofing-in-bangalore'
+  
   // SEO configuration based on route
   const seoConfig = {
     '/roof-waterproofing-services-in-bangalore': {
       title: 'Roof Waterproofing Services in Bangalore | Sanjana Enterprises',
-      description: 'Trusted roof waterproofing services in Bangalore. Protect your terrace, roof, and walls from leakage and seepage.',
+      description: 'Keep your building safe from water damage with top-notch roof waterproofing services in Bangalore. Expert team dedicated to stopping leaks, seepage, dampness, and structural issues.',
       h1: 'Roof Waterproofing Services in Bangalore',
       canonical: 'https://sanjanawaterproofing.com/roof-waterproofing-services-in-bangalore'
     },
-    default: {
+    '/terrace-roof-waterproofing-in-bangalore': {
       title: 'Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
-      description: 'Protect your terrace with professional waterproofing services in Bangalore. Long-lasting leak-proof solutions.',
+      description: 'Expert terrace waterproofing services in Bangalore. Stop water seepage, eliminate damp patches, and prevent structural damage on flat terraces, balconies, and rooftops.',
       h1: 'Terrace Roof Waterproofing in Bangalore',
       canonical: 'https://sanjanawaterproofing.com/terrace-roof-waterproofing-in-bangalore'
+    },
+    default: {
+      title: 'Terrace Waterproofing in Bangalore | Sanjana Enterprises',
+      description: 'Professional terrace waterproofing services in Bangalore. Protect your home from water damage with advanced solutions. 10-15 year warranty. Free inspection.',
+      h1: 'Protect Your Terrace Investment',
+      canonical: 'https://sanjanawaterproofing.com/terrace-waterproofing'
     }
   }
   
@@ -65,6 +74,33 @@ const TerraceWaterproofing = () => {
     }
   ]
 
+  const roofWaterproofingProcess = [
+    {
+      step: '01',
+      title: 'Surface Cleaning & Preparation',
+      description: 'Thorough cleaning and preparation of the roof surface to ensure optimal adhesion.',
+      icon: Wrench
+    },
+    {
+      step: '02',
+      title: 'Crack Sealing & Repair',
+      description: 'Professional sealing and repair of all existing cracks and damages.',
+      icon: Shield
+    },
+    {
+      step: '03',
+      title: 'Primer Application',
+      description: 'Application of specialized primer to enhance bonding of waterproofing materials.',
+      icon: Target
+    },
+    {
+      step: '04',
+      title: 'Protective Waterproof Coating',
+      description: 'Application of high-quality, UV-resistant waterproof coating for maximum protection.',
+      icon: Hammer
+    }
+  ]
+
   const process = [
     {
       step: '01',
@@ -95,9 +131,15 @@ const TerraceWaterproofing = () => {
       title: 'Finishing & Curing',
       description: 'Final finishing touches and proper curing to ensure maximum effectiveness.',
       icon: Hammer
-    },
-    {
-      step: '06',
+    }
+  ]
+
+  const terraceBenefits = [
+    "Shields against water damage and dampness",
+    "Provides a seamless and visually appealing finish",
+    "Offers long-lasting protection from harsh weather conditions",
+    "Perfect for residential, commercial, and industrial terraces"
+  ]
       title: 'Quality Check',
       description: 'Comprehensive inspection to ensure complete waterproofing coverage and effectiveness.',
       icon: CheckCircle
@@ -166,10 +208,36 @@ const TerraceWaterproofing = () => {
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
-                <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-                  Safeguard your home or building from water damage with our professional terrace waterproofing 
-                  solutions. Advanced materials and expert application for long-lasting protection.
-                </p>
+                {isRoofWaterproofing ? (
+                  <div className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed space-y-4">
+                    <p>
+                      Keep your building safe from water damage with top-notch roof waterproofing services in Bangalore, brought to you by Sanjana Waterproofing. 
+                      Our expert team is dedicated to stopping leaks, seepage, dampness, and structural issues, making sure your home, office, or industrial space 
+                      remains secure, dry, and built to last.
+                    </p>
+                    <p>
+                      We utilize high-quality waterproofing materials and cutting-edge techniques to deliver seamless, UV-resistant, and durable protection for 
+                      all roof types—whether flat, sloped, or industrial.
+                    </p>
+                  </div>
+                ) : isTerraceRoofWaterproofing ? (
+                  <div className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed space-y-4">
+                    <p>
+                      Looking to keep your terrace dry and durable? Check out the expert waterproofing services offered by Sanjana Waterproofing in Bangalore! 
+                      Our solutions are designed to stop water from seeping in, eliminate damp patches, and prevent any structural damage on flat terraces, 
+                      balconies, and rooftops.
+                    </p>
+                    <p>
+                      We use top-notch waterproofing membranes, PU coatings, and sealants to create a seamless, maintenance-free protective layer that can handle 
+                      heavy rainfall, humidity, and UV rays.
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                    Safeguard your home or building from water damage with our professional terrace waterproofing 
+                    solutions. Advanced materials and expert application for long-lasting protection.
+                  </p>
+                )}
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={600}>
@@ -193,6 +261,85 @@ const TerraceWaterproofing = () => {
             </div>
           </div>
         </section>
+
+        {/* Roof Waterproofing Process Section */}
+        {isRoofWaterproofing && (
+          <section className="py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <ScrollAnimation animation="fade-in-up" delay={0}>
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-2 bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <Target size={16} />
+                    Our Process
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Here's what our Roof Waterproofing
+                    <span className="block text-orange-600">Process looks like</span>
+                  </h2>
+                </div>
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 md:p-12 border-2 border-orange-200 shadow-lg max-w-5xl mx-auto">
+                  <div className="space-y-6">
+                    {roofWaterproofingProcess.map((step, index) => (
+                      <div key={index} className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-white font-bold">{index + 1}</span>
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-gray-900 mb-1">{step.title}</h3>
+                          <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-8 pt-8 border-t border-orange-200">
+                    <p className="text-gray-700 text-lg leading-relaxed font-medium">
+                      With Sanjana Waterproofing, you can count on reliable, budget-friendly, and professional roof waterproofing services 
+                      that extend the lifespan of your building.
+                    </p>
+                  </div>
+                </div>
+              </ScrollAnimation>
+            </div>
+          </section>
+        )}
+
+        {/* Terrace Benefits Section */}
+        {isTerraceRoofWaterproofing && (
+          <section className="py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <ScrollAnimation animation="fade-in-up" delay={0}>
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-2 bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <Sparkles size={16} />
+                    Benefits
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Here are some benefits of
+                    <span className="block text-orange-600">our terrace waterproofing</span>
+                  </h2>
+                </div>
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 md:p-12 border-2 border-orange-200 shadow-lg max-w-5xl mx-auto">
+                  <div className="space-y-4">
+                    {terraceBenefits.map((benefit, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckCircle size={16} className="text-white" />
+                        </div>
+                        <span className="text-gray-700 text-lg leading-relaxed">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-8 pt-8 border-t border-orange-200">
+                    <p className="text-gray-700 text-lg leading-relaxed">
+                      Our skilled team guarantees a professional installation process that includes surface cleaning, crack repairs, 
+                      primer application, and a protective topcoat to ensure maximum durability.
+                    </p>
+                  </div>
+                </div>
+              </ScrollAnimation>
+            </div>
+          </section>
+        )}
 
         {/* Introduction Section */}
         <section className="py-16 bg-white">
@@ -348,7 +495,7 @@ const TerraceWaterproofing = () => {
                   </p>
                   
                   <div className="space-y-6">
-                    {process.map((step, index) => (
+                    {(isRoofWaterproofing ? roofWaterproofingProcess : process).map((step, index) => (
                       <div key={index} className="flex gap-6 group">
                         <div className="flex-shrink-0">
                           <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
