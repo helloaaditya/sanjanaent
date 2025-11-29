@@ -258,7 +258,7 @@ const AntiCorrosionCoating = () => {
                 <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
                   <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
                     <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-rose-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon size={24} className="text-white" />
+                      <benefit.icon size={24} className="text-white" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
