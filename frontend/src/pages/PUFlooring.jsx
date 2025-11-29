@@ -1,24 +1,25 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useLocation } from 'react-router-dom'
-import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer } from 'lucide-react'
+import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer, Factory, UtensilsCrossed, Building2, Car, GraduationCap, Droplet, Layers } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 
 const PUFlooring = () => {
   const location = useLocation()
+  const isConcretePage = location.pathname === '/pu-concrete-flooring-in-bangalore'
   
   // SEO configuration based on route
   const seoConfig = {
     '/pu-concrete-flooring-in-bangalore': {
-      title: 'PU Concrete Flooring in Bangalore | Sanjana Enterprises',
-      description: 'Professional PU concrete flooring services in Bangalore. Perfect for factories, warehouses & parking areas.',
-      h1: 'PU Concrete Flooring in Bangalore',
+      title: 'Best PU Concrete Flooring Services in Bangalore | Sanjana Enterprises',
+      description: 'Professional PU concrete flooring services in Bangalore. Perfect for factories, warehouses & parking areas. Thermal-shock resistant & long-lasting.',
+      h1: 'Best PU Concrete Flooring Services in Bangalore',
       canonical: 'https://sanjanawaterproofing.com/pu-concrete-flooring-in-bangalore'
     },
     default: {
       title: 'Best PU Flooring Services in Bangalore | Sanjana Enterprises',
       description: 'Expert PU flooring services in Bangalore for industrial & commercial spaces. Long-lasting, durable, and chemical resistant.',
-      h1: 'PU Flooring Services in Bangalore',
+      h1: 'Best PU Flooring Services in Bangalore',
       canonical: 'https://sanjanawaterproofing.com/best-pu-flooring-services-in-bangalore'
     }
   }
@@ -29,37 +30,60 @@ const PUFlooring = () => {
     window.location.href = "tel:+919916290799"
   }
 
-  const features = [
+  // Why Choose PU Flooring features
+  const whyChooseFeatures = [
     {
-      title: "Flexibility",
-      description: "Polyurethane's flexible nature allows it to withstand minor substrate movements without cracking.",
+      title: "Highly Durable & Flexible",
+      description: "PU floors are built to handle constant movement, heavy machinery, and thermal stress without breaking a sweat.",
       icon: Shield
     },
     {
-      title: "Chemical Resistance",
-      description: "Excellent resistance to oils, greases, and a wide range of chemicals commonly found in industrial environments.",
+      title: "Excellent Chemical Resistance",
+      description: "They can take on acids, alkalis, oils, and all sorts of industrial chemicals without flinching.",
       icon: CheckCircle
     },
     {
-      title: "Impact Resistance",
-      description: "Superior ability to absorb impacts and resist damage from heavy objects or equipment.",
+      title: "Hygienic & Seamless Finish",
+      description: "These floors are perfect for environments like food processing, pharmaceuticals, and cleanrooms.",
       icon: Award
     },
     {
-      title: "Temperature Stability",
-      description: "Maintains performance across a wide temperature range, from freezing to high heat conditions.",
-      icon: Sparkles
-    },
-    {
-      title: "Seamless Finish",
-      description: "Creates a smooth, joint-free surface that prevents dirt accumulation and is easy to clean.",
+      title: "Impact & Scratch Resistant",
+      description: "They stand up to surface damage, even in high-traffic areas.",
       icon: Target
     },
     {
-      title: "Aesthetic Appeal",
-      description: "Available in various colors, textures, and finishes to enhance the visual appeal of your space.",
-      icon: Palette
+      title: "Thermal Shock Resistant",
+      description: "Ideal for industries that deal with temperature swings, like cold storage, kitchens, and production zones.",
+      icon: Thermometer
+    },
+    {
+      title: "Long Lifespan",
+      description: "With just a bit of maintenance, these floors can last a solid 10 to 15 years or more!",
+      icon: Sparkles
     }
+  ]
+
+  // Where PU Flooring is Used
+  const applications = [
+    { name: "Food & Beverage Industries", icon: UtensilsCrossed },
+    { name: "Pharmaceutical & Cleanrooms", icon: Building2 },
+    { name: "Warehouses & Logistics Spaces", icon: Factory },
+    { name: "Commercial Kitchens", icon: UtensilsCrossed },
+    { name: "Automotive & Engineering Units", icon: Car },
+    { name: "Hospitals & Laboratories", icon: Building2 },
+    { name: "Schools & Tech Parks", icon: GraduationCap },
+    { name: "Garages & Parking Areas", icon: Car }
+  ]
+
+  // Why Choose Sanjana Waterproofing
+  const whyChooseUs = [
+    "Over 10 years of experience in PU and epoxy flooring",
+    "A certified installation team you can trust",
+    "Only the best premium-grade PU materials",
+    "Fast, efficient, and professional service",
+    "Free site inspection and consultation",
+    "Affordable and transparent pricing"
   ]
 
   const process = [
@@ -87,17 +111,6 @@ const PUFlooring = () => {
       description: 'Application of polyurethane base coats, decorative elements, and topcoats as specified.',
       icon: Hammer
     }
-  ]
-
-  const applications = [
-    "Food Processing Facilities",
-    "Pharmaceutical Laboratories",
-    "Healthcare Facilities",
-    "Aircraft Hangars",
-    "Automotive Showrooms",
-    "Cold Storage Facilities",
-    "Chemical Plants",
-    "Warehouse Floors"
   ]
 
   return (
@@ -134,16 +147,16 @@ const PUFlooring = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  {location.pathname.includes('concrete') ? (
+                  {isConcretePage ? (
                     <>
-                      PU Concrete Flooring
+                      Best PU Concrete Flooring Services
                       <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                         in Bangalore
                       </span>
                     </>
                   ) : (
                     <>
-                      PU Flooring Services
+                      Best PU Flooring Services
                       <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                         in Bangalore
                       </span>
@@ -153,10 +166,36 @@ const PUFlooring = () => {
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
-                <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-                  Experience the perfect combination of flexibility, durability, and aesthetics with our premium 
-                  polyurethane flooring systems designed for demanding industrial and commercial environments.
-                </p>
+                {isConcretePage ? (
+                  <div className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed space-y-4">
+                    <p>
+                      Sanjana Waterproofing is your go-to for top-notch PU flooring and PU concrete flooring services right here in Bangalore. 
+                      We specialize in providing flooring solutions that are not just durable but also seamless and hygienic, perfect for industrial, 
+                      commercial, and high-traffic areas.
+                    </p>
+                    <p>
+                      Our polyurethane flooring systems are designed with flexibility, impact resistance, and chemical protection in mind, making 
+                      them a great fit for food industries, pharmaceutical units, warehouses, production areas, commercial kitchens, and heavy-duty 
+                      industrial floors.
+                    </p>
+                    <p>
+                      PU concrete flooring offers incredible strength, thermal-shock resistance, and long-lasting performance, making it suitable 
+                      for both hot and cold environments like dairies, meat processing units, breweries, and cold storage facilities.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed space-y-4">
+                    <p>
+                      Are you on the hunt for durable, hygienic, and high-performance PU flooring solutions in Bangalore? Look no further! 
+                      At Sanjana Waterproofing, we take pride in our expertise in installing top-notch polyurethane (PU) flooring systems, 
+                      perfect for industrial, commercial, and high-traffic areas.
+                    </p>
+                    <p>
+                      PU flooring stands out for its flexibility, impact resistance, chemical stability, and impressive longevity, making it 
+                      an ideal choice for industries that require robust and sanitary flooring options.
+                    </p>
+                  </div>
+                )}
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={600}>
@@ -181,162 +220,118 @@ const PUFlooring = () => {
           </div>
         </section>
 
-        {/* Introduction Section */}
+        {/* Why Choose PU Flooring Section */}
+        {!isConcretePage && (
+          <section className="py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <ScrollAnimation animation="fade-in-up" delay={0}>
+                <div className="text-center mb-16">
+                  <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <Shield size={16} />
+                    Why Choose PU Flooring?
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Why Choose PU Flooring?
+                  </h2>
+                </div>
+              </ScrollAnimation>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {whyChooseFeatures.map((feature, index) => (
+                  <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
+                    <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 shadow-sm border border-purple-100 hover:shadow-lg transition-all duration-300 group">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <feature.icon size={24} className="text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                    </div>
+                  </ScrollAnimation>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Where PU Flooring Is Used Section */}
+        {!isConcretePage && (
+          <section className="py-16 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <ScrollAnimation animation="fade-in-up" delay={0}>
+                <div className="text-center mb-16">
+                  <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <Factory size={16} />
+                    Applications
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Where PU Flooring
+                    <span className="block text-purple-600">Is Used</span>
+                  </h2>
+                </div>
+              </ScrollAnimation>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {applications.map((application, index) => (
+                  <ScrollAnimation key={index} animation="fade-in-up" delay={index * 50}>
+                    <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <application.icon size={24} className="text-white" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900">{application.name}</h3>
+                    </div>
+                  </ScrollAnimation>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Why Sanjana Waterproofing Section */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <ScrollAnimation animation="fade-in-right" delay={0}>
                 <div>
                   <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Palette size={16} />
-                    What is PU Flooring?
+                    <Award size={16} />
+                    Why Choose Us
                   </div>
                   <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    Advanced Polyurethane
-                    <span className="block text-purple-600">Flooring Solutions</span>
+                    Why Sanjana
+                    <span className="block text-purple-600">Waterproofing?</span>
                   </h2>
-                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    Polyurethane (PU) flooring is a high-performance coating system that combines the strength 
-                    of epoxy with the flexibility of polyurethane. This unique combination creates a flooring 
-                    solution that can withstand heavy traffic, chemical exposure, and temperature variations.
-                  </p>
-                  <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our PU flooring systems offer superior impact resistance, flexibility, and chemical resistance, 
-                    making them ideal for environments where substrate movement or thermal cycling occurs.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Impact Resistant</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Flexible & Durable</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Chemical Resistant</span>
-                    </div>
-                  </div>
-                </div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation animation="fade-in-left" delay={200}>
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-100">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Benefits</h3>
                   <div className="space-y-4">
-                    {[
-                      "Superior flexibility to handle substrate movement",
-                      "Excellent impact and abrasion resistance",
-                      "Outstanding chemical and stain resistance",
-                      "Seamless, easy-to-clean surface",
-                      "Wide range of color and texture options",
-                      "Comfortable underfoot reducing fatigue",
-                      "Suitable for temperature-sensitive environments",
-                      "Long-lasting performance with minimal maintenance"
-                    ].map((benefit, index) => (
+                    {whyChooseUs.map((item, index) => (
                       <div key={index} className="flex items-start gap-3">
                         <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                           <CheckCircle size={16} className="text-white" />
                         </div>
-                        <span className="text-gray-700">{benefit}</span>
+                        <span className="text-gray-700 text-lg leading-relaxed">{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               </ScrollAnimation>
-            </div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <ScrollAnimation animation="fade-in-up" delay={0}>
-              <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  <Sparkles size={16} />
-                  Premium Features
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
-                  Why Choose Our
-                  <span className="block text-purple-600">PU Flooring?</span>
-                </h2>
-                <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-                  Our polyurethane flooring systems are engineered for maximum performance in demanding environments.
-                </p>
-              </div>
-            </ScrollAnimation>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon size={24} className="text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                  </div>
-                </ScrollAnimation>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Applications Section */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <ScrollAnimation animation="fade-in-right" delay={0}>
-                <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-8 text-white">
-                  <h2 className="text-3xl font-black mb-6">Applications</h2>
-                  <p className="text-purple-100 text-lg mb-8 leading-relaxed">
-                    Our polyurethane flooring solutions are specifically designed for environments that demand 
-                    both durability and flexibility, making them ideal for a wide range of industrial and 
-                    commercial applications.
-                  </p>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                    <h3 className="text-xl font-bold mb-4">Perfect For:</h3>
-                    <ul className="space-y-3">
-                      {applications.map((application, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-pink-300 rounded-full"></div>
-                          <span>{application}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-left" delay={200}>
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Target size={16} />
-                    Installation Process
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    Professional
-                    <span className="block text-purple-600">Installation Process</span>
-                  </h2>
-                  <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-8 text-white">
+                  <h2 className="text-3xl font-black mb-6">Installation Process</h2>
+                  <p className="text-purple-100 text-lg mb-8 leading-relaxed">
                     Our certified technicians follow a precise installation process to ensure your polyurethane 
                     flooring delivers optimal performance and longevity.
                   </p>
                   
                   <div className="space-y-6">
                     {process.map((step, index) => (
-                      <div key={index} className="flex gap-6 group">
+                      <div key={index} className="flex gap-4">
                         <div className="flex-shrink-0">
-                          <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <step.icon size={24} className="text-white" />
+                          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                            <step.icon size={20} className="text-white" />
                           </div>
-                          <div className="text-4xl font-black text-purple-200 text-center mt-2">{step.step}</div>
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                          <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                          <h3 className="text-lg font-bold mb-1">{step.title}</h3>
+                          <p className="text-purple-100 text-sm leading-relaxed">{step.description}</p>
                         </div>
                       </div>
                     ))}
@@ -346,6 +341,34 @@ const PUFlooring = () => {
             </div>
           </div>
         </section>
+        
+        {/* Additional Content for Concrete Page */}
+        {isConcretePage && (
+          <section className="py-16 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <ScrollAnimation animation="fade-in-up" delay={0}>
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
+                    Professional Installation & Service
+                  </h2>
+                </div>
+                <div className="bg-white rounded-2xl p-8 border border-gray-100">
+                  <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                    We take pride in our professional installation process, using only high-quality materials to ensure 
+                    strong adhesion, a smooth finish, and durability that lasts. With our skilled technicians, advanced 
+                    tools, and years of experience, Sanjana Waterproofing promises reliable and cost-effective flooring 
+                    solutions that meet all industrial standards.
+                  </p>
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    When it comes to high-performance PU flooring in Bangalore, you can count on us to provide flooring 
+                    that withstands chemicals, heavy loads, temperature changes, and everyday wear — all while ensuring 
+                    safety, hygiene, and lasting value for your facility.
+                  </p>
+                </div>
+              </ScrollAnimation>
+            </div>
+          </section>
+        )}
 
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
