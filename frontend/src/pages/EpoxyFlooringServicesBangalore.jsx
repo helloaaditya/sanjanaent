@@ -114,17 +114,18 @@ const EpoxyFlooringServicesBangalore = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Epoxy Flooring Services
+                  Premium Epoxy Flooring
                   <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                    in Bangalore
+                    Services in Bangalore
                   </span>
                 </h1>
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
                 <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-                  Transform your space with our premium epoxy flooring systems. Durable, seamless, and customizable 
-                  solutions for industrial, commercial, and residential applications.
+                  Sanjana Enterprises offers premium epoxy flooring solutions for residential, industrial and commercial use. 
+                  We provide a lasting, high-performance product of the highest quality. Our team provides a high level of 
+                  quality service that results in an installation that far exceeds your expectations and is performed with great care.
                 </p>
               </ScrollAnimation>
               
@@ -162,17 +163,18 @@ const EpoxyFlooringServicesBangalore = () => {
                     What is Epoxy Flooring?
                   </div>
                   <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    Durable & Aesthetic
-                    <span className="block text-blue-600">Flooring Solution</span>
+                    What is Epoxy Flooring?
                   </h2>
                   <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    Epoxy flooring is a high-performance coating system made from epoxy resins and hardeners. 
-                    When combined, they create a rigid plastic material that is stronger than concrete and 
-                    highly resistant to damage.
+                    Epoxy Flooring can be defined as a performance-based coating system created from an epoxy resin mixed 
+                    with either an appropriate hardener or catalyst to create a tough, durable, chemical-resistant, seamless finish. 
+                    Epoxy offers many capabilities beyond those typically found in conventional flooring types: it provides a 
+                    sanitary (joint-free) and easy-to-care-for floor surface that looks great!
                   </p>
                   <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our epoxy flooring solutions provide a seamless, durable surface that enhances both the 
-                    functionality and appearance of your space while offering long-term value.
+                    Our premium epoxy flooring solutions for residential, industrial and commercial use provide a lasting, 
+                    high-performance product of the highest quality. Our team provides a high level of quality service that 
+                    results in an installation that far exceeds your expectations and is performed with great care.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <div className="flex items-center gap-2 text-gray-700">
@@ -193,23 +195,23 @@ const EpoxyFlooringServicesBangalore = () => {
               
               <ScrollAnimation animation="fade-in-left" delay={200}>
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Benefits</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Benefits of Epoxy Flooring</h3>
                   <div className="space-y-4">
                     {[
-                      "Seamless, joint-free surface",
-                      "Exceptional durability and strength",
-                      "Resistance to chemicals and stains",
-                      "Easy to clean and maintain",
-                      "Available in multiple colors and finishes",
-                      "Enhanced safety with anti-slip options",
-                      "Cost-effective long-term solution",
-                      "Quick installation with minimal downtime"
+                      "Long-lasting durability: Withstands the rigors of heavy machinery, high foot traffic, and industrial use for a period of 15-20 years before needing replacement.",
+                      "Chemically and Stain Resistant: The epoxy makes your floor resistant to oils, rust, acids, and most types of industrial chemicals.",
+                      "Seamless and easy to maintain: The jointless surface makes it easier to clean and maintain.",
+                      "Custom Orientation and Finishes: Solid colour options, metallic flecks, flakes (small pieces), textured options, etc.",
+                      "Anti-slip: Provides non-slip surfaces for wet or very busy areas.",
+                      "Minimal Maintenance: Very little cleaning and no need to wax.",
+                      "Quick Installation: Less downtime for your commercial/industrial establishments.",
+                      "Environmentally Friendly: Due to their long life span, they will create less waste, and you will have fewer floors needing replacement over time."
                     ].map((benefit, index) => (
                       <div key={index} className="flex items-start gap-3">
                         <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                           <CheckCircle size={16} className="text-white" />
                         </div>
-                        <span className="text-gray-700">{benefit}</span>
+                        <span className="text-gray-700 leading-relaxed">{benefit}</span>
                       </div>
                     ))}
                   </div>
@@ -219,37 +221,151 @@ const EpoxyFlooringServicesBangalore = () => {
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Why Choose Section */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <ScrollAnimation animation="fade-in-up" delay={0}>
               <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  <Sparkles size={16} />
-                  Premium Features
+                  <Award size={16} />
+                  Why Choose Us
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
-                  Why Choose Our
-                  <span className="block text-blue-600">Epoxy Flooring?</span>
+                  Why Choose Sanjana Enterprises
+                  <span className="block text-blue-600">for Epoxy Flooring?</span>
                 </h2>
-                <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-                  Our epoxy flooring systems are engineered for maximum performance, durability, and aesthetics.
-                </p>
               </div>
             </ScrollAnimation>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon size={24} className="text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              <ScrollAnimation animation="fade-in-up" delay={0}>
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Wrench size={24} className="text-white" />
                   </div>
-                </ScrollAnimation>
-              ))}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Skilled Design Experts</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    We have years of experience in the installation of industrial, commercial, and residential epoxy flooring.
+                  </p>
+                </div>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-up" delay={100}>
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Shield size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Quality Construction Materials</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    We use only the highest quality epoxy resins to ensure durability, chemical resistance, and long-term performance of your flooring.
+                  </p>
+                </div>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-up" delay={200}>
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Palette size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Customised Flooring Solutions</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    We design and construct flooring solutions to meet all your specific needs in terms of colour, texture, construction pattern, etc.
+                  </p>
+                </div>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-up" delay={300}>
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <CheckCircle size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Health & Safety Compliance</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Anti-slip and hygienic coatings will meet all health and safety requirements for your flooring.
+                  </p>
+                </div>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-up" delay={400}>
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Target size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Projects are Completed on Time</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    All installation jobs will be completed efficiently, with little or no interruption to the flow of your business or daily routine.
+                  </p>
+                </div>
+              </ScrollAnimation>
+            </div>
+          </div>
+        </section>
+        
+        {/* Why Epoxy is Smart Investment Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <ScrollAnimation animation="fade-in-right" delay={0}>
+                <div>
+                  <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <Sparkles size={16} />
+                    Smart Investment
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                    Why Epoxy Flooring is a
+                    <span className="block text-blue-600">Smart Investment</span>
+                  </h2>
+                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                    When it comes to flooring, epoxy has some fantastic benefits that can really make a difference. 
+                    First off, you'll find that the long-term maintenance costs for your floors will be significantly lower. 
+                    Plus, with the addition of anti-slip coatings, you can create a safer environment for everyone.
+                  </p>
+                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                    Not to mention, the overall look of your space will get a nice boost in aesthetic appeal. 
+                    Concrete surfaces will be shielded from wear and tear, as well as those pesky harmful chemicals. 
+                    And let's not forget, investing in epoxy flooring can actually increase the value of your property. 
+                    There are also eco-friendly and sustainable options available, making it a smart choice for the environment!
+                  </p>
+                  <div className="flex flex-wrap gap-4 mt-8">
+                    <div className="flex items-center gap-2 text-gray-700 bg-blue-50 px-4 py-2 rounded-lg">
+                      <CheckCircle size={20} className="text-green-600" />
+                      <span className="font-semibold">Lower Maintenance Costs</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-700 bg-blue-50 px-4 py-2 rounded-lg">
+                      <CheckCircle size={20} className="text-green-600" />
+                      <span className="font-semibold">Increased Property Value</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-700 bg-blue-50 px-4 py-2 rounded-lg">
+                      <CheckCircle size={20} className="text-green-600" />
+                      <span className="font-semibold">Eco-Friendly Options</span>
+                    </div>
+                  </div>
+                </div>
+              </ScrollAnimation>
+              
+              <ScrollAnimation animation="fade-in-left" delay={200}>
+                <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl p-8 text-white">
+                  <h3 className="text-2xl font-bold mb-6">Key Advantages</h3>
+                  <div className="space-y-4">
+                    {[
+                      "Significantly lower long-term maintenance costs",
+                      "Safer environment with anti-slip coatings",
+                      "Enhanced aesthetic appeal for your space",
+                      "Protection against wear and tear",
+                      "Resistance to harmful chemicals",
+                      "Increased property value",
+                      "Eco-friendly and sustainable options"
+                    ].map((advantage, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-cyan-300 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckCircle size={16} className="text-blue-600" />
+                        </div>
+                        <span className="text-blue-50 leading-relaxed">{advantage}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollAnimation>
             </div>
           </div>
         </section>
