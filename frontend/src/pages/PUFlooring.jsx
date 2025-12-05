@@ -82,7 +82,7 @@ const PUFlooring = () => {
     "A certified installation team you can trust",
     "Only the best premium-grade PU materials",
     "Fast, efficient, and professional service",
-    "Free site inspection and consultation",
+    "Site inspection and consultation",
     "Affordable and transparent pricing"
   ]
 
