@@ -169,15 +169,22 @@ const PUFlooring = () => {
                 {isConcretePage ? (
                   <div className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed space-y-4">
                     <p>
-                    Sanjana Waterproofing is a trusted name for high-performance PU flooring and PU concrete flooring services in Bangalore. 
-                    We specialize in delivering advanced flooring solutions that combine durability, hygiene, and long-term performance for demanding 
-                    industrial and commercial environments.
+                      Sanjana Waterproofing is your go-to for top-notch PU flooring and PU concrete flooring services right here in Bangalore. 
+                      We specialize in providing flooring solutions that are not just durable but also seamless and hygienic, perfect for industrial, 
+                      commercial, and high-traffic areas.
                     </p>
-                    <p>Our polyurethane flooring systems are engineered to handle heavy loads, chemical exposure, 
-                    moisture, and temperature fluctuations while maintaining a seamless and safe surface.
-                    PU concrete flooring is one of the most reliable flooring options for industries that require exceptional strength, thermal 
-                    resistance, and hygiene compliance. From food processing plants to pharmaceutical units and heavy-duty industrial floors,
-                    our PU flooring solutions are designed to meet the highest operational and safety standards.
+                    <p>
+                      Our polyurethane flooring systems are designed with flexibility, impact resistance, and chemical protection in mind, making 
+                      them a great fit for food industries, pharmaceutical units, warehouses, production areas, commercial kitchens, and heavy-duty 
+                      industrial floors. PU concrete flooring offers incredible strength, thermal-shock resistance, and long-lasting performance, 
+                      making it suitable for both hot and cold environments like dairies, meat processing units, breweries, and cold storage facilities.
+                    </p>
+                    <p>
+                      We take pride in our professional installation process, using only high-quality materials to ensure strong adhesion, a smooth 
+                      finish, and durability that lasts. With our skilled technicians, advanced tools, and years of experience, Sanjana Waterproofing 
+                      promises reliable and cost-effective flooring solutions that meet all industrial standards. When it comes to high-performance 
+                      PU flooring in Bangalore, you can count on us to provide flooring that withstands chemicals, heavy loads, temperature changes, 
+                      and everyday wear — all while ensuring safety, hygiene, and lasting value for your facility.
                     </p>
                   </div>
                 ) : (
@@ -301,22 +308,16 @@ const PUFlooring = () => {
                 <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 md:p-12 border-2 border-purple-200 shadow-lg max-w-5xl mx-auto">
                   <div className="space-y-6">
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Sanjana Waterproofing is your go-to for top-notch PU flooring and PU concrete flooring services right here in Bangalore. 
-                      We specialize in providing flooring solutions that are not just durable but also seamless and hygienic, perfect for industrial, 
-                      commercial, and high-traffic areas.
+                    Sanjana Waterproofing is a trusted name for high-performance PU flooring and PU concrete flooring services in Bangalore. 
+                    We specialize in delivering advanced flooring solutions that combine durability, hygiene, and long-term performance for demanding 
+                    industrial and commercial environments.
                     </p>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Our polyurethane flooring systems are designed with flexibility, impact resistance, and chemical protection in mind, making 
-                      them a great fit for food industries, pharmaceutical units, warehouses, production areas, commercial kitchens, and heavy-duty 
-                      industrial floors. PU concrete flooring offers incredible strength, thermal-shock resistance, and long-lasting performance, 
-                      making it suitable for both hot and cold environments like dairies, meat processing units, breweries, and cold storage facilities.
-                    </p>
-                    <p className="text-gray-700 text-lg leading-relaxed">
-                      We take pride in our professional installation process, using only high-quality materials to ensure strong adhesion, a smooth 
-                      finish, and durability that lasts. With our skilled technicians, advanced tools, and years of experience, Sanjana Waterproofing 
-                      promises reliable and cost-effective flooring solutions that meet all industrial standards. When it comes to high-performance 
-                      PU flooring in Bangalore, you can count on us to provide flooring that withstands chemicals, heavy loads, temperature changes, 
-                      and everyday wear — all while ensuring safety, hygiene, and lasting value for your facility.
+                    Our polyurethane flooring systems are engineered to handle heavy loads, chemical exposure, 
+                    moisture, and temperature fluctuations while maintaining a seamless and safe surface.
+                    PU concrete flooring is one of the most reliable flooring options for industries that require exceptional strength, thermal 
+                    resistance, and hygiene compliance. From food processing plants to pharmaceutical units and heavy-duty industrial floors,
+                    our PU flooring solutions are designed to meet the highest operational and safety standards.
                     </p>
                   </div>
                 </div>
