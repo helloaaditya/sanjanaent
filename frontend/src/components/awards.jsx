@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Trophy, FileCheck, X } from 'lucide-react'
 
 const Awards = () => {
@@ -165,6 +165,120 @@ const Awards = () => {
   // Duplicate awards for seamless loop
   const duplicatedAwards = [...awards, ...awards]
   const [preview, setPreview] = useState(null)
+  
+  // Touch gesture state
+  const marqueeRef = useRef(null)
+  const animationOffsetRef = useRef(0)
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [currentTranslate, setCurrentTranslate] = useState(0)
+  
+  // Minimum swipe distance (in pixels)
+  const minSwipeDistance = 30
+  
+  // Touch handlers
+  const onTouchStart = (e) => {
+    e.preventDefault()
+    setTouchEnd(null)
+    const touch = e.targetTouches[0]
+    setTouchStart(touch.clientX)
+    setIsDragging(true)
+    
+    if (marqueeRef.current) {
+      // Pause animation
+      marqueeRef.current.style.animationPlayState = 'paused'
+      
+      // Get current transform value from animation
+      const computedStyle = window.getComputedStyle(marqueeRef.current)
+      const transform = computedStyle.transform
+      let offset = 0
+      if (transform && transform !== 'none') {
+        const matrix = transform.match(/matrix\(([^)]+)\)/)
+        if (matrix) {
+          const values = matrix[1].split(', ')
+          offset = parseFloat(values[4]) || 0
+        }
+      }
+      animationOffsetRef.current = offset
+      setCurrentTranslate(offset)
+    }
+  }
+  
+  const onTouchMove = (e) => {
+    if (!touchStart) return
+    e.preventDefault()
+    const touch = e.targetTouches[0]
+    const currentX = touch.clientX
+    setTouchEnd(currentX)
+    
+    const diff = touchStart - currentX
+    
+    if (marqueeRef.current) {
+      const newTranslate = animationOffsetRef.current - diff
+      setCurrentTranslate(newTranslate)
+      marqueeRef.current.style.transform = `translateX(${newTranslate}px)`
+    }
+  }
+  
+  const onTouchEnd = () => {
+    if (!touchStart || touchEnd === null) {
+      // Reset if no movement
+      setIsDragging(false)
+      setTouchStart(null)
+      setTouchEnd(null)
+      setCurrentTranslate(0)
+      animationOffsetRef.current = 0
+      if (marqueeRef.current) {
+        marqueeRef.current.style.animationPlayState = 'running'
+        marqueeRef.current.style.transform = ''
+      }
+      return
+    }
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    
+    if (isLeftSwipe || isRightSwipe) {
+      // Swipe detected - apply momentum
+      const swipeDistance = isLeftSwipe ? -300 : 300
+      const targetTranslate = currentTranslate + swipeDistance
+      
+      if (marqueeRef.current) {
+        marqueeRef.current.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        marqueeRef.current.style.transform = `translateX(${targetTranslate}px)`
+        
+        // Resume animation after transition
+        setTimeout(() => {
+          if (marqueeRef.current) {
+            marqueeRef.current.style.transition = ''
+            marqueeRef.current.style.animationPlayState = 'running'
+            marqueeRef.current.style.transform = ''
+            animationOffsetRef.current = 0
+          }
+        }, 400)
+      }
+    } else {
+      // No significant swipe - resume animation
+      if (marqueeRef.current) {
+        marqueeRef.current.style.transition = 'transform 0.2s ease-out'
+        marqueeRef.current.style.transform = ''
+        setTimeout(() => {
+          if (marqueeRef.current) {
+            marqueeRef.current.style.transition = ''
+            marqueeRef.current.style.animationPlayState = 'running'
+          }
+        }, 200)
+      }
+    }
+    
+    setIsDragging(false)
+    setTouchStart(null)
+    setTouchEnd(null)
+    setCurrentTranslate(0)
+    animationOffsetRef.current = 0
+  }
 
   return (
     <div className="w-full py-8 overflow-hidden">
@@ -185,7 +299,14 @@ const Awards = () => {
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
         
         {/* Marquee */}
-        <div className="flex animate-marquee items-center px-2 sm:px-0 space-x-6 sm:space-x-12">
+        <div 
+          ref={marqueeRef}
+          className="flex animate-marquee items-center px-2 sm:px-0 space-x-6 sm:space-x-12 touch-none"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          style={{ touchAction: 'pan-x', userSelect: 'none' }}
+        >
           {duplicatedAwards.map((award, index) => (
             <div
               key={`${award.id}-${index}`}
@@ -259,11 +380,25 @@ const Awards = () => {
           animation-play-state: paused;
         }
         
-        /* Responsive adjustments */
+        /* Touch gesture support */
+        .animate-marquee {
+          will-change: transform;
+        }
+        
+        /* Responsive adjustments - faster on mobile */
         @media (max-width: 768px) {
           .animate-marquee {
-            animation-duration: 25s;
+            animation-duration: 12s;
           }
+        }
+        
+        /* Prevent text selection during drag */
+        .touch-none {
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-touch-callout: none;
         }
       `}</style>
     </div>
