@@ -169,6 +169,7 @@ const Awards = () => {
   // Touch gesture state
   const marqueeRef = useRef(null)
   const animationOffsetRef = useRef(0)
+  const wasDraggingRef = useRef(false)
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
   const [isDragging, setIsDragging] = useState(false)
@@ -177,42 +178,51 @@ const Awards = () => {
   // Minimum swipe distance (in pixels)
   const minSwipeDistance = 30
   
-  // Touch handlers
+  // Touch handlers for horizontal scrolling
   const onTouchStart = (e) => {
-    e.preventDefault()
-    setTouchEnd(null)
-    const touch = e.targetTouches[0]
-    setTouchStart(touch.clientX)
-    setIsDragging(true)
-    
-    if (marqueeRef.current) {
-      // Pause animation
-      marqueeRef.current.style.animationPlayState = 'paused'
+    // Only prevent default if we're on mobile and starting a horizontal gesture
+    if (window.innerWidth <= 768) {
+      const touch = e.targetTouches[0]
+      setTouchStart(touch.clientX)
+      setTouchEnd(null)
+      setIsDragging(true)
+      wasDraggingRef.current = false
       
-      // Get current transform value from animation
-      const computedStyle = window.getComputedStyle(marqueeRef.current)
-      const transform = computedStyle.transform
-      let offset = 0
-      if (transform && transform !== 'none') {
-        const matrix = transform.match(/matrix\(([^)]+)\)/)
-        if (matrix) {
-          const values = matrix[1].split(', ')
-          offset = parseFloat(values[4]) || 0
+      if (marqueeRef.current) {
+        // Pause animation
+        marqueeRef.current.style.animationPlayState = 'paused'
+        
+        // Get current transform value from animation
+        const computedStyle = window.getComputedStyle(marqueeRef.current)
+        const transform = computedStyle.transform
+        let offset = 0
+        if (transform && transform !== 'none') {
+          const matrix = transform.match(/matrix\(([^)]+)\)/)
+          if (matrix) {
+            const values = matrix[1].split(', ')
+            offset = parseFloat(values[4]) || 0
+          }
         }
+        animationOffsetRef.current = offset
+        setCurrentTranslate(offset)
       }
-      animationOffsetRef.current = offset
-      setCurrentTranslate(offset)
     }
   }
   
   const onTouchMove = (e) => {
-    if (!touchStart) return
-    e.preventDefault()
+    if (!touchStart || window.innerWidth > 768) return
+    
     const touch = e.targetTouches[0]
     const currentX = touch.clientX
-    setTouchEnd(currentX)
-    
     const diff = touchStart - currentX
+    
+    // Mark as dragging if movement is significant
+    if (Math.abs(diff) > 5) {
+      wasDraggingRef.current = true
+      e.preventDefault()
+    }
+    
+    setTouchEnd(currentX)
     
     if (marqueeRef.current) {
       const newTranslate = animationOffsetRef.current - diff
@@ -221,9 +231,22 @@ const Awards = () => {
     }
   }
   
-  const onTouchEnd = () => {
-    if (!touchStart || touchEnd === null) {
-      // Reset if no movement
+  const onTouchEnd = (e) => {
+    if (window.innerWidth > 768) return
+    
+    if (!touchStart) {
+      setIsDragging(false)
+      wasDraggingRef.current = false
+      return
+    }
+    
+    // Reset dragging flag after a short delay to allow click detection
+    setTimeout(() => {
+      wasDraggingRef.current = false
+    }, 100)
+    
+    if (touchEnd === null) {
+      // Touch ended without movement - resume animation
       setIsDragging(false)
       setTouchStart(null)
       setTouchEnd(null)
@@ -242,11 +265,11 @@ const Awards = () => {
     
     if (isLeftSwipe || isRightSwipe) {
       // Swipe detected - apply momentum
-      const swipeDistance = isLeftSwipe ? -300 : 300
+      const swipeDistance = isLeftSwipe ? -400 : 400
       const targetTranslate = currentTranslate + swipeDistance
       
       if (marqueeRef.current) {
-        marqueeRef.current.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        marqueeRef.current.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
         marqueeRef.current.style.transform = `translateX(${targetTranslate}px)`
         
         // Resume animation after transition
@@ -257,19 +280,19 @@ const Awards = () => {
             marqueeRef.current.style.transform = ''
             animationOffsetRef.current = 0
           }
-        }, 400)
+        }, 500)
       }
     } else {
-      // No significant swipe - resume animation
+      // No significant swipe - smoothly return to animation
       if (marqueeRef.current) {
-        marqueeRef.current.style.transition = 'transform 0.2s ease-out'
+        marqueeRef.current.style.transition = 'transform 0.3s ease-out'
         marqueeRef.current.style.transform = ''
         setTimeout(() => {
           if (marqueeRef.current) {
             marqueeRef.current.style.transition = ''
             marqueeRef.current.style.animationPlayState = 'running'
           }
-        }, 200)
+        }, 300)
       }
     }
     
@@ -295,17 +318,23 @@ const Awards = () => {
       {/* Marquee Container */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 overflow-hidden">
         {/* Gradient overlays for smooth fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
         
-        {/* Marquee */}
+        {/* Marquee - Touch enabled for mobile horizontal scrolling */}
         <div 
           ref={marqueeRef}
-          className="flex animate-marquee items-center px-2 sm:px-0 space-x-6 sm:space-x-12 touch-none"
+          className="flex animate-marquee items-center px-2 sm:px-0 space-x-6 sm:space-x-12"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-          style={{ touchAction: 'pan-x', userSelect: 'none' }}
+          style={{ 
+            touchAction: 'pan-x pinch-zoom',
+            WebkitOverflowScrolling: 'touch',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            msUserSelect: 'none'
+          }}
         >
           {duplicatedAwards.map((award, index) => (
             <div
@@ -314,7 +343,12 @@ const Awards = () => {
             >
               <div
                 className="relative transition-all duration-300 transform hover:-translate-y-2 hover:scale-125 hover:z-50 cursor-pointer"
-                onClick={() => setPreview(award)}
+                onClick={(e) => {
+                  // Prevent click if user was dragging/scrolling
+                  if (!wasDraggingRef.current) {
+                    setPreview(award)
+                  }
+                }}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setPreview(award) }}
@@ -383,22 +417,32 @@ const Awards = () => {
         /* Touch gesture support */
         .animate-marquee {
           will-change: transform;
+          -webkit-overflow-scrolling: touch;
         }
         
         /* Responsive adjustments - faster on mobile */
         @media (max-width: 768px) {
           .animate-marquee {
             animation-duration: 12s;
+            /* Enable smooth touch scrolling on mobile */
+            -webkit-overflow-scrolling: touch;
+            /* Allow horizontal scrolling gestures */
+            overscroll-behavior-x: contain;
+            /* Smooth transitions */
+            transition: transform 0.1s ease-out;
           }
         }
         
         /* Prevent text selection during drag */
-        .touch-none {
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          -webkit-touch-callout: none;
+        @media (max-width: 768px) {
+          .animate-marquee {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+          }
         }
       `}</style>
     </div>
