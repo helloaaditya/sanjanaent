@@ -4,7 +4,7 @@ import Hero from '../components/Hero'
 import About from '../components/About'
 import AnimatedCounter from '../components/AnimatedCounter'
 import Awards from '../components/awards'
-import VideoGallerySection from '../components/VideoGallerySection' 
+import VideoGallerySection from '../components/VideoGallerySection'
 import Testimonials from '../components/Testimonials'
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
         <meta name="keywords" content="waterproofing bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sanjanawaterproofing.com/" />
-        
+
         {/* Open Graph */}
         <meta property="og:title" content="Sanjana Enterprises | Waterproofing & Industrial Flooring in Bangalore" />
         <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Quick site inspection with 30+ years of experience." />
@@ -27,7 +27,7 @@ const Home = () => {
         <meta name="geo.region" content="IN-KA" />
         <meta name="geo.position" content="12.9716;77.5946" />
         <meta name="ICBM" content="12.9716, 77.5946" />
-        
+
         {/* Local Business Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -61,7 +61,13 @@ const Home = () => {
           })}
         </script>
       </Helmet>
-      
+
+
+      <div id="omni-widget-component" style={{ width: "70%", height: "500px" }}></div>
+
+      <script id="omnidimension-web-widget" async src="https://omnidim.io/web_widget.js?secret_key=be375bf60665eea397ecff01b1610983" ></script>
+
+
       <main>
         <Hero />
         <AnimatedCounter />
