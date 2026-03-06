@@ -115,10 +115,10 @@ const Services = () => {
         <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. Quick inspection & quote." />
         <meta name="keywords" content="waterproofing services bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/services" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/services" />
         <meta property="og:title" content="Waterproofing & Industrial Flooring Services in Bangalore" />
         <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Quick site inspection with expert solutions for residential and commercial properties." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/services" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/services" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

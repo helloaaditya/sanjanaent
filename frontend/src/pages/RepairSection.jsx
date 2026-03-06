@@ -104,10 +104,10 @@ const RepairSection = () => {
         <meta name="description" content="Professional repair services for waterproofing, flooring & structural issues in Bangalore. Expert restoration solutions with 1-year warranty. Same-day emergency service. Quick inspection." />
         <meta name="keywords" content="waterproofing repair bangalore, flooring repair services, structural repair contractors, crack injection services, building maintenance services" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/repair-section" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/repair-section" />
         <meta property="og:title" content="Repair Services in Bangalore" />
         <meta property="og:description" content="Professional repair services for waterproofing, flooring, and structural issues. Expert restoration and maintenance solutions with 1-year warranty." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/repair-section" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/repair-section" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

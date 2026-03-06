@@ -102,10 +102,10 @@ const ESDFlooringInstallation = () => {
         <meta name="description" content="Professional ESD flooring installation in Bangalore for electronics manufacturing units & sensitive areas." />
         <meta name="keywords" content="ESD flooring installation in Bangalore, electrostatic discharge flooring, conductive flooring, ESD compliant flooring, electronics manufacturing flooring" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/esd-flooring-installation-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/esd-flooring-installation-in-bangalore" />
         <meta property="og:title" content="ESD Flooring Installation in Bangalore" />
         <meta property="og:description" content="Professional ESD flooring solutions for electronics manufacturing and data centers. Static dissipation, compliance, and durability." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/esd-flooring-installation-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/esd-flooring-installation-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

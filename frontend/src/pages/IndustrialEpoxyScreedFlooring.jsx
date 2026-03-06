@@ -87,10 +87,10 @@ const IndustrialEpoxyScreedFlooring = () => {
         <meta name="description" content="Professional industrial epoxy screed flooring in Bangalore. Ideal for factories, warehouses & production areas. 10-20 year lifespan. Free quote!" />
         <meta name="keywords" content="Industrial epoxy screed flooring bangalore, epoxy screed flooring, industrial flooring bangalore" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" />
         <meta property="og:title" content="Industrial Epoxy Screed Flooring in Bangalore" />
         <meta property="og:description" content="Tough epoxy screed flooring that withstands harsh industrial conditions. Excellent strength, chemical resistance, and long-lasting use." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

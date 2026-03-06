@@ -47,10 +47,10 @@ const About = () => {
         <meta name="description" content="30+ years of waterproofing and industrial flooring expertise in Bangalore. ISO-certified processes, professional team, advanced leakage detection. Serving Karnataka." />
         <meta name="keywords" content="about waterproofing company bangalore, best waterproofing in bangalore, experienced waterproofing contractor, iso certified waterproofing, industrial flooring experts, epoxy flooring experts, pu flooring experts" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/about" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/about" />
         <meta property="og:title" content="About Sanjana Enterprises | Waterproofing & Flooring Experts" />
         <meta property="og:description" content="30+ years of waterproofing and industrial flooring expertise in Bangalore. ISO-certified processes, professional team, advanced leakage detection. Serving Karnataka." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/about" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/about" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

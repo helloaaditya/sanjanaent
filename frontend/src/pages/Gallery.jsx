@@ -34,10 +34,10 @@ const Gallery = () => {
         <meta name="description" content="View our completed waterproofing and industrial flooring projects in Bangalore. Residential, commercial, and industrial case studies with before/after photos." />
         <meta name="keywords" content="waterproofing projects bangalore, industrial flooring projects, epoxy flooring projects, pu flooring projects, terrace waterproofing projects, basement waterproofing projects, water tank waterproofing projects" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/gallery" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/gallery" />
         <meta property="og:title" content="Project Gallery - Sanjana Enterprises" />
         <meta property="og:description" content="View our completed waterproofing and industrial flooring projects in Bangalore. Residential, commercial, and industrial case studies." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/gallery" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/gallery" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

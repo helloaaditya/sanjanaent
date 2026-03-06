@@ -109,10 +109,10 @@ const CarParkingFlooring = () => {
         <meta name="description" content="Durable and safe car parking flooring solutions in Bangalore. Anti-skid, epoxy, and PU options available." />
         <meta name="keywords" content="car parking flooring solutions in bangalore, parking garage flooring, parking lot flooring, anti-slip parking flooring, commercial parking flooring" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/car-parking-flooring-solutions-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/car-parking-flooring-solutions-in-bangalore" />
         <meta property="og:title" content="Car Parking Flooring Solutions in Bangalore" />
         <meta property="og:description" content="Durable and aesthetic parking flooring solutions. Heavy-duty, anti-slip, and weather-resistant for all parking facilities." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/car-parking-flooring-solutions-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/car-parking-flooring-solutions-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

@@ -87,10 +87,10 @@ const EpoxyFlooringServicesBangalore = () => {
         <meta name="description" content="Get premium epoxy flooring in Bangalore with Sanjana Enterprises. Durable, seamless & chemical-resistant solutions for industrial, commercial and residential spaces." />
         <meta name="keywords" content="Epoxy flooring services in bangalore" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
         <meta property="og:title" content="Epoxy Flooring Services in Bangalore" />
         <meta property="og:description" content="High-performance epoxy flooring for industrial and commercial spaces. Durable, seamless, and customizable with 15-20 year lifespan." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

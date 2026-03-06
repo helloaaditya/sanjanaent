@@ -106,10 +106,10 @@ const WarehouseBayMarking = () => {
         <meta name="description" content="Precise warehouse bay marking services in Bangalore for safety & organization. Durable paint solutions for industrial floors." />
         <meta name="keywords" content="warehouse bay marking in bangalore, warehouse floor marking, floor marking services, warehouse organization, safety floor marking" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/warehouse-bay-marking-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/warehouse-bay-marking-in-bangalore" />
         <meta property="og:title" content="Warehouse Bay Marking in Bangalore" />
         <meta property="og:description" content="Professional warehouse floor marking solutions. Clear organization, safety compliance, and efficient operations." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/warehouse-bay-marking-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/warehouse-bay-marking-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

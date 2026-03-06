@@ -72,10 +72,10 @@ const AntiskidEpoxyFlooring = () => {
         <meta name="description" content="Reduce slip hazards with antiskid epoxy flooring in Bangalore. Durable, safe, and industrial-grade solutions. Expert installation. Free quote!" />
         <meta name="keywords" content="Antiskid epoxy flooring in bangalore, anti-slip epoxy flooring, slip resistant flooring bangalore" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore" />
         <meta property="og:title" content="Antiskid Epoxy Flooring in Bangalore" />
         <meta property="og:description" content="Durable, safe, and high-performance antiskid epoxy flooring solutions for industrial, commercial, and residential spaces in Bangalore." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

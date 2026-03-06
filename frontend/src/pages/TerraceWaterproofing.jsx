@@ -16,19 +16,19 @@ const TerraceWaterproofing = () => {
       title: 'Roof Waterproofing Services in Bangalore | Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
       description: 'Get reliable and long-lasting roof waterproofing services in Bangalore along with expert terrace roof waterproofing in Bangalore. We provide premium waterproof coatings, leak-proof solutions, and durable protection for residential, commercial, and industrial buildings. Contact us for professional and affordable waterproofing services.',
       h1: 'Roof Waterproofing Services in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/roof-waterproofing-services-in-bangalore'
+      canonical: 'https://www.sanjanawaterproofing.com/roof-waterproofing-services-in-bangalore'
     },
     '/terrace-roof-waterproofing-in-bangalore': {
       title: 'Roof Waterproofing Services in Bangalore | Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
       description: 'Get reliable and long-lasting roof waterproofing services in Bangalore along with expert terrace roof waterproofing in Bangalore. We provide premium waterproof coatings, leak-proof solutions, and durable protection for residential, commercial, and industrial buildings. Contact us for professional and affordable waterproofing services.',
       h1: 'Terrace Roof Waterproofing in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/terrace-roof-waterproofing-in-bangalore'
+      canonical: 'https://www.sanjanawaterproofing.com/terrace-roof-waterproofing-in-bangalore'
     },
     default: {
       title: 'Roof Waterproofing Services in Bangalore | Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
       description: 'Get reliable and long-lasting roof waterproofing services in Bangalore along with expert terrace roof waterproofing in Bangalore. We provide premium waterproof coatings, leak-proof solutions, and durable protection for residential, commercial, and industrial buildings. Contact us for professional and affordable waterproofing services.',
       h1: 'Protect Your Terrace Investment',
-      canonical: 'https://sanjanawaterproofing.com/terrace-waterproofing'
+      canonical: 'https://www.sanjanawaterproofing.com/terrace-waterproofing'
     }
   }
   

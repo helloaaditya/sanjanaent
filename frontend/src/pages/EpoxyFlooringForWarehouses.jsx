@@ -84,10 +84,10 @@ const EpoxyFlooringForWarehouses = () => {
         <meta name="description" content="Top-quality epoxy flooring solutions for warehouses in Bangalore. Durable, safe, and long-lasting. Withstands heavy loads, machinery, and high traffic." />
         <meta name="keywords" content="Epoxy flooring for warehouses in bangalore, warehouse flooring, industrial epoxy flooring bangalore" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore" />
         <meta property="og:title" content="Epoxy Flooring for Warehouses in Bangalore" />
         <meta property="og:description" content="Durable epoxy flooring systems for warehouses with heavy loads and machinery. Maximum durability, chemical resistance, and easy maintenance." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

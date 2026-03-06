@@ -13,31 +13,31 @@ const EpoxyFlooring = () => {
       title: 'Heavy Duty Epoxy Flooring in Bangalore | Sanjana Enterprises',
       description: 'Durable heavy-duty epoxy flooring for industrial and commercial spaces in Bangalore. Expert installation guaranteed.',
       h1: 'Heavy Duty Epoxy Flooring in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore'
+      canonical: 'https://www.sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore'
     },
     '/epoxy-flooring-for-warehouses-in-bangalore': {
       title: 'Epoxy Flooring for Warehouses in Bangalore | Sanjana Enterprises',
       description: 'Top-quality epoxy flooring solutions for warehouses in Bangalore. Durable, safe, and long-lasting.',
       h1: 'Epoxy Flooring for Warehouses in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore'
+      canonical: 'https://www.sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore'
     },
     '/industrial-epoxy-screed-flooring-in-bangalore': {
       title: 'Industrial Epoxy Screed Flooring in Bangalore | Sanjana Enterprises',
       description: 'Professional industrial epoxy screed flooring in Bangalore. Ideal for factories, warehouses & production areas.',
       h1: 'Industrial Epoxy Screed Flooring in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore'
+      canonical: 'https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore'
     },
     '/antiskid-epoxy-flooring-in-bangalore': {
       title: 'Antiskid Epoxy Flooring in Bangalore | Sanjana Enterprises',
       description: 'Reduce slip hazards with antiskid epoxy flooring in Bangalore. Durable, safe, and industrial-grade solutions.',
       h1: 'Antiskid Epoxy Flooring in Bangalore',
-      canonical: 'https://sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore'
+      canonical: 'https://www.sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore'
     },
     default: {
       title: 'Epoxy Flooring Services in Bangalore | Sanjana Enterprises',
       description: 'Get professional epoxy flooring services in Bangalore. Industrial, anti-skid, and warehouse flooring solutions. Site inspection!',
       h1: 'Industrial-Strength Epoxy Flooring Solutions',
-      canonical: 'https://sanjanawaterproofing.com/epoxy-flooring'
+      canonical: 'https://www.sanjanawaterproofing.com/epoxy-flooring'
     }
   }
   

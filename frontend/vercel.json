@@ -2,8 +2,16 @@
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ],
-  
   "redirects": [
+    { "source": "/", "has": [{ "type": "query", "key": "cid" }], "destination": "/", "permanent": true },
+    { "source": "/contact", "has": [{ "type": "query", "key": "q" }], "destination": "/contact", "permanent": true },
+    { "source": "/", "has": [{ "type": "query", "key": "/", "value": "es" }], "destination": "/", "permanent": true },
+    { "source": "/", "has": [{ "type": "query", "key": "/", "value": "id" }], "destination": "/", "permanent": true },
+    { "source": "/swimming-pool-repair-and-waterproofing.html", "destination": "/services", "permanent": true },
+    { "source": "/car-parking-flooring-solutions-bangalore", "destination": "/car-parking-flooring-solutions-in-bangalore", "permanent": true },
+    { "source": "/video.html", "destination": "/gallery", "permanent": true },
+    { "source": "/awards.html", "destination": "/", "permanent": true },
+    { "source": "/bathroom-waterproofing.html", "destination": "/services", "permanent": true },
     { "source": "/epoxy-flooring.html", "destination": "/epoxy-flooring", "permanent": true },
     { "source": "/pu-flooring.html", "destination": "/pu-flooring", "permanent": true },
     { "source": "/water-leakage-detection-by-thermal-imaging.html", "destination": "/water-leakage-detection", "permanent": true },
@@ -19,6 +27,5 @@
     { "source": "/training.html", "destination": "/contact", "permanent": true },
     { "source": "/client.html", "destination": "/contact", "permanent": true },
     { "source": "/search", "destination": "/contact", "permanent": true }
-
   ]
 }

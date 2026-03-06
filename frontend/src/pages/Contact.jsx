@@ -45,12 +45,12 @@ const Contact = () => {
         <meta name="description" content="Contact Sanjana Enterprises for professional waterproofing & industrial flooring services in Bangalore.  inspection & quote. Call +91 9916290799." />
         <meta name="keywords" content="contact waterproofing bangalore, waterproofing quote, waterproofing inspection, epoxy flooring contractor, pu flooring bangalore, terrace waterproofing, basement waterproofing" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/contact" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/contact" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Contact Sanjana Enterprises - Waterproofing Company in Bangalore" />
         <meta property="og:description" content="Contact Sanjana Enterprises for waterproofing services in Bangalore.  inspection & quote. Call +91 9916290799" />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/contact" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/contact" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

@@ -123,10 +123,10 @@ const AntiCorrosionCoating = () => {
         <meta name="description" content="Professional anti corrosion coating services in Bangalore protecting metal surfaces from rust, chemicals and weather with durable, lasting industrial solutions." />
         <meta name="keywords" content="anti corrosion coating services in bangalore, rust protection coating, corrosion resistant coating, metal protection coating, industrial coating services" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/anti-corrosion-coating-services-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/anti-corrosion-coating-services-in-bangalore" />
         <meta property="og:title" content="Anti Corrosion Coating Services in Bangalore" />
         <meta property="og:description" content="Professional anti-corrosion coating solutions. Protect metal structures from rust, chemicals, and weather damage." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/anti-corrosion-coating-services-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/anti-corrosion-coating-services-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />

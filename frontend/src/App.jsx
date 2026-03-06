@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { initGtag } from './gtag'
@@ -49,12 +49,18 @@ function App() {
     })
   }, [])
 
-  // Scroll to top on route change
+  // Scroll to top and clean alternate URLs (e.g. /?/es, /?/id) for canonical
   const RouteScrollToTop = () => {
-    const { pathname } = useLocation()
+    const { pathname, search } = useLocation()
+    const navigate = useNavigate()
     useEffect(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     }, [pathname])
+    useEffect(() => {
+      if (pathname === '/' && (search === '?/es' || search === '?/id' || /^\?\//.test(search))) {
+        navigate(pathname, { replace: true })
+      }
+    }, [pathname, search, navigate])
     return null
   }
 

@@ -91,10 +91,10 @@ const WaterLeakageDetection = () => {
         <meta name="description" content="Advanced water leakage detection using thermal imaging in Bangalore. Locate hidden leaks quickly & accurately without damage. Quick inspection." />
         <meta name="keywords" content="water leakage detection bangalore, thermal imaging water leak detection, hidden water leak detection, moisture detection services, infrared thermography water leak detection" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sanjanawaterproofing.com/water-leakage-detection" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/water-leakage-detection" />
         <meta property="og:title" content="Water Leakage Detection Services in Bangalore" />
         <meta property="og:description" content="Advanced water leakage detection using thermal imaging and specialized equipment. Locate hidden leaks quickly and accurately without damage." />
-        <meta property="og:url" content="https://sanjanawaterproofing.com/water-leakage-detection" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/water-leakage-detection" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />
