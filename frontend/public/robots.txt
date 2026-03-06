@@ -3,3 +3,13 @@ Disallow: /admin
 Allow: /
 
 Sitemap: https://sanjanawaterproofing.com/sitemap-index.xml
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
