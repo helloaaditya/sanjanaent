@@ -19,7 +19,7 @@ const Home = () => {
         
         {/* Open Graph */}
         <meta property="og:title" content="Sanjana Enterprises | Waterproofing & Industrial Flooring in Bangalore" />
-        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Quick site inspection with 30+ years of experience." />
+        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Get a quote. 30+ years of experience." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />

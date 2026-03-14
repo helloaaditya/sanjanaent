@@ -1,8 +1,9 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useLocation } from 'react-router-dom'
-import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer } from 'lucide-react'
+import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer, MapPin } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { BANGALORE_AREAS } from '../data/locationPagesData'
 
 const EpoxyFlooring = () => {
   const location = useLocation()
@@ -35,7 +36,7 @@ const EpoxyFlooring = () => {
     },
     default: {
       title: 'Epoxy Flooring Services in Bangalore | Sanjana Enterprises',
-      description: 'Get professional epoxy flooring services in Bangalore. Industrial, anti-skid, and warehouse flooring solutions. Site inspection!',
+      description: 'Get professional epoxy flooring services in Bangalore. Industrial, anti-skid, and warehouse flooring solutions. Get a quote!',
       h1: 'Industrial-Strength Epoxy Flooring Solutions',
       canonical: 'https://www.sanjanawaterproofing.com/epoxy-flooring'
     }
@@ -411,6 +412,36 @@ const EpoxyFlooring = () => {
                   <Phone size={20} className="mr-2" />
                   Call: +91 9916290799
                 </button>
+              </div>
+            </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Location pages – programmatic local SEO */}
+        <section className="py-16 bg-white border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="flex items-center gap-2 text-blue-600 mb-6">
+                <MapPin size={20} />
+                <h2 className="text-2xl font-black text-gray-900">Epoxy Flooring Across Bangalore</h2>
+              </div>
+              <p className="text-gray-600 mb-6">We serve all major areas. Select your locality or find service near you:</p>
+              <div className="mb-4">
+                <Link to="/epoxy-flooring-near-me" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700">
+                  <MapPin size={18} />
+                  Epoxy Flooring Near Me
+                </Link>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {BANGALORE_AREAS.map((area) => (
+                  <Link
+                    key={area.slug}
+                    to={`/epoxy-flooring-${area.slug}-bangalore`}
+                    className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+                  >
+                    {area.name}
+                  </Link>
+                ))}
               </div>
             </ScrollAnimation>
           </div>

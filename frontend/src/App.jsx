@@ -31,6 +31,8 @@ import IndustrialEpoxyScreedFlooring from './pages/IndustrialEpoxyScreedFlooring
 import AntiskidEpoxyFlooring from './pages/AntiskidEpoxyFlooring'
 // Import redirect handler
 import RedirectHandler from './pages/RedirectHandler'
+import LocationServicePage from './pages/LocationServicePage'
+import NearMePage from './pages/NearMePage'
 
 function App() {
   useEffect(() => {
@@ -106,6 +108,20 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/setup" element={<AdminSetup />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        {/* Near me pages – high-intent local SEO */}
+        <Route path="/water-leakage-detection-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/epoxy-flooring-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/terrace-waterproofing-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/basement-waterproofing-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/pu-flooring-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/water-tanks-waterproofing-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/repair-section-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/esd-flooring-installation-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/car-parking-flooring-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/warehouse-bay-marking-near-me" element={<Layout><NearMePage /></Layout>} />
+        <Route path="/anti-corrosion-coating-near-me" element={<Layout><NearMePage /></Layout>} />
+        {/* Programmatic local SEO: /service-area-bangalore */}
+        <Route path="/:locationSlug" element={<Layout><LocationServicePage /></Layout>} />
       </Routes>
     </Router>
   )

@@ -30,7 +30,7 @@ const AntiskidEpoxyFlooring = () => {
   ]
 
   const whyChooseUs = [
-    "Expert site inspection and guidance",
+    "Expert assessment and guidance",
     "Use of premium-grade epoxy materials",
     "Skilled and professional installation",
     "Fast project completion",

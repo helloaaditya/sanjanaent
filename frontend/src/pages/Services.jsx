@@ -117,7 +117,7 @@ const Services = () => {
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/services" />
         <meta property="og:title" content="Waterproofing & Industrial Flooring Services in Bangalore" />
-        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Quick site inspection with expert solutions for residential and commercial properties." />
+        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Expert solutions for residential and commercial properties. Get a quote." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/services" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />

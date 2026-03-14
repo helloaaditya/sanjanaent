@@ -1,8 +1,9 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { Thermometer ,Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Zap, Palette } from 'lucide-react'
+import { Thermometer, Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Zap, Palette, MapPin } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { BANGALORE_AREAS } from '../data/locationPagesData'
 
 const RepairSection = () => {
   // Simple icons since they're not imported
@@ -358,6 +359,32 @@ const RepairSection = () => {
                   <Phone size={20} className="mr-2" />
                   Call: +91 9916290799
                 </button>
+              </div>
+            </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Location pages – programmatic local SEO */}
+        <section className="py-16 bg-white border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="flex items-center gap-2 text-amber-600 mb-6">
+                <MapPin size={20} />
+                <h2 className="text-2xl font-black text-gray-900">Repair & Waterproofing Across Bangalore</h2>
+              </div>
+              <p className="text-gray-600 mb-6">We serve all major areas. Select your locality or find service near you:</p>
+              <div className="mb-4">
+                <Link to="/repair-section-near-me" className="inline-flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700">
+                  <MapPin size={18} />
+                  Repair Services Near Me
+                </Link>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {BANGALORE_AREAS.map((area) => (
+                  <Link key={area.slug} to={`/repair-section-${area.slug}-bangalore`} className="px-4 py-2 bg-amber-50 text-amber-700 rounded-lg text-sm font-medium hover:bg-amber-100 transition-colors">
+                    {area.name}
+                  </Link>
+                ))}
               </div>
             </ScrollAnimation>
           </div>

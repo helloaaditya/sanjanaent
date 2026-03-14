@@ -105,7 +105,7 @@ const HeavyDutyEpoxyFlooring = () => {
     <>
       <Helmet>
         <title>Heavy Duty Epoxy Flooring in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Get durable, seamless, heavy duty epoxy flooring in Bangalore for industries & warehouses. Chemical-resistant & long-lasting. Free site visit. Call now!" />
+        <meta name="description" content="Get durable, seamless, heavy duty epoxy flooring in Bangalore for industries & warehouses. Chemical-resistant & long-lasting. Get a quote. Call now!" />
         <meta name="keywords" content="Heavy duty epoxy flooring in bangalore" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore" />

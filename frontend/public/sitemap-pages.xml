@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sanjanawaterproofing.com/</loc>
+    <loc>https://www.sanjanawaterproofing.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sanjanawaterproofing.com/about</loc>
+    <loc>https://www.sanjanawaterproofing.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -16,13 +16,68 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sanjanawaterproofing.com/gallery</loc>
+    <loc>https://www.sanjanawaterproofing.com/gallery</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sanjanawaterproofing.com/contact</loc>
+    <loc>https://www.sanjanawaterproofing.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/water-leakage-detection-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/epoxy-flooring-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/terrace-waterproofing-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/basement-waterproofing-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/pu-flooring-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/water-tanks-waterproofing-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/repair-section-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/esd-flooring-installation-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/car-parking-flooring-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/warehouse-bay-marking-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sanjanawaterproofing.com/anti-corrosion-coating-near-me</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
