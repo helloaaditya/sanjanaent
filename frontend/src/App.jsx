@@ -29,8 +29,6 @@ import HeavyDutyEpoxyFlooring from './pages/HeavyDutyEpoxyFlooring'
 import EpoxyFlooringForWarehouses from './pages/EpoxyFlooringForWarehouses'
 import IndustrialEpoxyScreedFlooring from './pages/IndustrialEpoxyScreedFlooring'
 import AntiskidEpoxyFlooring from './pages/AntiskidEpoxyFlooring'
-// Import redirect handler
-import RedirectHandler from './pages/RedirectHandler'
 import LocationServicePage from './pages/LocationServicePage'
 import NearMePage from './pages/NearMePage'
 
@@ -96,15 +94,25 @@ function App() {
         <Route path="/car-parking-flooring-solutions-in-bangalore" element={<Layout><CarParkingFlooring /></Layout>} />
         <Route path="/warehouse-bay-marking-in-bangalore" element={<Layout><WarehouseBayMarking /></Layout>} />
         <Route path="/anti-corrosion-coating-services-in-bangalore" element={<Layout><AntiCorrosionCoating /></Layout>} />
-        {/* Redirect handler for old .html URLs */}
-        <Route path="/epoxy-flooring.html" element={<RedirectHandler />} />
-        <Route path="/pu-flooring.html" element={<RedirectHandler />} />
-        <Route path="/water-leakage-detection-by-thermal-imaging.html" element={<RedirectHandler />} />
-        <Route path="/terrace-waterproofing.html" element={<RedirectHandler />} />
-        <Route path="/basement-waterproofing.html" element={<RedirectHandler />} />
-        <Route path="/water-tanks-waterproofing.html" element={<RedirectHandler />} />
-        <Route path="/repair-section.html" element={<RedirectHandler />} />
-        <Route path="/about.html" element={<RedirectHandler />} />
+        {/* .html URLs serve same content as canonical (no redirect) – canonical set on each page */}
+        <Route path="/about.html" element={<Layout><About /></Layout>} />
+        <Route path="/contact.html" element={<Layout><Contact /></Layout>} />
+        <Route path="/services.html" element={<Layout><Services /></Layout>} />
+        <Route path="/gallery.html" element={<Layout><Gallery /></Layout>} />
+        <Route path="/blog.html" element={<Layout><Services /></Layout>} />
+        <Route path="/training.html" element={<Layout><Contact /></Layout>} />
+        <Route path="/client.html" element={<Layout><Contact /></Layout>} />
+        <Route path="/awards.html" element={<Layout><Home /></Layout>} />
+        <Route path="/video.html" element={<Layout><Gallery /></Layout>} />
+        <Route path="/swimming-pool-repair-and-waterproofing.html" element={<Layout><Services /></Layout>} />
+        <Route path="/bathroom-waterproofing.html" element={<Layout><Services /></Layout>} />
+        <Route path="/epoxy-flooring.html" element={<Layout><EpoxyFlooring /></Layout>} />
+        <Route path="/pu-flooring.html" element={<Layout><PUFlooring /></Layout>} />
+        <Route path="/water-leakage-detection-by-thermal-imaging.html" element={<Layout><WaterLeakageDetection /></Layout>} />
+        <Route path="/terrace-waterproofing.html" element={<Layout><TerraceWaterproofing /></Layout>} />
+        <Route path="/basement-waterproofing.html" element={<Layout><BasementWaterproofing /></Layout>} />
+        <Route path="/water-tanks-waterproofing.html" element={<Layout><WaterTanksWaterproofing /></Layout>} />
+        <Route path="/repair-section.html" element={<Layout><RepairSection /></Layout>} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/setup" element={<AdminSetup />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
