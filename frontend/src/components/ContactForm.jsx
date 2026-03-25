@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Phone, Mail, MapPin, MessageSquare, User, CheckCircle, Send } from 'lucide-react'
+import { Phone, Mail, MessageSquare, User, CheckCircle, Send } from 'lucide-react'
 import apiService from '../services/api'
+import { LEAD_SUBMIT_TIMEOUT_MS, withTimeout, openWhatsAppLeadCopies } from '../utils/whatsappLead'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -26,14 +27,18 @@ const ContactForm = () => {
     setLoading(true)
     setError('')
 
+    const snapshot = { ...formData, type: 'contact' }
+
     try {
-      const lead = await apiService.submitLead({
-        ...formData,
-        type: 'contact'
-      })
-      // Immediately update UI
+      await withTimeout(
+        apiService.submitLead({
+          ...formData,
+          type: 'contact'
+        }),
+        LEAD_SUBMIT_TIMEOUT_MS
+      )
+      openWhatsAppLeadCopies(snapshot, 'success')
       setSuccess(true)
-      // Fire Google Ads conversion (non-blocking)
       try {
         if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
           window.gtag('event', 'conversion', { send_to: 'AW-17547780538/UgtICL3cxZAbELrDt69B' })
@@ -46,17 +51,19 @@ const ContactForm = () => {
         subject: '',
         message: ''
       })
-      // Fire-and-forget email notification so UI doesn't wait
       try {
         apiService.notifyLeadEmail({
-          leadDetails: {
-            ...formData,
-            type: 'contact'
-          }
+          leadDetails: snapshot
         }).catch(() => {})
       } catch {}
     } catch (err) {
-      setError('Failed to send message. Please try again.')
+      const timedOut = err?.message === 'TIMEOUT'
+      openWhatsAppLeadCopies(snapshot, timedOut ? 'timeout' : 'failed')
+      setError(
+        timedOut
+          ? 'This took too long. WhatsApp should open with your details — please tap Send in each chat (two windows) so we receive your enquiry.'
+          : 'Could not submit online. WhatsApp should open with your details — please tap Send in each chat (two windows) so we receive your enquiry.'
+      )
     } finally {
       setLoading(false)
     }
@@ -70,8 +77,11 @@ const ContactForm = () => {
             <CheckCircle className="w-8 h-8 text-green-600" />
           </div>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Message Sent Successfully!</h3>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 mb-2">
             Thank you for contacting us! Our team will get back to you within an hour.
+          </p>
+          <p className="text-gray-500 text-sm mb-6">
+            A copy of your message was opened in WhatsApp for our team (two tabs). If your browser blocked popups, check the address bar.
           </p>
           <button
             onClick={() => setSuccess(false)}
