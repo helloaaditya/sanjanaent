@@ -1,7 +1,7 @@
 /** WhatsApp copies of leads — two business numbers (India, digits only for wa.me) */
 const WHATSAPP_LEAD_PHONES = ['919916290799', '918797223004']
 
-export const LEAD_SUBMIT_TIMEOUT_MS = 2500
+export const LEAD_SUBMIT_TIMEOUT_MS = 25000
 
 export function withTimeout(promise, ms) {
   return Promise.race([
