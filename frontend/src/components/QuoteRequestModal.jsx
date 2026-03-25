@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { X, Phone, Mail, User, CheckCircle } from 'lucide-react'
 import apiService from '../services/api'
-import { LEAD_SUBMIT_TIMEOUT_MS, withTimeout, openWhatsAppLeadCopies } from '../utils/whatsappLead'
+import { LEAD_SUBMIT_TIMEOUT_MS, withTimeout, openWhatsAppFallbackLead } from '../utils/whatsappLead'
 
 const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
   const [formData, setFormData] = useState({
@@ -39,7 +39,6 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
         }),
         LEAD_SUBMIT_TIMEOUT_MS
       )
-      openWhatsAppLeadCopies(snapshot, 'success')
       setSuccess(true)
       // Fire Google Ads conversion (non-blocking)
       try {
@@ -60,11 +59,11 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
       } catch { }
     } catch (err) {
       const timedOut = err?.message === 'TIMEOUT'
-      openWhatsAppLeadCopies(snapshot, timedOut ? 'timeout' : 'failed')
+      openWhatsAppFallbackLead(snapshot, timedOut ? 'timeout' : 'failed')
       setError(
         timedOut
-          ? 'This took too long. WhatsApp should open with your details — please tap Send in each chat (two windows) so we receive your quote request.'
-          : 'Could not submit online. WhatsApp should open with your details — please tap Send in each chat (two windows) so we receive your quote request.'
+          ? 'This took too long. WhatsApp should open with your details — please tap Send so we receive your quote request (+91 8797223004).'
+          : 'Could not submit online. WhatsApp should open with your details — please tap Send so we receive your quote request (+91 8797223004).'
       )
     } finally {
       setLoading(false)
@@ -120,11 +119,8 @@ const QuoteRequestModal = ({ isOpen, onClose, onSubmitted }) => {
                   <CheckCircle className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Quote Request Submitted!</h3>
-                <p className="text-gray-600 mb-2">
+                <p className="text-gray-600 mb-6">
                   Thank you for your interest! Our team will be in touch with you within an hour to discuss your project details and provide a customized quote.
-                </p>
-                <p className="text-gray-500 text-sm mb-6">
-                  A copy was opened in WhatsApp for our team (two tabs). If your browser blocked popups, allow popups and try again or contact us by phone.
                 </p>
                 <button
                   onClick={handleClose}

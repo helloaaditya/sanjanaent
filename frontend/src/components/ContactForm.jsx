@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Phone, Mail, MessageSquare, User, CheckCircle, Send } from 'lucide-react'
 import apiService from '../services/api'
-import { LEAD_SUBMIT_TIMEOUT_MS, withTimeout, openWhatsAppLeadCopies } from '../utils/whatsappLead'
+import { LEAD_SUBMIT_TIMEOUT_MS, withTimeout, openWhatsAppFallbackLead } from '../utils/whatsappLead'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +37,6 @@ const ContactForm = () => {
         }),
         LEAD_SUBMIT_TIMEOUT_MS
       )
-      openWhatsAppLeadCopies(snapshot, 'success')
       setSuccess(true)
       try {
         if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
@@ -58,11 +57,11 @@ const ContactForm = () => {
       } catch {}
     } catch (err) {
       const timedOut = err?.message === 'TIMEOUT'
-      openWhatsAppLeadCopies(snapshot, timedOut ? 'timeout' : 'failed')
+      openWhatsAppFallbackLead(snapshot, timedOut ? 'timeout' : 'failed')
       setError(
         timedOut
-          ? 'This took too long. WhatsApp should open with your details — please tap Send in each chat (two windows) so we receive your enquiry.'
-          : 'Could not submit online. WhatsApp should open with your details — please tap Send in each chat (two windows) so we receive your enquiry.'
+          ? 'This took too long. WhatsApp should open with your details — please tap Send so we receive your enquiry (+91 8797223004).'
+          : 'Could not submit online. WhatsApp should open with your details — please tap Send so we receive your enquiry (+91 8797223004).'
       )
     } finally {
       setLoading(false)
@@ -77,11 +76,8 @@ const ContactForm = () => {
             <CheckCircle className="w-8 h-8 text-green-600" />
           </div>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Message Sent Successfully!</h3>
-          <p className="text-gray-600 mb-2">
+          <p className="text-gray-600 mb-6">
             Thank you for contacting us! Our team will get back to you within an hour.
-          </p>
-          <p className="text-gray-500 text-sm mb-6">
-            A copy of your message was opened in WhatsApp for our team (two tabs). If your browser blocked popups, check the address bar.
           </p>
           <button
             onClick={() => setSuccess(false)}

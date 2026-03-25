@@ -1,5 +1,5 @@
-/** WhatsApp copies of leads — two business numbers (India, digits only for wa.me) */
-const WHATSAPP_LEAD_PHONES = ['919916290799', '918797223004']
+/** Fallback only: if online submit fails or times out, open WhatsApp to this number (+91 8797223004) */
+const WHATSAPP_FALLBACK_PHONE = '918797223004'
 
 export const LEAD_SUBMIT_TIMEOUT_MS = 25000
 
@@ -15,11 +15,14 @@ export function withTimeout(promise, ms) {
   ])
 }
 
+/** outcome: 'timeout' | 'failed' (only used when online submit did not succeed) */
 export function buildLeadWhatsAppMessage(lead, outcome) {
   const lines = ['*New lead — sanjanawaterproofing.com*']
-  if (outcome === 'success') lines.push('Status: *Submitted OK* (backup copy)')
-  else if (outcome === 'timeout') lines.push('Status: *Request timed out* — please treat as new lead')
-  else lines.push('Status: *Submit failed* — please treat as new lead')
+  if (outcome === 'timeout') {
+    lines.push('Status: *Online form timed out* — please treat as new lead')
+  } else {
+    lines.push('Status: *Online submit failed* — please treat as new lead')
+  }
 
   const type = lead.type === 'quote' ? 'Quote' : 'Contact'
   lines.push(`Type: ${type}`)
@@ -45,24 +48,13 @@ function truncateForWa(text) {
   return `${text.slice(0, 3490)}…`
 }
 
-/**
- * Opens WhatsApp (Web/App) with the same message for each number.
- * Second window is delayed slightly to reduce popup blocking.
- */
-export function openWhatsAppLeadCopies(lead, outcome) {
+/** Opens WhatsApp once — only when primary online submit failed or timed out. */
+export function openWhatsAppFallbackLead(lead, outcome) {
   if (typeof window === 'undefined') return
   const text = truncateForWa(buildLeadWhatsAppMessage(lead, outcome))
-
-  const open = (phone, i) => {
-    const url = waUrl(phone, text)
-    const w = window.open(url, '_blank', 'noopener,noreferrer')
-    if (!w && i === 0 && typeof console !== 'undefined') {
-      console.warn('WhatsApp popup may have been blocked; user can open link manually.')
-    }
+  const url = waUrl(WHATSAPP_FALLBACK_PHONE, text)
+  const w = window.open(url, '_blank', 'noopener,noreferrer')
+  if (!w && typeof console !== 'undefined') {
+    console.warn('WhatsApp popup may have been blocked; allow popups or open the link manually.')
   }
-
-  WHATSAPP_LEAD_PHONES.forEach((phone, i) => {
-    if (i === 0) open(phone, 0)
-    else setTimeout(() => open(phone, i), 500 * i)
-  })
 }
