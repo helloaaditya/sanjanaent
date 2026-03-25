@@ -11,33 +11,33 @@ const EpoxyFlooring = () => {
   // SEO configuration based on route
   const seoConfig = {
     '/heavy-duty-epoxy-flooring-in-bangalore': {
-      title: 'Heavy Duty Epoxy Flooring in Bangalore | Sanjana Enterprises',
-      description: 'Durable heavy-duty epoxy flooring for industrial and commercial spaces in Bangalore. Expert installation guaranteed.',
-      h1: 'Heavy Duty Epoxy Flooring in Bangalore',
+      title: 'Heavy Duty Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises',
+      description: 'Premium heavy-duty epoxy flooring contractor for industrial and commercial spaces in Bangalore. Durable epoxy floor coating and professional installation.',
+      h1: 'Heavy Duty Epoxy Flooring Contractor in Bangalore',
       canonical: 'https://www.sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore'
     },
     '/epoxy-flooring-for-warehouses-in-bangalore': {
-      title: 'Epoxy Flooring for Warehouses in Bangalore | Sanjana Enterprises',
-      description: 'Top-quality epoxy flooring solutions for warehouses in Bangalore. Durable, safe, and long-lasting.',
-      h1: 'Epoxy Flooring for Warehouses in Bangalore',
+      title: 'Warehouse Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises',
+      description: 'Warehouse epoxy flooring contractor in Bangalore for heavy vehicle traffic. Long-lasting epoxy floor coating with clean, safe finishes.',
+      h1: 'Warehouse Epoxy Flooring Contractor in Bangalore',
       canonical: 'https://www.sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore'
     },
     '/industrial-epoxy-screed-flooring-in-bangalore': {
-      title: 'Industrial Epoxy Screed Flooring in Bangalore | Sanjana Enterprises',
-      description: 'Professional industrial epoxy screed flooring in Bangalore. Ideal for factories, warehouses & production areas.',
-      h1: 'Industrial Epoxy Screed Flooring in Bangalore',
+      title: 'Industrial Epoxy Screed Flooring Contractor in Bangalore | Sanjana Enterprises',
+      description: 'Industrial epoxy screed flooring contractor in Bangalore for factories and production areas. Durable, smooth epoxy screed installation.',
+      h1: 'Industrial Epoxy Screed Flooring Contractor in Bangalore',
       canonical: 'https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore'
     },
     '/antiskid-epoxy-flooring-in-bangalore': {
-      title: 'Antiskid Epoxy Flooring in Bangalore | Sanjana Enterprises',
-      description: 'Reduce slip hazards with antiskid epoxy flooring in Bangalore. Durable, safe, and industrial-grade solutions.',
-      h1: 'Antiskid Epoxy Flooring in Bangalore',
+      title: 'Anti-Slip Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises',
+      description: 'Anti-slip epoxy flooring contractor in Bangalore for safer workplaces. Durable epoxy floor coating with anti-skid finishes.',
+      h1: 'Anti-Slip Epoxy Flooring Contractor in Bangalore',
       canonical: 'https://www.sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore'
     },
     default: {
-      title: 'Epoxy Flooring Services in Bangalore | Sanjana Enterprises',
-      description: 'Get professional epoxy flooring services in Bangalore. Industrial, anti-skid, and warehouse flooring solutions. Get a quote!',
-      h1: 'Industrial-Strength Epoxy Flooring Solutions',
+      title: 'Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises',
+      description: 'Industrial epoxy flooring contractor in Bangalore for epoxy floor coating and epoxy flooring installation. Anti-slip, warehouse, and chemical-resistant finishes.',
+      h1: 'Industrial-Strength Epoxy Flooring Contractor in Bangalore',
       canonical: 'https://www.sanjanawaterproofing.com/epoxy-flooring'
     }
   }
@@ -119,12 +119,86 @@ const EpoxyFlooring = () => {
     "Gymnasiums and Sports Facilities"
   ]
 
+  const faqs = [
+    {
+      q: 'Do you provide epoxy flooring installation in Bangalore?',
+      a: 'Yes. We handle epoxy flooring installation in Bangalore with proper surface preparation, primers, epoxy coating layers, and durable topcoat finishing.'
+    },
+    {
+      q: 'Is epoxy flooring chemical resistant?',
+      a: 'Epoxy flooring can be chemical resistant depending on the system used. We recommend the right resin and topcoat for oils, mild acids, chemicals, and frequent cleaning.'
+    },
+    {
+      q: 'Can you make epoxy flooring anti-slip?',
+      a: 'Yes. We can apply anti-slip or anti-skid finishes so epoxy floors offer better grip in wet or high-traffic areas.'
+    },
+    {
+      q: 'How long does epoxy flooring last?',
+      a: 'With correct installation and maintenance, epoxy flooring commonly lasts 10–20 years or more, depending on the workload and environment.'
+    },
+    {
+      q: 'Which areas do you cover for epoxy flooring contractor work?',
+      a: 'We work across Bangalore including Whitefield, Indiranagar, Marathahalli, BTM Layout, HSR Layout, Electronic City, Hebbal, Yelahanka, JP Nagar, and more.'
+    },
+    {
+      q: 'Do you provide a detailed quote before work?',
+      a: 'Yes. Share your requirements and we will guide you with a clear epoxy flooring quote including recommended system, finish options, and expected timeline.'
+    }
+  ]
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'HomeAndConstructionBusiness',
+    name: 'Sanjana Enterprises - Epoxy Flooring Contractor',
+    description: currentConfig.description,
+    url: currentConfig.canonical,
+    telephone: '+91-9916290799',
+    areaServed: 'Bangalore, Karnataka',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Bengaluru',
+      addressRegion: 'KA',
+      addressCountry: 'IN'
+    },
+    makesOffer: {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Epoxy Flooring Contractor',
+        serviceType: ['Epoxy Floor Coating', 'Epoxy Flooring Installation', 'Anti-Slip Epoxy Flooring']
+      }
+    }
+  }
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a }
+    }))
+  }
+
   return (
     <>
       <Helmet>
         <title>{currentConfig.title}</title>
         <meta name="description" content={currentConfig.description} />
-        <meta name="keywords" content="Epoxy flooring services in bangalore" />
+        <meta
+          name="keywords"
+          content={[
+            'epoxy flooring contractor in bangalore',
+            'industrial epoxy flooring contractor',
+            'epoxy floor coating',
+            'epoxy flooring installation',
+            'anti-slip epoxy flooring',
+            'warehouse epoxy flooring',
+            'epoxy garage floor',
+            'epoxy screed flooring'
+          ].join(', ')
+        }
+        />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={currentConfig.canonical} />
         <meta property="og:title" content={currentConfig.title} />
@@ -136,6 +210,9 @@ const EpoxyFlooring = () => {
         <meta name="geo.region" content="IN-KA" />
         <meta name="geo.position" content="12.9716;77.5946" />
         <meta name="ICBM" content="12.9716, 77.5946" />
+        <meta name="author" content="Sanjana Enterprises" />
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -147,7 +224,7 @@ const EpoxyFlooring = () => {
               <ScrollAnimation animation="fade-in-up" delay={0}>
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
                   <Shield size={16} />
-                  Premium Epoxy Flooring
+                  Epoxy Flooring Contractor
                 </div>
               </ScrollAnimation>
               
@@ -155,37 +232,37 @@ const EpoxyFlooring = () => {
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
                   {location.pathname.includes('heavy-duty') ? (
                     <>
-                      Heavy Duty Epoxy Flooring
+                      Heavy Duty Epoxy Flooring Contractor
                       <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                         in Bangalore
                       </span>
                     </>
                   ) : location.pathname.includes('warehouses') ? (
                     <>
-                      Epoxy Flooring for Warehouses
+                      Warehouse Epoxy Flooring Contractor
                       <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                         in Bangalore
                       </span>
                     </>
                   ) : location.pathname.includes('screed') ? (
                     <>
-                      Industrial Epoxy Screed Flooring
+                      Industrial Epoxy Screed Flooring Contractor
                       <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                         in Bangalore
                       </span>
                     </>
                   ) : location.pathname.includes('antiskid') ? (
                     <>
-                      Antiskid Epoxy Flooring
+                      Anti-Slip Epoxy Flooring Contractor
                       <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                         in Bangalore
                       </span>
                     </>
                   ) : (
                     <>
-                      Industrial-Strength
+                      Industrial-Strength Epoxy Flooring
                       <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        Epoxy Flooring Solutions
+                        Contractor in Bangalore
                       </span>
                     </>
                   )}
@@ -205,7 +282,7 @@ const EpoxyFlooring = () => {
                     to="/contact" 
                     className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center group"
                   >
-                    Get Free Quote
+                      Get a Quote
                     <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                   <button 
@@ -241,8 +318,8 @@ const EpoxyFlooring = () => {
                     highly resistant to damage.
                   </p>
                   <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our epoxy flooring solutions provide a seamless, durable surface that enhances both the 
-                    functionality and appearance of your space while offering long-term value.
+                    As an epoxy flooring contractor in Bangalore, we deliver a seamless, durable surface that improves the
+                    functionality and appearance of your space, with long-term value.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <div className="flex items-center gap-2 text-gray-700">
@@ -394,15 +471,15 @@ const EpoxyFlooring = () => {
                 Ready to Transform Your Space?
               </h2>
               <p className="text-xl text-blue-100 mb-10 leading-relaxed">
-                Get a free consultation and quote for your epoxy flooring project. Our experts will assess 
-                your needs and provide the best solution for your space.
+                Get an epoxy flooring contractor quote. Share your project details and our team will recommend the right
+                epoxy floor coating system for your space.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
                   to="/contact" 
                   className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center group"
                 >
-                  Get Free Consultation
+                  Get a Quote
                   <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <button 
@@ -417,6 +494,38 @@ const EpoxyFlooring = () => {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <section className="py-16 bg-white border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
+                  Epoxy Flooring Contractor
+                  <span className="block text-blue-600">FAQs</span>
+                </h2>
+                <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+                  Quick answers about epoxy flooring installation, anti-slip options, and timelines.
+                </p>
+              </div>
+
+              <div className="grid gap-4 max-w-3xl mx-auto">
+                {faqs.map((faq, idx) => (
+                  <details
+                    key={idx}
+                    className="group rounded-2xl border border-gray-100 bg-gray-50 p-5 cursor-pointer transition-colors hover:bg-gray-100"
+                  >
+                    <summary className="list-none font-bold text-gray-900 flex items-start justify-between gap-4">
+                      <span>{faq.q}</span>
+                      <span className="text-blue-600 group-open:rotate-45 transition-transform">+</span>
+                    </summary>
+                    <p className="text-gray-600 mt-3 leading-relaxed">{faq.a}</p>
+                  </details>
+                ))}
+              </div>
+            </ScrollAnimation>
+          </div>
+        </section>
+
         {/* Location pages – programmatic local SEO */}
         <section className="py-16 bg-white border-t border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -425,7 +534,7 @@ const EpoxyFlooring = () => {
                 <MapPin size={20} />
                 <h2 className="text-2xl font-black text-gray-900">Epoxy Flooring Across Bangalore</h2>
               </div>
-              <p className="text-gray-600 mb-6">We serve all major areas. Select your locality or find service near you:</p>
+              <p className="text-gray-600 mb-6">We serve all major areas. Select your locality or find an epoxy flooring contractor near you:</p>
               <div className="mb-4">
                 <Link to="/epoxy-flooring-near-me" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700">
                   <MapPin size={18} />
@@ -454,7 +563,7 @@ const EpoxyFlooring = () => {
               <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
                   Related
-                  <span className="block text-blue-600">Services</span>
+                  <span className="block text-blue-600">Flooring Solutions</span>
                 </h2>
                 <p className="text-gray-600 text-lg max-w-3xl mx-auto">
                   Explore our other specialized services that complement epoxy flooring solutions.

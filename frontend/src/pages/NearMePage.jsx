@@ -16,11 +16,14 @@ function NearMePage() {
 
   const title = `${service.title} Near Me`
   const canonical = `${BASE}/${service.slug}-near-me`
-  const metaDescription = `${service.title} near me in Bangalore. Find professional ${service.title.toLowerCase()} services nearby. Call or contact Sanjana Enterprises for quick service across Bangalore.`
+  const isEpoxy = service.slug === 'epoxy-flooring'
+  const metaDescription = isEpoxy
+    ? `${service.title} contractor near me in Bangalore. Find professional epoxy flooring contractor options nearby. Call or contact Sanjana Enterprises for quick response across Bangalore.`
+    : `${service.title} near me in Bangalore. Find professional ${service.title.toLowerCase()} services nearby. Call or contact Sanjana Enterprises for quick service across Bangalore.`
 
   const faqs = [
     {
-      q: `Where do you provide ${service.title.toLowerCase()} services?`,
+      q: `Where do you provide ${service.title.toLowerCase()} ${isEpoxy ? 'contractor' : 'services'}?`,
       a: `We serve all of Bangalore including Whitefield, Indiranagar, Marathahalli, BTM, HSR, Electronic City, Hebbal, Yelahanka, JP Nagar, Koramangala, and other localities. Call us to check availability for your area.`,
     },
     {
@@ -139,7 +142,7 @@ function NearMePage() {
                 to={service.mainPagePath}
                 className="inline-flex items-center gap-2 text-teal-600 font-semibold hover:text-teal-700"
               >
-                View full {service.title} services
+                View full {service.title} {isEpoxy ? 'contractor options' : 'services'}
                 <ArrowRight size={18} />
               </Link>
             </ScrollAnimation>

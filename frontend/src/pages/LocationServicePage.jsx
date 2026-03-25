@@ -25,7 +25,10 @@ function LocationServicePage() {
   const serviceTitle = service.title
   const h1 = `${serviceTitle} in ${areaName} Bangalore`
   const canonical = getLocationPageUrl(service.slug, area.slug)
-  const metaDescription = `Professional ${service.title.toLowerCase()} services in ${areaName} Bangalore. ${service.description.slice(0, 100)}... Contact Sanjana Enterprises.`
+  const isEpoxy = service.slug === 'epoxy-flooring'
+  const metaDescription = isEpoxy
+    ? `Professional epoxy flooring contractor in ${areaName} Bangalore. ${service.description.slice(0, 100)}... Contact Sanjana Enterprises.`
+    : `Professional ${service.title.toLowerCase()} services in ${areaName} Bangalore. ${service.description.slice(0, 100)}... Contact Sanjana Enterprises.`
 
   const faqs = [
     {
@@ -73,7 +76,9 @@ function LocationServicePage() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: `Sanjana Enterprises - ${serviceTitle} in ${areaName}`,
+    name: isEpoxy
+      ? `Sanjana Enterprises - Epoxy Flooring Contractor in ${areaName}`
+      : `Sanjana Enterprises - ${serviceTitle} in ${areaName}`,
     description: metaDescription,
     url: canonical,
     areaServed: { '@type': 'Place', name: `${areaName}, Bangalore` },
@@ -127,7 +132,7 @@ function LocationServicePage() {
             </ScrollAnimation>
             <ScrollAnimation animation="fade-in-up" delay={200}>
               <p className="text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-10">
-                If you are searching for {service.title.toLowerCase()} services in {areaName} Bangalore, Sanjana Enterprises provides {service.description}
+                If you are searching for {service.title.toLowerCase()} {isEpoxy ? 'contractor' : 'services'} in {areaName} Bangalore, Sanjana Enterprises provides {service.description}
               </p>
             </ScrollAnimation>
             <ScrollAnimation animation="fade-in-up" delay={300}>
@@ -168,11 +173,13 @@ function LocationServicePage() {
           </div>
         </section>
 
-        {/* Services in area */}
+        {/* Services / contractor in area */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <ScrollAnimation animation="fade-in-up" delay={0}>
-              <h2 className="text-3xl font-black text-gray-900 mb-8">Services in {areaName}</h2>
+              <h2 className="text-3xl font-black text-gray-900 mb-8">
+                {isEpoxy ? 'Epoxy Flooring Contractor in' : 'Services in'} {areaName}
+              </h2>
               <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {service.servicePoints.map((point, i) => (
                   <li key={i} className="flex items-center gap-3 text-gray-700">
@@ -277,7 +284,7 @@ function LocationServicePage() {
                 Get {serviceTitle} in {areaName}
               </h2>
               <p className="text-xl text-teal-100 mb-10">
-                Contact Sanjana Enterprises for professional {service.title.toLowerCase()} services in {areaName} and across Bangalore.
+                Contact Sanjana Enterprises for professional {service.title.toLowerCase()} {isEpoxy ? 'contractor' : 'services'} in {areaName} and across Bangalore.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -319,7 +326,7 @@ function LocationServicePage() {
                 to={service.mainPagePath}
                 className="inline-flex items-center gap-2 text-teal-600 font-semibold hover:text-teal-700"
               >
-                View all {serviceTitle} services
+                View all {serviceTitle} {isEpoxy ? 'contractor options' : 'services'}
                 <ArrowRight size={18} />
               </Link>
             </ScrollAnimation>
