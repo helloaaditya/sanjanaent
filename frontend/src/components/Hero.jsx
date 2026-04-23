@@ -365,7 +365,7 @@ const Hero = () => {
               {/* Badge */}
               <div className="inline-flex items-center space-x-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium border border-yellow-200">
                 <CheckCircle size={16} className="text-green-500" />
-                <span>#1 Waterproofing & Flooring Company in Bangalore</span>
+                <span>India's No.1 Choice for Flooring & Waterproofing Excellence</span>
               </div>
 
               {/* Service Tabs */}
@@ -438,11 +438,9 @@ const Hero = () => {
               {/* Main Heading */}
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold leading-tight">
-                  <span className="block text-gray-900">Premium</span>
-                  <span className="block text-blue-600">
-                    Waterproofing & Flooring
-                  </span>
-                  <span className="block text-gray-900">Solutions</span>
+                  <span className="block text-gray-900">India's No.1 Choice for</span>
+                  <span className="block text-blue-600">Flooring & Waterproofing</span>
+                  <span className="block text-gray-900">Excellence</span>
               </h1>
               
                 <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">

@@ -11,15 +11,15 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Sanjana Enterprises | Waterproofing & Industrial Flooring in Bangalore</title>
-        <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. 30+ years experience. Quick inspection." />
+        <title>India's No.1 Choice for Flooring & Waterproofing Excellence | Sanjana Enterprises</title>
+        <meta name="description" content="India's No.1 Choice for Flooring & Waterproofing Excellence. Professional waterproofing and industrial flooring services in Bangalore with 30+ years of expertise." />
         <meta name="keywords" content="waterproofing bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Sanjana Enterprises | Waterproofing & Industrial Flooring in Bangalore" />
-        <meta property="og:description" content="Professional waterproofing and industrial flooring services in Bangalore. Get a quote. 30+ years of experience." />
+        <meta property="og:title" content="India's No.1 Choice for Flooring & Waterproofing Excellence | Sanjana Enterprises" />
+        <meta property="og:description" content="India's No.1 Choice for Flooring & Waterproofing Excellence. Professional waterproofing and industrial flooring services in Bangalore with 30+ years of expertise." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
