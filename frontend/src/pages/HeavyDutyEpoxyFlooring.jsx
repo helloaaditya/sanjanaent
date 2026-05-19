@@ -104,13 +104,13 @@ const HeavyDutyEpoxyFlooring = () => {
   return (
     <>
       <Helmet>
-        <title>Heavy Duty Epoxy Flooring in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Get durable, seamless, heavy duty epoxy flooring in Bangalore for industries & warehouses. Chemical-resistant & long-lasting. Get a quote. Call now!" />
-        <meta name="keywords" content="Heavy duty epoxy flooring in bangalore" />
+        <title>Heavy Duty Epoxy Flooring in Bangalore | Factory Floor Coating</title>
+        <meta name="description" content="Heavy duty epoxy flooring services in Bangalore for factories, warehouses, manufacturing units, and industrial facilities with high-strength, abrasion-resistant, and chemical-resistant floor coating systems." />
+        <meta name="keywords" content="heavy duty epoxy flooring in bangalore, industrial epoxy flooring, factory floor coating, abrasion resistant flooring" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore" />
-        <meta property="og:title" content="Heavy-Duty Epoxy Flooring in Bangalore" />
-        <meta property="og:description" content="State-of-the-art, durable, and attractive epoxy flooring systems for commercial, industrial, and residential spaces in Bangalore." />
+        <meta property="og:title" content="Heavy Duty Epoxy Flooring in Bangalore | Factory Floor Coating" />
+        <meta property="og:description" content="Heavy duty epoxy flooring services in Bangalore for factories, warehouses and industrial facilities — high-strength, abrasion and chemical resistant coatings." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -129,16 +129,13 @@ const HeavyDutyEpoxyFlooring = () => {
               <ScrollAnimation animation="fade-in-up" delay={0}>
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
                   <Shield size={16} />
-                  Premium & Heavy-Duty Epoxy Flooring
+                  Heavy-Duty Epoxy Flooring
                 </div>
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Premium Epoxy Flooring &
-                  <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                    Heavy-Duty Epoxy Flooring in Bangalore
-                  </span>
+                  Heavy Duty Industrial Epoxy Flooring in Bangalore
                 </h1>
               </ScrollAnimation>
               
@@ -174,205 +171,193 @@ const HeavyDutyEpoxyFlooring = () => {
           </div>
         </section>
 
-        {/* Why Choose Section */}
+        {/* Updated Heavy Duty Epoxy Content */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <ScrollAnimation animation="fade-in-up" delay={0}>
-              <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  <Award size={16} />
-                  Why Choose Us
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
-                  Why Choose Our Epoxy Flooring
-                  <span className="block text-blue-600">in Bangalore?</span>
-                </h2>
-              </div>
-            </ScrollAnimation>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
-                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 shadow-sm border border-blue-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon size={24} className="text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                  </div>
-                </ScrollAnimation>
-              ))}
+            <div className="prose max-w-none mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">Heavy Duty Epoxy Flooring Services in Bangalore</h2>
+              <p className="text-gray-700 text-lg">Sanjana Enterprises is a trusted provider of heavy duty epoxy flooring services in Bangalore, delivering durable and high-performance industrial flooring solutions for factories, warehouses, manufacturing plants, automobile industries, pharmaceutical units, and commercial facilities. With over 30 years of experience in flooring and waterproofing solutions, we specialize in industrial-grade epoxy floor coatings designed to withstand heavy operational traffic, machinery movement, abrasion, chemical exposure, and industrial wear.</p>
+              <p className="text-gray-700 text-lg mt-4">As an <strong>ISO 9001:2015 Certified</strong> company, Sanjana Enterprises focuses on delivering quality workmanship, durable floor protection, and long-term customer satisfaction. Whether you require flooring for factories, warehouses, industrial units, parking areas, or heavy traffic commercial spaces, we provide cost-effective and reliable heavy duty epoxy flooring solutions tailored to your project requirements.</p>
             </div>
-          </div>
-        </section>
 
-        {/* Types of Epoxy Flooring Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <ScrollAnimation animation="fade-in-up" delay={0}>
-              <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  <SlidersHorizontal size={16} />
-                  Our Services
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
-                  Types of Epoxy Flooring
-                  <span className="block text-blue-600">We Provide</span>
-                </h2>
-                <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-                  We offer a comprehensive range of epoxy flooring solutions tailored to meet diverse needs and requirements.
-                </p>
-              </div>
-            </ScrollAnimation>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {epoxyTypes.map((type, index) => (
-                <ScrollAnimation key={index} animation="fade-in-up" delay={index * 100}>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <type.icon size={24} className="text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{type.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{type.description}</p>
-                  </div>
-                </ScrollAnimation>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Installation Process Section */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
               <ScrollAnimation animation="fade-in-right" delay={0}>
-                <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl p-8 text-white">
-                  <h2 className="text-3xl font-black mb-6">Our Applications</h2>
-                  <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-                    We specialise in custom epoxy flooring systems tailored to each customer's specific needs.
-                  </p>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                    <h3 className="text-xl font-bold mb-4">Perfect For:</h3>
-                    <ul className="space-y-3">
-                      {applications.map((application, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-cyan-300 rounded-full"></div>
-                          <span>{application}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation animation="fade-in-left" delay={200}>
                 <div>
-                  <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Target size={16} />
-                    Installation Process
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    Professional
-                    <span className="block text-blue-600">Installation Process</span>
-                  </h2>
-                  <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our expert team follows a meticulous process to ensure your epoxy flooring installation meets the highest 
-                    standards of quality and durability.
-                  </p>
-                  
-                  <div className="space-y-6">
-                    {process.map((step, index) => (
-                      <div key={index} className="flex gap-6 group">
-                        <div className="flex-shrink-0">
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <step.icon size={24} className="text-white" />
-                          </div>
-                          <div className="text-4xl font-black text-blue-200 text-center mt-2">{step.step}</div>
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                          <p className="text-gray-600 leading-relaxed">{step.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">What is Heavy Duty Epoxy Flooring?</h3>
+                  <p className="text-gray-600 mb-4">Heavy duty epoxy flooring is a high-performance floor coating system designed for industrial and commercial environments exposed to heavy machinery, forklift movement, operational traffic, chemicals, abrasion, and impact loads. The flooring system is created by applying industrial-grade epoxy resin and hardener over concrete surfaces to form a strong, seamless, and durable protective layer.</p>
+                  <p className="text-gray-600 mb-4">Unlike ordinary floor coatings, heavy duty epoxy flooring offers enhanced durability and superior resistance against industrial damage, making it suitable for demanding work environments. These flooring systems improve floor lifespan while maintaining a clean, safe, and professional appearance.</p>
+                  <h4 className="font-semibold mt-4">Common Use Cases</h4>
+                  <ul className="list-disc pl-5 text-gray-700 mt-2">
+                    <li>Manufacturing industries</li>
+                    <li>Engineering units</li>
+                    <li>Warehouses</li>
+                    <li>Automobile industries</li>
+                    <li>Pharmaceutical industries</li>
+                    <li>Food processing units</li>
+                    <li>Logistics centers</li>
+                    <li>Commercial parking structures</li>
+                  </ul>
+                </div>
+              </ScrollAnimation>
+
+              <ScrollAnimation animation="fade-in-left" delay={200}>
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Why Choose Sanjana Enterprises?</h3>
+                  <ul className="text-gray-700 space-y-3">
+                    <li><strong>30+ Years Experience:</strong> Proven track record in flooring and waterproofing across Bangalore and Karnataka.</li>
+                    <li><strong>ISO 9001:2015 Certified:</strong> Quality-driven processes and documented standards.</li>
+                    <li><strong>Experienced Technical Team:</strong> Skilled professionals for surface preparation and installation.</li>
+                    <li><strong>Premium Materials:</strong> Industrial-grade epoxy resins and advanced systems for superior performance.</li>
+                    <li><strong>Customized Solutions:</strong> Flooring systems tailored to operational requirements and traffic conditions.</li>
+                    <li><strong>On-time Delivery:</strong> Efficient project execution with minimal operational disruption.</li>
+                  </ul>
                 </div>
               </ScrollAnimation>
             </div>
-          </div>
-        </section>
 
-        {/* Why We Are The Best Section */}
-        <section className="py-16 bg-gradient-to-br from-blue-50 to-cyan-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-blue-100">
-              <ScrollAnimation animation="fade-in-up" delay={0}>
-                <div className="text-center mb-12">
-                  <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Award size={16} />
-                    Best Contractors
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6">
-                    Why We Are the Best Epoxy Flooring
-                    <span className="block text-blue-600">Contractors in Bangalore</span>
-                  </h2>
-                </div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation animation="fade-in-up" delay={200}>
-                <div className="max-w-4xl mx-auto">
-                  <p className="text-xl text-gray-700 leading-relaxed text-center">
-                    Years of experience with commercial and Industrial flooring materials have enabled us to offer quality 
-                    flooring systems with a high level of workmanship and the latest technological advances.
-                  </p>
-                  <div className="mt-8 flex flex-wrap justify-center gap-4">
-                    <div className="flex items-center gap-2 text-gray-700 bg-blue-50 px-6 py-3 rounded-lg">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span className="font-semibold">Years of Experience</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700 bg-blue-50 px-6 py-3 rounded-lg">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span className="font-semibold">High Quality Workmanship</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700 bg-blue-50 px-6 py-3 rounded-lg">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span className="font-semibold">Latest Technology</span>
-                    </div>
-                  </div>
-                </div>
-              </ScrollAnimation>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-cyan-600">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-            <ScrollAnimation animation="fade-in-up" delay={0}>
-              <h2 className="text-4xl lg:text-5xl font-black text-white mb-8 leading-tight">
-                Ready to Transform Your Space?
-              </h2>
-              <p className="text-xl text-blue-100 mb-10 leading-relaxed">
-                Get a free consultation and quote for your premium epoxy flooring project. Our experts will assess 
-                your needs and provide the best solution for your space.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  to="/contact" 
-                  className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center group"
-                >
-                  Get Free Consultation
-                  <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <button 
-                  onClick={handlePhoneClick}
-                  className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center"
-                >
-                  <Phone size={20} className="mr-2" />
-                  Call: +91 9916290799
-                </button>
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Industrial Epoxy Floor Coating</h4>
+                <p className="text-gray-600 mb-3">We provide industrial heavy duty epoxy flooring solutions for factories and manufacturing plants where floors are exposed to constant operational stress and machinery movement.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>High impact resistance</li>
+                  <li>Abrasion resistance</li>
+                  <li>Seamless finish</li>
+                  <li>Chemical protection</li>
+                  <li>Long-lasting durability</li>
+                </ul>
               </div>
-            </ScrollAnimation>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Warehouse Heavy Duty Flooring</h4>
+                <p className="text-gray-600 mb-3">Warehouse floors require strong and durable coatings capable of handling forklifts, pallets, trolleys, and heavy storage loads.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>High load-bearing strength</li>
+                  <li>Dust-free finish</li>
+                  <li>Easy cleaning</li>
+                  <li>Improved floor durability</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Factory Epoxy Flooring</h4>
+                <p className="text-gray-600 mb-3">Customized factory flooring for heavy equipment, vibration, chemical exposure and continuous operations.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Tailored to industry type and traffic</li>
+                  <li>Professional surface preparation</li>
+                  <li>Robust, impact-resistant systems</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Heavy Duty Parking Epoxy Flooring</h4>
+                <p className="text-gray-600 mb-3">Heavy duty epoxy flooring for basement parking, ramps and industrial parking zones designed to withstand vehicle movement and tire friction.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Anti-skid finish</li>
+                  <li>Tire mark and oil resistance</li>
+                  <li>High durability and dust-free surface</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm md:col-span-2">
+                <h4 className="text-xl font-bold mb-3">Chemical Resistant Heavy Duty Flooring</h4>
+                <p className="text-gray-600 mb-3">Specialist chemical-resistant systems for pharmaceutical industries, laboratories, food processing units and chemical plants.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Resistance to acids, solvents, oils and greases</li>
+                  <li>Corrosion and stain protection</li>
+                  <li>Compliance for hygienic and critical environments</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="py-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-4">Benefits of Heavy Duty Epoxy Flooring</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  'Superior durability',
+                  'Seamless and smooth finish',
+                  'Chemical resistance',
+                  'Impact and abrasion resistance',
+                  'Easy maintenance',
+                  'Moisture protection',
+                  'Anti-skid safety',
+                  'Cost-effective solution'
+                ].map((b, i) => (
+                  <div key={i} className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h4 className="font-semibold text-gray-900 mb-2">{b}</h4>
+                    <p className="text-gray-600">{b === 'Superior durability' ? 'Withstands continuous industrial operations and heavy machinery.' : ''}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8 items-start mt-12">
+              <div>
+                <h3 className="text-xl font-bold mb-3">Industries We Serve</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  {['Manufacturing industries','Warehouses and logistics centers','Automobile industries','Pharmaceutical industries','Food processing industries','Engineering units','Industrial factories','Commercial parking structures','Chemical processing plants'].map((it, idx) => (
+                    <li key={idx}>{it}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold mb-3">Service Areas in Bangalore</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  {['Whitefield','Electronic City','Peenya','KR Puram','Hebbal','Yelahanka','Bommasandra','Hosur Road','HSR Layout','Marathahalli','JP Nagar','Rajajinagar'].map((area, i) => (
+                    <li key={i}>{area}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-6">What Our Clients Say</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">"Professional service with excellent technical knowledge and timely project completion."</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Suresh C.H</footer>
+                </blockquote>
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">"Good quality epoxy flooring work with reasonable pricing and reliable support."</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Ashwin Virupaksha</footer>
+                </blockquote>
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">"The team completed the basement flooring work professionally and efficiently. Highly recommended."</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Udas Kundu</footer>
+                </blockquote>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-6">Frequently Asked Questions</h3>
+              <div className="space-y-4">
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">What is heavy duty epoxy flooring?</summary>
+                  <p className="text-gray-700 mt-2">Heavy duty epoxy flooring is a high-strength industrial floor coating system designed for factories, warehouses, and industrial environments exposed to heavy traffic and machinery.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">How long does heavy duty epoxy flooring last?</summary>
+                  <p className="text-gray-700 mt-2">With proper installation and maintenance, heavy duty epoxy flooring can last between 8 to 15 years.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is heavy duty epoxy flooring suitable for factories?</summary>
+                  <p className="text-gray-700 mt-2">Yes, it is ideal for factories because it offers durability, abrasion resistance, and chemical protection.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Can epoxy flooring handle forklift movement?</summary>
+                  <p className="text-gray-700 mt-2">Yes, industrial epoxy flooring is designed to withstand forklift traffic and heavy operational movement.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is heavy duty epoxy flooring chemical resistant?</summary>
+                  <p className="text-gray-700 mt-2">Yes, chemical-resistant epoxy flooring systems are available for industries exposed to chemicals and solvents.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Do you provide heavy duty epoxy flooring services across Bangalore?</summary>
+                  <p className="text-gray-700 mt-2">Yes, Sanjana Enterprises provides industrial epoxy flooring services across Bangalore and nearby industrial areas. Contact us for a site visit and quote.</p>
+                </details>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -386,7 +371,7 @@ const HeavyDutyEpoxyFlooring = () => {
                   <span className="block text-blue-600">Services</span>
                 </h2>
                 <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-                  Explore our other specialized services that complement epoxy flooring solutions.
+                  Explore our other specialized services that complement heavy duty epoxy flooring solutions.
                 </p>
               </div>
             </ScrollAnimation>

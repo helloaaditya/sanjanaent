@@ -120,8 +120,8 @@ const AntiCorrosionCoating = () => {
   return (
     <>
       <Helmet>
-        <title>Anti Corrosion Coating Services in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Professional anti corrosion coating services in Bangalore protecting metal surfaces from rust, chemicals and weather with durable, lasting industrial solutions." />
+        <title>Anti Corrosion Coating Services in Bangalore | Protective Coatings</title>
+        <meta name="description" content="Anti corrosion coating services in Bangalore for industrial structures, steel surfaces, pipelines, tanks, machinery, and metal components with durable protective coating solutions against rust and corrosion." />
         <meta name="keywords" content="anti corrosion coating services in bangalore, rust protection coating, corrosion resistant coating, metal protection coating, industrial coating services" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/anti-corrosion-coating-services-in-bangalore" />
@@ -151,10 +151,7 @@ const AntiCorrosionCoating = () => {
 
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Anti Corrosion Coating
-                  <span className="block bg-gradient-to-r from-red-400 to-rose-400 bg-clip-text text-transparent">
-                    Services in Bangalore
-                  </span>
+                  Industrial Anti Corrosion Coating Services in Bangalore
                 </h1>
               </ScrollAnimation>
 

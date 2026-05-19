@@ -26,6 +26,7 @@ import WarehouseBayMarking from './pages/WarehouseBayMarking'
 import AntiCorrosionCoating from './pages/AntiCorrosionCoating'
 import EpoxyFlooringServicesBangalore from './pages/EpoxyFlooringServicesBangalore'
 import HeavyDutyEpoxyFlooring from './pages/HeavyDutyEpoxyFlooring'
+import ChemicalResistantEpoxyFlooring from './pages/ChemicalResistantEpoxyFlooring'
 import EpoxyFlooringForWarehouses from './pages/EpoxyFlooringForWarehouses'
 import IndustrialEpoxyScreedFlooring from './pages/IndustrialEpoxyScreedFlooring'
 import AntiskidEpoxyFlooring from './pages/AntiskidEpoxyFlooring'
@@ -73,9 +74,12 @@ function App() {
         <Route path="/epoxy-flooring" element={<Layout><EpoxyFlooring /></Layout>} />
         {/* Epoxy Flooring Sub-pages - SEO URLs */}
         <Route path="/epoxy-flooring-services-in-bangalore" element={<Layout><EpoxyFlooringServicesBangalore /></Layout>} />
+        <Route path="/epoxy-flooring-services-bangalore" element={<Layout><EpoxyFlooringServicesBangalore /></Layout>} />
         <Route path="/heavy-duty-epoxy-flooring-in-bangalore" element={<Layout><HeavyDutyEpoxyFlooring /></Layout>} />
+        <Route path="/heavy-duty-epoxy-flooring-bangalore" element={<Layout><HeavyDutyEpoxyFlooring /></Layout>} />
         <Route path="/epoxy-flooring-for-warehouses-in-bangalore" element={<Layout><EpoxyFlooringForWarehouses /></Layout>} />
         <Route path="/industrial-epoxy-screed-flooring-in-bangalore" element={<Layout><IndustrialEpoxyScreedFlooring /></Layout>} />
+        <Route path="/industrial-epoxy-screed-flooring-bangalore" element={<Layout><IndustrialEpoxyScreedFlooring /></Layout>} />
         <Route path="/antiskid-epoxy-flooring-in-bangalore" element={<Layout><AntiskidEpoxyFlooring /></Layout>} />
         {/* PU Flooring - SEO URLs */}
         <Route path="/best-pu-flooring-services-in-bangalore" element={<Layout><PUFlooring /></Layout>} />
@@ -92,8 +96,10 @@ function App() {
         {/* New service pages - SEO URLs */}
         <Route path="/esd-flooring-installation-in-bangalore" element={<Layout><ESDFlooringInstallation /></Layout>} />
         <Route path="/car-parking-flooring-solutions-in-bangalore" element={<Layout><CarParkingFlooring /></Layout>} />
+        <Route path="/car-parking-flooring-bangalore" element={<Layout><CarParkingFlooring /></Layout>} />
         <Route path="/warehouse-bay-marking-in-bangalore" element={<Layout><WarehouseBayMarking /></Layout>} />
         <Route path="/anti-corrosion-coating-services-in-bangalore" element={<Layout><AntiCorrosionCoating /></Layout>} />
+        <Route path="/chemical-resistant-epoxy-flooring-bangalore" element={<Layout><ChemicalResistantEpoxyFlooring /></Layout>} />
         {/* .html URLs serve same content as canonical (no redirect) – canonical set on each page */}
         <Route path="/about.html" element={<Layout><About /></Layout>} />
         <Route path="/contact.html" element={<Layout><Contact /></Layout>} />

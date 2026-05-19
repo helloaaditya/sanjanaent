@@ -83,12 +83,12 @@ const EpoxyFlooringServicesBangalore = () => {
   return (
     <>
       <Helmet>
-        <title>Premium Epoxy Flooring Services in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Get premium epoxy flooring in Bangalore with Sanjana Enterprises. Durable, seamless & chemical-resistant solutions for industrial, commercial and residential spaces." />
-        <meta name="keywords" content="Epoxy flooring services in bangalore" />
+        <title>Epoxy Flooring Services in Bangalore | Industrial Experts</title>
+        <meta name="description" content="Get professional epoxy flooring services in Bangalore for industrial, commercial, warehouse, and parking floors with durable, seamless, chemical-resistant epoxy coating solutions for long-lasting floor protection." />
+        <meta name="keywords" content="Epoxy flooring services in Bangalore, industrial epoxy flooring, commercial epoxy flooring, warehouse epoxy, parking epoxy" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
-        <meta property="og:title" content="Epoxy Flooring Services in Bangalore" />
+        <meta property="og:title" content="Epoxy Flooring Services in Bangalore | Industrial Experts" />
         <meta property="og:description" content="High-performance epoxy flooring for industrial and commercial spaces. Durable, seamless, and customizable with 15-20 year lifespan." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
         <meta property="og:type" content="website" />
@@ -108,16 +108,13 @@ const EpoxyFlooringServicesBangalore = () => {
               <ScrollAnimation animation="fade-in-up" delay={0}>
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
                   <Shield size={16} />
-                  Premium Epoxy Flooring
+                  Professional Epoxy Flooring
                 </div>
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Premium Epoxy Flooring
-                  <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                    Services in Bangalore
-                  </span>
+                  Professional Epoxy Flooring Services in Bangalore
                 </h1>
               </ScrollAnimation>
               
@@ -151,72 +148,411 @@ const EpoxyFlooringServicesBangalore = () => {
           </div>
         </section>
 
-        {/* Rest of the page content - same as EpoxyFlooring */}
-        {/* Introduction Section */}
+        {/* Industries, Service Areas, Testimonials & FAQ */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900">Industries We Serve</h2>
+              <p className="text-gray-600 max-w-3xl mx-auto mt-4">Our epoxy flooring systems are trusted across a wide range of sectors.</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                'Manufacturing industries',
+                'Warehouses and logistics centers',
+                'Automobile industries',
+                'Pharmaceutical industries',
+                'Hospitals and laboratories',
+                'Food processing industries',
+                'Commercial buildings',
+                'Parking structures',
+                'Retail showrooms',
+                'Educational institutions'
+              ].map((item, idx) => (
+                <div key={idx} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">
+                  <h4 className="font-semibold text-gray-900">{item}</h4>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8 mb-12 items-start">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Service Areas in Bangalore</h3>
+                <p className="text-gray-600 mb-3">We provide epoxy flooring services across Bangalore including:</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  {['Whitefield','Electronic City','Peenya','KR Puram','Hebbal','Yelahanka','Bommasandra','Hosur Road','HSR Layout','Marathahalli','JP Nagar','Rajajinagar'].map((area, i) => (
+                    <li key={i}>{area}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">What Our Clients Say</h3>
+                <div className="space-y-4">
+                  <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <p className="text-gray-800">"Recently, we did PU flooring, and the work was completed smoothly with an excellent finish. Thank you, Sanjana Enterprises, for the quality service."</p>
+                    <footer className="text-sm text-gray-600 mt-2">— Lavanya R</footer>
+                  </blockquote>
+                  <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <p className="text-gray-800">"Extremely professional service with good technical knowledge and timely project completion."</p>
+                    <footer className="text-sm text-gray-600 mt-2">— Suresh C.H</footer>
+                  </blockquote>
+                  <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <p className="text-gray-800">"Professional team with reasonable pricing and excellent waterproofing and epoxy flooring solutions."</p>
+                    <footer className="text-sm text-gray-600 mt-2">— Ashwin Virupaksha</footer>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-black text-gray-900 mb-6">Frequently Asked Questions</h3>
+              <div className="space-y-4">
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">What is epoxy flooring?</summary>
+                  <p className="text-gray-700 mt-2">Epoxy flooring is a durable floor coating system made using epoxy resin and hardener to create a strong and seamless protective surface.</p>
+                </details>
+
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">How long does epoxy flooring last?</summary>
+                  <p className="text-gray-700 mt-2">High-quality epoxy flooring can last between 5 and 15 years, depending on industrial usage and maintenance.</p>
+                </details>
+
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is epoxy flooring waterproof?</summary>
+                  <p className="text-gray-700 mt-2">Yes, epoxy flooring provides excellent resistance against moisture and water damage.</p>
+                </details>
+
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is epoxy flooring suitable for factories?</summary>
+                  <p className="text-gray-700 mt-2">Yes, industrial epoxy flooring is ideal for factories because of its durability and chemical resistance.</p>
+                </details>
+
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Can epoxy flooring resist chemicals?</summary>
+                  <p className="text-gray-700 mt-2">Chemically-resistant epoxy flooring is specially designed to resist acids, chemicals, oils, and industrial solvents.</p>
+                </details>
+
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Do you provide services across Bangalore?</summary>
+                  <p className="text-gray-700 mt-2">Yes, we provide epoxy flooring services across Bangalore and nearby industrial areas. Contact us for a site visit and quote.</p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Rest of the page content - expanded */}
+        {/* Company Intro & What is Epoxy Flooring */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="prose max-w-none mb-10">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">Professional Epoxy Flooring Services in Bangalore</h2>
+              <p className="text-gray-700 text-lg">Sanjana Enterprises is a leading provider of epoxy flooring services in Bangalore, offering high-quality industrial, commercial, and residential flooring solutions with over 30 years of industry experience. We specialize in durable epoxy floor coatings designed to provide long-lasting protection, superior strength, seamless finish, and excellent resistance against chemicals, abrasion, moisture, and heavy traffic.</p>
+              <p className="text-gray-700 text-lg mt-4">As an <strong>ISO 9001:2015 Certified</strong> company, we are committed to delivering reliable and customized flooring solutions for factories, warehouses, parking areas, hospitals, laboratories, manufacturing units, showrooms, and commercial buildings across Bangalore and Karnataka. Our experienced team uses premium-quality epoxy materials and advanced installation techniques to ensure durable and cost-effective flooring systems for every project.</p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
               <ScrollAnimation animation="fade-in-right" delay={0}>
                 <div>
                   <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
                     <Shield size={16} />
                     What is Epoxy Flooring?
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    What is Epoxy Flooring?
-                  </h2>
-                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    Epoxy Flooring can be defined as a performance-based coating system created from an epoxy resin mixed 
-                    with either an appropriate hardener or catalyst to create a tough, durable, chemical-resistant, seamless finish. 
-                    Epoxy offers many capabilities beyond those typically found in conventional flooring types: it provides a 
-                    sanitary (joint-free) and easy-to-care-for floor surface that looks great!
-                  </p>
-                  <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our premium epoxy flooring solutions for residential, industrial and commercial use provide a lasting, 
-                    high-performance product of the highest quality. Our team provides a high level of quality service that 
-                    results in an installation that far exceeds your expectations and is performed with great care.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>15-20 Year Lifespan</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Chemical Resistant</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Easy Maintenance</span>
-                    </div>
-                  </div>
+                  <h3 className="text-2xl font-black text-gray-900 mb-4">What is Epoxy Flooring?</h3>
+                  <p className="text-gray-600 text-lg mb-4 leading-relaxed">Epoxy flooring is a seamless floor coating system created by applying epoxy resin and hardener over concrete surfaces. Once cured, the epoxy forms a highly durable protective layer capable of resisting heavy traffic, industrial wear, moisture, stains, chemicals, oils, and abrasion.</p>
+                  <p className="text-gray-600 text-lg mb-4 leading-relaxed">Epoxy flooring is widely preferred for industrial and commercial environments because it improves floor durability, workplace safety, cleanliness, and overall appearance. The seamless finish also prevents dust accumulation and makes cleaning easier compared to traditional concrete flooring systems.</p>
+                  <h4 className="text-lg font-semibold mt-4">Available Systems</h4>
+                  <ul className="list-disc pl-5 text-gray-700 space-y-2 mt-2">
+                    <li>Industrial epoxy flooring</li>
+                    <li>Heavy-duty epoxy coatings</li>
+                    <li>Self-leveling epoxy flooring</li>
+                    <li>Anti-skid epoxy flooring</li>
+                    <li>Chemical-resistant flooring</li>
+                    <li>Decorative epoxy coatings</li>
+                  </ul>
                 </div>
               </ScrollAnimation>
-              
+
               <ScrollAnimation animation="fade-in-left" delay={200}>
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Benefits of Epoxy Flooring</h3>
-                  <div className="space-y-4">
-                    {[
-                      "Long-lasting durability: Withstands the rigors of heavy machinery, high foot traffic, and industrial use for a period of 15-20 years before needing replacement.",
-                      "Chemically and Stain Resistant: The epoxy makes your floor resistant to oils, rust, acids, and most types of industrial chemicals.",
-                      "Seamless and easy to maintain: The jointless surface makes it easier to clean and maintain.",
-                      "Custom Orientation and Finishes: Solid colour options, metallic flecks, flakes (small pieces), textured options, etc.",
-                      "Anti-slip: Provides non-slip surfaces for wet or very busy areas.",
-                      "Minimal Maintenance: Very little cleaning and no need to wax.",
-                      "Quick Installation: Less downtime for your commercial/industrial establishments.",
-                      "Environmentally Friendly: Due to their long life span, they will create less waste, and you will have fewer floors needing replacement over time."
-                    ].map((benefit, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <CheckCircle size={16} className="text-white" />
-                        </div>
-                        <span className="text-gray-700 leading-relaxed">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Why Sanjana Enterprises?</h3>
+                  <ul className="text-gray-700 space-y-3">
+                    <li><strong>30+ Years of Experience:</strong> Decades of successful flooring and waterproofing projects across Bangalore and Karnataka.</li>
+                    <li><strong>ISO 9001:2015 Certified:</strong> Committed to quality and standard processes.</li>
+                    <li><strong>Experienced Technical Team:</strong> Skilled professionals for surface preparation and installation.</li>
+                    <li><strong>Premium Materials:</strong> Industrial-grade epoxy resins and coatings.</li>
+                    <li><strong>Customized Solutions:</strong> Flooring designed for your operational needs and environment.</li>
+                    <li><strong>Timely Completion:</strong> Efficient project execution with minimal downtime.</li>
+                  </ul>
                 </div>
               </ScrollAnimation>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Services Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900">Our Epoxy Flooring Services in Bangalore</h2>
+              <p className="text-gray-600 max-w-3xl mx-auto mt-4">We deliver tailored epoxy flooring solutions across industries — from factories to showrooms and parking areas.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Industrial Epoxy Flooring</h3>
+                <p className="text-gray-600 mb-3">Built for factories, manufacturing plants and engineering units exposed to heavy traffic and machinery.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>High load-bearing strength</li>
+                  <li>Abrasion and chemical resistance</li>
+                  <li>Seamless, dust-free finish</li>
+                  <li>Long-lasting durability</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Warehouse Epoxy Flooring</h3>
+                <p className="text-gray-600 mb-3">Designed for warehouses and logistics centers with heavy forklift and pallet traffic.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Improved floor durability</li>
+                  <li>Reduced dust formation</li>
+                  <li>Easy maintenance and cleaning</li>
+                  <li>Customized systems for traffic conditions</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Commercial Epoxy Flooring</h3>
+                <p className="text-gray-600 mb-3">Ideal for offices, hospitals, malls, showrooms and retail spaces — available in decorative finishes.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Glossy and decorative finishes</li>
+                  <li>Stain and scratch resistance</li>
+                  <li>Custom colours and textures</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Car Parking Epoxy Flooring</h3>
+                <p className="text-gray-600 mb-3">Anti-skid epoxy solutions for basement parking, ramps, driveways and commercial parking areas.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Anti-skid surface</li>
+                  <li>Tire mark and oil resistance</li>
+                  <li>Easy cleaning and long life</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm md:col-span-2">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Chemical-Resistant Epoxy Flooring</h3>
+                <p className="text-gray-600 mb-3">Specialist systems for pharmaceutical, laboratory, chemical processing and food industries where floors face aggressive chemicals and solvents.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Protection against acids, solvents and oils</li>
+                  <li>Corrosion and stain resistance</li>
+                  <li>Compliant for hygienic & critical environments</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* Industrial Epoxy Screed Flooring Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="prose max-w-none mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">Professional Industrial Epoxy Screed Flooring in Bangalore</h2>
+              <p className="text-gray-700 text-lg">Sanjana Enterprises is a trusted provider of industrial epoxy screed flooring in Bangalore, offering durable and high-performance flooring solutions for factories, warehouses, manufacturing plants, engineering units, pharmaceutical industries, and commercial facilities. With over 30 years of experience in industrial flooring and waterproofing solutions, we specialize in heavy-duty epoxy screed flooring systems designed to withstand heavy operational traffic, machinery movement, impact loads, abrasion, and industrial chemical exposure.</p>
+              <p className="text-gray-700 text-lg mt-4">Our industrial epoxy screed flooring systems provide a strong, seamless, and long-lasting protective layer that improves floor durability, workplace safety, and operational efficiency. As an <strong>ISO 9001:2015 Certified</strong> company, we use premium-quality epoxy resins, industrial-grade screed materials, and advanced installation methods to deliver customized flooring solutions suitable for demanding industrial environments.</p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
+              <ScrollAnimation animation="fade-in-right" delay={0}>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">What is Industrial Epoxy Screed Flooring?</h3>
+                  <p className="text-gray-600 mb-4">Industrial epoxy screed flooring is a heavy-duty flooring system created by combining epoxy resin with graded aggregates to form a thick and durable screed layer over concrete surfaces. This flooring system is designed for industrial environments requiring superior strength, abrasion resistance, impact resistance, and chemical protection.</p>
+                  <p className="text-gray-600 mb-4">Unlike standard epoxy coatings, epoxy screed flooring provides enhanced thickness and structural durability, making it suitable for areas exposed to extreme operational conditions and heavy industrial traffic.</p>
+                  <h4 className="font-semibold mt-4">Common Applications</h4>
+                  <ul className="list-disc pl-5 text-gray-700 mt-2">
+                    <li>Manufacturing industries</li>
+                    <li>Warehouses and logistics centers</li>
+                    <li>Engineering industries</li>
+                    <li>Automobile industries</li>
+                    <li>Pharmaceutical industries</li>
+                    <li>Food processing units</li>
+                    <li>Chemical plants</li>
+                    <li>Industrial workshops</li>
+                  </ul>
+                </div>
+              </ScrollAnimation>
+
+              <ScrollAnimation animation="fade-in-left" delay={200}>
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Why Choose Our Screed Flooring?</h3>
+                  <ul className="text-gray-700 space-y-3">
+                    <li><strong>High Strength & Load Capacity:</strong> Designed to handle heavy machinery and forklift traffic.</li>
+                    <li><strong>Impact & Abrasion Resistance:</strong> Protects against wear from constant industrial activity.</li>
+                    <li><strong>Chemical Protection:</strong> Resistant to oils, acids, solvents and industrial chemicals.</li>
+                    <li><strong>Seamless & Hygienic:</strong> Smooth, dust-free surface ideal for clean environments.</li>
+                    <li><strong>Customized Systems:</strong> Tailored formulations based on industry and exposure conditions.</li>
+                  </ul>
+                </div>
+              </ScrollAnimation>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Heavy Duty Industrial Flooring</h4>
+                <p className="text-gray-600 mb-3">Our heavy-duty epoxy screed flooring systems are specially designed for factories and industrial facilities exposed to high operational loads and continuous machinery movement.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>High load-bearing capacity</li>
+                  <li>Impact resistance</li>
+                  <li>Abrasion protection</li>
+                  <li>Seamless finish</li>
+                  <li>Chemical resistance</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Warehouse Screed Flooring</h4>
+                <p className="text-gray-600 mb-3">Warehouse floors require strong and durable flooring systems capable of handling forklifts, pallets, trolleys, and heavy storage loads.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Smooth and seamless finish</li>
+                  <li>Dust-free surface</li>
+                  <li>High durability</li>
+                  <li>Easy maintenance</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Factory Epoxy Screed Flooring</h4>
+                <p className="text-gray-600 mb-3">Customized epoxy screed flooring systems for factories based on industry type, traffic levels and chemical exposure.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Tailored to floor condition and operational needs</li>
+                  <li>Professional surface preparation and installation</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm md:col-span-2">
+                <h4 className="text-xl font-bold mb-3">Chemical Resistant Screed Flooring</h4>
+                <p className="text-gray-600 mb-3">Specialist chemical-resistant systems for pharmaceutical industries, laboratories, food processing units and chemical plants exposed to aggressive substances.</p>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Resistance to acids, solvents and industrial chemicals</li>
+                  <li>Corrosion and stain protection</li>
+                  <li>Suitable for hygienic and critical environments</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="py-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-4">Features of Industrial Epoxy Screed Flooring</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  'High strength flooring',
+                  'Seamless surface',
+                  'Impact resistance',
+                  'Abrasion resistance',
+                  'Chemical protection',
+                  'Long service life',
+                  'Easy maintenance'
+                ].map((f, i) => (
+                  <div key={i} className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h4 className="font-semibold text-gray-900 mb-2">{f}</h4>
+                    <p className="text-gray-600">{f === 'High strength flooring' ? 'Exceptional compressive strength suitable for heavy traffic.' : ''}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-6">Installation Process</h3>
+              <div className="space-y-6">
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Surface Preparation</h4>
+                  <p className="text-gray-700 mt-2">The concrete surface is cleaned, repaired, and mechanically prepared to improve coating adhesion.</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Primer Application</h4>
+                  <p className="text-gray-700 mt-2">An epoxy primer is applied to strengthen the bond between the screed flooring and concrete substrate.</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Screed Layer Installation</h4>
+                  <p className="text-gray-700 mt-2">Industrial-grade epoxy screed material is applied evenly to create a thick and durable flooring surface.</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Surface Finishing & Topcoat</h4>
+                  <p className="text-gray-700 mt-2">The flooring is finished smoothly or with anti-skid texture and a final protective topcoat is applied for durability and chemical resistance.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8 items-start mt-12">
+              <div>
+                <h3 className="text-xl font-bold mb-3">Industries We Serve</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  {['Manufacturing industries','Warehouses and logistics centers','Automobile industries','Pharmaceutical industries','Food processing units','Engineering workshops','Chemical processing plants','Industrial factories','Commercial facilities'].map((it, idx) => (
+                    <li key={idx}>{it}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold mb-3">Service Areas in Bangalore</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  {['Whitefield','Electronic City','Peenya','KR Puram','Hebbal','Yelahanka','Bommasandra','Hosur Road','HSR Layout','Marathahalli','JP Nagar','Rajajinagar'].map((area, i) => (
+                    <li key={i}>{area}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-6">What Our Clients Say</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“Excellent industrial flooring work with professional service and timely completion.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Suresh C.H</footer>
+                </blockquote>
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“Good technical knowledge and durable epoxy flooring solutions for industrial applications.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Ashwin Virupaksha</footer>
+                </blockquote>
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“The industrial flooring project was completed professionally with quality workmanship and excellent support.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Udas Kundu</footer>
+                </blockquote>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-6">Frequently Asked Questions</h3>
+              <div className="space-y-4">
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">What is industrial epoxy screed flooring?</summary>
+                  <p className="text-gray-700 mt-2">Industrial epoxy screed flooring is a heavy-duty flooring system made using epoxy resin and aggregates to provide durable and seamless industrial floor protection.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is epoxy screed flooring suitable for factories?</summary>
+                  <p className="text-gray-700 mt-2">Yes, epoxy screed flooring is ideal for factories because it offers impact resistance, abrasion protection, and high durability.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Can epoxy screed flooring handle forklift movement?</summary>
+                  <p className="text-gray-700 mt-2">Yes, industrial screed flooring is designed to withstand forklift traffic and heavy operational movement.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is epoxy screed flooring chemical resistant?</summary>
+                  <p className="text-gray-700 mt-2">Yes, chemical-resistant screed flooring systems are available for industries exposed to chemicals and solvents.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">How long does epoxy screed flooring last?</summary>
+                  <p className="text-gray-700 mt-2">Properly installed industrial epoxy screed flooring can last between 8 to 15 years depending on operational usage.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is industrial screed flooring easy to maintain?</summary>
+                  <p className="text-gray-700 mt-2">Yes, the seamless surface is easy to clean and requires minimal maintenance.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Do you provide services across Bangalore?</summary>
+                  <p className="text-gray-700 mt-2">Yes, Sanjana Enterprises provides industrial epoxy screed flooring services across Bangalore and nearby industrial areas.</p>
+                </details>
+              </div>
             </div>
           </div>
         </section>

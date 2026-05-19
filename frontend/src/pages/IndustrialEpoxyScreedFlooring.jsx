@@ -83,13 +83,13 @@ const IndustrialEpoxyScreedFlooring = () => {
   return (
     <>
       <Helmet>
-        <title>Industrial Epoxy Screed Flooring in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Professional industrial epoxy screed flooring in Bangalore. Ideal for factories, warehouses & production areas. 10-20 year lifespan. Free quote!" />
-        <meta name="keywords" content="Industrial epoxy screed flooring bangalore, epoxy screed flooring, industrial flooring bangalore" />
+        <title>Industrial Epoxy Screed Flooring in Bangalore | Durable Flooring</title>
+        <meta name="description" content="Sanjana Enterprises provides industrial epoxy screed flooring in Bangalore for factories, warehouses and manufacturing units — heavy-duty, impact resistant, chemical resistant and long-lasting screed systems." />
+        <meta name="keywords" content="industrial epoxy screed flooring in bangalore, epoxy screed flooring, heavy duty epoxy screed, factory flooring bangalore" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" />
-        <meta property="og:title" content="Industrial Epoxy Screed Flooring in Bangalore" />
-        <meta property="og:description" content="Tough epoxy screed flooring that withstands harsh industrial conditions. Excellent strength, chemical resistance, and long-lasting use." />
+        <meta property="og:title" content="Industrial Epoxy Screed Flooring in Bangalore | Durable Flooring" />
+        <meta property="og:description" content="Sanjana Enterprises offers industrial epoxy screed flooring in Bangalore — seamless, chemical resistant and built for heavy industrial use in factories and warehouses." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -114,19 +114,13 @@ const IndustrialEpoxyScreedFlooring = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Industrial Epoxy Screed Flooring
-                  <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                    in Bangalore
-                  </span>
+                  Industrial Epoxy Screed Flooring in Bangalore
                 </h1>
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
                 <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed">
-                  At Sanjana Waterproofing, the Industrial Epoxy Screed Flooring we offer is tough enough to withstand the harshest 
-                  industrial conditions thanks to its high performance. The floors we provide have excellent strength, resistance to 
-                  chemicals, and long-lasting use—thus, they are perfect for factories, warehouses, and production units, etc., 
-                  areas with heavy loads in Bangalore.
+                  Sanjana Enterprises is a trusted provider of industrial epoxy screed flooring in Bangalore, offering durable and high-performance systems for factories, warehouses, manufacturing plants and industrial facilities. Our epoxy screed systems are designed to withstand heavy operational traffic, machine movement, impact loads, abrasion and chemical exposure.
                 </p>
               </ScrollAnimation>
               
@@ -152,72 +146,183 @@ const IndustrialEpoxyScreedFlooring = () => {
           </div>
         </section>
 
-        {/* What is Epoxy Screed Section */}
+        {/* Industrial Epoxy Screed Content (user-supplied) */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <ScrollAnimation animation="fade-in-right" delay={0}>
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Layers size={16} />
-                    What is Epoxy Screed Flooring?
+            <div className="prose max-w-none mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">Professional Industrial Epoxy Screed Flooring in Bangalore</h2>
+              <p className="text-gray-700 text-lg">Sanjana Enterprises is a trusted provider of industrial epoxy screed flooring in Bangalore, offering durable and high-performance flooring solutions for factories, warehouses, manufacturing plants, engineering units, pharmaceutical industries, and commercial facilities. With over 30 years of experience in industrial flooring and waterproofing solutions, we specialize in heavy-duty epoxy screed flooring systems designed to withstand heavy operational traffic, machinery movement, impact loads, abrasion, and industrial chemical exposure.</p>
+              <p className="text-gray-700 text-lg mt-4">Industrial floors are constantly exposed to harsh working conditions including forklift movement, machinery vibration, chemical spills, and continuous operational stress. Ordinary concrete flooring often develops cracks, surface damage, dust formation, and uneven finishes over time. Our industrial epoxy screed flooring systems provide a strong, seamless, and long-lasting protective layer that improves floor durability, workplace safety, and operational efficiency.</p>
+              <p className="text-gray-700 text-lg mt-4">At Sanjana Enterprises, we use premium-quality epoxy resins, industrial-grade screed materials, and advanced installation methods to deliver customized flooring solutions suitable for demanding industrial environments. As an ISO 9001:2015 Certified company, we focus on quality workmanship, reliable service, and long-term customer satisfaction.</p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">What is Industrial Epoxy Screed Flooring?</h3>
+                <p className="text-gray-600 mb-4">Industrial epoxy screed flooring is a heavy-duty flooring system created by combining epoxy resin with graded aggregates to form a thick and durable screed layer over concrete surfaces. This flooring system is designed for industrial environments requiring superior strength, abrasion resistance, impact resistance, and chemical protection.</p>
+                <p className="text-gray-600 mb-4">Unlike standard epoxy coatings, epoxy screed flooring provides enhanced thickness and structural durability, making it suitable for areas exposed to extreme operational conditions and heavy industrial traffic.</p>
+                <h4 className="font-semibold mt-4">Common Uses</h4>
+                <ul className="list-disc pl-5 text-gray-700 mt-2">
+                  <li>Manufacturing industries</li>
+                  <li>Warehouses and logistics centers</li>
+                  <li>Engineering industries</li>
+                  <li>Automobile industries</li>
+                  <li>Pharmaceutical industries</li>
+                  <li>Food processing units</li>
+                  <li>Chemical plants</li>
+                  <li>Industrial workshops</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Our Industrial Epoxy Screed Flooring Services in Bangalore</h3>
+                <div className="space-y-4 text-gray-700">
+                  <div>
+                    <h4 className="font-semibold">Heavy Duty Industrial Flooring</h4>
+                    <p className="mt-2">Our heavy-duty epoxy screed flooring systems are specially designed for factories and industrial facilities exposed to high operational loads and continuous machinery movement. Benefits include high load-bearing capacity, impact resistance, abrasion protection, seamless finish, long-lasting durability and chemical resistance.</p>
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    Durable Industrial
-                    <span className="block text-blue-600">Flooring Solution</span>
-                  </h2>
-                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    The epoxy screed is a flooring system that is applied with a trowel and is made up of epoxy resins combined 
-                    with graded aggregates. It creates a thick and extremely durable surface that has excellent performance under:
-                  </p>
-                  <div className="space-y-4 mb-8">
-                    {[
-                      "Heavy Machinery",
-                      "Constant Traffic",
-                      "Chemical Exposure",
-                      "High Impact Loads"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-center gap-3">
-                        <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                          <CheckCircle size={16} className="text-white" />
-                        </div>
-                        <span className="text-gray-700 text-lg font-medium">{item}</span>
-                      </div>
-                    ))}
+                  <div>
+                    <h4 className="font-semibold">Warehouse Screed Flooring</h4>
+                    <p className="mt-2">Warehouse floors require strong and durable flooring systems capable of handling forklifts, pallets, trolleys, and heavy storage loads. Our solutions offer smooth and seamless finish, dust-free surface, high durability, easy maintenance and long-term protection.</p>
                   </div>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    Epoxy screed is often installed with a thickness of 3mm to 6mm, and it is among the strongest flooring 
-                    options available for industrial use.
-                  </p>
-                </div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation animation="fade-in-left" delay={200}>
-                <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl p-8 text-white">
-                  <h3 className="text-2xl font-bold mb-6">Installation Process</h3>
-                  <div className="space-y-6">
-                    {process.map((step, index) => (
-                      <div key={index} className="flex gap-4">
-                        <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                            <step.icon size={20} className="text-white" />
-                          </div>
-                          <div className="text-2xl font-black text-blue-200 text-center mt-2">{step.step}</div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-bold mb-1">{step.title}</h3>
-                          <p className="text-blue-100 text-sm leading-relaxed">{step.description}</p>
-                        </div>
-                      </div>
-                    ))}
+                  <div>
+                    <h4 className="font-semibold">Factory Epoxy Screed Flooring</h4>
+                    <p className="mt-2">Factories and manufacturing units require flooring systems capable of resisting machine vibration, industrial traffic, and heavy operational activities. We provide customized epoxy screed flooring systems based on industry type, floor condition, operational requirements, traffic levels and chemical exposure.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Chemical Resistant Screed Flooring</h4>
+                    <p className="mt-2">Chemical-resistant epoxy screed flooring is suitable for pharmaceutical industries, laboratories, food processing units and chemical manufacturing plants where floors are exposed to chemicals, acids, solvents, and industrial spills. These systems provide protection against acid spills, industrial chemicals, corrosion, oil and grease.</p>
                   </div>
                 </div>
-              </ScrollAnimation>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Features of Industrial Epoxy Screed Flooring</h4>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>High Strength Flooring — exceptional compressive strength for heavy industrial traffic</li>
+                  <li>Seamless Surface — prevents dust accumulation and improves hygiene</li>
+                  <li>Impact Resistance — resists heavy impact loads</li>
+                  <li>Abrasion Resistance — excellent protection against surface wear</li>
+                  <li>Chemical Protection — resists chemicals, oils, acids and solvents</li>
+                  <li>Long Service Life — years of dependable performance with minimal maintenance</li>
+                  <li>Easy Maintenance — smooth, dust-free surface for simple cleaning</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold mb-3">Why Choose Sanjana Enterprises?</h4>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>30+ Years of Experience — extensive industrial flooring expertise across Bangalore and Karnataka</li>
+                  <li>ISO 9001:2015 Certified — industry-standard quality practices</li>
+                  <li>Experienced Technical Team — professional surface preparation and installation</li>
+                  <li>Premium Quality Materials — industrial-grade epoxy resins and screed materials</li>
+                  <li>Customized Flooring Solutions — tailored based on floor condition and operational needs</li>
+                  <li>Timely Project Completion — efficient works with minimal downtime</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="py-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-6">Industrial Epoxy Screed Flooring Installation Process</h3>
+              <div className="space-y-4">
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Surface Preparation</h4>
+                  <p className="text-gray-700 mt-2">The concrete surface is cleaned, repaired, and mechanically prepared to improve coating adhesion.</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Primer Application</h4>
+                  <p className="text-gray-700 mt-2">An epoxy primer is applied to strengthen the bond between the screed flooring and concrete substrate.</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Screed Layer Installation</h4>
+                  <p className="text-gray-700 mt-2">Industrial-grade epoxy screed material is applied evenly to create a thick and durable flooring surface.</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Surface Finishing</h4>
+                  <p className="text-gray-700 mt-2">The flooring is finished smoothly or with anti-skid texture depending on project requirements.</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-semibold">Final Protective Coating</h4>
+                  <p className="text-gray-700 mt-2">A protective topcoat is applied to improve durability, gloss, and chemical resistance.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8 mt-12">
+              <div>
+                <h3 className="text-xl font-bold mb-3">Industries We Serve</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  {['Manufacturing industries','Warehouses and logistics centers','Automobile industries','Pharmaceutical industries','Food processing units','Engineering workshops','Chemical processing plants','Industrial factories','Commercial facilities'].map((it, idx) => (
+                    <li key={idx}>{it}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold mb-3">Service Areas in Bangalore</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  {['Whitefield','Electronic City','Peenya','KR Puram','Hebbal','Yelahanka','Bommasandra','Hosur Road','HSR Layout','Marathahalli','JP Nagar','Rajajinagar'].map((area, i) => (
+                    <li key={i}>{area}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-6">What Our Clients Say</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“Excellent industrial flooring work with professional service and timely completion.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Suresh C.H</footer>
+                </blockquote>
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“Good technical knowledge and durable epoxy flooring solutions for industrial applications.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Ashwin Virupaksha</footer>
+                </blockquote>
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“The industrial flooring project was completed professionally with quality workmanship and excellent support.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Udas Kundu</footer>
+                </blockquote>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-black text-gray-900 mb-6">Frequently Asked Questions</h3>
+              <div className="space-y-4">
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">What is industrial epoxy screed flooring?</summary>
+                  <p className="text-gray-700 mt-2">Industrial epoxy screed flooring is a heavy-duty flooring system made using epoxy resin and aggregates to provide durable and seamless industrial floor protection.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is epoxy screed flooring suitable for factories?</summary>
+                  <p className="text-gray-700 mt-2">Yes, epoxy screed flooring is ideal for factories because it offers impact resistance, abrasion protection, and high durability.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Can epoxy screed flooring handle forklift movement?</summary>
+                  <p className="text-gray-700 mt-2">Yes, industrial screed flooring is designed to withstand forklift traffic and heavy operational movement.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is epoxy screed flooring chemical resistant?</summary>
+                  <p className="text-gray-700 mt-2">Yes, chemical-resistant screed flooring systems are available for industries exposed to chemicals and solvents.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">How long does epoxy screed flooring last?</summary>
+                  <p className="text-gray-700 mt-2">Properly installed industrial epoxy screed flooring can last between 8 to 15 years depending on operational usage.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is industrial screed flooring easy to maintain?</summary>
+                  <p className="text-gray-700 mt-2">Yes, the seamless surface is easy to clean and requires minimal maintenance.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Do you provide services across Bangalore?</summary>
+                  <p className="text-gray-700 mt-2">Yes, Sanjana Enterprises provides industrial epoxy screed flooring services across Bangalore and nearby industrial areas.</p>
+                </details>
+              </div>
             </div>
           </div>
         </section>
-
-        {/* Why Choose Section */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <ScrollAnimation animation="fade-in-up" delay={0}>

@@ -14,14 +14,14 @@ const TerraceWaterproofing = () => {
   // SEO configuration based on route
   const seoConfig = {
     '/roof-waterproofing-services-in-bangalore': {
-      title: 'Roof Waterproofing Services in Bangalore | Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
-      description: 'Get reliable and long-lasting roof waterproofing services in Bangalore along with expert terrace roof waterproofing in Bangalore. We provide premium waterproof coatings, leak-proof solutions, and durable protection for residential, commercial, and industrial buildings. Contact us for professional and affordable waterproofing services.',
+      title: 'Roof Waterproofing Services in Bangalore | Sanjana Enterprises',
+      description: 'Professional roof waterproofing services in Bangalore — advanced terrace and roof waterproofing solutions for residential, commercial and industrial buildings to prevent leaks, seepage, and moisture damage.',
       h1: 'Roof Waterproofing Services in Bangalore',
       canonical: 'https://www.sanjanawaterproofing.com/roof-waterproofing-services-in-bangalore'
     },
     '/terrace-roof-waterproofing-in-bangalore': {
-      title: 'Roof Waterproofing Services in Bangalore | Terrace Roof Waterproofing in Bangalore | Sanjana Enterprises',
-      description: 'Get reliable and long-lasting roof waterproofing services in Bangalore along with expert terrace roof waterproofing in Bangalore. We provide premium waterproof coatings, leak-proof solutions, and durable protection for residential, commercial, and industrial buildings. Contact us for professional and affordable waterproofing services.',
+      title: 'Terrace Roof Waterproofing in Bangalore | Leak Protection',
+      description: 'Expert terrace roof waterproofing in Bangalore providing leak-proof coatings and long-term protection for terraces and roofs. Durable solutions for residential and commercial buildings.',
       h1: 'Terrace Roof Waterproofing in Bangalore',
       canonical: 'https://www.sanjanawaterproofing.com/terrace-roof-waterproofing-in-bangalore'
     },
@@ -207,13 +207,13 @@ const TerraceWaterproofing = () => {
                 {isRoofWaterproofing ? (
                   <div className="text-xl text-gray-300 max-w-4xl mx-auto mb-10 leading-relaxed space-y-4">
                     <p>
-                      Keep your building safe from water damage with top-notch roof waterproofing services in Bangalore, brought to you by Sanjana Waterproofing. 
-                      Our expert team is dedicated to stopping leaks, seepage, dampness, and structural issues, making sure your home, office, or industrial space 
-                      remains secure, dry, and built to last.
+                      Sanjana Enterprises is a trusted provider of roof waterproofing services in Bangalore, offering advanced waterproofing solutions for residential, commercial, industrial, and apartment buildings. With more than 30 years of experience in waterproofing and flooring solutions, we specialize in protecting terraces, roofs, basements, walls, and concrete structures from water leakage, seepage, moisture damage, and cracks.
                     </p>
                     <p>
-                      We utilize high-quality waterproofing materials and cutting-edge techniques to deliver seamless, UV-resistant, and durable protection for 
-                      all roof types—whether flat, sloped, or industrial.
+                      Roof leakage is one of the most common problems faced by residential and commercial property owners in Bangalore, especially during heavy rainfall and changing weather conditions. Water seepage can weaken concrete structures, damage walls and ceilings, create mold growth, and reduce the lifespan of buildings. Our professional roof waterproofing solutions are designed to provide long-lasting protection against water penetration and structural damage.
+                    </p>
+                    <p>
+                      At Sanjana Enterprises, we use premium-quality waterproofing chemicals, advanced application methods, and industry-standard materials to deliver reliable and durable waterproofing systems for all types of roofs and terraces. As an ISO 9001:2015 Certified company, we focus on quality workmanship, customer satisfaction, and long-term waterproofing performance.
                     </p>
                   </div>
                 ) : isTerraceRoofWaterproofing ? (
@@ -337,71 +337,85 @@ const TerraceWaterproofing = () => {
           </section>
         )}
 
-        {/* Introduction Section */}
+        {/* Introduction Section - Roof Waterproofing Detailed Content */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <ScrollAnimation animation="fade-in-right" delay={0}>
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Shield size={16} />
-                    Why Terrace Waterproofing?
+            <div className="prose max-w-none mb-8">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">Professional Roof Waterproofing Services in Bangalore</h2>
+              <p className="text-gray-700 text-lg">Sanjana Enterprises is a trusted provider of roof waterproofing services in Bangalore, offering advanced waterproofing solutions for residential, commercial, industrial, and apartment buildings. With more than 30 years of experience in waterproofing and flooring solutions, we specialize in protecting terraces, roofs, basements, walls, and concrete structures from water leakage, seepage, moisture damage, and cracks.</p>
+              <p className="text-gray-700 text-lg mt-4">Roof leakage is one of the most common problems faced by residential and commercial property owners in Bangalore, especially during heavy rainfall and changing weather conditions. Water seepage can weaken concrete structures, damage walls and ceilings, create mold growth, and reduce the lifespan of buildings. Our professional roof waterproofing solutions are designed to provide long-lasting protection against water penetration and structural damage.</p>
+              <p className="text-gray-700 text-lg mt-4">At Sanjana Enterprises, we use premium-quality waterproofing chemicals, advanced application methods, and industry-standard materials to deliver reliable and durable waterproofing systems for all types of roofs and terraces. As an ISO 9001:2015 Certified company, we focus on quality workmanship, customer satisfaction, and long-term waterproofing performance.</p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-start mb-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">What is Roof Waterproofing?</h3>
+                <p className="text-gray-600 mb-4">Roof waterproofing is the process of applying protective waterproof coatings and membranes on roofs and terraces to prevent water leakage, seepage, cracks, and moisture penetration. Waterproofing systems create a protective barrier over concrete surfaces that helps stop rainwater from entering the structure.</p>
+                <p className="text-gray-600 mb-4">Proper waterproofing is essential for maintaining the durability and safety of buildings. Without waterproofing, roofs are vulnerable to water damage, corrosion, cracks, fungal growth, and structural deterioration over time.</p>
+                <h4 className="font-semibold mt-3">Common Properties That Need Waterproofing</h4>
+                <ul className="list-disc pl-5 text-gray-700 mt-2">
+                  <li>Residential buildings</li>
+                  <li>Apartments and villas</li>
+                  <li>Commercial complexes</li>
+                  <li>Industrial buildings</li>
+                  <li>Warehouses</li>
+                  <li>Office spaces</li>
+                  <li>Hospitals and schools</li>
+                  <li>Parking terraces</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 border border-orange-100">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Our Roof Waterproofing Services in Bangalore</h3>
+                <div className="space-y-4 text-gray-700">
+                  <div>
+                    <h4 className="font-semibold">Terrace Waterproofing</h4>
+                    <p className="mt-2">Terraces are continuously exposed to sunlight, rainwater, and temperature changes, which often lead to cracks and water seepage. We provide advanced terrace waterproofing solutions designed to protect concrete surfaces from leakage and moisture damage. Our terrace waterproofing services include crack filling, waterproof membrane coating, protective waterproof layers, surface treatment, and anti-leakage solutions.</p>
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    Essential Protection
-                    <span className="block text-orange-600">For Your Terrace</span>
-                  </h2>
-                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    Terrace waterproofing is a critical investment in protecting your property from water damage. 
-                    Exposed to constant weather elements, terraces are particularly vulnerable to water infiltration 
-                    that can lead to structural damage, mold growth, and costly repairs.
-                  </p>
-                  <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our professional terrace waterproofing solutions create a protective barrier that prevents 
-                    water from seeping into your building, ensuring the longevity of your structure and maintaining 
-                    a healthy living environment.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>10-15 Year Warranty</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Advanced Materials</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Expert Application</span>
-                    </div>
+                  <div>
+                    <h4 className="font-semibold">Roof Leakage Repair</h4>
+                    <p className="mt-2">Roof leakage can damage walls, ceilings, paint, electrical systems, and interior structures. Our roof leakage repair solutions identify the root cause of leakage and provide effective waterproofing treatment for long-lasting protection. We handle ceiling leakage, terrace seepage, rainwater leakage, concrete roof cracks and damp wall issues.</p>
                   </div>
-                </div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation animation="fade-in-left" delay={200}>
-                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 border border-orange-100">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Benefits</h3>
-                  <div className="space-y-4">
-                    {[
-                      "Prevents costly water damage to ceilings and walls",
-                      "Extends the lifespan of your terrace surface",
-                      "Improves energy efficiency by reducing heat transfer",
-                      "Prevents mold and mildew growth for healthier indoor air",
-                      "Increases property value and curb appeal",
-                      "Reduces maintenance costs and frequency",
-                      "Protects against monsoon season water damage",
-                      "Enhances the usability and comfort of your terrace"
-                    ].map((benefit, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <CheckCircle size={16} className="text-white" />
-                        </div>
-                        <span className="text-gray-700">{benefit}</span>
-                      </div>
-                    ))}
+                  <div>
+                    <h4 className="font-semibold">Residential Roof Waterproofing</h4>
+                    <p className="mt-2">Residential properties require reliable waterproofing systems to protect homes from water damage and leakage problems during monsoon seasons. Our residential waterproofing services are suitable for individual houses, villas, apartments, residential terraces and balcony waterproofing.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Commercial Roof Waterproofing</h4>
+                    <p className="mt-2">Commercial buildings and office complexes require durable waterproofing systems capable of handling weather exposure and long-term operational use. Our commercial waterproofing services help protect office buildings, shopping malls, hotels, hospitals and educational institutions.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Industrial Roof Waterproofing</h4>
+                    <p className="mt-2">Industrial roofs are exposed to harsh weather, heat, moisture, and operational stress. We provide industrial waterproofing solutions for factories, warehouses, and industrial facilities with long-lasting durability and moisture prevention.</p>
                   </div>
                 </div>
-              </ScrollAnimation>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-bold mb-3">Waterproofing Methods We Use</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Acrylic Waterproofing</li>
+                  <li>Polyurethane Waterproofing</li>
+                  <li>Cementitious Waterproofing</li>
+                  <li>Bituminous Waterproofing</li>
+                  <li>Membrane Waterproofing</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold mb-3">Benefits of Roof Waterproofing</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Prevents Water Leakage</li>
+                  <li>Increases Building Lifespan</li>
+                  <li>Prevents Dampness and Mold</li>
+                  <li>Reduces Maintenance Costs</li>
+                  <li>Improves Property Value</li>
+                  <li>Protects Interior Spaces</li>
+                  <li>Weather Resistance</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>

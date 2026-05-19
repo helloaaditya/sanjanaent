@@ -106,14 +106,14 @@ const CarParkingFlooring = () => {
   return (
     <>
       <Helmet>
-        <title>Car Parking Flooring Solutions in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Durable and safe car parking flooring solutions in Bangalore. Anti-skid, epoxy, and PU options available." />
-        <meta name="keywords" content="car parking flooring solutions in bangalore, parking garage flooring, parking lot flooring, anti-slip parking flooring, commercial parking flooring" />
+        <title>Car Parking Flooring Solutions in Bangalore | Epoxy Parking</title>
+        <meta name="description" content="Best car parking flooring solutions in Bangalore with anti-skid epoxy coatings for basement parking, ramps, driveways, and commercial parking areas offering durability, safety, and easy maintenance." />
+        <meta name="keywords" content="car parking flooring solutions in bangalore, epoxy parking, anti-skid parking flooring, basement parking epoxy" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.sanjanawaterproofing.com/car-parking-flooring-solutions-in-bangalore" />
-        <meta property="og:title" content="Car Parking Flooring Solutions in Bangalore" />
-        <meta property="og:description" content="Durable and aesthetic parking flooring solutions. Heavy-duty, anti-slip, and weather-resistant for all parking facilities." />
-        <meta property="og:url" content="https://www.sanjanawaterproofing.com/car-parking-flooring-solutions-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/car-parking-flooring-in-bangalore" />
+        <meta property="og:title" content="Car Parking Flooring Solutions in Bangalore | Epoxy Parking" />
+        <meta property="og:description" content="Anti-skid epoxy parking flooring for basements, ramps, driveways and commercial parking areas. Durable, safe and low-maintenance." />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/car-parking-flooring-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />
@@ -131,16 +131,13 @@ const CarParkingFlooring = () => {
               <ScrollAnimation animation="fade-in-up" delay={0}>
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
                   <Car size={16} />
-                  Parking Flooring Solutions
+                  Car Parking Epoxy Flooring
                 </div>
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Car Parking Flooring
-                  <span className="block bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                    Solutions in Bangalore
-                  </span>
+                  Car Parking Epoxy Flooring Solutions in Bangalore
                 </h1>
               </ScrollAnimation>
               
@@ -174,67 +171,45 @@ const CarParkingFlooring = () => {
           </div>
         </section>
 
-        {/* Introduction Section */}
+        {/* Company Intro & What is Parking Epoxy */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="prose max-w-none mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">Professional Car Parking Flooring Solutions in Bangalore</h2>
+              <p className="text-gray-700 text-lg">Sanjana Enterprises is a trusted provider of car parking flooring solutions in Bangalore, offering durable and high-performance epoxy flooring systems for basement parking areas, commercial parking spaces, driveways, ramps, residential complexes, and industrial parking zones. With over 30 years of experience in flooring and waterproofing solutions, we specialize in delivering seamless, anti-skid, and long-lasting parking floor coatings designed to withstand heavy vehicle movement, abrasion, oil stains, moisture, and daily wear.</p>
+              <p className="text-gray-700 text-lg mt-4">As an <strong>ISO 9001:2015 Certified</strong> company, we focus on quality workmanship, customer satisfaction, and durable flooring systems that offer long-lasting performance in demanding parking environments.</p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
               <ScrollAnimation animation="fade-in-right" delay={0}>
                 <div>
-                  <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Car size={16} />
-                    About Our Car Parking Flooring
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    About Our Car Parking Flooring
-                  </h2>
-                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                    Vehicle pressure, friction, and environmental factors all put constant stress on car parking floors. For commercial, residential, 
-                    and industrial parking spaces, our speciality flooring systems—epoxy, PU coating, anti-skid finish, and waterproof coatings—offer 
-                    a robust, seamless, and long-lasting solution.
-                  </p>
-                  <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Our parking flooring solutions combine strength, safety, and aesthetics to create functional 
-                    and attractive parking areas that stand the test of time.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Heavy-Duty Construction</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Anti-Slip Surface</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle size={20} className="text-green-600" />
-                      <span>Weather Resistant</span>
-                    </div>
-                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">What is Car Parking Epoxy Flooring?</h3>
+                  <p className="text-gray-600 mb-4">Car parking epoxy flooring is a seamless protective floor coating system applied over concrete parking surfaces using epoxy resin and hardener. Once cured, the epoxy forms a strong and durable layer capable of resisting tire movement, abrasion, oil stains, water exposure, and heavy operational traffic.</p>
+                  <p className="text-gray-600 mb-4">Parking epoxy flooring is commonly used in basement parking areas, commercial parking spaces, residential apartment parking, shopping mall parking, industrial parking zones, ramps and driveways, and multi-level parking facilities. These systems improve durability and appearance while reducing maintenance and dust formation.</p>
+                  <h4 className="font-semibold mt-4">Common Uses</h4>
+                  <ul className="list-disc pl-5 text-gray-700 mt-2">
+                    <li>Basement parking areas</li>
+                    <li>Commercial parking spaces</li>
+                    <li>Residential apartment parking</li>
+                    <li>Shopping mall parking</li>
+                    <li>Industrial parking zones</li>
+                    <li>Ramps and driveways</li>
+                    <li>Multi-level parking facilities</li>
+                  </ul>
                 </div>
               </ScrollAnimation>
-              
+
               <ScrollAnimation animation="fade-in-left" delay={200}>
                 <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Benefits</h3>
-                  <div className="space-y-4">
-                    {[
-                      "Withstands heavy vehicle traffic and constant use",
-                      "Resistant to oil, grease, and automotive chemicals",
-                      "Anti-slip surface enhances safety for pedestrians",
-                      "Weather-resistant for covered and open parking areas",
-                      "Easy to clean and maintain professional appearance",
-                      "Available in various colors and finishes",
-                      "Long-lasting durability reduces replacement costs",
-                      "Professional installation ensures optimal performance"
-                    ].map((benefit, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <CheckCircle size={16} className="text-white" />
-                        </div>
-                        <span className="text-gray-700">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Why Choose Sanjana Enterprises?</h3>
+                  <ul className="text-gray-700 space-y-3">
+                    <li><strong>30+ Years Experience:</strong> Decades of flooring and waterproofing projects across Bangalore and Karnataka.</li>
+                    <li><strong>ISO 9001:2015 Certified:</strong> Quality systems and standards.</li>
+                    <li><strong>Experienced Technical Team:</strong> Proper surface preparation and professional application.</li>
+                    <li><strong>Premium Materials:</strong> Industrial-grade epoxy resins and coatings.</li>
+                    <li><strong>Customized Solutions:</strong> Tailored to parking traffic and site conditions.</li>
+                    <li><strong>Timely Completion:</strong> Efficient execution with minimal disruption.</li>
+                  </ul>
                 </div>
               </ScrollAnimation>
             </div>
@@ -424,6 +399,100 @@ const CarParkingFlooring = () => {
                 </button>
               </div>
             </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Industries, Testimonials & FAQ */}
+        <section className="py-12 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Industries and Properties We Serve</h3>
+                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                  <li>Residential apartments</li>
+                  <li>Commercial complexes</li>
+                  <li>Shopping malls</li>
+                  <li>Hospitals</li>
+                  <li>Hotels</li>
+                  <li>Warehouses</li>
+                  <li>Industrial factories</li>
+                  <li>Office buildings</li>
+                  <li>Multi-level parking structures</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Car Parking Flooring Process</h3>
+                <ol className="list-decimal pl-5 text-gray-700 space-y-2">
+                  <li><strong>Surface Preparation:</strong> Grinding and cleaning to remove dust, oil and damaged concrete.</li>
+                  <li><strong>Primer Application:</strong> High-quality epoxy primer for improved adhesion.</li>
+                  <li><strong>Epoxy Coating Application:</strong> Industrial-grade epoxy applied evenly for a seamless finish.</li>
+                  <li><strong>Anti-Skid Layer:</strong> Optional aggregates for ramps and high-traction areas.</li>
+                  <li><strong>Final Finishing:</strong> Protective topcoat for gloss, durability and long-term performance.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div className="mb-10">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Service Areas in Bangalore</h3>
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                {['Whitefield','Electronic City','Peenya','KR Puram','Hebbal','Yelahanka','Bommasandra','Hosur Road','HSR Layout','Marathahalli','JP Nagar','Rajajinagar'].map((area, i) => (
+                  <div key={i} className="bg-gray-50 px-4 py-3 rounded-lg border border-gray-100">{area}</div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-10">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">What Our Clients Say</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“The flooring work was completed smoothly and the finish looks excellent. Highly recommended for epoxy flooring services.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Lavanya R</footer>
+                </blockquote>
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“Professional service with good technical knowledge and reasonable pricing.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Ashwin Virupaksha</footer>
+                </blockquote>
+                <blockquote className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800">“The basement flooring project was completed professionally with durable results and timely service.”</p>
+                  <footer className="text-sm text-gray-600 mt-2">— Udas Kundu</footer>
+                </blockquote>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h3>
+              <div className="space-y-4">
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">What is car parking epoxy flooring?</summary>
+                  <p className="text-gray-700 mt-2">Car parking epoxy flooring is a seamless protective coating system used for basement parking areas, ramps, and commercial parking spaces.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is epoxy flooring suitable for parking areas?</summary>
+                  <p className="text-gray-700 mt-2">Yes, epoxy flooring is highly durable and suitable for areas exposed to continuous vehicle movement and tire friction.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Does parking epoxy flooring provide anti-skid protection?</summary>
+                  <p className="text-gray-700 mt-2">Yes, anti-skid coatings are available for ramps and parking zones to improve safety and traction.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Can epoxy flooring resist oil stains and tire marks?</summary>
+                  <p className="text-gray-700 mt-2">Yes, epoxy coatings provide excellent resistance against oil stains, grease, and tire marks.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">How long does parking epoxy flooring last?</summary>
+                  <p className="text-gray-700 mt-2">High-quality parking epoxy flooring can last between 5 to 10 years depending on traffic conditions and maintenance.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Is parking epoxy flooring easy to maintain?</summary>
+                  <p className="text-gray-700 mt-2">Yes, epoxy parking floors are easy to clean and require minimal maintenance.</p>
+                </details>
+                <details className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <summary className="font-semibold">Do you provide parking flooring services across Bangalore?</summary>
+                  <p className="text-gray-700 mt-2">Yes, Sanjana Enterprises provides parking flooring solutions across Bangalore and nearby areas. Contact us for a site visit and quote.</p>
+                </details>
+              </div>
+            </div>
           </div>
         </section>
 
