@@ -324,6 +324,48 @@ class ApiService {
       headers: { Authorization: `Bearer ${token}` }
     })
   }
+
+  // Blog API
+  async getBlogPosts(filters = {}) {
+    const query = new URLSearchParams(filters).toString()
+    const endpoint = query ? `/blog?${query}` : '/blog'
+    return this.request(endpoint)
+  }
+
+  async getBlogPost(slug) {
+    return this.request(`/blog/${slug}`)
+  }
+
+  async adminGetBlogPosts(token, filters = {}) {
+    const query = new URLSearchParams(filters).toString()
+    const endpoint = query ? `/admin/blog?${query}` : '/admin/blog'
+    return this.request(endpoint, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+  }
+
+  async adminCreateBlogPost(data, token) {
+    return this.request('/admin/blog', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminUpdateBlogPost(id, data, token) {
+    return this.request(`/admin/blog/${id}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify(data)
+    })
+  }
+
+  async adminDeleteBlogPost(id, token) {
+    return this.request(`/admin/blog/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+  }
 }
 
 export default new ApiService()

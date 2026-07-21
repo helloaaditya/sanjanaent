@@ -12,6 +12,7 @@ import helmet from 'helmet'
 import fs from 'fs'
 import nodemailer from 'nodemailer'
 import sgMail from '@sendgrid/mail'
+import { SEED_BLOG_POSTS, slugify } from './seedBlogPosts.js'
 
 dotenv.config()
 
@@ -1120,6 +1121,176 @@ app.delete('/api/admin/testimonials/:id', authenticateToken, async (req, res) =>
   } catch (error) {
     console.error('Delete testimonial error:', error)
     res.status(500).json({ error: 'Failed to delete testimonial' })
+  }
+})
+
+// ---------- BLOG POSTS ----------
+async function seedBlogPostsIfEmpty(db) {
+  const count = await db.collection('blog_posts').countDocuments()
+  if (count > 0) return
+  const now = new Date()
+  const docs = SEED_BLOG_POSTS.map((post, index) => {
+    const publishedAt = new Date(now)
+    publishedAt.setDate(publishedAt.getDate() - index * 7)
+    return {
+      ...post,
+      slug: post.slug || slugify(post.title),
+      publishedAt,
+      createdAt: publishedAt,
+      updatedAt: publishedAt,
+    }
+  })
+  await db.collection('blog_posts').insertMany(docs)
+  await db.collection('blog_posts').createIndex({ slug: 1 }, { unique: true })
+  await db.collection('blog_posts').createIndex({ status: 1, publishedAt: -1 })
+  console.log(`✅ Seeded ${docs.length} blog posts`)
+}
+
+function sanitizeBlogPost(doc) {
+  if (!doc) return null
+  const { _id, ...rest } = doc
+  return { _id: _id.toString(), ...rest }
+}
+
+// Public: list published blog posts
+app.get('/api/blog', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    await seedBlogPostsIfEmpty(db)
+    const { category, tag, limit = '20', page = '1' } = req.query
+    const query = { status: 'published' }
+    if (category) query.category = category
+    if (tag) query.tags = tag
+    const pageNum = Math.max(1, parseInt(page, 10) || 1)
+    const limitNum = Math.min(50, Math.max(1, parseInt(limit, 10) || 20))
+    const skip = (pageNum - 1) * limitNum
+    const [posts, total] = await Promise.all([
+      db.collection('blog_posts').find(query).sort({ publishedAt: -1 }).skip(skip).limit(limitNum).toArray(),
+      db.collection('blog_posts').countDocuments(query),
+    ])
+    res.json({ posts: posts.map(sanitizeBlogPost), total, page: pageNum, pages: Math.ceil(total / limitNum) })
+  } catch (error) {
+    console.error('Get blog posts error:', error)
+    res.status(500).json({ error: 'Failed to fetch blog posts' })
+  }
+})
+
+// Public: get single blog post by slug
+app.get('/api/blog/:slug', async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    await seedBlogPostsIfEmpty(db)
+    const post = await db.collection('blog_posts').findOne({ slug: req.params.slug, status: 'published' })
+    if (!post) return res.status(404).json({ error: 'Blog post not found' })
+    res.json(sanitizeBlogPost(post))
+  } catch (error) {
+    console.error('Get blog post error:', error)
+    res.status(500).json({ error: 'Failed to fetch blog post' })
+  }
+})
+
+// Admin: list all blog posts
+app.get('/api/admin/blog', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    await seedBlogPostsIfEmpty(db)
+    const { status, q } = req.query
+    const query = {}
+    if (status) query.status = status
+    if (q) {
+      query.$or = [
+        { title: { $regex: q, $options: 'i' } },
+        { slug: { $regex: q, $options: 'i' } },
+        { excerpt: { $regex: q, $options: 'i' } },
+      ]
+    }
+    const posts = await db.collection('blog_posts').find(query).sort({ publishedAt: -1, createdAt: -1 }).toArray()
+    res.json(posts.map(sanitizeBlogPost))
+  } catch (error) {
+    console.error('Admin get blog posts error:', error)
+    res.status(500).json({ error: 'Failed to fetch blog posts' })
+  }
+})
+
+// Admin: create blog post
+app.post('/api/admin/blog', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    const payload = req.body || {}
+    const title = (payload.title || '').trim()
+    if (!title) return res.status(400).json({ error: 'Title is required' })
+    const now = new Date()
+    const slug = (payload.slug || slugify(title)).trim()
+    const existing = await db.collection('blog_posts').findOne({ slug })
+    if (existing) return res.status(409).json({ error: 'Slug already exists' })
+    const doc = {
+      title,
+      slug,
+      excerpt: (payload.excerpt || '').trim(),
+      content: payload.content || '',
+      category: (payload.category || 'General').trim(),
+      tags: Array.isArray(payload.tags) ? payload.tags : [],
+      author: (payload.author || 'Sanjana Enterprises').trim(),
+      metaTitle: (payload.metaTitle || title).trim(),
+      metaDescription: (payload.metaDescription || payload.excerpt || '').trim(),
+      featuredImage: payload.featuredImage || 'https://www.sanjanawaterproofing.com/sanjana-enterprises.png',
+      relatedServices: Array.isArray(payload.relatedServices) ? payload.relatedServices : [],
+      status: payload.status === 'published' ? 'published' : 'draft',
+      publishedAt: payload.status === 'published' ? (payload.publishedAt ? new Date(payload.publishedAt) : now) : null,
+      createdAt: now,
+      updatedAt: now,
+    }
+    const result = await db.collection('blog_posts').insertOne(doc)
+    res.json(sanitizeBlogPost({ _id: result.insertedId, ...doc }))
+  } catch (error) {
+    console.error('Create blog post error:', error)
+    res.status(500).json({ error: 'Failed to create blog post' })
+  }
+})
+
+// Admin: update blog post
+app.put('/api/admin/blog/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try { _id = new ObjectId(req.params.id) } catch { return res.status(400).json({ error: 'Invalid blog post id' }) }
+    const payload = req.body || {}
+    const update = { updatedAt: new Date() }
+    const fields = ['title', 'slug', 'excerpt', 'content', 'category', 'tags', 'author', 'metaTitle', 'metaDescription', 'featuredImage', 'relatedServices', 'status']
+    fields.forEach((field) => {
+      if (payload[field] !== undefined) update[field] = payload[field]
+    })
+    if (update.slug) {
+      const clash = await db.collection('blog_posts').findOne({ slug: update.slug, _id: { $ne: _id } })
+      if (clash) return res.status(409).json({ error: 'Slug already exists' })
+    }
+    if (payload.status === 'published' && !payload.publishedAt) {
+      const existing = await db.collection('blog_posts').findOne({ _id })
+      if (existing && !existing.publishedAt) update.publishedAt = new Date()
+    }
+    if (payload.publishedAt) update.publishedAt = new Date(payload.publishedAt)
+    const result = await db.collection('blog_posts').updateOne({ _id }, { $set: update })
+    if (result.matchedCount === 0) return res.status(404).json({ error: 'Blog post not found' })
+    const updated = await db.collection('blog_posts').findOne({ _id })
+    res.json(sanitizeBlogPost(updated))
+  } catch (error) {
+    console.error('Update blog post error:', error)
+    res.status(500).json({ error: 'Failed to update blog post' })
+  }
+})
+
+// Admin: delete blog post
+app.delete('/api/admin/blog/:id', authenticateToken, async (req, res) => {
+  try {
+    const { db } = await connectToDatabase()
+    let _id
+    try { _id = new ObjectId(req.params.id) } catch { return res.status(400).json({ error: 'Invalid blog post id' }) }
+    const result = await db.collection('blog_posts').deleteOne({ _id })
+    if (result.deletedCount === 0) return res.status(404).json({ error: 'Blog post not found' })
+    res.json({ success: true })
+  } catch (error) {
+    console.error('Delete blog post error:', error)
+    res.status(500).json({ error: 'Failed to delete blog post' })
   }
 })
 

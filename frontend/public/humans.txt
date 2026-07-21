@@ -1,0 +1,22 @@
+/* TEAM */
+Business: Sanjana Enterprises
+Also-Known-As: Sanjana Waterproofing
+Location: Bangalore, Karnataka, India
+Contact: +91-9916290799
+Email: sanjana.waterproofing@gmail.com
+Website: https://www.sanjanawaterproofing.com
+
+/* THANKS */
+To our clients across Bangalore and Karnataka who trust us with their waterproofing and flooring projects for over 30 years.
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript (React)
+Software: React, Vite, Tailwind CSS, Node.js, Express, MongoDB
+Hosting: Vercel
+Last update: July 2026
+
+/* AI DISCOVERY */
+llms.txt: https://www.sanjanawaterproofing.com/llms.txt
+llms-full.txt: https://www.sanjanawaterproofing.com/llms-full.txt
+ai.txt: https://www.sanjanawaterproofing.com/ai.txt
+identity.json: https://www.sanjanawaterproofing.com/identity.json

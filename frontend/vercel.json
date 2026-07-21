@@ -1,4 +1,13 @@
 {
+  "headers": [
+    {
+      "source": "/(llms.txt|llms-full.txt|llm.txt|ai.txt|humans.txt|human.txt|robots.txt|identity.json)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=86400, sitemap=604800" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ],
@@ -8,6 +17,7 @@
     { "source": "/", "has": [{ "type": "query", "key": "/", "value": "es" }], "destination": "/", "permanent": true },
     { "source": "/", "has": [{ "type": "query", "key": "/", "value": "id" }], "destination": "/", "permanent": true },
     { "source": "/car-parking-flooring-solutions-bangalore", "destination": "/car-parking-flooring-solutions-in-bangalore", "permanent": true },
+    { "source": "/blog.html", "destination": "/blog", "permanent": true },
     { "source": "/search", "destination": "/contact", "permanent": true }
   ]
 }

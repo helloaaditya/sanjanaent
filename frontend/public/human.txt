@@ -1,0 +1,14 @@
+# human.txt — Human-readable site credits for Sanjana Enterprises
+# Standard file: https://www.sanjanawaterproofing.com/humans.txt
+
+Business: Sanjana Enterprises (Sanjana Waterproofing)
+Website: https://www.sanjanawaterproofing.com
+Phone: +91-9916290799
+Email: sanjana.waterproofing@gmail.com
+Location: Bangalore, Karnataka, India
+
+This website provides information about waterproofing and industrial flooring services.
+For AI-readable business details, see:
+- https://www.sanjanawaterproofing.com/llms.txt
+- https://www.sanjanawaterproofing.com/llms-full.txt
+- https://www.sanjanawaterproofing.com/ai.txt

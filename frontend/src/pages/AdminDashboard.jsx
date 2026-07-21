@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Plus, Edit, Trash2, Eye, LogOut, Home, Image, Calendar, MapPin, User, Building, Upload, X, MessageSquare, Phone, Mail, Filter, CheckCircle, Clock, AlertCircle, RefreshCw, Calculator, Settings, BarChart3, Search, Menu, X as CloseIcon, ChevronDown, Star, TrendingUp, Users, Briefcase, Sparkles, Download } from 'lucide-react'
+import { Plus, Edit, Trash2, Eye, LogOut, Home, Image, Calendar, MapPin, User, Building, Upload, X, MessageSquare, Phone, Mail, Filter, CheckCircle, Clock, AlertCircle, RefreshCw, Calculator, Settings, BarChart3, Search, Menu, X as CloseIcon, ChevronDown, Star, TrendingUp, Users, Briefcase, Sparkles, Download, BookOpen } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import apiService from '../services/api'
+import BlogAdminTab from '../components/BlogAdminTab'
 
 const AdminDashboard = () => {
   const [projects, setProjects] = useState([])
@@ -10,6 +11,7 @@ const AdminDashboard = () => {
   const [specialServices, setSpecialServices] = useState([])
   const [brochures, setBrochures] = useState([])
   const [testimonials, setTestimonials] = useState([])
+  const [blogPosts, setBlogPosts] = useState([])
   const [team, setTeam] = useState([])
   const [settings, setSettings] = useState({ brochureUrl: '' })
   const [loading, setLoading] = useState(true)
@@ -92,6 +94,7 @@ const AdminDashboard = () => {
     fetchSpecialServices()
     fetchBrochures()
     fetchTeam()
+    fetchBlogPosts()
   }, [navigate])
 
   // Fetch leads when tab changes or any lead filters change
@@ -185,6 +188,16 @@ const AdminDashboard = () => {
       }
     } finally {
       setTestimonialsLoading(false)
+    }
+  }
+
+  const fetchBlogPosts = async () => {
+    try {
+      const token = localStorage.getItem('adminToken')
+      const data = await apiService.adminGetBlogPosts(token, {})
+      setBlogPosts(data || [])
+    } catch (err) {
+      console.error('Fetch blog posts error:', err)
     }
   }
 
@@ -681,6 +694,7 @@ const AdminDashboard = () => {
     { id: 'team', label: 'Team', icon: Users, count: team.length },
     { id: 'leads', label: 'Leads', icon: MessageSquare, count: leads.length },
     { id: 'testimonials', label: 'Testimonials', icon: Star, count: testimonials.length },
+    { id: 'blog', label: 'Blog', icon: BookOpen, count: blogPosts.length },
     { id: 'settings', label: 'Settings', icon: Settings, count: 0 },
   ]
 
@@ -1958,6 +1972,12 @@ const AdminDashboard = () => {
             </div>
           </div>
         )}
+
+        {/* Blog Tab Content */}
+        {activeTab === 'blog' && (
+          <BlogAdminTab />
+        )}
+
           </div>
         </div>
       </div>

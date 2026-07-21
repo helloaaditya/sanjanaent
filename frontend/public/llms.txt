@@ -1,0 +1,73 @@
+# Sanjana Enterprises
+
+> Sanjana Enterprises is an ISO 9001:2015 certified waterproofing and industrial flooring company based in Bangalore, Karnataka, India. With 30+ years of experience, we serve residential, commercial, and industrial clients across Bangalore and Karnataka.
+
+Sanjana Enterprises (also known as Sanjana Waterproofing) specializes in terrace/roof waterproofing, basement waterproofing, water tank waterproofing, water leakage detection, epoxy flooring, PU flooring, ESD flooring, anti-corrosion coating, and structural repair services.
+
+**Contact:** +91-9916290799 | sanjana.waterproofing@gmail.com  
+**Website:** https://www.sanjanawaterproofing.com  
+**Address:** #786/1/30&31, 3rd Main, 2nd Cross, Telecom Layout, Beside Muneshwara Temple, Srirampura, Jakkur Post, Bangalore 560064, Karnataka, India  
+**Hours:** Monday–Saturday 9:00 AM – 6:00 PM  
+**Service area:** Bangalore and all of Karnataka, India
+
+For full business details see [llms-full.txt](https://www.sanjanawaterproofing.com/llms-full.txt).  
+Structured identity: [identity.json](https://www.sanjanawaterproofing.com/identity.json).  
+AI interaction policy: [ai.txt](https://www.sanjanawaterproofing.com/ai.txt).
+
+## Company
+
+- [Home](https://www.sanjanawaterproofing.com/): India's leading waterproofing and flooring company in Bangalore
+- [About Us](https://www.sanjanawaterproofing.com/about): 30+ years expertise, ISO certification, team, and values
+- [Services Overview](https://www.sanjanawaterproofing.com/services): Complete waterproofing and flooring service catalog
+- [Contact](https://www.sanjanawaterproofing.com/contact): Phone, email, address, and free quote form
+- [Gallery](https://www.sanjanawaterproofing.com/gallery): Project photos and completed work
+
+## Blog & Guides
+
+- [Blog Home](https://www.sanjanawaterproofing.com/blog): Expert waterproofing and flooring guides for Bangalore
+- [Terrace Waterproofing Cost Guide](https://www.sanjanawaterproofing.com/blog/terrace-waterproofing-cost-bangalore-guide): 2026 cost guide for terrace waterproofing in Bangalore
+- [Best Waterproofing Company Bangalore](https://www.sanjanawaterproofing.com/blog/best-waterproofing-company-bangalore): How to choose the best waterproofing contractor
+- [Epoxy vs PU Flooring Comparison](https://www.sanjanawaterproofing.com/blog/epoxy-vs-pu-flooring-industrial-comparison): Industrial flooring comparison guide
+- [Basement Waterproofing Solutions](https://www.sanjanawaterproofing.com/blog/basement-waterproofing-solutions-bangalore): Complete basement waterproofing guide
+- [Water Leakage Detection Guide](https://www.sanjanawaterproofing.com/blog/water-leakage-detection-thermal-imaging-guide): Thermal imaging leak detection explained
+- [Monsoon Terrace Waterproofing Tips](https://www.sanjanawaterproofing.com/blog/monsoon-terrace-waterproofing-tips-bangalore): Pre-monsoon terrace preparation tips
+
+## Waterproofing Services
+
+- [Terrace & Roof Waterproofing](https://www.sanjanawaterproofing.com/terrace-waterproofing): Terrace, roof, and flat slab waterproofing for homes and buildings
+- [Basement Waterproofing](https://www.sanjanawaterproofing.com/basement-waterproofing): Basement and below-grade waterproofing against seepage and moisture
+- [Water Tank Waterproofing](https://www.sanjanawaterproofing.com/water-tanks-waterproofing): Overhead and underground tank waterproofing with potable-safe materials
+- [Water Leakage Detection](https://www.sanjanawaterproofing.com/water-leakage-detection): Thermal imaging and moisture detection to locate hidden leaks
+- [Roof Waterproofing Services Bangalore](https://www.sanjanawaterproofing.com/roof-waterproofing-services-in-bangalore): Professional roof waterproofing for residential and commercial buildings
+- [Repair Services](https://www.sanjanawaterproofing.com/repair-section): Structural and waterproofing repair solutions
+
+## Industrial & Commercial Flooring
+
+- [Epoxy Flooring](https://www.sanjanawaterproofing.com/epoxy-flooring): Industrial and commercial epoxy floor coating systems
+- [Epoxy Flooring Services Bangalore](https://www.sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore): Full epoxy flooring contractor services in Bangalore
+- [Heavy Duty Epoxy Flooring](https://www.sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore): High-load epoxy systems for factories and warehouses
+- [Industrial Epoxy Screed Flooring](https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore): Heavy-duty screed systems for manufacturing and industrial units
+- [Antiskid Epoxy Flooring](https://www.sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore): Slip-resistant epoxy for safety-critical areas
+- [Chemical Resistant Epoxy Flooring](https://www.sanjanawaterproofing.com/chemical-resistant-epoxy-flooring-bangalore): Acid, solvent, and chemical resistant industrial floors
+- [PU Flooring](https://www.sanjanawaterproofing.com/pu-flooring): Polyurethane flooring for food, pharma, and hygienic environments
+- [PU Concrete Flooring](https://www.sanjanawaterproofing.com/pu-concrete-flooring-in-bangalore): Urethane concrete systems for heavy industrial use
+- [ESD Flooring Installation](https://www.sanjanawaterproofing.com/esd-flooring-installation-in-bangalore): Antistatic and ESD-safe flooring for electronics and cleanrooms
+- [Car Parking Flooring](https://www.sanjanawaterproofing.com/car-parking-flooring-solutions-in-bangalore): Multi-level parking deck epoxy and anti-slip coatings
+- [Warehouse Bay Marking](https://www.sanjanawaterproofing.com/warehouse-bay-marking-in-bangalore): Floor marking, line striping, and bay demarcation
+- [Anti-Corrosion Coating](https://www.sanjanawaterproofing.com/anti-corrosion-coating-services-in-bangalore): Metal and concrete corrosion protection coatings
+- [Epoxy Flooring for Warehouses](https://www.sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore): Warehouse-specific epoxy flooring solutions
+
+## Near Me Pages
+
+- [Water Leakage Detection Near Me](https://www.sanjanawaterproofing.com/water-leakage-detection-near-me): Local leakage detection services in Bangalore
+- [Epoxy Flooring Near Me](https://www.sanjanawaterproofing.com/epoxy-flooring-near-me): Find epoxy flooring contractors near you in Bangalore
+- [Terrace Waterproofing Near Me](https://www.sanjanawaterproofing.com/terrace-waterproofing-near-me): Local terrace waterproofing in Bangalore
+- [Basement Waterproofing Near Me](https://www.sanjanawaterproofing.com/basement-waterproofing-near-me): Local basement waterproofing services
+- [PU Flooring Near Me](https://www.sanjanawaterproofing.com/pu-flooring-near-me): Polyurethane flooring contractors near you
+- [Anti-Corrosion Coating Near Me](https://www.sanjanawaterproofing.com/anti-corrosion-coating-near-me): Local anti-corrosion coating services
+
+## Optional
+
+- [Sitemap Index](https://www.sanjanawaterproofing.com/sitemap-index.xml): Full site URL index for search engines
+- [Services Sitemap](https://www.sanjanawaterproofing.com/sitemap-services.xml): Service page URLs
+- [Location Pages Sitemap](https://www.sanjanawaterproofing.com/sitemap-locations.xml): Area-specific service pages across Bangalore

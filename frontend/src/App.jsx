@@ -32,6 +32,8 @@ import IndustrialEpoxyScreedFlooring from './pages/IndustrialEpoxyScreedFlooring
 import AntiskidEpoxyFlooring from './pages/AntiskidEpoxyFlooring'
 import LocationServicePage from './pages/LocationServicePage'
 import NearMePage from './pages/NearMePage'
+import BlogList from './pages/BlogList'
+import BlogPost from './pages/BlogPost'
 
 function App() {
   useEffect(() => {
@@ -70,6 +72,8 @@ function App() {
         <Route path="/services" element={<Layout><Services /></Layout>} />
         <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
         <Route path="/contact" element={<Layout><Contact /></Layout>} />
+        <Route path="/blog" element={<Layout><BlogList /></Layout>} />
+        <Route path="/blog/:slug" element={<Layout><BlogPost /></Layout>} />
         {/* New service page routes - SEO optimized URLs */}
         <Route path="/epoxy-flooring" element={<Layout><EpoxyFlooring /></Layout>} />
         {/* Epoxy Flooring Sub-pages - SEO URLs */}
@@ -105,7 +109,7 @@ function App() {
         <Route path="/contact.html" element={<Layout><Contact /></Layout>} />
         <Route path="/services.html" element={<Layout><Services /></Layout>} />
         <Route path="/gallery.html" element={<Layout><Gallery /></Layout>} />
-        <Route path="/blog.html" element={<Layout><Services /></Layout>} />
+        <Route path="/blog.html" element={<Layout><BlogList /></Layout>} />
         <Route path="/training.html" element={<Layout><Contact /></Layout>} />
         <Route path="/client.html" element={<Layout><Contact /></Layout>} />
         <Route path="/awards.html" element={<Layout><Home /></Layout>} />

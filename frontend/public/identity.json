@@ -1,0 +1,85 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Sanjana Enterprises",
+  "alternateName": ["Sanjana Waterproofing", "Sanjana Enterprises Bangalore"],
+  "description": "ISO 9001:2015 certified waterproofing and industrial flooring company in Bangalore, Karnataka, India. 30+ years of experience serving residential, commercial, and industrial clients.",
+  "url": "https://www.sanjanawaterproofing.com",
+  "logo": "https://www.sanjanawaterproofing.com/sanjana-enterprises.png",
+  "image": "https://www.sanjanawaterproofing.com/sanjana-enterprises.png",
+  "telephone": ["+91-9916290799", "+91-9986498999", "+91-9663778931", "+91-9972615309"],
+  "email": "sanjana.waterproofing@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "#786/1/30&31, 3rd Main, 2nd Cross, Telecom Layout, Beside Muneshwara Temple, Srirampura, Jakkur Post",
+    "addressLocality": "Bangalore",
+    "addressRegion": "Karnataka",
+    "postalCode": "560064",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 13.067775,
+    "longitude": 77.619329
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Bangalore" },
+    { "@type": "State", "name": "Karnataka" },
+    { "@type": "Country", "name": "India" }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "priceRange": "₹₹",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "500"
+  },
+  "foundingDate": "1994",
+  "yearsInBusiness": "30+",
+  "certification": "ISO 9001:2015",
+  "knowsAbout": [
+    "Waterproofing",
+    "Terrace Waterproofing",
+    "Basement Waterproofing",
+    "Water Tank Waterproofing",
+    "Water Leakage Detection",
+    "Epoxy Flooring",
+    "PU Flooring",
+    "ESD Flooring",
+    "Anti-Corrosion Coating",
+    "Industrial Flooring",
+    "Warehouse Flooring",
+    "Car Parking Flooring"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Waterproofing and Flooring Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Terrace & Roof Waterproofing", "url": "https://www.sanjanawaterproofing.com/terrace-waterproofing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Basement Waterproofing", "url": "https://www.sanjanawaterproofing.com/basement-waterproofing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Water Tank Waterproofing", "url": "https://www.sanjanawaterproofing.com/water-tanks-waterproofing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Water Leakage Detection", "url": "https://www.sanjanawaterproofing.com/water-leakage-detection" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epoxy Flooring", "url": "https://www.sanjanawaterproofing.com/epoxy-flooring" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PU Flooring", "url": "https://www.sanjanawaterproofing.com/pu-flooring" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ESD Flooring", "url": "https://www.sanjanawaterproofing.com/esd-flooring-installation-in-bangalore" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Anti-Corrosion Coating", "url": "https://www.sanjanawaterproofing.com/anti-corrosion-coating-services-in-bangalore" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Industrial Epoxy Screed Flooring", "url": "https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Repair Services", "url": "https://www.sanjanawaterproofing.com/repair-section" } }
+    ]
+  },
+  "sameAs": [],
+  "aiDiscovery": {
+    "llmsTxt": "https://www.sanjanawaterproofing.com/llms.txt",
+    "llmsFullTxt": "https://www.sanjanawaterproofing.com/llms-full.txt",
+    "aiTxt": "https://www.sanjanawaterproofing.com/ai.txt",
+    "humansTxt": "https://www.sanjanawaterproofing.com/humans.txt",
+    "sitemap": "https://www.sanjanawaterproofing.com/sitemap-index.xml"
+  }
+}
