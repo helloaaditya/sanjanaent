@@ -117,7 +117,7 @@ export const LOCATION_SERVICES = [
       'Chemical-resistant PU',
     ],
     whyChoose: ['Hygienic & seamless', 'Chemical resistant', 'Thermal shock resistant', 'Long lifespan'],
-    mainPagePath: '/best-pu-flooring-services-in-bangalore',
+    mainPagePath: '/pu-flooring',
   },
   {
     slug: 'water-tanks-waterproofing',

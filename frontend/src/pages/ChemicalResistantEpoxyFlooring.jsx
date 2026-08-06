@@ -16,10 +16,10 @@ const ChemicalResistantEpoxyFlooring = () => {
         <meta name="description" content="Sanjana Enterprises provides chemical resistant epoxy flooring in Bangalore for pharmaceutical, laboratory, food processing and chemical plants — durable, seamless and corrosion-resistant systems." />
         <meta name="keywords" content="chemical resistant epoxy flooring in bangalore, chemical resistant epoxy, industrial chemical resistant flooring, lab epoxy flooring" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.sanjanawaterproofing.com/chemical-resistant-epoxy-flooring-in-bangalore" />
+        <link rel="canonical" href="https://www.sanjanawaterproofing.com/chemical-resistant-epoxy-flooring-bangalore" />
         <meta property="og:title" content="Chemical Resistant Epoxy Flooring in Bangalore | Industrial Protection" />
         <meta property="og:description" content="High-performance chemical resistant epoxy flooring for industries, labs and processing units in Bangalore — protection against acids, solvents and spills." />
-        <meta property="og:url" content="https://www.sanjanawaterproofing.com/chemical-resistant-epoxy-flooring-in-bangalore" />
+        <meta property="og:url" content="https://www.sanjanawaterproofing.com/chemical-resistant-epoxy-flooring-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
       </Helmet>

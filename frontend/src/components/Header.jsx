@@ -102,7 +102,7 @@ const Header = () => {
         { name: 'Antiskid epoxy flooring', path: '/antiskid-epoxy-flooring-in-bangalore' }
       ]
     },
-    { name: 'PU Flooring', path: '/best-pu-flooring-services-in-bangalore' },
+    { name: 'PU Flooring', path: '/pu-flooring' },
     { name: 'Water Leakage Detection', path: '/water-leakage-detection' },
     { name: 'Terrace Waterproofing', path: '/terrace-roof-waterproofing-in-bangalore' },
     { name: 'Basement Waterproofing', path: '/basement-waterproofing' },

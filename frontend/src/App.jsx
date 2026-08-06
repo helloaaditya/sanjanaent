@@ -34,6 +34,7 @@ import LocationServicePage from './pages/LocationServicePage'
 import NearMePage from './pages/NearMePage'
 import BlogList from './pages/BlogList'
 import BlogPost from './pages/BlogPost'
+import { ALL_PATH_REDIRECTS } from '../redirects.js'
 
 function App() {
   useEffect(() => {
@@ -56,10 +57,20 @@ function App() {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     }, [pathname])
     useEffect(() => {
-      if (pathname === '/' && (search === '?/es' || search === '?/id' || /^\?\//.test(search))) {
-        navigate(pathname, { replace: true })
+      if (pathname === '/index.html') {
+        navigate('/', { replace: true })
+        return
+      }
+      if (pathname === '/' && search) {
+        navigate('/', { replace: true })
       }
     }, [pathname, search, navigate])
+    useEffect(() => {
+      const dest = ALL_PATH_REDIRECTS[pathname]
+      if (dest) {
+        navigate(dest, { replace: true })
+      }
+    }, [pathname, navigate])
     return null
   }
 
@@ -86,7 +97,6 @@ function App() {
         <Route path="/industrial-epoxy-screed-flooring-bangalore" element={<Layout><IndustrialEpoxyScreedFlooring /></Layout>} />
         <Route path="/antiskid-epoxy-flooring-in-bangalore" element={<Layout><AntiskidEpoxyFlooring /></Layout>} />
         {/* PU Flooring - SEO URLs */}
-        <Route path="/best-pu-flooring-services-in-bangalore" element={<Layout><PUFlooring /></Layout>} />
         <Route path="/pu-concrete-flooring-in-bangalore" element={<Layout><PUFlooring /></Layout>} />
         <Route path="/pu-flooring" element={<Layout><PUFlooring /></Layout>} />
         {/* Waterproofing - SEO URLs */}
@@ -104,25 +114,6 @@ function App() {
         <Route path="/warehouse-bay-marking-in-bangalore" element={<Layout><WarehouseBayMarking /></Layout>} />
         <Route path="/anti-corrosion-coating-services-in-bangalore" element={<Layout><AntiCorrosionCoating /></Layout>} />
         <Route path="/chemical-resistant-epoxy-flooring-bangalore" element={<Layout><ChemicalResistantEpoxyFlooring /></Layout>} />
-        {/* .html URLs serve same content as canonical (no redirect) – canonical set on each page */}
-        <Route path="/about.html" element={<Layout><About /></Layout>} />
-        <Route path="/contact.html" element={<Layout><Contact /></Layout>} />
-        <Route path="/services.html" element={<Layout><Services /></Layout>} />
-        <Route path="/gallery.html" element={<Layout><Gallery /></Layout>} />
-        <Route path="/blog.html" element={<Layout><BlogList /></Layout>} />
-        <Route path="/training.html" element={<Layout><Contact /></Layout>} />
-        <Route path="/client.html" element={<Layout><Contact /></Layout>} />
-        <Route path="/awards.html" element={<Layout><Home /></Layout>} />
-        <Route path="/video.html" element={<Layout><Gallery /></Layout>} />
-        <Route path="/swimming-pool-repair-and-waterproofing.html" element={<Layout><Services /></Layout>} />
-        <Route path="/bathroom-waterproofing.html" element={<Layout><Services /></Layout>} />
-        <Route path="/epoxy-flooring.html" element={<Layout><EpoxyFlooring /></Layout>} />
-        <Route path="/pu-flooring.html" element={<Layout><PUFlooring /></Layout>} />
-        <Route path="/water-leakage-detection-by-thermal-imaging.html" element={<Layout><WaterLeakageDetection /></Layout>} />
-        <Route path="/terrace-waterproofing.html" element={<Layout><TerraceWaterproofing /></Layout>} />
-        <Route path="/basement-waterproofing.html" element={<Layout><BasementWaterproofing /></Layout>} />
-        <Route path="/water-tanks-waterproofing.html" element={<Layout><WaterTanksWaterproofing /></Layout>} />
-        <Route path="/repair-section.html" element={<Layout><RepairSection /></Layout>} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/setup" element={<AdminSetup />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
