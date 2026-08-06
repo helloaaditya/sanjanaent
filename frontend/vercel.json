@@ -12,11 +12,6 @@
     { "source": "/(.*)", "destination": "/" }
   ],
   "redirects": [
-    { "source": "/", "has": [{ "type": "query", "key": "eid" }], "destination": "/", "permanent": true },
-    { "source": "/", "has": [{ "type": "query", "key": "mode" }], "destination": "/", "permanent": true },
-    { "source": "/", "has": [{ "type": "query", "key": "cid" }], "destination": "/", "permanent": true },
-    { "source": "/", "has": [{ "type": "query", "key": "/" }], "destination": "/", "permanent": true },
-    { "source": "/contact", "has": [{ "type": "query", "key": "q" }], "destination": "/contact", "permanent": true },
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/car-parking-flooring-solutions-bangalore", "destination": "/car-parking-flooring-solutions-in-bangalore", "permanent": true },
     { "source": "/search", "destination": "/contact", "permanent": true },

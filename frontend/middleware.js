@@ -1,13 +1,15 @@
 /**
  * Vercel Edge Middleware: 301 redirects before SPA rewrites.
- * - Legacy .html URLs → canonical non-.html paths
- * - Duplicate alias URLs → one canonical path
- * - Homepage/contact query params → clean URL
+ * Query-string stripping must happen here — vercel.json redirects preserve query params.
  */
 import { HTML_REDIRECTS, ALIAS_REDIRECTS } from './redirects.js'
 
 export const config = {
-  matcher: ['/', '/contact', '/:path*'],
+  matcher: [
+    '/',
+    '/contact',
+    '/((?!assets/|.*\\.(?:ico|png|jpg|jpeg|gif|svg|webp|woff2?|css|js|txt|xml|json)$).*)',
+  ],
 }
 
 export default function middleware(request) {
@@ -22,11 +24,8 @@ export default function middleware(request) {
     return Response.redirect(`${origin}${pathRedirect}`, 301)
   }
 
-  if (pathname === '/') {
-    // Strip all legacy/junk query params (?eid=, ?mode=, ?/faq, tracking junk, etc.)
-    if (search.length > 0) {
-      return Response.redirect(`${origin}/`, 301)
-    }
+  if (pathname === '/' && search.length > 0) {
+    return Response.redirect(`${origin}/`, 301)
   }
 
   if (pathname === '/contact' && params.has('q')) {
