@@ -32,15 +32,13 @@ export const BANGALORE_AREAS = [
   { name: 'Chikkabanavara', slug: 'chikkabanavara', nearby: ['Yelahanka', 'Jakkur', 'Chikkabanavara'] },
   { name: 'Kodigehalli', slug: 'kodigehalli', nearby: ['Hebbal', 'Sahakar Nagar', 'HBR Layout'] },
   { name: 'Sahakar Nagar', slug: 'sahakar-nagar', nearby: ['Hebbal', 'Kodigehalli', 'HBR Layout'] },
-  { name: 'HBR Layout', slug: 'hbr-layout', nearby: ['Hebbal', 'Kodigehalli', 'Sahakar Nagar'] },
   { name: 'Yelahanka New Town', slug: 'yelahanka-new-town', nearby: ['Yelahanka', 'Jakkur', 'Chikkabanavara'] },
-  { name: 'Jakkur', slug: 'jakkur', nearby: ['Yelahanka', 'Jakkur', 'Chikkabanavara'] },
-  { name: 'Chikkabanavara', slug: 'chikkabanavara', nearby: ['Yelahanka', 'Jakkur', 'Chikkabanavara'] },
-  { name: 'Yelahanka New Town', slug: 'yelahanka-new-town', nearby: ['Yelahanka', 'Jakkur', 'Chikkabanavara'] },
-  { name: 'Jakkur', slug: 'jakkur', nearby: ['Yelahanka', 'Jakkur', 'Chikkabanavara'] },
-  { name: 'Chikkabanavara', slug: 'chikkabanavara', nearby: ['Yelahanka', 'Jakkur', 'Chikkabanavara'] },
-  { name: 'Koramangala', slug: 'koramangala', nearby: ['HSR Layout', 'BTM', 'Jayanagar'] },
-
+  { name: 'Jakkur', slug: 'jakkur', nearby: ['Yelahanka', 'Sahakar Nagar', 'Hebbal'] },
+  { name: 'Sarjapur Road', slug: 'sarjapur', nearby: ['Bellandur', 'Marathahalli', 'Electronic City'] },
+  { name: 'Peenya', slug: 'peenya', nearby: ['Yeshwanthpur', 'Rajajinagar', 'Mahalakshmi Layout'] },
+  { name: 'Domlur', slug: 'domlur', nearby: ['Indiranagar', 'Koramangala', 'Ulsoor'] },
+  { name: 'Nagarbhavi', slug: 'nagarbhavi', nearby: ['Vijayanagar', 'Rajajinagar', 'Kengeri'] },
+  { name: 'Vijayanagar', slug: 'vijayanagar', nearby: ['Nagarbhavi', 'Rajajinagar', 'Basavanagudi'] },
 ]
 
 export const LOCATION_SERVICES = [
@@ -48,7 +46,8 @@ export const LOCATION_SERVICES = [
     slug: 'water-leakage-detection',
     title: 'Water Leakage Detection',
     shortTitle: 'Water Leakage Detection',
-    description: 'professional leak detection using advanced technology such as pipe camera inspection and thermal leak detection. Our team helps identify hidden leaks in walls, underground pipes, bathrooms, and terraces without unnecessary wall breaking.',
+    locationTitle: 'Water Leakage Detection',
+    description: 'professional water leakage detection using thermal imaging, pipe camera inspection, and moisture meters. Our team locates hidden water leaks in walls, bathrooms, terraces, and underground pipes without unnecessary wall breaking.',
     servicePoints: [
       'Wall leakage detection',
       'Underground pipe leak detection',
@@ -61,9 +60,10 @@ export const LOCATION_SERVICES = [
   },
   {
     slug: 'epoxy-flooring',
-    title: 'Epoxy Flooring',
+    title: 'Best Epoxy Flooring Contractor',
     shortTitle: 'Epoxy Flooring',
-    description: 'durable epoxy flooring solutions for homes and businesses. We provide seamless, chemical-resistant, and long-lasting epoxy floor coating and installation.',
+    locationTitle: 'Best Epoxy Flooring Contractor',
+    description: 'best epoxy flooring contractor services for industrial, commercial, and residential spaces. We provide top-rated seamless epoxy floor coating, self-leveling epoxy, and long-lasting installation.',
     servicePoints: [
       'Industrial epoxy flooring',
       'Decorative epoxy flooring',

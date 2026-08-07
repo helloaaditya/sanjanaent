@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer, Factory, Layers, Droplet, Building2 } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { EPOXY_CONTRACTOR_FAQS, serviceBusinessSchema, faqPageSchema } from '../utils/seo'
 
 const IndustrialEpoxyScreedFlooring = () => {
   const handlePhoneClick = () => {
@@ -83,13 +84,13 @@ const IndustrialEpoxyScreedFlooring = () => {
   return (
     <>
       <Helmet>
-        <title>Industrial Epoxy Screed Flooring in Bangalore | Durable Flooring</title>
-        <meta name="description" content="Sanjana Enterprises provides industrial epoxy screed flooring in Bangalore for factories, warehouses and manufacturing units — heavy-duty, impact resistant, chemical resistant and long-lasting screed systems." />
-        <meta name="keywords" content="industrial epoxy screed flooring in bangalore, epoxy screed flooring, heavy duty epoxy screed, factory flooring bangalore" />
+        <title>Best Industrial Epoxy Screed Flooring Contractor in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Best industrial epoxy screed flooring contractor in Bangalore for factories & warehouses. Top-rated heavy-duty epoxy screed installation with chemical resistance." />
+        <meta name="keywords" content="best industrial epoxy screed flooring bangalore, best epoxy flooring contractor bangalore, epoxy screed flooring contractor" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" />
-        <meta property="og:title" content="Industrial Epoxy Screed Flooring in Bangalore | Durable Flooring" />
-        <meta property="og:description" content="Sanjana Enterprises offers industrial epoxy screed flooring in Bangalore — seamless, chemical resistant and built for heavy industrial use in factories and warehouses." />
+        <meta property="og:title" content="Best Industrial Epoxy Screed Flooring Contractor in Bangalore" />
+        <meta property="og:description" content="Best industrial epoxy screed flooring contractor in Bangalore for factories and warehouses." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/industrial-epoxy-screed-flooring-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -97,6 +98,12 @@ const IndustrialEpoxyScreedFlooring = () => {
         <meta name="geo.region" content="IN-KA" />
         <meta name="geo.position" content="12.9716;77.5946" />
         <meta name="ICBM" content="12.9716, 77.5946" />
+        <script type="application/ld+json">{JSON.stringify(serviceBusinessSchema({
+          name: 'Sanjana Enterprises - Industrial Epoxy Screed Flooring Contractor Bangalore',
+          description: 'Industrial epoxy screed flooring contractor in Bangalore for heavy industrial environments.',
+          url: '/industrial-epoxy-screed-flooring-in-bangalore',
+        }))}</script>
+        <script type="application/ld+json">{JSON.stringify(faqPageSchema(EPOXY_CONTRACTOR_FAQS))}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -114,7 +121,7 @@ const IndustrialEpoxyScreedFlooring = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Industrial Epoxy Screed Flooring in Bangalore
+                  Industrial Epoxy Screed Flooring Contractor in Bangalore
                 </h1>
               </ScrollAnimation>
               

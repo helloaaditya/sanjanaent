@@ -22,13 +22,16 @@ function LocationServicePage() {
 
   const { service, area } = parsed
   const areaName = area.name
-  const serviceTitle = service.title
+  const serviceTitle = service.locationTitle || service.title
   const h1 = `${serviceTitle} in ${areaName} Bangalore`
   const canonical = getLocationPageUrl(service.slug, area.slug)
   const isEpoxy = service.slug === 'epoxy-flooring'
+  const isWaterLeak = service.slug === 'water-leakage-detection'
   const metaDescription = isEpoxy
-    ? `Professional epoxy flooring contractor in ${areaName} Bangalore. ${service.description.slice(0, 100)}... Contact Sanjana Enterprises.`
-    : `Professional ${service.title.toLowerCase()} services in ${areaName} Bangalore. ${service.description.slice(0, 100)}... Contact Sanjana Enterprises.`
+    ? `Best epoxy flooring contractor in ${areaName} Bangalore. Top-rated industrial & commercial epoxy floor coating and installation. Call Sanjana Enterprises for a quote.`
+    : isWaterLeak
+      ? `Water leakage detection in ${areaName} Bangalore using thermal imaging & pipe cameras. Non-destructive hidden leak detection. Call Sanjana Enterprises.`
+      : `Professional ${service.title.toLowerCase()} services in ${areaName} Bangalore. ${service.description.slice(0, 100)}... Contact Sanjana Enterprises.`
 
   const faqs = [
     {

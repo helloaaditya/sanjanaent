@@ -10,9 +10,13 @@ import { BANGALORE_AREAS, LOCATION_SERVICES } from '../src/data/locationPagesDat
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const BASE = 'https://www.sanjanawaterproofing.com'
 const urls = []
+const seen = new Set()
 for (const service of LOCATION_SERVICES) {
   for (const area of BANGALORE_AREAS) {
-    urls.push(`${BASE}/${service.slug}-${area.slug}-bangalore`)
+    const loc = `${BASE}/${service.slug}-${area.slug}-bangalore`
+    if (seen.has(loc)) continue
+    seen.add(loc)
+    urls.push(loc)
   }
 }
 

@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowUp } 
 import { reportCallConversion } from '../gtag'
 import logoImage from '../assets/sanjana-enterprises.png'
 import privacyPolicy from '../assets/Privacy_Policy_&_Terms_and_condition.pdf'
+import { SERVICE_LINKS } from '../utils/seo'
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -34,7 +35,7 @@ const Footer = () => {
       </button>
 
       <div className="container-max pt-16 pb-8 px-4 sm:px-6">
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
           {/* Company Info */}
           <div className="space-y-6">
             <div>
@@ -75,6 +76,23 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={link.href} 
+                    className="text-gray-300 hover:text-blue-400 transition-colors text-sm sm:text-base"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Popular Services */}
+          <div>
+            <h4 className="text-lg font-semibold mb-6">Popular Services</h4>
+            <ul className="space-y-3">
+              {SERVICE_LINKS.map((link) => (
+                <li key={link.path}>
+                  <a
+                    href={link.path}
                     className="text-gray-300 hover:text-blue-400 transition-colors text-sm sm:text-base"
                   >
                     {link.name}

@@ -14,7 +14,7 @@ const Home = () => {
       <Helmet>
         <title>India's No.1 Choice for Flooring & Waterproofing Excellence | Sanjana Enterprises</title>
         <meta name="description" content="India's No.1 Choice for Flooring & Waterproofing Excellence. Professional waterproofing and industrial flooring services in Bangalore with 30+ years of expertise." />
-        <meta name="keywords" content="waterproofing bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
+        <meta name="keywords" content="waterproofing bangalore, best epoxy flooring contractor bangalore, best epoxy flooring in bangalore, water leakage detection bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/" />
         

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer, Factory, Package, Truck } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { EPOXY_CONTRACTOR_FAQS, serviceBusinessSchema, faqPageSchema } from '../utils/seo'
 
 const EpoxyFlooringForWarehouses = () => {
   const handlePhoneClick = () => {
@@ -80,13 +81,13 @@ const EpoxyFlooringForWarehouses = () => {
   return (
     <>
       <Helmet>
-        <title>Epoxy Flooring for Warehouses in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Top-quality epoxy flooring solutions for warehouses in Bangalore. Durable, safe, and long-lasting. Withstands heavy loads, machinery, and high traffic." />
-        <meta name="keywords" content="Epoxy flooring for warehouses in bangalore, warehouse flooring, industrial epoxy flooring bangalore" />
+        <title>Best Warehouse Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Best warehouse epoxy flooring contractor in Bangalore. Top-rated heavy-duty epoxy floor coating for warehouses with forklift traffic & chemical resistance." />
+        <meta name="keywords" content="best warehouse epoxy flooring bangalore, best epoxy flooring contractor bangalore, industrial epoxy flooring contractor" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore" />
-        <meta property="og:title" content="Epoxy Flooring for Warehouses in Bangalore" />
-        <meta property="og:description" content="Durable epoxy flooring systems for warehouses with heavy loads and machinery. Maximum durability, chemical resistance, and easy maintenance." />
+        <meta property="og:title" content="Best Warehouse Epoxy Flooring Contractor in Bangalore" />
+        <meta property="og:description" content="Best warehouse epoxy flooring contractor in Bangalore for heavy loads, machinery, and high traffic." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/epoxy-flooring-for-warehouses-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -94,6 +95,12 @@ const EpoxyFlooringForWarehouses = () => {
         <meta name="geo.region" content="IN-KA" />
         <meta name="geo.position" content="12.9716;77.5946" />
         <meta name="ICBM" content="12.9716, 77.5946" />
+        <script type="application/ld+json">{JSON.stringify(serviceBusinessSchema({
+          name: 'Sanjana Enterprises - Warehouse Epoxy Flooring Contractor Bangalore',
+          description: 'Warehouse epoxy flooring contractor in Bangalore for industrial warehouse floor coating.',
+          url: '/epoxy-flooring-for-warehouses-in-bangalore',
+        }))}</script>
+        <script type="application/ld+json">{JSON.stringify(faqPageSchema(EPOXY_CONTRACTOR_FAQS))}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -111,7 +118,7 @@ const EpoxyFlooringForWarehouses = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Epoxy Flooring for Warehouses
+                  Warehouse Epoxy Flooring Contractor
                   <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                     in Bangalore
                   </span>

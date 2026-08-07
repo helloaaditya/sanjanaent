@@ -4,6 +4,7 @@ import { Link, useLocation, Navigate } from 'react-router-dom'
 import { Phone, MessageCircle, MapPin, CheckCircle, ArrowRight } from 'lucide-react'
 import { LOCATION_SERVICES, BANGALORE_AREAS } from '../data/locationPagesData'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { faqPageSchema } from '../utils/seo'
 
 const BASE = 'https://www.sanjanawaterproofing.com'
 
@@ -14,12 +15,19 @@ function NearMePage() {
 
   if (!service) return <Navigate to="/" replace /> 
 
-  const title = `${service.title} Near Me`
-  const canonical = `${BASE}/${service.slug}-near-me`
   const isEpoxy = service.slug === 'epoxy-flooring'
+  const isWaterLeak = service.slug === 'water-leakage-detection'
+  const title = isEpoxy
+    ? 'Best Epoxy Flooring Contractor Near Me'
+    : isWaterLeak
+      ? 'Water Leakage Detection Near Me'
+      : `${service.title} Near Me`
+  const canonical = `${BASE}/${service.slug}-near-me`
   const metaDescription = isEpoxy
-    ? `${service.title} contractor near me in Bangalore. Find professional epoxy flooring contractor options nearby. Call or contact Sanjana Enterprises for quick response across Bangalore.`
-    : `${service.title} near me in Bangalore. Find professional ${service.title.toLowerCase()} services nearby. Call or contact Sanjana Enterprises for quick service across Bangalore.`
+    ? `Best epoxy flooring contractor near me in Bangalore. Top-rated epoxy floor coating & installation across all localities. Call Sanjana Enterprises for quick response.`
+    : isWaterLeak
+      ? `Water leakage detection near me in Bangalore. Thermal imaging & non-destructive leak detection across all areas. Call Sanjana Enterprises for quick inspection.`
+      : `${service.title} near me in Bangalore. Find professional ${service.title.toLowerCase()} services nearby. Call or contact Sanjana Enterprises for quick service across Bangalore.`
 
   const faqs = [
     {
@@ -58,6 +66,7 @@ function NearMePage() {
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqPageSchema(faqs))}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -73,7 +82,13 @@ function NearMePage() {
             </ScrollAnimation>
             <ScrollAnimation animation="fade-in-up" delay={100}>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                {service.title} Near Me
+                {title}
+                {!isEpoxy && !isWaterLeak && (
+                  <span className="block text-2xl sm:text-3xl text-slate-300 mt-2 font-bold">in Bangalore</span>
+                )}
+                {(isEpoxy || isWaterLeak) && (
+                  <span className="block text-2xl sm:text-3xl text-slate-300 mt-2 font-bold">in Bangalore</span>
+                )}
               </h1>
             </ScrollAnimation>
             <ScrollAnimation animation="fade-in-up" delay={200}>

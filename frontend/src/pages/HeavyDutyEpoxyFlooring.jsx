@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer, Factory, Layers, SlidersHorizontal, Star } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { EPOXY_CONTRACTOR_FAQS, serviceBusinessSchema, faqPageSchema } from '../utils/seo'
 
 const HeavyDutyEpoxyFlooring = () => {
   const handlePhoneClick = () => {
@@ -104,13 +105,13 @@ const HeavyDutyEpoxyFlooring = () => {
   return (
     <>
       <Helmet>
-        <title>Heavy Duty Epoxy Flooring in Bangalore | Factory Floor Coating</title>
-        <meta name="description" content="Heavy duty epoxy flooring services in Bangalore for factories, warehouses, manufacturing units, and industrial facilities with high-strength, abrasion-resistant, and chemical-resistant floor coating systems." />
-        <meta name="keywords" content="heavy duty epoxy flooring in bangalore, industrial epoxy flooring, factory floor coating, abrasion resistant flooring" />
+        <title>Best Heavy Duty Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Best heavy duty epoxy flooring contractor in Bangalore for factories, warehouses & manufacturing units. Top-rated epoxy floor coating with chemical & abrasion resistance." />
+        <meta name="keywords" content="best heavy duty epoxy flooring bangalore, best epoxy flooring contractor bangalore, industrial epoxy flooring contractor, factory floor coating bangalore" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore" />
-        <meta property="og:title" content="Heavy Duty Epoxy Flooring in Bangalore | Factory Floor Coating" />
-        <meta property="og:description" content="Heavy duty epoxy flooring services in Bangalore for factories, warehouses and industrial facilities — high-strength, abrasion and chemical resistant coatings." />
+        <meta property="og:title" content="Best Heavy Duty Epoxy Flooring Contractor in Bangalore" />
+        <meta property="og:description" content="Best heavy duty epoxy flooring contractor in Bangalore for factories, warehouses and industrial facilities." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/heavy-duty-epoxy-flooring-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -118,6 +119,12 @@ const HeavyDutyEpoxyFlooring = () => {
         <meta name="geo.region" content="IN-KA" />
         <meta name="geo.position" content="12.9716;77.5946" />
         <meta name="ICBM" content="12.9716, 77.5946" />
+        <script type="application/ld+json">{JSON.stringify(serviceBusinessSchema({
+          name: 'Sanjana Enterprises - Heavy Duty Epoxy Flooring Contractor Bangalore',
+          description: 'Heavy duty epoxy flooring contractor in Bangalore for industrial and factory floor coating.',
+          url: '/heavy-duty-epoxy-flooring-in-bangalore',
+        }))}</script>
+        <script type="application/ld+json">{JSON.stringify(faqPageSchema(EPOXY_CONTRACTOR_FAQS))}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -135,7 +142,7 @@ const HeavyDutyEpoxyFlooring = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Heavy Duty Industrial Epoxy Flooring in Bangalore
+                  Heavy Duty Epoxy Flooring Contractor in Bangalore
                 </h1>
               </ScrollAnimation>
               

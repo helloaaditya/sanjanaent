@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer, Factory, Layers, Droplet, Car, UtensilsCrossed, Building2, AlertTriangle } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { EPOXY_CONTRACTOR_FAQS, serviceBusinessSchema, faqPageSchema } from '../utils/seo'
 
 const AntiskidEpoxyFlooring = () => {
   const handlePhoneClick = () => {
@@ -68,13 +69,13 @@ const AntiskidEpoxyFlooring = () => {
   return (
     <>
       <Helmet>
-        <title>Antiskid Epoxy Flooring in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Reduce slip hazards with antiskid epoxy flooring in Bangalore. Durable, safe, and industrial-grade solutions. Expert installation. Free quote!" />
-        <meta name="keywords" content="Antiskid epoxy flooring in bangalore, anti-slip epoxy flooring, slip resistant flooring bangalore" />
+        <title>Best Anti-Slip Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Best anti-slip epoxy flooring contractor in Bangalore for factories, kitchens & wet areas. Top-rated antiskid epoxy floor coating with slip-resistant finish." />
+        <meta name="keywords" content="best antiskid epoxy flooring bangalore, best epoxy flooring contractor bangalore, anti-slip epoxy flooring contractor" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore" />
-        <meta property="og:title" content="Antiskid Epoxy Flooring in Bangalore" />
-        <meta property="og:description" content="Durable, safe, and high-performance antiskid epoxy flooring solutions for industrial, commercial, and residential spaces in Bangalore." />
+        <meta property="og:title" content="Best Anti-Slip Epoxy Flooring Contractor in Bangalore" />
+        <meta property="og:description" content="Best anti-slip epoxy flooring contractor in Bangalore for industrial and commercial safety zones." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -82,6 +83,12 @@ const AntiskidEpoxyFlooring = () => {
         <meta name="geo.region" content="IN-KA" />
         <meta name="geo.position" content="12.9716;77.5946" />
         <meta name="ICBM" content="12.9716, 77.5946" />
+        <script type="application/ld+json">{JSON.stringify(serviceBusinessSchema({
+          name: 'Sanjana Enterprises - Anti-Slip Epoxy Flooring Contractor Bangalore',
+          description: 'Anti-slip epoxy flooring contractor in Bangalore for safety-critical industrial and commercial floors.',
+          url: '/antiskid-epoxy-flooring-in-bangalore',
+        }))}</script>
+        <script type="application/ld+json">{JSON.stringify(faqPageSchema(EPOXY_CONTRACTOR_FAQS))}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -99,7 +106,7 @@ const AntiskidEpoxyFlooring = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Antiskid Epoxy Flooring
+                  Anti-Slip Epoxy Flooring Contractor
                   <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                     in Bangalore
                   </span>

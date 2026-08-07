@@ -113,7 +113,7 @@ const Services = () => {
       <Helmet>
         <title>Waterproofing & Industrial Flooring Services in Bangalore | Sanjana Enterprises</title>
         <meta name="description" content="Professional waterproofing & industrial flooring services in Bangalore. Terrace, basement, water tank waterproofing. Epoxy & PU flooring. Quick inspection & quote." />
-        <meta name="keywords" content="waterproofing services bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring, water tank waterproofing, bathroom waterproofing, roof waterproofing" />
+        <meta name="keywords" content="waterproofing services bangalore, best epoxy flooring contractor bangalore, best epoxy flooring in bangalore, water leakage detection bangalore, industrial flooring bangalore, terrace waterproofing, basement waterproofing, epoxy flooring, pu flooring" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/services" />
         <meta property="og:title" content="Waterproofing & Industrial Flooring Services in Bangalore" />
@@ -234,7 +234,11 @@ const Services = () => {
               </div>
               <h3 className="text-4xl font-black text-gray-900 mb-4">Smart Structural Diagnostics</h3>
               <p className="text-lg text-gray-600">Advanced tools to identify hidden moisture, leaks, and structural issues with precision.</p>
-              <p className="text-blue-600"><b>Observation by using machines will be on chargeable basis</b></p>
+              <p className="text-blue-600"><b>Observation by using machines will be on chargeable basis</b></p>
+              <a href="/water-leakage-detection" className="inline-flex items-center gap-2 mt-6 text-blue-600 font-semibold hover:text-blue-700">
+                Water Leakage Detection in Bangalore
+                <ArrowRight size={18} />
+              </a>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">

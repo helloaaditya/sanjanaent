@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Palette, Thermometer } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { EPOXY_CONTRACTOR_FAQS, serviceBusinessSchema, faqPageSchema } from '../utils/seo'
 
 const EpoxyFlooringServicesBangalore = () => {
   const handlePhoneClick = () => {
@@ -83,13 +84,13 @@ const EpoxyFlooringServicesBangalore = () => {
   return (
     <>
       <Helmet>
-        <title>Epoxy Flooring Services in Bangalore | Industrial Experts</title>
-        <meta name="description" content="Get professional epoxy flooring services in Bangalore for industrial, commercial, warehouse, and parking floors with durable, seamless, chemical-resistant epoxy coating solutions for long-lasting floor protection." />
-        <meta name="keywords" content="Epoxy flooring services in Bangalore, industrial epoxy flooring, commercial epoxy flooring, warehouse epoxy, parking epoxy" />
+        <title>Best Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Best epoxy flooring contractor in Bangalore for industrial, commercial & warehouse floors. Top-rated epoxy floor coating, installation & warranty-backed service." />
+        <meta name="keywords" content="best epoxy flooring contractor bangalore, best epoxy flooring in bangalore, epoxy flooring contractor bangalore, industrial epoxy flooring contractor" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
-        <meta property="og:title" content="Epoxy Flooring Services in Bangalore | Industrial Experts" />
-        <meta property="og:description" content="High-performance epoxy flooring for industrial and commercial spaces. Durable, seamless, and customizable with 15-20 year lifespan." />
+        <meta property="og:title" content="Best Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises" />
+        <meta property="og:description" content="Best epoxy flooring contractor in Bangalore for industrial and commercial spaces." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/epoxy-flooring-services-in-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
@@ -97,6 +98,12 @@ const EpoxyFlooringServicesBangalore = () => {
         <meta name="geo.region" content="IN-KA" />
         <meta name="geo.position" content="12.9716;77.5946" />
         <meta name="ICBM" content="12.9716, 77.5946" />
+        <script type="application/ld+json">{JSON.stringify(serviceBusinessSchema({
+          name: 'Sanjana Enterprises - Epoxy Flooring Contractor Bangalore',
+          description: 'Professional epoxy flooring contractor in Bangalore for industrial and commercial epoxy floor coating.',
+          url: '/epoxy-flooring-services-in-bangalore',
+        }))}</script>
+        <script type="application/ld+json">{JSON.stringify(faqPageSchema(EPOXY_CONTRACTOR_FAQS))}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -114,7 +121,7 @@ const EpoxyFlooringServicesBangalore = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Professional Epoxy Flooring Services in Bangalore
+                  Best Epoxy Flooring Contractor in Bangalore
                 </h1>
               </ScrollAnimation>
               

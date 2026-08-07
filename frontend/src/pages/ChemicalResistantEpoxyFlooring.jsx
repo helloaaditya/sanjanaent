@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Shield, CheckCircle, Phone, ArrowRight, Target } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
+import { EPOXY_CONTRACTOR_FAQS, serviceBusinessSchema, faqPageSchema } from '../utils/seo'
 
 const ChemicalResistantEpoxyFlooring = () => {
   const handlePhoneClick = () => {
@@ -12,16 +13,22 @@ const ChemicalResistantEpoxyFlooring = () => {
   return (
     <>
       <Helmet>
-        <title>Chemical Resistant Epoxy Flooring in Bangalore | Industrial Protection</title>
-        <meta name="description" content="Sanjana Enterprises provides chemical resistant epoxy flooring in Bangalore for pharmaceutical, laboratory, food processing and chemical plants — durable, seamless and corrosion-resistant systems." />
-        <meta name="keywords" content="chemical resistant epoxy flooring in bangalore, chemical resistant epoxy, industrial chemical resistant flooring, lab epoxy flooring" />
+        <title>Best Chemical Resistant Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises</title>
+        <meta name="description" content="Best chemical resistant epoxy flooring contractor in Bangalore for labs, pharma & chemical plants. Top-rated epoxy floor coating resistant to acids, solvents & spills." />
+        <meta name="keywords" content="best chemical resistant epoxy flooring bangalore, best epoxy flooring contractor bangalore, lab epoxy flooring contractor" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/chemical-resistant-epoxy-flooring-bangalore" />
-        <meta property="og:title" content="Chemical Resistant Epoxy Flooring in Bangalore | Industrial Protection" />
-        <meta property="og:description" content="High-performance chemical resistant epoxy flooring for industries, labs and processing units in Bangalore — protection against acids, solvents and spills." />
+        <meta property="og:title" content="Best Chemical Resistant Epoxy Flooring Contractor in Bangalore" />
+        <meta property="og:description" content="Best chemical resistant epoxy flooring contractor in Bangalore for industrial and laboratory environments." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/chemical-resistant-epoxy-flooring-bangalore" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IN" />
+        <script type="application/ld+json">{JSON.stringify(serviceBusinessSchema({
+          name: 'Sanjana Enterprises - Chemical Resistant Epoxy Flooring Contractor Bangalore',
+          description: 'Chemical resistant epoxy flooring contractor in Bangalore for laboratories and industrial facilities.',
+          url: '/chemical-resistant-epoxy-flooring-bangalore',
+        }))}</script>
+        <script type="application/ld+json">{JSON.stringify(faqPageSchema(EPOXY_CONTRACTOR_FAQS))}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -38,7 +45,7 @@ const ChemicalResistantEpoxyFlooring = () => {
 
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Chemical Resistant Epoxy Flooring Services in Bangalore
+                  Chemical Resistant Epoxy Flooring Contractor in Bangalore
                 </h1>
               </ScrollAnimation>
 

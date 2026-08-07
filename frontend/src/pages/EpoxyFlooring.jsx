@@ -35,9 +35,9 @@ const EpoxyFlooring = () => {
       canonical: 'https://www.sanjanawaterproofing.com/antiskid-epoxy-flooring-in-bangalore'
     },
     default: {
-      title: 'Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises',
-      description: 'Industrial epoxy flooring contractor in Bangalore for epoxy floor coating and epoxy flooring installation. Anti-slip, warehouse, and chemical-resistant finishes.',
-      h1: 'Industrial-Strength Epoxy Flooring Contractor in Bangalore',
+      title: 'Best Epoxy Flooring Contractor in Bangalore | Sanjana Enterprises',
+      description: 'Best epoxy flooring contractor in Bangalore for industrial, commercial & warehouse floors. Top-rated epoxy floor coating, installation & 30+ years expertise.',
+      h1: 'Best Epoxy Flooring Contractor in Bangalore',
       canonical: 'https://www.sanjanawaterproofing.com/epoxy-flooring'
     }
   }
@@ -188,6 +188,8 @@ const EpoxyFlooring = () => {
         <meta
           name="keywords"
           content={[
+            'best epoxy flooring contractor bangalore',
+            'best epoxy flooring in bangalore',
             'epoxy flooring contractor in bangalore',
             'industrial epoxy flooring contractor',
             'epoxy floor coating',
@@ -224,7 +226,7 @@ const EpoxyFlooring = () => {
               <ScrollAnimation animation="fade-in-up" delay={0}>
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
                   <Shield size={16} />
-                  Epoxy Flooring Contractor
+                  Best Epoxy Flooring Contractor
                 </div>
               </ScrollAnimation>
               
@@ -260,9 +262,9 @@ const EpoxyFlooring = () => {
                     </>
                   ) : (
                     <>
-                      Industrial-Strength Epoxy Flooring
+                      Best Epoxy Flooring Contractor
                       <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        Contractor in Bangalore
+                        in Bangalore
                       </span>
                     </>
                   )}

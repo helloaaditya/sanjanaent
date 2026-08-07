@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Home, Shield, CheckCircle, Award, Phone, ArrowRight, Wrench, Eye, Target, Sparkles, Hammer, Thermometer, Wifi, Camera, MapPin } from 'lucide-react'
 import ScrollAnimation from '../components/ScrollAnimation'
 import { BANGALORE_AREAS } from '../data/locationPagesData'
+import { WATER_LEAK_FAQS, serviceBusinessSchema, faqPageSchema, breadcrumbSchema, DEFAULT_OG_IMAGE } from '../utils/seo'
 
 const WaterLeakageDetection = () => {
   // Simple Droplets and Clipboard icons since they're not imported
@@ -89,19 +90,30 @@ const WaterLeakageDetection = () => {
     <>
       <Helmet>
         <title>Water Leakage Detection in Bangalore | Sanjana Enterprises</title>
-        <meta name="description" content="Advanced water leakage detection using thermal imaging in Bangalore. Locate hidden leaks quickly & accurately without damage. Quick inspection." />
-        <meta name="keywords" content="water leakage detection bangalore, thermal imaging water leak detection, hidden water leak detection, moisture detection services, infrared thermography water leak detection" />
+        <meta name="description" content="Professional water leakage detection in Bangalore using thermal imaging, pipe cameras & moisture meters. Non-destructive hidden leak detection for walls, bathrooms & terraces." />
+        <meta name="keywords" content="water leakage detection bangalore, water leak detection bangalore, thermal imaging water leak detection, hidden water leak detection, bathroom leak detection bangalore, pipe leak detection bangalore, moisture detection services bangalore" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.sanjanawaterproofing.com/water-leakage-detection" />
-        <meta property="og:title" content="Water Leakage Detection Services in Bangalore" />
-        <meta property="og:description" content="Advanced water leakage detection using thermal imaging and specialized equipment. Locate hidden leaks quickly and accurately without damage." />
+        <meta property="og:title" content="Water Leakage Detection in Bangalore | Sanjana Enterprises" />
+        <meta property="og:description" content="Professional water leakage detection in Bangalore using thermal imaging and specialized equipment. Locate hidden leaks without damage." />
         <meta property="og:url" content="https://www.sanjanawaterproofing.com/water-leakage-detection" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
         <meta property="og:locale" content="en_IN" />
         <meta name="geo.placename" content="Bangalore, Karnataka" />
         <meta name="geo.region" content="IN-KA" />
         <meta name="geo.position" content="12.9716;77.5946" />
         <meta name="ICBM" content="12.9716, 77.5946" />
+        <script type="application/ld+json">{JSON.stringify(serviceBusinessSchema({
+          name: 'Sanjana Enterprises - Water Leakage Detection Bangalore',
+          description: 'Professional water leakage detection in Bangalore using thermal imaging, pipe cameras, and moisture meters.',
+          url: '/water-leakage-detection',
+        }))}</script>
+        <script type="application/ld+json">{JSON.stringify(faqPageSchema(WATER_LEAK_FAQS))}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Water Leakage Detection', path: '/water-leakage-detection' },
+        ]))}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
@@ -119,17 +131,17 @@ const WaterLeakageDetection = () => {
               
               <ScrollAnimation animation="fade-in-up" delay={200}>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                  Precision Water Leak
+                  Water Leakage Detection
                   <span className="block bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
-                    Detection Services
+                    in Bangalore
                   </span>
                 </h1>
               </ScrollAnimation>
               
               <ScrollAnimation animation="fade-in-up" delay={400}>
                 <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-                  Locate hidden water leaks quickly and accurately with our advanced thermal imaging technology 
-                  and specialized detection equipment. Minimize damage and save costs with our expert services.
+                  Professional water leakage detection in Bangalore using thermal imaging, pipe cameras, and moisture meters.
+                  Locate hidden water leaks in walls, bathrooms, and terraces without unnecessary damage.
                 </p>
               </ScrollAnimation>
               
@@ -317,6 +329,25 @@ const WaterLeakageDetection = () => {
                 </div>
               </ScrollAnimation>
             </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <ScrollAnimation animation="fade-in-up" delay={0}>
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-8 text-center">
+                Water Leakage Detection FAQ
+              </h2>
+              <div className="space-y-6">
+                {WATER_LEAK_FAQS.map((faq, index) => (
+                  <div key={index} className="bg-teal-50 rounded-2xl p-6 border border-teal-100">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">{faq.q}</h3>
+                    <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+            </ScrollAnimation>
           </div>
         </section>
 
