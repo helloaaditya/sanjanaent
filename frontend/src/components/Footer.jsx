@@ -136,7 +136,7 @@ const Footer = () => {
                 <p className="text-gray-300 text-sm mb-3">Quick Response</p>
                 <button 
                   onClick={handlePhoneClick}
-                  className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-2 px-4 rounded transition-colors inline-block"
+                  className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-4 rounded transition-colors inline-block"
                 >
                   Call Now
                 </button>

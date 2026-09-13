@@ -1,6 +1,6 @@
 import React from 'react'
 
-const WHATSAPP_NUMBER = '918797223004'
+const WHATSAPP_NUMBER = '919916290799'
 const PREBUILT_MESSAGE =
   'Hi Sanjana Enterprises, I need a quote for waterproofing / epoxy flooring services in Bangalore. Please contact me.'
 

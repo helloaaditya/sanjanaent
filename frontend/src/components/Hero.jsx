@@ -475,9 +475,9 @@ const Hero = () => {
                 Get Free Quote
                   <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300 sm:inline hidden" />
               </button>
-              <button 
+              <button
                 onClick={handlePhoneClick}
-                  className="group bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-300 hover:border-blue-300 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-bold flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto min-h-[48px] text-sm sm:text-base"
+                  className="group bg-blue-600 hover:bg-blue-700 text-white border-2 border-blue-600 hover:border-blue-700 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-bold flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto min-h-[48px] text-sm sm:text-base"
               >
                 Call Now
               </button>
