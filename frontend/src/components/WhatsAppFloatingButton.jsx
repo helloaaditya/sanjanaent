@@ -1,8 +1,15 @@
 import React from 'react'
 
 const WHATSAPP_NUMBER = '919916290799'
-const PREBUILT_MESSAGE =
-  'Hi Sanjana Enterprises, I need a quote for waterproofing / epoxy flooring services in Bangalore. Please contact me.'
+const PREBUILT_MESSAGE = `Hi Sanjana Enterprises 👋
+
+I’m interested in your services. I would like to know more about:
+
+* Waterproofing
+* Flooring
+* Thermal Scanning / Water Leakage Detection
+
+📍 Location: __`
 
 const WhatsAppFloatingButton = () => {
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(PREBUILT_MESSAGE)}`
